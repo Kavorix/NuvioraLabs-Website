@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en' ng-app='awesweet'>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Awe Sweet</title>
+	
+		<!--CDNs-->
+			<!--Bootstrap-->
+			<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+			<script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js'></script>
+
+		<!--Scripts-->
+			<!--JQuery-->
+			<script src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+			
+			<!--Angular-->
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-route.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize.js"></script>
+
+			<!--All AweSweet Frontend Scripts-->
+			<script src='scripts/bundle.js'></script>
+			
+			
+		<!--Styles-->
+		
+		<!--Images-->
+		<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+	</head>
+	<body >
+		<!--This is the view-->
+		<div ng-view></div>
+	</body>
+</html>

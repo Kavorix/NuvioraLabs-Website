@@ -46,10 +46,7 @@ serverApp.use('/', function(req, res, next) {
 *	GET Declarations
 */
 //	GET: ROOT 
-serverApp.get('/', function(req, res) {
-	//return an affirmative status code
-	res.sendStatus(200);
-});
+
 
 /*
 *	POST Declarations
