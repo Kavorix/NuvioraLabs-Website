@@ -1,2 +1,2 @@
 // MODULE
-var awesweet = angular.module('awesweet', ['ngRoute', 'ngSanitize']);
+var awesweet = angular.module('awesweet', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);

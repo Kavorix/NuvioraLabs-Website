@@ -1,14 +1,30 @@
+div {
+    display: block;
+}
+
 .wrapper-full {
     margin: 0 auto;
     position: relative;
     max-width: none;
     width: 100%;
     padding: 20px;
+    background-color: #AE7F4B;
+    color: #161211;
 }
 
 #logo {
     float: left;
     margin: 0;
+}
+
+#navigation {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#navigation a:link {
+    color: #161211;
 }
 
 #navigation .main-nav {
@@ -32,4 +48,10 @@
 #navigation .tool-nav {
     float: right;
     margin: 8px 0 0 0;
+}
+
+#logo a {
+    height: 40px;
+    width: 143px;
+    display: block;
 }

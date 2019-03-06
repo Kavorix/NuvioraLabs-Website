@@ -12,6 +12,7 @@ function landingController($scope, $log) {
 
 	$log.info('in the landing controller');	    //  TODO: TAKE THIS OUT LATER
 
+	//start the carousel
 
 
 }
