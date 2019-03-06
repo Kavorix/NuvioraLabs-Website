@@ -1,0 +1,35 @@
+.wrapper-full {
+    margin: 0 auto;
+    position: relative;
+    max-width: none;
+    width: 100%;
+    padding: 20px;
+}
+
+#logo {
+    float: left;
+    margin: 0;
+}
+
+#navigation .main-nav {
+    float: left;
+    margin: 7px 0 0 15px;
+}
+
+#navigation ul {
+    position: relative;
+    padding: 0;
+    list-style: none;
+}
+
+#navigation li {
+    float: left;
+    margin: 0;
+    padding: 0 10px;
+    line-height: 1.4;
+}
+
+#navigation .tool-nav {
+    float: right;
+    margin: 8px 0 0 0;
+}
