@@ -4,6 +4,7 @@
   "description": "AweSweet Website",
   "main": "server/serverApp.js",
   "scripts": {
+    "start": "node server/serverApp.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
