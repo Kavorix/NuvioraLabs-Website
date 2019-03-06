@@ -1,0 +1,24 @@
+{
+  "name": "awesweetv1",
+  "version": "1.0.0",
+  "description": "AweSweet Website",
+  "main": "server/serverApp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ianemcallister/awesweetv1.git"
+  },
+  "keywords": [
+    "nuts",
+    "sweet",
+    "ah"
+  ],
+  "author": "Ian McAllister",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ianemcallister/awesweetv1/issues"
+  },
+  "homepage": "https://github.com/ianemcallister/awesweetv1#readme"
+}
