@@ -23,6 +23,16 @@ function config($routeProvider, $locationProvider) {
         controller: 'productPageController',        //  Product Page Controller
         controllerAs: 'vm'
     })
+    .when('/products/:productId/:variantId', {
+        templateUrl: 'views/products-page.htm',      //  Product Page View with a product Id & varient Id
+        controller: 'productPageController',        //  Product Page Controller
+        controllerAs: 'vm'
+    })
+    .when('/products/:productId', {
+        templateUrl: 'views/products-page.htm',      //  Product Page View with a product Id
+        controller: 'productPageController',        //  Product Page Controller
+        controllerAs: 'vm'
+    })
     .when('/pricing', {
         templateUrl: 'views/pricing-page.htm',       //  Pricing Page View
         controller: 'pricingPageController',        //  Pricing Page Controller
@@ -35,6 +45,11 @@ function config($routeProvider, $locationProvider) {
     })
     .when('/channels', {
         templateUrl: 'views/channels-page.htm',      //  Channels Page View
+        controller: 'channelsPageController',       //  Channels Page Controller
+        controllerAs: 'vm'
+    })
+    .when('/channels/:channelId', {
+        templateUrl: 'views/channels-page.htm',      //  Channels Page View & Channel Id
         controller: 'channelsPageController',       //  Channels Page Controller
         controllerAs: 'vm'
     })
@@ -60,6 +75,16 @@ function config($routeProvider, $locationProvider) {
     })
     .when('/checkout', {
         templateUrl: 'views/checkout-page.htm',      //  Checkout Page View
+        controller: 'checkoutPageController',       //  Checkout Page Controller
+        controllerAs: 'vm'
+    })
+    .when('/checkout/:sessionId', {
+        templateUrl: 'views/checkout-page.htm',      //  Checkout Page View & Session Id
+        controller: 'checkoutPageController',       //  Checkout Page Controller
+        controllerAs: 'vm'
+    })
+    .when('/checkout/:sessionId/:ticketId', {
+        templateUrl: 'views/checkout-page.htm',      //  Checkout Page View & Session Id & Ticket Id
         controller: 'checkoutPageController',       //  Checkout Page Controller
         controllerAs: 'vm'
     })
