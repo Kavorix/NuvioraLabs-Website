@@ -1,18 +1,16 @@
 angular
     .module('awesweet')
-    .controller('landingController', landingController);
+    .controller('landingPageController', landingPageController);
 
-landingController.$inject = ['$scope','$log'];
+	landingPageController.$inject = ['$scope','$log'];
 
 /* @ngInject */
-function landingController($scope, $log) {
+function landingPageController($scope, $log) {
 
 	//define view model variable
 	var vm = this;
 
 	$log.info('in the landing controller');	    //  TODO: TAKE THIS OUT LATER
-
-	//start the carousel
 
 
 }
