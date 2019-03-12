@@ -1,0 +1,41 @@
+#awesweet-footer {
+    padding-top: 15px;
+    background: #f0f0f0;
+    box-shadow: 0 1px 1px 0 rgba(240,240,240, 240, 0.1) inset;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.8em;
+}
+
+#awesweet-footer * {
+    box-sizing: border-box;
+}
+
+#awesweet-footer .wrapper {
+    position: relative;
+    width: 94%;
+    max-width: 1200ppx;
+    padding: 2em 0;
+    margin: 0 auto;
+}
+
+#awesweet-footer .col {
+    display: block;
+    float: left;
+}
+
+#awesweet-footer .awesweet-footer-links {
+    width: 70%;
+}
+
+#awesweet-footer .awesweet-footer-links .col {
+    width: 25%;
+    padding-right: 2%;
+}
+
+@media (max-width: 900px) {
+    #awesweet-footer .wrapper  {
+        float: none;
+        width: 100%;
+    }
+}

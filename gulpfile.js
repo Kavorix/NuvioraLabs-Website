@@ -69,7 +69,7 @@ gulp.task('styles', function() {
 			browsers: ['last 2 versions']
 		}))
 		.pipe(gulp.dest('dist/styles'))
-		.pipe(browserSync.stream());
+		.pipe(browserSync.reload({ stream: true}));
 });
 
 /*

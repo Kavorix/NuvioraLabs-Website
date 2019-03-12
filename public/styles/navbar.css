@@ -1,8 +1,15 @@
-div {
+
+#navigation {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+#navigation div {
     display: block;
 }
 
-.wrapper-full {
+#navigation .wrapper-full {
     margin: 0 auto;
     position: relative;
     max-width: none;
@@ -12,15 +19,9 @@ div {
     color: #161211;
 }
 
-#logo {
+#navigation #logo {
     float: left;
     margin: 0;
-}
-
-#navigation {
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 1;
 }
 
 #navigation a:link {
@@ -50,7 +51,7 @@ div {
     margin: 8px 0 0 0;
 }
 
-#logo a {
+#navigation #logo a {
     height: 40px;
     width: 143px;
     display: block;
