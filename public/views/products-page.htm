@@ -1,3 +1,63 @@
 <div>
-    This is the products page
+    <div id='single-product'>
+        <section class="product-details col-2">
+            <!-- Product Gallery -->
+            <div class="column main">
+
+            </div>
+            <!-- Product Details-->
+            <div class="column right">
+
+                <header id='product-top'>
+                    <h1>Swalty Nuts</h1>
+                    <h2 class="small">
+                        <a href="" class="maker">
+                            MADE BY
+                            <span itemprop='brand'>Ah-Nuts!</span>
+                        </a>
+                    </h2>
+                </header>
+
+                <div id='cart-action'>
+                    <form action="/cart/add" method="post" enctype="multipart/form-data">
+                        
+                        <ul class="variant-options first">
+                            <li class data-sku='MFI-999-21'>
+                                <label class="target">
+                                    <input type="hidden" id='' name='id' value='' data-base-price='' checked>
+                                    <span class="actual-price">$16.99</span>
+                                    <span class="each">EACH</span>
+                                </label>
+                            </li>
+                        </ul>
+
+                        <div class="helper">
+                            <i class="icon gift"></i> Includes...Nothing!
+                        </div>
+
+                        <button type="submit" name='add' class='button full-width'>
+                            <span>ADD TO CART</span>
+                            <span class="secondary amount">$11</span>
+                        </button>
+                        <a href="#" class='rf hidden toggle-more-options' data-show-text='Size options' data-hide-text='Hide' style='display: none;'>Hide</a>
+
+                    </form>
+                </div>
+
+                <div id='product-panels'>
+                    <div class="panel discription expanded"></div>
+                    <div class="panel ingredients">
+                        <h2>Ingredients</h2>
+                        <div class="collapsible">
+                            <p class="rte"></p>
+                            <ul class="certifications">
+                                <li>contains something</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
 </div>

@@ -10,7 +10,7 @@ function productPageController($scope, $log, $routeParams) {
 	//define view model variable
 	var vm = this;
 
-	$log.info('in the products controller');	    //  TODO: TAKE THIS OUT LATER
-    $log.info($routeParams);
+	$log.info('in the products controller', $routeParams);	    //  TODO: TAKE THIS OUT LATER
+    
 
 }
