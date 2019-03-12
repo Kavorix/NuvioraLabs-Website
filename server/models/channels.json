@@ -1,0 +1,41 @@
+{
+    "4ce0dc10-44f2-11e9-89e9-6d3702779310": {
+        "name": "Beaverton Farmers Market",
+        "abbv": "BvFM",
+        "logo_url": "https://s3-us-west-2.amazonaws.com/awe-sweet-assets/beaverton-fm-logo.png",
+        "url": "https://www.beavertonfarmersmarket.com",
+        "about": {
+            "discription": "Located across from the Beaverton Library in the heart of downtown Beaverton, the Beaverton Farmers market is a destination market. During the summer season, the market averages between 15,000 and 20,000 visitors on any given Saturday. The market is comprised of nursery growers, farmers, and ranchers - both conventional and organic. Artisan food producers offer prepared products, ranging from fruit jams to farmstead cheeses, breads and pastries, pickles, pasta, chocolate, and more. The market also offers many amenities, including live music each week and proximity to the main Beaverton Library and City Park, which includes a playground, interactive fountain, and picnic tables. The Beaverton Farmers Market is the perfect place for families to spend the day.",
+            "mission": "The objectives of the Beaverton Farmers’ Market, Inc. are: to give our community access to a wide variety of fresh, local, in-season farm and artisan food products direct from the producer; to provide an informal, social gathering place in an open-air setting; to enhance the Beaverton community; to support our local growers and artisan food makers by providing them with direct marketing opportunities in our markets."
+        },
+        "gallery": {},  
+        "seasons": {
+            "bwfm2019": {
+                "title": "Beaverton Winter Farmers Market",
+                "location": {
+                    "discription": "Across from the library",
+                    "address": {
+                        "street": "12375 SW 5th St",
+                        "city": "Beaverton",
+                        "state": "OR",
+                        "zip": "97005"
+                    },
+                    "coordinates": {"lat":45.4845138, "long":-122.8050739}
+                },
+                "season": {
+                    "start": { "month": "February", "m": "2" },
+                    "end": { "month": "April", "m": "4" }
+                },
+                "hours": {
+                    "start": "10:00:00-07:00",
+                    "end": "13:30:00-07:00"
+                },
+                "first_day": "2019-02-02",
+                "last_day": "2019-04-28",
+                "reoccures": { "frequency":"weekly", "on": "Saturdays", "wday": 6 }
+            },
+            "bwfm2019": {},
+            "bffm2019": {}
+        }
+    }
+}

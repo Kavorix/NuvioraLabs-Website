@@ -3,6 +3,7 @@
     font-size: 14px;
     font-weight: 700;
     line-height: 1;
+
 }
 
 #navigation div {
@@ -15,8 +16,15 @@
     max-width: none;
     width: 100%;
     padding: 20px;
-    background-color: #AE7F4B;
+    background-color: rgb(165, 135, 69);
     color: #161211;
+
+}
+
+#navigation .wrapper-full::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 #navigation #logo {
@@ -55,4 +63,15 @@
     height: 40px;
     width: 143px;
     display: block;
+}
+
+#slide01 {
+    height: 100px;
+    width: 375px;
+    background-color: yellow;
+}
+#slide02 {
+    height: 100px;
+    wdith: 375px;
+    background-color: green;
 }

@@ -8,3 +8,26 @@ footer {
     display: block;
     list-style: none;
 }
+
+.section-black {
+    background-color: gray;
+}
+
+.section-beige {
+    background-color: beige;
+}
+
+*:after, *:before {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+*::after, *::before {
+    -webkit-box-sizing: inherit;
+            box-sizing: inherit;
+}
+.wrapper::after {
+    clear: both;
+    content: "";
+    display: table;
+}

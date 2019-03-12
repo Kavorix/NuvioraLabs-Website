@@ -20,6 +20,12 @@
     margin: 0 auto;
 }
 
+#awesweet-footer .wrapper::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
 #awesweet-footer .col {
     display: block;
     float: left;
@@ -30,7 +36,7 @@
 }
 
 #awesweet-footer .awesweet-footer-links .col {
-    width: 25%;
+    width: 20%;
     padding-right: 2%;
 }
 
@@ -53,8 +59,26 @@
     font-weight: 300;
 }
 
+#awesweet-footer .tertiary .col {
+    width: 50%;
+}
 
-@media (max-width: 900px) {
+#awesweet-footer .tertiary ul {
+    margin: 13px 0 10px;
+    float: right;
+}
+
+#awesweet-footer .tertiary li {
+    display: inline-block;
+    margin-right: 7px;
+}
+
+.push {
+    height: 150px;
+}
+
+
+@media (max-width: 1000px) {
 
     #awesweet-footer .wrapper .col {
         float: none;
