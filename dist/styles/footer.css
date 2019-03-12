@@ -1,3 +1,4 @@
+
 #awesweet-footer {
     padding-top: 15px;
     background: #f0f0f0;
@@ -16,8 +17,8 @@
 #awesweet-footer .wrapper {
     position: relative;
     width: 94%;
-    max-width: 1200ppx;
-    padding: 2em 0;
+    max-width: 1200px;
+    padding: 2em 0 2em 0;
     margin: 0 auto;
 }
 
@@ -35,9 +36,47 @@
     padding-right: 2%;
 }
 
+#awesweet-footer h4 {
+    margin: 1.33em 0 1.33em 0;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: #211746;
+}
+
+#awesweet-footer col ul {
+    margin: 1em 0 1em 0;
+}
+
+#awesweet-footer ul {
+    list-style: none;
+    padding-left: 0;
+    font-weight: 300;
+}
+
+
 @media (max-width: 900px) {
-    #awesweet-footer .wrapper  {
+
+    #awesweet-footer .wrapper .col {
         float: none;
         width: 100%;
     }
+
+    #awesweet-footer .col {
+        width: auto;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    #awesweet-footer .awesweet-footer-links .col {
+        width: auto;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    #awesweet-footer h4 {
+        text-align: center;
+    }
+
 }
