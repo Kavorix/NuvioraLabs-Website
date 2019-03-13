@@ -1,44 +1,51 @@
 <div>
-    <nav id='navigation' role='navigation'>
-        <span class="mobil-nav"></span>
-        <div class="wrapper-full">
-            <div id='logo'>
-                
-                <a href="https://www.awesweet.com/home">
-                    <img src="https://s3-us-west-2.amazonaws.com/awe-sweet-assets/Awe-sweet-simple-logo.png" alt="">
-                </a>
-            </div>
-            <div class="nav-wrapper">
-                <ul class="main-nav">
-                    <li class="has-dropdown">
-                        <a href="#/products">Products</a>
-                    </li>
-                    <li class="has-dropdown">
-                        <a href="#/pricing">Pricing</a>
-                    </li>
-                    <li>
-                        <a href="#/story">Our Story</a>
-                    </li>
-                    <li>
-                        <a href="#channels">Locations</a>
-                    </li>
-                    <li>
-                        <a href="#/support">Support</a>
-                    </li>
-                    <li>
-                        <a href="#">More</a>
-                    </li>
-                </ul>
-                <ul class="tool-nav">
-                    <li>
-                        <a href="#/login">Log in</a>
-                    </li>
-                    <li>
-                        <a href="#/cart">Cart</a>
-                    </li>
-                </ul>
-            </div>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" ng-click="isNavCollapsed = !isNavCollapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="https://s3-us-west-2.amazonaws.com/awe-sweet-assets/Awe-sweet-simple-logo.png" alt="">
+            </a>
         </div>
-        
+        <div class="collapse navbar-collapse" uib-collapse="isNavCollapsed">
+            <ul class="nav navbar-nav">
+                <li class='dropdown'>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#/products">Products <b class="caret"></b></a> <!--ng-controller="DropdownCtrl" -->
+                    <ul class="dropdown-menu">
+                        <li>test</li>
+                        <li>test</li>
+                        <li>test</li>
+                    </ul>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link" href="#/pricing">Pricing</a>
+                </li>
+                <li class='nav-item'>
+                    <a class="nav-link" href="#/story">Our Story</a>
+                </li>
+                <li>
+                    <a href="#/channels">Locations</a>
+                </li>
+                <li>
+                    <a href="#/support">Support</a>
+                </li>
+                <li>
+                    <a href="#">More</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">Login</a>
+                </li>
+                <li>
+                    <a href="#">Cart</a>
+                </li>
+            </ul>
+        </div>
     </nav>
+    
 </div>

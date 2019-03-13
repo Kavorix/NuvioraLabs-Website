@@ -30,10 +30,16 @@ function navbarDirective() {
 	
 	/* @ngInject */
 	function navbarDirectiveController($scope, $log) {
-		//define local variables
-		var self = this;
+		//	DEFINE LOCAL VARIABLES
+		var vm = this;
 
-		console.log('in navbar directive controller');
+		//	DEFINE VIEW MODEL VARIABLES
+		vm.isNavCollapsed = true;
+		vm.isCollapsed = false;
+		vm.isCollapsedHorizontal = false;
+
+		//	REPORT PROGRESS
+		$log.info('in navbar directive controller');
 	}
 
 	//pass it back
