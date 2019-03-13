@@ -1,24 +1,25 @@
+
 #single-product .mainPanel {
-    width: 62%;
+    width: 61%;
     padding-right: 36px;
     position: relative;
-    display: table-cell;
+    display: inline-block;
 }
 
 #single-product .rightPanel {
     width: 38%;
     padding-right: 36px;
     position: relative;
-    display: table-cell;
+    display: inline-block;
 }
 
 @media (max-width: 900px) {
-    #single-product .main {
+    #single-product .mainPanel {
         width: 100%;
         display: block;
     }
 
-    #single-product .right {
+    #single-product .rightPanel {
         width: 100%;
         display: block;
     }
