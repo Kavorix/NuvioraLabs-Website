@@ -12,5 +12,4 @@ function jobsPageController($scope, $log) {
 
 	$log.info('in the jobs controller');	    //  TODO: TAKE THIS OUT LATER
 
-
 }

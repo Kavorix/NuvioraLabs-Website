@@ -34,7 +34,7 @@
                 "last_day": "2019-04-28",
                 "reoccures": { "frequency":"weekly", "on": "Saturdays", "wday": 6 }
             },
-            "bwfm2019": {},
+            "bsfm2019": {},
             "bffm2019": {}
         }
     }

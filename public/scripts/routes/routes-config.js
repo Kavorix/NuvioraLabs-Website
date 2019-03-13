@@ -23,7 +23,7 @@ function config($routeProvider, $locationProvider) {
         controller: 'productPageController',        //  Product Page Controller
         controllerAs: 'vm'
     })
-    .when('/products/:productId/:variantId', {
+    .when('/products/:productName/:productId', {
         templateUrl: 'views/products-page.htm',      //  Product Page View with a product Id & varient Id
         controller: 'productPageController',        //  Product Page Controller
         controllerAs: 'vm'

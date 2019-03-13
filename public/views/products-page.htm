@@ -2,24 +2,29 @@
     <div id='single-product'>
         <section class="product-details col-2">
             <!-- Product Gallery -->
-            <div class="column main">
+            <div class="column mainPanel">
                 
-                <div class="product-slideshow">
-                    
+                <div uib-carousel active="active" interval="5000" no-wrap="noWrapSlides">
+                    <div uib-slide ng-repeat="slide in vm.slides" index="slide.id">
+                        <img ng-src="{{slide.image}}" style="margin:auto;">
+                        
+                    </div>
                 </div>
 
             </div>
             <!-- Product Details-->
-            <div class="column right">
+            <div class="column rightPanel">
 
                 <header id='product-top'>
-                    <h1>Swalty Nuts</h1>
+                    <h1>{{vm.productModel.title}}</h1>
+                    <p>{{vm.productModel.subtitle}}</p>
                     <h2 class="small">
                         <a href="" class="maker">
-                            MADE BY
-                            <span itemprop='brand'>Ah-Nuts!</span>
+                            MADE BY 
+                            <span itemprop='brand'>{{vm.productModel.producer}}</span>
                         </a>
                     </h2>
+                    
                 </header>
 
                 <div id='cart-action'>
@@ -29,8 +34,8 @@
                             <li class data-sku='MFI-999-21'>
                                 <label class="target">
                                     <input type="hidden" id='' name='id' value='' data-base-price='' checked>
-                                    <span class="actual-price">$16.99</span>
-                                    <span class="each">EACH</span>
+                                    <span class="actual-price">{{vm.productModel.variations[vm.selectedVariant].price / 100 | currency: "$": 2}}</span>
+                                    <span class="each">{{ vm.productModel.variations[vm.selectedVariant].unit }}</span>
                                 </label>
                             </li>
                         </ul>
@@ -41,7 +46,7 @@
 
                         <button type="submit" name='add' class='button full-width'>
                             <span>ADD TO CART</span>
-                            <span class="secondary amount">$11</span>
+                            <span class="secondary amount">{{vm.productModel.variations[vm.selectedVariant].price / 100 | currency: "$": 2}}</span>
                         </button>
                         <a href="#" class='rf hidden toggle-more-options' data-show-text='Size options' data-hide-text='Hide' style='display: none;'>Hide</a>
 
@@ -49,13 +54,17 @@
                 </div>
 
                 <div id='product-panels'>
-                    <div class="panel discription expanded"></div>
+
+                    <div class="panel discription expanded">
+                        <h2>Discription</h2>
+                        {{vm.productModel.discription}}
+                    </div>
                     <div class="panel ingredients">
                         <h2>Ingredients</h2>
                         <div class="collapsible">
-                            <p class="rte"></p>
+                            <p class="rte">{{vm.productModel.rte}}</p>
                             <ul class="certifications">
-                                <li>contains something</li>
+                                <li ng-repeat="cert in vm.productModel.certifications">{{cert}}</li>
                             </ul>
                         </div>
                     </div>
@@ -65,3 +74,4 @@
         </section>
     </div>
 </div>
+

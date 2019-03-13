@@ -1,4 +1,25 @@
-.col-2 .column .main {
+#single-product .mainPanel {
     width: 62%;
     padding-right: 36px;
+    position: relative;
+    display: table-cell;
+}
+
+#single-product .rightPanel {
+    width: 38%;
+    padding-right: 36px;
+    position: relative;
+    display: table-cell;
+}
+
+@media (max-width: 900px) {
+    #single-product .main {
+        width: 100%;
+        display: block;
+    }
+
+    #single-product .right {
+        width: 100%;
+        display: block;
+    }
 }
