@@ -4,7 +4,11 @@
     <div class="modal-demo">
             <script type="text/ng-template" id="myModalContent.html">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+                    <h3 class="modal-title" id="modal-title" style='display:inline-block'>IN YOUR CART</h3>
+                    <button type='button' class='close' data-dismiss="dialog" style='display:inline-block' ng-click="vm.cancel()">
+                            <span aria-hidden="true">&times; Close</span>
+                            <span class="sr-only">Close</span>
+                    </button>
                 </div>
                 <div class="modal-body" id="modal-body">
                     <ul>
@@ -15,8 +19,7 @@
                     Selected: <b>{{ vm.selected.item }}</b>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
-                    <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+                    <button class="btn btn-primary" type="button" ng-click="vm.ok()">FINISH CHECKOUT</button>
                 </div>
             </script>
     </div>
