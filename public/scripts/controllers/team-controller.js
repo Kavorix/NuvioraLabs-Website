@@ -12,8 +12,8 @@ function teamPageController($scope, $log, $location) {
 
 	//	DEFINE VIEW MODEL VARIABLES 
 	vm.activeChecklists = [
-		{ title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: "Ian McAllister", type: "Equipment Checkout", for:"Kit #1", url:"/team/checklists/equipment"},
-		{ title: "Kit #3 Checkout", dueDate: "05/01/19",  assignedTo: "", type: "", destination:"" }
+		{ title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: "Ian McAllister", type: "Equipment Checkout", for:"Kit #1", url:"/team/checklists/equipment/123"},
+		{ title: "Kit #3 Checkout", dueDate: "05/01/19",  assignedTo: "Nary Kuch", type: "Staging", for:"Warehouse", url:"/team/checklists/staging" }
 	];
 	vm.completedChecklists = [
 		{ title: "Kit #1 Checkout", shipDate: "05/01/19"}

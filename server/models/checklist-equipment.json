@@ -1,0 +1,48 @@
+{
+    "completed": false,
+    "completedDate": "",
+    "createdDate": "",
+    "equipment": {
+        "10x10CPCanopy":    { "item":"Canopy", "discription":"California Palm, brown 10x10 frame & top", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "Honda2200i":       { "item":"Honda Generator", "discription":"Honda 2200i gas powered generator", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "MandelprofiMini":  { "item":"Roaster", "discription":"Mandelprofi Mini Nut Roasting Machine", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "fileBox":          { "item":"File Box", "discription":"File box to contain returning ziplock bags", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "wallsBagCP":       { "item":"Walls Bag", "discription":"California Palm, walls bag with 4 walls", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "cookingBox":       { "item":"Cooking Box", "discription":"All suppies required for cooking", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "electronicsBox":   { "item":"Electronics Box", "discription":"Box with ipad, scale, chip reader, swipe read, power cords, and change banks folio", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "packagingBox":     { "item":"Packaging Box", "discription":"Box with small, average & impressive cones, stickers, twisties, scissors, tape, pens and example platters", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "cleaningBox":      { "item":"Cleaning Box", "discription":"Box with papertowels, trash bags, first aid kit, soap, bungees, large clips, and small clips", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "cashBox":          { "item":"Cash Box", "discription":"Cash box to hold cash during markets & events", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "scoopingBinsBox":  { "item":"Scooping Bins Box", "discription":"Box with all 8 cooked nut bins, cooking mat, banners, tablecloth", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "tables":           { "item":"Tables (4x)", "discription":"1 heavy duty and 3 medium duty tables", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "tableRisers":      { "item":"Table Risers", "discription":"Stackable table risers in a tote bag", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "stingerStandard":  { "item":"Standard Extension Cord", "discription":"Extension cord with 3 pronged splitter", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "platters20oz":     { "item":"20oz Platters (10x)", "discription":"10 platters (tops & bottoms) in a tote bag", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "handwashStation":  { "item":"Handwash Station", "discription":"5 gal catch bucket and 3 gal thermos", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "canopyWeights":    { "item":"Canopy Weights (4x)", "discription":"Cement filled canopy weights", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true },
+        "galWaterJugs":     { "item":"Gallon Water Jugs (2x)", "discription":"Waterjugs for kettle cleaning", "confirmed": false, "confirmedAt": "", "confirmedBy": "", "needed": true }
+    },
+    "rawMaterials": {
+        "nuts": {
+            "fullPecans":    { "name":"Pecan Full Batches", "discription":"Gallon ziplock bag, full batch of pecans & sugar", "qty":0, "sqrId": "" },
+            "fullAlmonds":   { "name":"Almond Full Batches", "discription":"Gallon ziplock bag, full batch of almonds & sugar", "qty":0, "sqrId": "" },
+            "fullCashews":   { "name":"Cashew Full Batches", "discription":"Gallon ziplock bag, full batch of cashews & sugar", "qty":0, "sqrId": ""  },
+            "fullPeanuts":   { "name":"Peanut Full Batches", "discription":"Gallon ziplock bag, full batch of peanuts & sugar", "qty":0, "sqrId": ""  },
+            "fullHazelnuts": { "name":"Hazlenut Full Batches", "discription":"Gallon ziplock bag, full batch of hazelnuts & sugar", "qty":0, "sqrId": ""  },
+            "halfPecans":    { "name":"Pecan Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": "" },
+            "halfAlmonds":   { "name":"Almond Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": "" },
+            "halfHazelnuts": { "name":"Hazlenut Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": ""  }
+        },
+        "extraLiquids": {
+            "carafeSR6c":   { "name":"Bottle of Swalty Mix", "discription":"6 Cups bottle of Swalty Vanilla Mixture", "qty": 0, "sqrId":"" },
+            "carafeDR6c":   { "name":"Bottle of Drunken Mix", "discription":"6 Cups bottle of Drunken Mixture", "qty": 0, "sqrId":"" }
+        },
+        "cookedNuts": {}
+    },
+    "kit": { "name":"", "sqId":"" },
+    "returnDate": "",
+    "shipDate": "",
+    "type": "",
+    "url": "",
+    "assignedTo": { "name":"", "sqId": "" }
+}

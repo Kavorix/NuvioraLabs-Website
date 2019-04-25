@@ -103,7 +103,7 @@ function config($routeProvider, $locationProvider) {
         controller: 'teamPageController',      //  Team Page Controller
         controllerAs: 'vm'
     })
-    .when('/team/checklists/:type', {
+    .when('/team/checklists/:type/:listId', {
         templateUrl: 'views/teamChecklists-page.htm',     //  Team Page View
         controller: 'teamChecklistsPageController',      //  Team Page Controller
         controllerAs: 'vm'

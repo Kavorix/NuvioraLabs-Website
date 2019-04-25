@@ -7,8 +7,14 @@ angular
 /* @ngInject */
 function teamChecklistsPageController($scope, $log, $routeParams) {
 
-	//define view model variable
-	var vm = this;
+    //  DEFINE LOCAL VARIABLES
+    var vm = this;
+
+    //  DEFINE VIEW MODEL VARIABLES
+    vm.listType = $routeParams.type;
+
+    //define view model variable
+	
 
 	$log.info('in the team checklists controller', $routeParams);	    //  TODO: TAKE THIS OUT LATER
 

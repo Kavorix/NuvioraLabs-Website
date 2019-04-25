@@ -21,3 +21,11 @@
     padding-left: 10px;
     
 }
+
+#checklist table {
+    width: 100%;
+}
+
+#checklist .glyphicon {
+    font-size: 3em;
+}

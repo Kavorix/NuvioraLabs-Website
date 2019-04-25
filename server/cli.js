@@ -1,3 +1,5 @@
-const uuidv1 = require('uuid/v1');
 
-console.log(uuidv1());
+
+var cldb = require('./dbScripts/db-team-checklists.js');
+
+cldb.test();
