@@ -11,6 +11,7 @@ var bodyParser 	= require('body-parser');
 
 //	DECLARE PROPRIATRY DEPENDENCIES
 var cldb 		= require('./dbScripts/db-team-checklists.js');
+var asprop 		= require('./asprop.js'); 
 
 //  Return the express object
 var serverApp = express();
