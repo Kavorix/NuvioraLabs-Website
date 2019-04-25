@@ -1,0 +1,23 @@
+#aweSweet-checklist ul {
+    list-style: none;
+    width: 700px;
+}
+
+#aweSweet-checklist li {
+    background-color: #cec179;
+    /*color: white;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 10px;
+    border-radius: 25px;
+    border-style: solid;
+}
+
+#aweSweet-checklist td {
+    width: 300px;
+    padding-left: 10px;
+    
+}

@@ -1,0 +1,46 @@
+<div>
+    
+    <div class="container">
+        
+        <h1>Awe Sweet Team Page</h1>
+
+        <h3>Active Checklists</h3>
+        <div ng-if='vm.activeChecklists.length == 0'>No active checklists at this time</div>
+        <div    id='aweSweet-checklist'
+                ng-if='vm.activeChecklists.length > 0'>
+            <!-- Active Checklists list-->
+            <ul>
+                <li ng-repeat='list in vm.activeChecklists track by $index'
+                    ng-click='vm.listClicked($index)'>
+                    <table class='table-bordered'>
+                        <tr>
+                            <td><strong>Assigned To:</strong> </td>
+                            <td>{{list.assignedTo}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Type:</strong></td>
+                            <td>{{list.type}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>For:</strong></td>
+                            <td>{{list.for}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Due:</strong></td>
+                            <td>{{list.dueDate}}</td>
+                        </tr>
+                    </table>
+                    <!--
+                    <h4>Type:  </h4>
+                    <h4>For: </h4>  
+                    <h4>Due: </h4>  -->
+                </li>
+            </ul>
+        </div>
+
+        <h3>Completed Checklists</h3>
+        <div>No completed checklists at this time</div>
+
+    </div>
+    
+</div>

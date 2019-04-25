@@ -1,3 +1,8 @@
 <div>
-    THIS IS THE LANDING REVIEWS SLIDER DIRECTIVE
+    <div uib-carousel active="active" interval="5000" no-wrap="noWrapSlides">
+        <div uib-slide ng-repeat="slide in vm.slides" index="slide.id">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+            
+        </div>
+    </div>
 </div>

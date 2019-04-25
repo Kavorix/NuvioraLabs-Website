@@ -98,6 +98,11 @@ function config($routeProvider, $locationProvider) {
         controller: 'dashboardPageController',      //  Dashboard Page Controller
         controllerAs: 'vm'
     })
+    .when('/team', {
+        templateUrl: 'views/team-page.htm',     //  Team Page View
+        controller: 'teamPageController',      //  Team Page Controller
+        controllerAs: 'vm'
+    })
 	.otherwise({
         redirectTo: '/'
     });
