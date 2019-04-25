@@ -98,7 +98,25 @@ serverApp.get('/API/data/aChecklist/:listId', function(req, res) {
 /*
 *	POST Declarations
 */
+//	POST: /sqrwebhook
+serverApp.post('/sqrwebhook', function(req, res) {
+	
+	//advise of the post body
+	console.log(req.body);
 
+	//run the requird function
+	asprop.sqPushUpdates(req.body).then(function success(s) {
+		
+		//return an affirmative status code
+		res.sendStatus(200);
+
+	}).catch(function error(e) {
+
+		//return an error status code
+		res.sendStatus(550);
+		
+	});
+});
 
 /*
 *	Running the server

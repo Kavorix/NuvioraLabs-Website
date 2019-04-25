@@ -21,7 +21,8 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "firebase-admin": "^7.3.0"
+    "firebase-admin": "^7.3.0",
+    "square-connect": "^2.20190410.1"
   },
   "devDependencies": {
     "browser-sync": "^2.24.5",

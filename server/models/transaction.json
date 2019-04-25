@@ -1,0 +1,127 @@
+{
+	"id": "YmsX65meD8SlFz53TAkVOvMF",
+	"merchant_id": "M53KQT35YKE5C",
+	"created_at": "2019-04-25T04:54:39Z",
+	"device": {
+		"id": "DEVICE_INSTALLATION_ID:3893FCF8-7B3A-49D5-8A93-A10C4EFC4D2B",
+		"name": "iPad"
+	},
+	"payment_url": "https://squareup.com/dashboard/sales/transactions/FSw4krXwAdtE1A2QsB6AGipeV",
+	"receipt_url": "https://squareup.com/receipt/preview/YmsX65meD8SlFz53TAkVOvMF",
+	"inclusive_tax_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"additive_tax_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"tax_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"tip_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"discount_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"total_collected_money": {
+		"amount": 700,
+		"currency_code": "USD"
+	},
+	"processing_fee_money": {
+		"amount": -19,
+		"currency_code": "USD"
+	},
+	"net_total_money": {
+		"amount": 681,
+		"currency_code": "USD"
+	},
+	"refunded_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"swedish_rounding_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"gross_sales_money": {
+		"amount": 700,
+		"currency_code": "USD"
+	},
+	"net_sales_money": {
+		"amount": 700,
+		"currency_code": "USD"
+	},
+	"inclusive_tax": [],
+	"additive_tax": [],
+	"tender": [
+		{
+			"id": "YmsX65meD8SlFz53TAkVOvMF",
+			"type": "CREDIT_CARD",
+			"name": "Credit Card",
+			"employee_id": "IkbEUz93v6ghXbBZxHiz",
+			"receipt_url": "https://squareup.com/receipt/preview/YmsX65meD8SlFz53TAkVOvMF",
+			"card_brand": "VISA",
+			"pan_suffix": "4551",
+			"entry_method": "MANUAL",
+			"total_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"tendered_at": "2019-04-25T04:54:30Z",
+			"settled_at": "2019-04-25T04:54:39Z",
+			"refunded_money": {
+				"amount": 0,
+				"currency_code": "USD"
+			},
+			"is_exchange": false
+		}
+	],
+	"refunds": [],
+	"itemizations": [
+		{
+			"name": "SW Hazelnut",
+			"quantity": 1,
+			"itemization_type": "ITEM",
+			"item_detail": {
+				"category_name": "",
+				"sku": "",
+				"item_id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+				"item_variation_id": "4271E368-4929-4B37-9728-8156D02A2048"
+			},
+			"item_variation_name": "Small (4)",
+			"total_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"single_quantity_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"gross_sales_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"discount_money": {
+				"amount": 0,
+				"currency_code": "USD"
+			},
+			"net_sales_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"taxes": [],
+			"discounts": [],
+			"modifiers": []
+		}
+	],
+	"surcharge_money": {
+		"amount": 0,
+		"currency_code": "USD"
+	},
+	"surcharges": []
+}
