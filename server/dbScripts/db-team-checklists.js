@@ -8,7 +8,28 @@ var checklistsDBClient = {
     test: test
 };
 
-function getAChecklist(id) {};
+/*
+*   GET A CHECKLIST
+*
+*   This function takes the checklist id and returns a single checklist object
+*/
+function getAChecklist(id) {
+    //  NOTIFY PROGRESS
+    console.log('in the getAChecklist method', id);
+
+    //  DEFINE LOCAL VARIABLES
+    var path = 'checklists/' + id;
+
+    //  RETURN ASYNC WORK
+    return new Promise(function getAllChecklistsPromise(resolve, reject) {
+
+        firebase.read(path).then(function success(s) {
+            resolve(s)
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+};
 
 /*
 *   GET ALL CHECKLISTS

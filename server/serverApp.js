@@ -74,6 +74,26 @@ serverApp.get('/API/data/allChecklists', function(req, res) {
 	
 });
 
+//	GET: API/data/aChecklist/:listId
+serverApp.get('/API/data/aChecklist/:listId', function(req, res) {
+	
+	//run the requird function
+	cldb.getAChecklist(req.params.listId).then(function success(s) {
+		
+		//return an affirmative status code
+		res.setHeader('Content-Type', 'application/json');
+    	res.status(200);
+    	res.send(JSON.stringify(s));
+
+	}).catch(function error(e) {
+		
+		//return an error status code
+		res.sendStatus(550);
+
+	});
+	
+});
+
 
 /*
 *	POST Declarations

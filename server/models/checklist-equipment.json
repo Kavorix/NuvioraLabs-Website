@@ -1,4 +1,5 @@
 {
+    "id": "",
     "completed": false,
     "completedDate": "",
     "createdDate": "",
@@ -24,14 +25,14 @@
     },
     "rawMaterials": {
         "nuts": {
-            "fullPecans":    { "name":"Pecan Full Batches", "discription":"Gallon ziplock bag, full batch of pecans & sugar", "qty":0, "sqrId": "" },
-            "fullAlmonds":   { "name":"Almond Full Batches", "discription":"Gallon ziplock bag, full batch of almonds & sugar", "qty":0, "sqrId": "" },
-            "fullCashews":   { "name":"Cashew Full Batches", "discription":"Gallon ziplock bag, full batch of cashews & sugar", "qty":0, "sqrId": ""  },
-            "fullPeanuts":   { "name":"Peanut Full Batches", "discription":"Gallon ziplock bag, full batch of peanuts & sugar", "qty":0, "sqrId": ""  },
-            "fullHazelnuts": { "name":"Hazlenut Full Batches", "discription":"Gallon ziplock bag, full batch of hazelnuts & sugar", "qty":0, "sqrId": ""  },
-            "halfPecans":    { "name":"Pecan Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": "" },
-            "halfAlmonds":   { "name":"Almond Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": "" },
-            "halfHazelnuts": { "name":"Hazlenut Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "qty":0, "sqrId": ""  }
+            "fullPecans":    { "name":"Pecan Full Batches", "discription":"Gallon ziplock bag, full batch of pecans & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": "" },
+            "fullAlmonds":   { "name":"Almond Full Batches", "discription":"Gallon ziplock bag, full batch of almonds & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": "" },
+            "fullCashews":   { "name":"Cashew Full Batches", "discription":"Gallon ziplock bag, full batch of cashews & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""  },
+            "fullPeanuts":   { "name":"Peanut Full Batches", "discription":"Gallon ziplock bag, full batch of peanuts & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""   },
+            "fullHazelnuts": { "name":"Hazlenut Full Batches", "discription":"Gallon ziplock bag, full batch of hazelnuts & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""   },
+            "halfPecans":    { "name":"Pecan Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""  },
+            "halfAlmonds":   { "name":"Almond Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""  },
+            "halfHazelnuts": { "name":"Hazlenut Half Batches", "discription":"Quart ziplock bag, half batch of pecans & sugar", "allocated":0, "collected":0, "difference":0, "completed":false, "completedBy":"", "completedAt":"", "sqrId": ""   }
         },
         "extraLiquids": {
             "carafeSR6c":   { "name":"Bottle of Swalty Mix", "discription":"6 Cups bottle of Swalty Vanilla Mixture", "qty": 0, "sqrId":"" },

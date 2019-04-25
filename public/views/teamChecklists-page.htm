@@ -2,12 +2,13 @@
 <div class="container">
     <!--EQUIPMENT CHECK LISTS-->
     <div ng-if='vm.listType == "equipment"' id='checklist'>
-        <h1>Equipment Checklist</h1>
-        <h4>Kit:</h4>
-        <h4>Assigned Team Member:</h4>
-        <h4>Ship Date:</h4>
-        <h4>Returning Date:</h4>
-
+        <h1>Pickup Checklist</h1>
+        <h3>{{vm.list.kit.name}}</h3>
+        <h4>Assigned Team Member: {{vm.list.assignedTo.name}} </h4>
+        <h4>Ship Date: {{vm.list.shipDate | date: "mediumDate"}} </h4>
+        <h4>Returning Date: {{vm.list.returnDate | date: "mediumDate"}} </h4>
+        <br>
+        <h4>Equipment</h4>
         <table class="table">
             <thead class="thead-dark">
                 <tr>
@@ -18,16 +19,71 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
+                <tr ng-repeat="item in vm.list.equipment track by $index" ng-if='item.needed'>
+                    <td>
+                        <strong>{{item.item}}</strong>
+                        <br>
+                        {{item.discription}}
+                    </td>
                     <!-- Item Confirmed or Lacking-->
                     <td>
-                        <span ng-if='true' class='glyphicon glyphicon-remove-sign' style='color:red'></span>
-                        <span ng-if='true' class='glyphicon glyphicon-ok-sign' style='color:green'></span>
+                        <span ng-if='!item.confirmed' class='glyphicon glyphicon-remove-sign' style='color:red'></span>
+                        <span ng-if='item.confirmed' class='glyphicon glyphicon-ok-sign' style='color:green'></span>
+                    </td>
+                    <td>
+                        <span ng-if='!item.confirmed'>N/A</span>
+                        <span ng-if='item.confirmed'>{{item.confirmedBy}}</span>
+                    </td>
+                    <td>
+                        <span ng-if='!item.confirmed'>N/A</span>
+                        <span ng-if='item.confirmed'>{{item.confirmedAt}}</span>
                     </td>
                 </tr>
             </tbody>
         </table>
+
+        <br>
+        <h4>Raw Materials - Nuts</h4>
+        <table class="table">   
+            <tr>
+                <th>Product</th>
+                <th>Allocated</th>
+                <th>Collected</th>
+                <th>Difference</th>
+                <th>Completed</th>
+                <th>By</th>
+                <th>Date/Time</th>
+            </tr>
+            <tr ng-repeat='product in vm.list.rawMaterials.nuts' ng-if='product.allocated > 0'>
+                <td>
+                    <strong>{{product.name}}</strong> <br>
+                    {{product.discription}}
+                </td>
+                <td>
+                    {{product.allocated}}
+                </td>
+                <td>
+                    {{product.collected}}
+                </td>
+                <td>
+                    {{product.difference}}
+                </td>
+                <td>
+                    <span ng-if='!product.completed' class='glyphicon glyphicon-remove-sign' style='color:red'></span>
+                    <span ng-if='product.completed' class='glyphicon glyphicon-ok-sign' style='color:green'></span>
+                </td>
+                <td>
+                    <span ng-if='!product.completed'>N/A</span>
+                    <span ng-if='product.completed'>{{product.completedBy}}</span>
+                </td>
+                <td>
+                    <span ng-if='!product.completed'>N/A</span>
+                    <span ng-if='product.completed'>{{product.completedAt}}</span>
+                </td>
+            </tr>
+            
+        </table>
+        
     </div>
 
     <!--STAGING CHECK LIST-->
