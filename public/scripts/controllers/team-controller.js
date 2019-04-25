@@ -2,17 +2,17 @@ angular
     .module('awesweet')
     .controller('teamPageController', teamPageController);
 
-	teamPageController.$inject = ['$scope','$log'];
+	teamPageController.$inject = ['$scope','$log', '$location'];
 
 /* @ngInject */
-function teamPageController($scope, $log) {
+function teamPageController($scope, $log, $location) {
 
 	//	DEFINE LOCAL VARIABLES
 	var vm = this;
 
 	//	DEFINE VIEW MODEL VARIABLES 
 	vm.activeChecklists = [
-		{ title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: "Ian McAllister", type: "Equipment Checkout", for:"Kit #1"},
+		{ title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: "Ian McAllister", type: "Equipment Checkout", for:"Kit #1", url:"/team/checklists/equipment"},
 		{ title: "Kit #3 Checkout", dueDate: "05/01/19",  assignedTo: "", type: "", destination:"" }
 	];
 	vm.completedChecklists = [
@@ -21,8 +21,8 @@ function teamPageController($scope, $log) {
 
 	//	DEFINE VIEW MODEL FUNCTIONS
 	vm.listClicked = function(index) {
-		console.log('clicked this list');
-		console.log(vm.activeChecklists[index]);
+		console.log('redirecting to', vm.activeChecklists[index].url)
+		$location.path(vm.activeChecklists[index].url);
 	};
 
 
