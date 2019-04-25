@@ -105,8 +105,11 @@ serverApp.post('/sqrwebhook', function(req, res) {
 	//advise of the post body
 	console.log(req.body);
 
-	if(req.params.event_type == 'TEST_NOTIFICATION') { res.status(200); }
+	if(req.params.event_type == 'TEST_NOTIFICATION') { console.log('confirming test'); res.sendStatus(200); }
 	else if(req.params.event_type == 'PAYMENT_UPDATED') { 
+	
+	//	NOTIFY PROGRESS
+	console.log('testing payment');
 
 	//run the requird function
 	asprop.sqPushUpdates(req.body).then(function success(s) {
