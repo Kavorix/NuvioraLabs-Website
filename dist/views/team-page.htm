@@ -5,17 +5,19 @@
         <h1>Awe Sweet Team Page</h1>
 
         <h3>Active Checklists</h3>
-        <div ng-if='vm.activeChecklists.length == 0'>No active checklists at this time</div>
+        
+        <div ng-if='vm.activeChecklists == undefined'>No active checklists at this time</div>
         <div    id='aweSweet-checklist'
-                ng-if='vm.activeChecklists.length > 0'>
+                ng-if='vm.activeChecklists != undefined'>
             <!-- Active Checklists list-->
             <ul>
-                <li ng-repeat='list in vm.activeChecklists track by $index'
-                    ng-click='vm.listClicked($index)'>
+                <li ng-repeat='list in vm.activeChecklists track by list.id'
+                    ng-click='vm.listClicked(list.id)'>
+                    
                     <table class='table-bordered'>
                         <tr>
                             <td><strong>Assigned To:</strong> </td>
-                            <td>{{list.assignedTo}}</td>
+                            <td>{{list.assignedTo.name}}</td>
                         </tr>
                         <tr>
                             <td><strong>Type:</strong></td>
@@ -27,7 +29,7 @@
                         </tr>
                         <tr>
                             <td><strong>Due:</strong></td>
-                            <td>{{list.dueDate}}</td>
+                            <td>{{list.shipDate | date: mediumDate}}</td>
                         </tr>
                     </table>
                     <!--

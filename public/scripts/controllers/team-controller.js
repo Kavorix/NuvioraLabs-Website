@@ -2,27 +2,32 @@ angular
     .module('awesweet')
     .controller('teamPageController', teamPageController);
 
-	teamPageController.$inject = ['$scope','$log', '$location'];
+	teamPageController.$inject = ['$scope','$log', '$location', 'dataService'];
 
 /* @ngInject */
-function teamPageController($scope, $log, $location) {
+function teamPageController($scope, $log, $location, dataService) {
 
 	//	DEFINE LOCAL VARIABLES
 	var vm = this;
 
 	//	DEFINE VIEW MODEL VARIABLES 
-	vm.activeChecklists = [
-		{ title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: "Ian McAllister", type: "Equipment Checkout", for:"Kit #1", url:"/team/checklists/equipment/123"},
-		{ title: "Kit #3 Checkout", dueDate: "05/01/19",  assignedTo: "Nary Kuch", type: "Staging", for:"Warehouse", url:"/team/checklists/staging" }
-	];
-	vm.completedChecklists = [
-		{ title: "Kit #1 Checkout", shipDate: "05/01/19"}
-	]
+	vm.activeChecklists= [];
+
+	dataService.GETallChecklists().then(function success(s) {
+		console.log('SUCCESS', s);
+		vm.activeChecklists = s
+		$scope.$apply();
+	}).catch(function error(e) {
+		console.log('ERROR', e);
+		vm.activeChecklists = e;
+		$scope.$apply();
+	})
 
 	//	DEFINE VIEW MODEL FUNCTIONS
-	vm.listClicked = function(index) {
-		console.log('redirecting to', vm.activeChecklists[index].url)
-		$location.path(vm.activeChecklists[index].url);
+	vm.listClicked = function(id) {
+		console.log('got this id', id);
+		console.log('redirecting to', vm.activeChecklists[id].url)
+		$location.path(vm.activeChecklists[id].url);
 	};
 
 

@@ -17,7 +17,39 @@ function dataService($http) {
 
 	//define methods
 	var dataService = {
+        GETallChecklists: GETallChecklists,
         GETproductData: GETproductData
+    };
+
+    /*
+    *   GET ALL CHECKLISTS
+    *
+    *   This provides all the checklists from the server
+    */
+    function GETallChecklists() {
+        //  NOTIFY PROGRESS
+        //  DECLAR LOCAL VARIABLES
+
+        //  RETURN ASYNC WORK
+        return new Promise(function GETallChecklistsPromise(resolve, reject) {
+            
+            $http({
+				method: 'GET',
+				url: '/API/data/allChecklists'
+			}).then(function successCallback(response) {
+				
+				resolve(response.data);
+				
+			}, function errorCallback(error) {
+                //  ON ERROR SEND TEMP DATA BACK
+                reject([
+                    { title: "Kit #2 Checkout", dueDate: "05/01/19",  assignedTo: { name: "Ian McAllister"}, type: "Equipment Checkout", for:"Kit #1", shipDate: "2019-04-26T09:00:00-07:00", url:"/team/checklists/equipment/123"},
+                    { title: "Kit #3 Checkout", dueDate: "05/01/19",  assignedTo: "Nary Kuch", type: "Staging", for:"Warehouse", url:"/team/checklists/staging" }            
+                ]);
+            });
+            
+        });
+
     };
     
     /*

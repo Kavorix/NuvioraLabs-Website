@@ -9,6 +9,9 @@
 var express		= require('express');
 var bodyParser 	= require('body-parser');
 
+//	DECLARE PROPRIATRY DEPENDENCIES
+var cldb 		= require('./dbScripts/db-team-checklists.js');
+
 //  Return the express object
 var serverApp = express();
 
@@ -46,6 +49,30 @@ serverApp.use('/', function(req, res, next) {
 *	GET Declarations
 */
 //	GET: ROOT 
+serverApp.get('/', function(req, res) {
+	//return an affirmative status code
+	res.sendStatus(200);
+});
+
+//	GET: API/data/allChecklists
+serverApp.get('/API/data/allChecklists', function(req, res) {
+	
+	//run the requird function
+	cldb.getAllChecklists().then(function success(s) {
+		
+		//return an affirmative status code
+		res.setHeader('Content-Type', 'application/json');
+    	res.status(200);
+    	res.send(JSON.stringify(s));
+
+	}).catch(function error(e) {
+		
+		//return an error status code
+		res.sendStatus(550);
+
+	});
+	
+});
 
 
 /*
