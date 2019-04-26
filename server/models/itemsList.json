@@ -1,0 +1,2375 @@
+[
+	{
+		"id": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+		"name": "Cin Almonds",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "UZA7X4UBIFJ5ZUVBYRBMMPLV",
+			"url": "https://square-production.s3.amazonaws.com/files/3847ce1781b6db956b1d3db6312b3cc671520a96/original.jpeg"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "NTQGKNBP5AAXCYI3RCMYVADU",
+				"name": "Small (4)",
+				"item_id": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1001201",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "NTQGKNBP5AAXCYI3RCMYVADU"
+			},
+			{
+				"id": "XUGOPNT3YM3QXRTJ76WCIRUC",
+				"name": "Average (8)",
+				"item_id": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1001202",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XUGOPNT3YM3QXRTJ76WCIRUC"
+			},
+			{
+				"id": "SLPG5XHIAFV3U5YUDDSHXHVP",
+				"name": "Impressive (16)",
+				"item_id": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1001203",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "SLPG5XHIAFV3U5YUDDSHXHVP"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "TQ6ZBZXVKUCQKJWCFOW5UXGT"
+	},
+	{
+		"id": "W3J4QNNKIMJWTVE5KZIFZHOU",
+		"name": "Cin Pecans",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "NE3G3RRTVEQW3ZBYZLBYCC6R",
+			"url": "https://square-production.s3.amazonaws.com/files/55753af40e8eb4ba187d73e6aa1bf9b1cae2ccff/original.jpeg"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "B4ABCI3DAMCB4IGYBCG6QYE3",
+				"name": "Small (4)",
+				"item_id": "W3J4QNNKIMJWTVE5KZIFZHOU",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1001101",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "B4ABCI3DAMCB4IGYBCG6QYE3"
+			},
+			{
+				"id": "K62GJZH2ELCP2MK6YQ43EE6R",
+				"name": "Average (8)",
+				"item_id": "W3J4QNNKIMJWTVE5KZIFZHOU",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1001102",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "K62GJZH2ELCP2MK6YQ43EE6R"
+			},
+			{
+				"id": "YFJBO6PJFVMKDEOIIWAUIA5I",
+				"name": "Impressive (16)",
+				"item_id": "W3J4QNNKIMJWTVE5KZIFZHOU",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1001103",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "YFJBO6PJFVMKDEOIIWAUIA5I"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "W3J4QNNKIMJWTVE5KZIFZHOU"
+	},
+	{
+		"id": "577E4LQ4E4LCJ2OAMJ454ICT",
+		"name": "DR Pecans",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "QD7BTPWARBMK2ZBGAQMERV4J",
+			"url": "https://square-production.s3.amazonaws.com/files/377f4487e6ff8cbcf0a65e01ca336134e5d033b3/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "Z725MGBNRMYLCMRIKX2ONFXC",
+				"name": "Small (4)",
+				"item_id": "577E4LQ4E4LCJ2OAMJ454ICT",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1002101",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "Z725MGBNRMYLCMRIKX2ONFXC"
+			},
+			{
+				"id": "R2KSZBSXJ7J2KU4Q4EWKOKIU",
+				"name": "Average (8)",
+				"item_id": "577E4LQ4E4LCJ2OAMJ454ICT",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1002102",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "R2KSZBSXJ7J2KU4Q4EWKOKIU"
+			},
+			{
+				"id": "PZ2E2X3SSXYRI7FL5BIW5NNA",
+				"name": "Impressive (16)",
+				"item_id": "577E4LQ4E4LCJ2OAMJ454ICT",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1002103",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "PZ2E2X3SSXYRI7FL5BIW5NNA"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "577E4LQ4E4LCJ2OAMJ454ICT"
+	},
+	{
+		"id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"name": "Cooked - Full",
+		"type": "NORMAL",
+		"color": "B21212",
+		"abbreviation": "Full",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+			"name": "Manufacturing",
+			"v2_id": "UUIVNHJR3RUGQIZ3VDBWZYL2"
+		},
+		"variations": [
+			{
+				"id": "RBFXLFHA7EYWAGIELEHNVY6M",
+				"name": "Swalty Cashews",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "RBFXLFHA7EYWAGIELEHNVY6M"
+			},
+			{
+				"id": "CKVBBOXWKJVZVIT5ZQMB63XS",
+				"name": "Swalty Peanuts",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "CKVBBOXWKJVZVIT5ZQMB63XS"
+			},
+			{
+				"id": "MS3P7FI5DJC5DT6M4DEF4GYE",
+				"name": "Swalty Pecans",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "MS3P7FI5DJC5DT6M4DEF4GYE"
+			},
+			{
+				"id": "GGRIQDCPL5EMASW2IXEMHO46",
+				"name": "Drunk Pecans",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "GGRIQDCPL5EMASW2IXEMHO46"
+			},
+			{
+				"id": "2Z4FEPCZTH5KCWS3GJ54H3MN",
+				"name": "Swalty Almonds",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "2Z4FEPCZTH5KCWS3GJ54H3MN"
+			},
+			{
+				"id": "TDTKE7W4TVKTUBVAUU7ZWPI5",
+				"name": "Drunk Almonds",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 6,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "TDTKE7W4TVKTUBVAUU7ZWPI5"
+			},
+			{
+				"id": "4FWS5AX2W2KACB6NUXZCS6DA",
+				"name": "Swalty Hazelnuts",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 7,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "4FWS5AX2W2KACB6NUXZCS6DA"
+			},
+			{
+				"id": "2WLOUJPEW3TO2KYY2IE4TH5W",
+				"name": "Drunk Hazelnuts",
+				"item_id": "KRQC2TWVFEOP2XYUPHIOLK4M",
+				"ordinal": 8,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "2WLOUJPEW3TO2KYY2IE4TH5W"
+			}
+		],
+		"fees": [],
+		"category_id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+		"available_for_pickup": false,
+		"v2_id": "KRQC2TWVFEOP2XYUPHIOLK4M"
+	},
+	{
+		"id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"name": "Cooked - Half",
+		"type": "NORMAL",
+		"color": "B21212",
+		"abbreviation": "Half",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+			"name": "Manufacturing",
+			"v2_id": "UUIVNHJR3RUGQIZ3VDBWZYL2"
+		},
+		"variations": [
+			{
+				"id": "UTNRIUDVW5W6FT2I3ZNIAJK3",
+				"name": "Swalty Pecans",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "UTNRIUDVW5W6FT2I3ZNIAJK3"
+			},
+			{
+				"id": "73SRGSY6TKISXVSDFXAL3765",
+				"name": "Drunk Pecans",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "73SRGSY6TKISXVSDFXAL3765"
+			},
+			{
+				"id": "XPZ5FIHW7EPJRXAIGKEYJWMY",
+				"name": "Swalty Almonds",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XPZ5FIHW7EPJRXAIGKEYJWMY"
+			},
+			{
+				"id": "ZK6L4ON3CON5CH7K5XAJRHED",
+				"name": "Drunken Almonds",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ZK6L4ON3CON5CH7K5XAJRHED"
+			},
+			{
+				"id": "FMSVMIHSSLILZ3RSETSCTJFA",
+				"name": "Swalty Hazelnuts",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "FMSVMIHSSLILZ3RSETSCTJFA"
+			},
+			{
+				"id": "WKIEJWEXSMOISONULCWVE5W4",
+				"name": "Drunken Hazelnuts",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 6,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "WKIEJWEXSMOISONULCWVE5W4"
+			},
+			{
+				"id": "2PRAYS7PQBCNPXUANBX7EB52",
+				"name": "Swalty Cashews",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 7,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "2PRAYS7PQBCNPXUANBX7EB52"
+			},
+			{
+				"id": "Q7BEBDCGKPZE3YO3NASKN7UH",
+				"name": "Swalty Peanuts",
+				"item_id": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+				"ordinal": 8,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "Q7BEBDCGKPZE3YO3NASKN7UH"
+			}
+		],
+		"fees": [],
+		"category_id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+		"available_for_pickup": false,
+		"v2_id": "PTFGIERKVM6YTDJZ4DOAJ7VE"
+	},
+	{
+		"id": "WUF7O3UIU5K5AXTFLHDSX6LL",
+		"name": "Mix",
+		"type": "NORMAL",
+		"color": "A82EE5",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "O6XIW47WAPVJAI6WGRX3MFDA",
+			"url": "https://square-production.s3.amazonaws.com/files/eb6f182c5298c8ee101bbbd7c02cb111967f31c8/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "GAPGZBFTTETCYILQYCZL2V4I",
+				"name": "Small (4)",
+				"item_id": "WUF7O3UIU5K5AXTFLHDSX6LL",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1003101",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "GAPGZBFTTETCYILQYCZL2V4I"
+			},
+			{
+				"id": "DSFEEQY3IGEC4XZPJ5JQHKIK",
+				"name": "Average (8)",
+				"item_id": "WUF7O3UIU5K5AXTFLHDSX6LL",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1003102",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "DSFEEQY3IGEC4XZPJ5JQHKIK"
+			},
+			{
+				"id": "UPUCCHDMVNVEGIANPUN6Y4UF",
+				"name": "Impressive (16)",
+				"item_id": "WUF7O3UIU5K5AXTFLHDSX6LL",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1003103",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "UPUCCHDMVNVEGIANPUN6Y4UF"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "WUF7O3UIU5K5AXTFLHDSX6LL"
+	},
+	{
+		"id": "26XIT6ZR5U4Q6IEHKJBMMANC",
+		"name": "Platter (20)",
+		"type": "NORMAL",
+		"color": "B21212",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "LOQBT2D3V4GACXCRPIJR4M5V",
+			"url": "https://square-production.s3.amazonaws.com/files/b19053332d5134289ddd9792161b4f1ce32cb5a5/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "C5MIEQCUM4JEMCPRVEVDSCG7",
+				"name": "Regular",
+				"item_id": "26XIT6ZR5U4Q6IEHKJBMMANC",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 2200,
+					"currency_code": "USD"
+				},
+				"sku": "1004101",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "C5MIEQCUM4JEMCPRVEVDSCG7"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "26XIT6ZR5U4Q6IEHKJBMMANC"
+	},
+	{
+		"id": "MHQX76ZZYR6TVFWFC6BJQN7O",
+		"name": "SW Almonds",
+		"type": "NORMAL",
+		"color": "E5BF00",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "SQRQSSKDTNZYXXKMSL7O2YDV",
+			"url": "https://square-production.s3.amazonaws.com/files/9deab54b7ea146bcd601bc2d66d8d224117f0f22/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "QAHB7ZXYT4HDUN5NQHAYY7A4",
+				"name": "Small (4)",
+				"item_id": "MHQX76ZZYR6TVFWFC6BJQN7O",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1000201",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "QAHB7ZXYT4HDUN5NQHAYY7A4"
+			},
+			{
+				"id": "XKLXPPF2U25NVLJJBFSPL4XI",
+				"name": "Average (8)",
+				"item_id": "MHQX76ZZYR6TVFWFC6BJQN7O",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1000202",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XKLXPPF2U25NVLJJBFSPL4XI"
+			},
+			{
+				"id": "HCPDT5U2NLKJ7USSEXBU2HIS",
+				"name": "Impressive (16)",
+				"item_id": "MHQX76ZZYR6TVFWFC6BJQN7O",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1000203",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "HCPDT5U2NLKJ7USSEXBU2HIS"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "MHQX76ZZYR6TVFWFC6BJQN7O"
+	},
+	{
+		"id": "MMYGVAY3HW3HSJPNPXVNGDL5",
+		"name": "SW Cashews",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "DZLWFX42GLHO3LBXAJEXB45E",
+			"url": "https://square-production.s3.amazonaws.com/files/7b7149eee7fbfa2ebaf546fd45fe086ffa9abe4a/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "N423EI6ZPEAW47FEKYCHYEB3",
+				"name": "Small (4)",
+				"item_id": "MMYGVAY3HW3HSJPNPXVNGDL5",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1000301",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "N423EI6ZPEAW47FEKYCHYEB3"
+			},
+			{
+				"id": "TPAJRXQN4YTSW63ZN426J2YN",
+				"name": "Average (8)",
+				"item_id": "MMYGVAY3HW3HSJPNPXVNGDL5",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1000302",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "TPAJRXQN4YTSW63ZN426J2YN"
+			},
+			{
+				"id": "3Z5HDOQQJ2WZN3SD636LIOOQ",
+				"name": "Impressive (16)",
+				"item_id": "MMYGVAY3HW3HSJPNPXVNGDL5",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1000303",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "3Z5HDOQQJ2WZN3SD636LIOOQ"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "MMYGVAY3HW3HSJPNPXVNGDL5"
+	},
+	{
+		"id": "U3IWHJKVPHKKKCX4P3AHVFAN",
+		"name": "SW Peanuts",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "B62C6VLK3RTGK6SN7KMTUVLO",
+			"url": "https://square-production.s3.amazonaws.com/files/4865c0d93a779e37e4d28cfd63334dfa150fe4a0/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "554Y36NIUEL2NVHDH447NIEA",
+				"name": "Small (4)",
+				"item_id": "U3IWHJKVPHKKKCX4P3AHVFAN",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1000401",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "554Y36NIUEL2NVHDH447NIEA"
+			},
+			{
+				"id": "QRZMPSW5LHWQLY6KBOF4BOQX",
+				"name": "Average (8)",
+				"item_id": "U3IWHJKVPHKKKCX4P3AHVFAN",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1000402",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "QRZMPSW5LHWQLY6KBOF4BOQX"
+			},
+			{
+				"id": "6UIOC3TNVANBX4GP4X5ZRPWG",
+				"name": "Impressive (16)",
+				"item_id": "U3IWHJKVPHKKKCX4P3AHVFAN",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1000403",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "6UIOC3TNVANBX4GP4X5ZRPWG"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "U3IWHJKVPHKKKCX4P3AHVFAN"
+	},
+	{
+		"id": "FK5TAQBEQ24U6WPJLJWGOGFR",
+		"name": "SW Pecans",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "MQWXNA3NNH3UZ35LA6QMVK5E",
+			"url": "https://square-production.s3.amazonaws.com/files/b89b6736e99b1a73d30f8e206730c74f2418abec/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "IKIGTSXDGF3RJKMW7OWI3GZX",
+				"name": "Small (4)",
+				"item_id": "FK5TAQBEQ24U6WPJLJWGOGFR",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "1000101",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "IKIGTSXDGF3RJKMW7OWI3GZX"
+			},
+			{
+				"id": "NEIFZMRUJEQVXT2BUETWL2WT",
+				"name": "Average (8)",
+				"item_id": "FK5TAQBEQ24U6WPJLJWGOGFR",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "1000102",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "NEIFZMRUJEQVXT2BUETWL2WT"
+			},
+			{
+				"id": "OGMWDQZEPHI5M63EJHMO5URL",
+				"name": "Impressive (16)",
+				"item_id": "FK5TAQBEQ24U6WPJLJWGOGFR",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "1000103",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "OGMWDQZEPHI5M63EJHMO5URL"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "FK5TAQBEQ24U6WPJLJWGOGFR"
+	},
+	{
+		"id": "5UB7XQQ2NDOVAZW4HFBZZVNN",
+		"name": "Variable Nut",
+		"type": "NORMAL",
+		"color": "13B1BF",
+		"abbreviation": "VN",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "ZWI6GJ52WBHKHOCD3DKWYPIJ",
+				"name": "",
+				"item_id": "5UB7XQQ2NDOVAZW4HFBZZVNN",
+				"ordinal": 1,
+				"pricing_type": "VARIABLE_PRICING",
+				"sku": "",
+				"track_inventory": true,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ZWI6GJ52WBHKHOCD3DKWYPIJ"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "5UB7XQQ2NDOVAZW4HFBZZVNN"
+	},
+	{
+		"id": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"name": "Market OR",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "HHT5JBNPKHHEH7ELU7WNB4F3",
+			"url": "https://square-production.s3.amazonaws.com/files/eae1afc88ee82c647a02ec19377332db04e1bc86/original.png"
+		},
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "76T576547DTHVXRMHXNKWKFU",
+				"name": "Salem Hospital FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "76T576547DTHVXRMHXNKWKFU"
+			},
+			{
+				"id": "32K6PJAM4VH7YPJD2JLDEQVL",
+				"name": "Oregon City FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "32K6PJAM4VH7YPJD2JLDEQVL"
+			},
+			{
+				"id": "IS3PVEX5C62VWAFYFCCFRPE2",
+				"name": "Beaverton FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "IS3PVEX5C62VWAFYFCCFRPE2"
+			},
+			{
+				"id": "6764ROV4MCFTMET54BQSKNSA",
+				"name": "Hillsboro FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "6764ROV4MCFTMET54BQSKNSA"
+			},
+			{
+				"id": "PY5UTE3C3CRTK4C3PIPVLX6K",
+				"name": "St. Johns FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "PY5UTE3C3CRTK4C3PIPVLX6K"
+			},
+			{
+				"id": "TJ2KXD7OBSPMIN42OIV2BNBH",
+				"name": "Salem Saturday FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 6,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "TJ2KXD7OBSPMIN42OIV2BNBH"
+			},
+			{
+				"id": "HF7CS4YJ7XSIXFQQSE5ZXAY2",
+				"name": "Orenco Station FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 7,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "HF7CS4YJ7XSIXFQQSE5ZXAY2"
+			},
+			{
+				"id": "KDXDCVG5NXHOE6BJKZSJ3STK",
+				"name": "Dallas FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 8,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "KDXDCVG5NXHOE6BJKZSJ3STK"
+			},
+			{
+				"id": "ECIX477PDIZVNE7P4XQH3IGI",
+				"name": "McMinnville FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 9,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ECIX477PDIZVNE7P4XQH3IGI"
+			},
+			{
+				"id": "ZJJPWRZBQOQDHQSRTLZ4BKUX",
+				"name": "Aloha FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 10,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ZJJPWRZBQOQDHQSRTLZ4BKUX"
+			},
+			{
+				"id": "PQRD27GK2BCRX5HIUPPJQFBJ",
+				"name": "Hawthorne FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 11,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "PQRD27GK2BCRX5HIUPPJQFBJ"
+			},
+			{
+				"id": "OM2FM4I5MOPVOYF7G7OXFJEY",
+				"name": "Salem Wednesday FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 12,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "OM2FM4I5MOPVOYF7G7OXFJEY"
+			},
+			{
+				"id": "RUJV4Y2WVL7SO2KEYPPRKKTT",
+				"name": "Moreland FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 13,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "RUJV4Y2WVL7SO2KEYPPRKKTT"
+			},
+			{
+				"id": "3MWE2BL52H3N6QYP46BXZLC5",
+				"name": "Forest Grove FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 14,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "3MWE2BL52H3N6QYP46BXZLC5"
+			},
+			{
+				"id": "T5RTR7PCXHMAQZC2NLCFRYGB",
+				"name": "South Waterfront FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 15,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "T5RTR7PCXHMAQZC2NLCFRYGB"
+			},
+			{
+				"id": "ZDTNZ3LJVBLHL6UM2NSFLFEO",
+				"name": "Bridgeport Village FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 16,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ZDTNZ3LJVBLHL6UM2NSFLFEO"
+			},
+			{
+				"id": "VHV34G5HNFQ7TBSRZWQVL7RS",
+				"name": "Hillsboro Kaiser FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 17,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "VHV34G5HNFQ7TBSRZWQVL7RS"
+			},
+			{
+				"id": "Q3M3PXLF7S5NNOCMAPEMVRZC",
+				"name": "West Linn FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 18,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "Q3M3PXLF7S5NNOCMAPEMVRZC"
+			},
+			{
+				"id": "C62FJ2NRB6WMB5V532GO6JKW",
+				"name": "Happy Valley FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 19,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "C62FJ2NRB6WMB5V532GO6JKW"
+			},
+			{
+				"id": "MELGVQPUY5PWHJWC624DU7ZY",
+				"name": "Hillsdale FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 20,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "MELGVQPUY5PWHJWC624DU7ZY"
+			},
+			{
+				"id": "72RWDGBQHHEFBKYZHBFF2QTR",
+				"name": "Tigard FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 21,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "72RWDGBQHHEFBKYZHBFF2QTR"
+			},
+			{
+				"id": "MGT4PMHDLT4MUSBTDB37HP5J",
+				"name": "Tuality FM",
+				"item_id": "62OESSZLCKXJ6L7DP4F2L6NW",
+				"ordinal": 22,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "MGT4PMHDLT4MUSBTDB37HP5J"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "62OESSZLCKXJ6L7DP4F2L6NW"
+	},
+	{
+		"id": "5QDKXY6ZCQYWNEHSQACQI5FH",
+		"name": "Team",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "WXDYKVU5DXP63PVWGFKKTQDH",
+			"url": "https://square-production.s3.amazonaws.com/files/b1432f1393bf8f94ab3ff6a96523e255fa920acb/original.png"
+		},
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "LYB7KSKGPWXXWROXFBK73LTE",
+				"name": "Regular",
+				"item_id": "5QDKXY6ZCQYWNEHSQACQI5FH",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "LYB7KSKGPWXXWROXFBK73LTE"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "5QDKXY6ZCQYWNEHSQACQI5FH"
+	},
+	{
+		"id": "99576691-5F55-474C-A84C-EFD5B0919F7E",
+		"name": "Crumbs",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "565DAB5B-6B24-4515-8D21-C8FB8D486307",
+			"url": "https://square-production.s3.amazonaws.com/files/504a7249af158df90a303feceb5f8817a81248eb/original.jpeg"
+		},
+		"category": {
+			"id": "B2F8360D-5A07-4BD3-9CD6-642C18525008",
+			"name": "Crumbs",
+			"v2_id": "KDGTECRB3VT5O3PLLXEECOH5"
+		},
+		"variations": [
+			{
+				"id": "B77C45E3-48BD-4AB3-8E8E-85609942B217",
+				"name": "Regular",
+				"item_id": "99576691-5F55-474C-A84C-EFD5B0919F7E",
+				"ordinal": 0,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1000,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "Y2JOIRNF6SLPL734SM5XQGI5"
+			}
+		],
+		"fees": [],
+		"category_id": "B2F8360D-5A07-4BD3-9CD6-642C18525008",
+		"available_for_pickup": false,
+		"v2_id": "BSVTKPJZVZ5Z3D7B5BQOPXAP"
+	},
+	{
+		"id": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+		"name": "DR Hazelnuts",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "DMNQ7KF5JQAN76FKBEDEXQ3O",
+			"url": "https://square-production.s3.amazonaws.com/files/ac48a4d3d2a8766a1ee7a645ca3d952b3e66929d/original.png"
+		},
+		"category": {
+			"id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+			"name": "Completed Items",
+			"v2_id": "HLEJAV3OZ5LWY34WIHDRGQ4A"
+		},
+		"variations": [
+			{
+				"id": "DE879B3F-82EE-471D-AD71-0944C70EC44B",
+				"name": "Small",
+				"item_id": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+				"ordinal": 0,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "RJA5S26HDCWJPMF545JBLSPZ"
+			},
+			{
+				"id": "A58402D0-8D8C-47ED-AF58-8313483C52DC",
+				"name": "Average",
+				"item_id": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "WZ5PZBGSNZ6SP35JF3KVPWWO"
+			},
+			{
+				"id": "85FA0D7E-2849-4AE2-A148-36D3B6A53062",
+				"name": "Impressive",
+				"item_id": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "7RY34KBAHSEQHIKEPW3FOGC5"
+			}
+		],
+		"fees": [],
+		"category_id": "HLEJAV3OZ5LWY34WIHDRGQ4A",
+		"available_for_pickup": false,
+		"v2_id": "HXTXQYS22YLE2HBIOY7OY5GT"
+	},
+	{
+		"id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+		"name": "SW Hazelnut",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "K3TVKKFXHUTFZAQI7T3RQO6W",
+			"url": "https://square-production.s3.amazonaws.com/files/6c4f0ad7f7ab229905b4d11c4a0e76b137d9bb61/original.png"
+		},
+		"variations": [
+			{
+				"id": "4271E368-4929-4B37-9728-8156D02A2048",
+				"name": "Small (4)",
+				"item_id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "6O6YK2ZDWT2E3P4HRKG47UUC"
+			},
+			{
+				"id": "3EMG5OU3RTDKF44XYAMJGZZD",
+				"name": "Average (8)",
+				"item_id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "3EMG5OU3RTDKF44XYAMJGZZD"
+			},
+			{
+				"id": "UGMR2SRZHOLWZZIERFYDID2V",
+				"name": "Impressive (16)",
+				"item_id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "UGMR2SRZHOLWZZIERFYDID2V"
+			}
+		],
+		"fees": [],
+		"available_for_pickup": false,
+		"v2_id": "XCJCGSL2I7YTQECPEERYNTPB"
+	},
+	{
+		"id": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+		"name": "Balls",
+		"type": "NORMAL",
+		"color": "E5457A",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"variations": [
+			{
+				"id": "747D3155-9AD9-408C-8303-80944C9DEA0C",
+				"name": "Regular",
+				"item_id": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+				"ordinal": 0,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 400,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "UBQ6KLNQUKIMYBSM4YHM25XN"
+			},
+			{
+				"id": "0C6044A2-AD23-413F-9285-6A943449AC4D",
+				"name": "Medium",
+				"item_id": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "C46EB2A7V4SLNHLGS5P66FRO"
+			},
+			{
+				"id": "CEA8D770-8811-4463-9DB7-6F556B99F2F7",
+				"name": "Large",
+				"item_id": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1000,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "2IKAIVISWSKCO3B2XRETFLQD"
+			}
+		],
+		"fees": [],
+		"available_for_pickup": false,
+		"v2_id": "FLWRZ75XCPMSOROEEKTZSLYV"
+	},
+	{
+		"id": "F7F55038-632B-4525-B54A-07DF5A21A287",
+		"name": "Caramel Corn",
+		"type": "NORMAL",
+		"color": "13B1BF",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"variations": [
+			{
+				"id": "A29B1D30-5809-47CE-99E5-E5C45EFA8205",
+				"name": "Regular",
+				"item_id": "F7F55038-632B-4525-B54A-07DF5A21A287",
+				"ordinal": 0,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 400,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "5JLQVLRNPG3BTLQNVSIF36JY"
+			},
+			{
+				"id": "73ECB41C-E647-4C2F-A129-063ABE2230C1",
+				"name": "Medium",
+				"item_id": "F7F55038-632B-4525-B54A-07DF5A21A287",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "BXFEVCVWIVSNMT7ECZYNGJNN"
+			},
+			{
+				"id": "32F42013-9E0D-4E8C-89CA-37C0A0059E8F",
+				"name": "Large",
+				"item_id": "F7F55038-632B-4525-B54A-07DF5A21A287",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1000,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "A6U3AWHQBM2DMTCI7GQU6DWF"
+			}
+		],
+		"fees": [],
+		"available_for_pickup": false,
+		"v2_id": "63R4NFMPI4SOS4VGSA5R3Z6I"
+	},
+	{
+		"id": "JUSJWH3FZSANCPU5U3WYPDDL",
+		"name": "DR Almonds",
+		"type": "NORMAL",
+		"color": "B21212",
+		"abbreviation": "DA",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"master_image": {
+			"id": "N7YBULMDZWVEB6U3Q7XXRELU",
+			"url": "https://square-production.s3.amazonaws.com/files/6f1f9b3f45cdadb1f655a037ac9a92d42ad6d446/original.png"
+		},
+		"variations": [
+			{
+				"id": "6SX5N5EG2R6D66GIAPD4J4PL",
+				"name": "Small (4oz)",
+				"item_id": "JUSJWH3FZSANCPU5U3WYPDDL",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 700,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "6SX5N5EG2R6D66GIAPD4J4PL"
+			},
+			{
+				"id": "BTIDAROXU7D3LGSMMBIEGSXZ",
+				"name": "Average (8oz)",
+				"item_id": "JUSJWH3FZSANCPU5U3WYPDDL",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1300,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "BTIDAROXU7D3LGSMMBIEGSXZ"
+			},
+			{
+				"id": "GK3N5DLWMDGBJ2UCM3E3RY5Q",
+				"name": "Impressive (16oz)",
+				"item_id": "JUSJWH3FZSANCPU5U3WYPDDL",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 1800,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "GK3N5DLWMDGBJ2UCM3E3RY5Q"
+			}
+		],
+		"fees": [],
+		"available_for_pickup": false,
+		"v2_id": "JUSJWH3FZSANCPU5U3WYPDDL"
+	},
+	{
+		"id": "WNIMUOOTOCTAQC26CEHRC745",
+		"name": "Kit Marker",
+		"description": "Helps us manage transactions on each Kit, this is an identifier.",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "MWQHLXPKF23MDIJMNLP2AHNC",
+				"name": "Kit One (1)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "MWQHLXPKF23MDIJMNLP2AHNC"
+			},
+			{
+				"id": "WRZACHMLAQQ5H2F64MPLXSN3",
+				"name": "Kit Two (2)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "WRZACHMLAQQ5H2F64MPLXSN3"
+			},
+			{
+				"id": "OKGUDVS5B5KCRVPTTWFPXBE5",
+				"name": "Kit Three (3)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "OKGUDVS5B5KCRVPTTWFPXBE5"
+			},
+			{
+				"id": "52RQ3BIYJ4XX632K6KOC4ESA",
+				"name": "Kit Four (4)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "52RQ3BIYJ4XX632K6KOC4ESA"
+			},
+			{
+				"id": "6VYLZHT4CXOXAPDURP4N3ZQL",
+				"name": "Kit Five (5)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "6VYLZHT4CXOXAPDURP4N3ZQL"
+			},
+			{
+				"id": "VPEL6JLSWZDT2PNNUOBNHONU",
+				"name": "Kit Six (6)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 6,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "VPEL6JLSWZDT2PNNUOBNHONU"
+			},
+			{
+				"id": "XIOHZNMKH64EEGJJNRFTRM7Y",
+				"name": "Kit Seven (7)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 7,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XIOHZNMKH64EEGJJNRFTRM7Y"
+			},
+			{
+				"id": "ENCMGO4TNB3JKGYCTG4WZNVU",
+				"name": "Kit Eight (8)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 8,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ENCMGO4TNB3JKGYCTG4WZNVU"
+			},
+			{
+				"id": "LYARP5Z74FXSAL2YAZ4XV7XX",
+				"name": "Kit Nine (9)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 9,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "LYARP5Z74FXSAL2YAZ4XV7XX"
+			},
+			{
+				"id": "G3GA6HEWUN2CPTQILXRF33ZS",
+				"name": "Kit Ten (10)",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 10,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "G3GA6HEWUN2CPTQILXRF33ZS"
+			},
+			{
+				"id": "ECELVNGBJF3ZEZA46NRRSSAG",
+				"name": "Beaverton Warehouse",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
+				"ordinal": 11,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ECELVNGBJF3ZEZA46NRRSSAG"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "WNIMUOOTOCTAQC26CEHRC745"
+	},
+	{
+		"id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"name": "Staged - Full Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+			"name": "Manufacturing",
+			"v2_id": "UUIVNHJR3RUGQIZ3VDBWZYL2"
+		},
+		"variations": [
+			{
+				"id": "ABO3QSXX56APGQFIVEXEEVF6",
+				"name": "Gallon Pecans",
+				"item_id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ABO3QSXX56APGQFIVEXEEVF6"
+			},
+			{
+				"id": "B6OS2D67T7HXKFKZ4XRD7FKZ",
+				"name": "Gallon Almonds",
+				"item_id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "B6OS2D67T7HXKFKZ4XRD7FKZ"
+			},
+			{
+				"id": "II6GQGIBRDDOBXQZULBGMTJU",
+				"name": "Gallon Cashews",
+				"item_id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "II6GQGIBRDDOBXQZULBGMTJU"
+			},
+			{
+				"id": "5KLODGK3QCSUOBWKTEFMBJIB",
+				"name": "Gallon Peanuts",
+				"item_id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "5KLODGK3QCSUOBWKTEFMBJIB"
+			},
+			{
+				"id": "T6266OPHWSIA5RLYO52FX5XD",
+				"name": "Gallon Hazelnuts",
+				"item_id": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "T6266OPHWSIA5RLYO52FX5XD"
+			}
+		],
+		"fees": [],
+		"category_id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+		"available_for_pickup": false,
+		"v2_id": "HZ6ZXBIPXHH57IRGTGBT6KKX"
+	},
+	{
+		"id": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+		"name": "Staged - Half Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+			"name": "Manufacturing",
+			"v2_id": "UUIVNHJR3RUGQIZ3VDBWZYL2"
+		},
+		"variations": [
+			{
+				"id": "LPXXPL4CGC2KFLUKD44QV6YP",
+				"name": "Quart Pecans",
+				"item_id": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "LPXXPL4CGC2KFLUKD44QV6YP"
+			},
+			{
+				"id": "XGBDDRPW4TV2QGNI74LA7NLW",
+				"name": "Quart Almonds",
+				"item_id": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XGBDDRPW4TV2QGNI74LA7NLW"
+			},
+			{
+				"id": "4YIOWOVXJHR2HP2IABNYLPK7",
+				"name": "Quart Hazelnuts",
+				"item_id": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "4YIOWOVXJHR2HP2IABNYLPK7"
+			}
+		],
+		"fees": [],
+		"category_id": "UUIVNHJR3RUGQIZ3VDBWZYL2",
+		"available_for_pickup": false,
+		"v2_id": "JMDCVDXC2XRPZTO5BCHTFQ7L"
+	},
+	{
+		"id": "APUX556C7NKW5MVGACEUMDOS",
+		"name": "Returning - Full Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "DRI3ITMMAPEPD5KCLOYIJ6DO",
+				"name": "Gallon Pecans",
+				"item_id": "APUX556C7NKW5MVGACEUMDOS",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "DRI3ITMMAPEPD5KCLOYIJ6DO"
+			},
+			{
+				"id": "UR2VI43YM2L5RGQ43AZ4M5EY",
+				"name": "Gallon Almonds",
+				"item_id": "APUX556C7NKW5MVGACEUMDOS",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "UR2VI43YM2L5RGQ43AZ4M5EY"
+			},
+			{
+				"id": "SDFJ3CI3POYQPZNHAB7M32IO",
+				"name": "Gallon Cashews",
+				"item_id": "APUX556C7NKW5MVGACEUMDOS",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "SDFJ3CI3POYQPZNHAB7M32IO"
+			},
+			{
+				"id": "G4VZKZNDACO3KCE4NOEOGMIT",
+				"name": "Gallon Peanuts",
+				"item_id": "APUX556C7NKW5MVGACEUMDOS",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "G4VZKZNDACO3KCE4NOEOGMIT"
+			},
+			{
+				"id": "GJPPGK3CX73ABUTTBWFJ4VHK",
+				"name": "Gallon Hazelnuts",
+				"item_id": "APUX556C7NKW5MVGACEUMDOS",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "GJPPGK3CX73ABUTTBWFJ4VHK"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "APUX556C7NKW5MVGACEUMDOS"
+	},
+	{
+		"id": "VB32P5LHMJN3KT26YTCEJ6S7",
+		"name": "Returning - Half Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "5WRHGXHJKQM7ICX4BI2TBDUJ",
+				"name": "Quart Pecans",
+				"item_id": "VB32P5LHMJN3KT26YTCEJ6S7",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "5WRHGXHJKQM7ICX4BI2TBDUJ"
+			},
+			{
+				"id": "2IGJTGGLNLMFP4BRDL7NQ5TX",
+				"name": "Quart Almonds",
+				"item_id": "VB32P5LHMJN3KT26YTCEJ6S7",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "2IGJTGGLNLMFP4BRDL7NQ5TX"
+			},
+			{
+				"id": "XSIRWZDWYKYO6TWD6WF7LXMZ",
+				"name": "Quart Hazelnuts",
+				"item_id": "VB32P5LHMJN3KT26YTCEJ6S7",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XSIRWZDWYKYO6TWD6WF7LXMZ"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "VB32P5LHMJN3KT26YTCEJ6S7"
+	},
+	{
+		"id": "L5HDYYQYHUMU5PEP6VJ3LZ7M",
+		"name": "Checkout",
+		"description": "Tracking the checkout of equipment",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "O675SYPMGXEX6HAF6QKOFT5G",
+				"name": "Regular",
+				"item_id": "L5HDYYQYHUMU5PEP6VJ3LZ7M",
+				"ordinal": 1,
+				"pricing_type": "VARIABLE_PRICING",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "O675SYPMGXEX6HAF6QKOFT5G"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "L5HDYYQYHUMU5PEP6VJ3LZ7M"
+	},
+	{
+		"id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"name": "Loading - Full Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "D7RE5HEGOXJOE6GLNNDM4HJS",
+				"name": "Gallon Pecans",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "D7RE5HEGOXJOE6GLNNDM4HJS"
+			},
+			{
+				"id": "AL6CSGUZJ36WNAPAYVQUZQGU",
+				"name": "Gallon Almonds",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "AL6CSGUZJ36WNAPAYVQUZQGU"
+			},
+			{
+				"id": "FO3IWYYBDHKMUBFCRN26NQS2",
+				"name": "Gallon Cashews",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "FO3IWYYBDHKMUBFCRN26NQS2"
+			},
+			{
+				"id": "DQZXA2SLOBWRNBMLCXAEJBDT",
+				"name": "Gallon Peanuts",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"ordinal": 4,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "DQZXA2SLOBWRNBMLCXAEJBDT"
+			},
+			{
+				"id": "66EALD7HASFHBOONDUG2DVOC",
+				"name": "Gallon Hazelnuts",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"ordinal": 5,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "66EALD7HASFHBOONDUG2DVOC"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "IMBQNGQHFAJ6UXFPJWWTRK75"
+	},
+	{
+		"id": "ETJSK2PTU3JVWNTSVLPJQQWK",
+		"name": "Loading - Half Batches",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "IFU5DXF3CQ3DAE6RSLTESWS7",
+				"name": "Half Batch Pecans",
+				"item_id": "ETJSK2PTU3JVWNTSVLPJQQWK",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "IFU5DXF3CQ3DAE6RSLTESWS7"
+			},
+			{
+				"id": "AAZITPNZEBLOE4VJJZKQV3HG",
+				"name": "Half Batch Almonds",
+				"item_id": "ETJSK2PTU3JVWNTSVLPJQQWK",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "AAZITPNZEBLOE4VJJZKQV3HG"
+			},
+			{
+				"id": "ZXIUDC3QQCYL4MJCLSOGVOO4",
+				"name": "Half Batch Hazelnuts",
+				"item_id": "ETJSK2PTU3JVWNTSVLPJQQWK",
+				"ordinal": 3,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "ZXIUDC3QQCYL4MJCLSOGVOO4"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "ETJSK2PTU3JVWNTSVLPJQQWK"
+	},
+	{
+		"id": "BILKKZAUCEZGPAPTVSZQVJAN",
+		"name": "Loading - Extra Liquids",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "DNAMGQNBYLY2GDICOSRQ7OZ2",
+				"name": "Extra Carafe Swalty Mix",
+				"item_id": "BILKKZAUCEZGPAPTVSZQVJAN",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "DNAMGQNBYLY2GDICOSRQ7OZ2"
+			},
+			{
+				"id": "XSTM43ALROFNZ52BRH5TJ7XB",
+				"name": "Extra Carafe Drunken Mix",
+				"item_id": "BILKKZAUCEZGPAPTVSZQVJAN",
+				"ordinal": 2,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "XSTM43ALROFNZ52BRH5TJ7XB"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "BILKKZAUCEZGPAPTVSZQVJAN"
+	},
+	{
+		"id": "KISBTFQWIV5NED7CIH63A7ND",
+		"name": "Loading - Platters",
+		"type": "NORMAL",
+		"visibility": "PRIVATE",
+		"available_online": false,
+		"category": {
+			"id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+			"name": "Data",
+			"v2_id": "AYJAJVC4IGPHDZYSMRATJ7MA"
+		},
+		"variations": [
+			{
+				"id": "5C4CLCA2XHYKCEZFEFM4HMJD",
+				"name": "Regular",
+				"item_id": "KISBTFQWIV5NED7CIH63A7ND",
+				"ordinal": 1,
+				"pricing_type": "FIXED_PRICING",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"sku": "",
+				"track_inventory": false,
+				"inventory_alert_type": "NONE",
+				"v2_id": "5C4CLCA2XHYKCEZFEFM4HMJD"
+			}
+		],
+		"fees": [],
+		"category_id": "AYJAJVC4IGPHDZYSMRATJ7MA",
+		"available_for_pickup": false,
+		"v2_id": "KISBTFQWIV5NED7CIH63A7ND"
+	}
+]

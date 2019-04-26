@@ -5,10 +5,10 @@
 */
 
 //  DEFINE PROPRIATARY DEPENDENCIES
-var cldb = require('./dbScripts/db-team-checklists.js');
-var squareV1 = require('./square/square_V1.js');
-var fs 		= require('fs');
-var path 	= require('path');
+var cldb        = require('./dbScripts/db-team-checklists.js');
+var squareV1    = require('./square/square_V1.js');
+var fs 		    = require('fs');
+var path 	    = require('path');
 
 //  DEFINE MODULE
 var asprop = {
@@ -35,20 +35,10 @@ function sqPushUpdates(pushObject) {
         squareV1.retrievePayment(pushObject.location_id, pushObject.entity_id)
         .then(function success(s) {
             
-            //  IN SUCCESS ITERATE OVER ALL THE ITEMIZATIONS
-            s.itemizations.forEach(function(item) {
-                
-                //  IF DATA ITEMS ARE PRESENT PROCESS THEM
-                if(item.item_detail.category_name == 'Data') {
-                    
-                    console.log('found a data point', item.item_detail.item_id);
-
-                    // end
-                    resolve('good test');
-
-                } else {
-                    console.log('item was not a data point');
-                };
+            cldb.processPushTx.checkItems(s).then(function success(s) {
+                Response(s);
+            }).catch(function error(e) {
+                reject(e);
             });
 
         }).catch(function error(e) {
@@ -57,7 +47,7 @@ function sqPushUpdates(pushObject) {
             console.log('ERROR:');
             console.log(e);
 
-            reject();
+            reject(e);
 
         });
 

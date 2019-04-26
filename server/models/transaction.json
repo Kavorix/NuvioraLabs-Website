@@ -84,16 +84,51 @@
 	"refunds": [],
 	"itemizations": [
 		{
-			"name": "SW Hazelnut",
+			"name": "Kit Marker",
 			"quantity": 1,
 			"itemization_type": "ITEM",
 			"item_detail": {
-				"category_name": "",
+				"category_name": "Data",
 				"sku": "",
-				"item_id": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+				"item_id": "WNIMUOOTOCTAQC26CEHRC745",
 				"item_variation_id": "4271E368-4929-4B37-9728-8156D02A2048"
 			},
-			"item_variation_name": "Small (4)",
+			"item_variation_name": "Kit One (1)",
+			"total_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"single_quantity_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"gross_sales_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"discount_money": {
+				"amount": 0,
+				"currency_code": "USD"
+			},
+			"net_sales_money": {
+				"amount": 700,
+				"currency_code": "USD"
+			},
+			"taxes": [],
+			"discounts": [],
+			"modifiers": []
+		},
+		{
+			"name": "Loading - Full Batches",
+			"quantity": 1,
+			"itemization_type": "ITEM",
+			"item_detail": {
+				"category_name": "Data",
+				"sku": "",
+				"item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+				"item_variation_id": "D7RE5HEGOXJOE6GLNNDM4HJS"
+			},
+			"item_variation_name": "Gallon Pecans",
 			"total_money": {
 				"amount": 700,
 				"currency_code": "USD"

@@ -113,6 +113,9 @@ serverApp.post('/sqrwebhook', function(req, res) {
 
 	//run the requird function
 	asprop.sqPushUpdates(req.body).then(function success(s) {
+
+		//	NOTIFY PROGRESS
+		console.log(s);
 		
 		//return an affirmative status code
 		res.sendStatus(200);
