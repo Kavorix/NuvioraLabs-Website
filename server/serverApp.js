@@ -55,6 +55,14 @@ serverApp.get('/', function(req, res) {
 	res.sendStatus(200);
 });
 
+//	GET: template/wklySalesSummary
+serverApp.get('/template/wklySalesSummary', function(req, res) {
+	
+	res.status(200);
+	res.send(asprop.retreiveTemplate(__dirname + '/templates/proofs/test.html'))
+	
+});
+
 //	GET: API/data/allChecklists
 serverApp.get('/API/data/allChecklists', function(req, res) {
 	

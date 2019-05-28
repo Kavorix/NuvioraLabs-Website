@@ -1,4 +1,11 @@
+/*
+*   DATABASE TEAM CHECKLIST
+*
+*   
+*
+*/
 
+//  DECLARE DEPENDENCIES
 var firebase		= require('../firebase/firebase.js');
 
 //  DEFINE THE MODULE

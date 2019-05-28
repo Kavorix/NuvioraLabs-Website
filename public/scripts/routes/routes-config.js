@@ -98,6 +98,10 @@ function config($routeProvider, $locationProvider) {
         controller: 'dashboardPageController',      //  Dashboard Page Controller
         controllerAs: 'vm'
     })
+    .when('/admin', {})     //  TODO: This section can be sued for various admin tasks
+    .when('/admin/inventory/instance/:instanceId', {})   //  TODO: add this section to update instances
+    .when('/admin/inventory/operations', {})
+    .when('/admin/inventory/templates', {})
     .when('/team', {
         templateUrl: 'views/team-page.htm',     //  Team Page View
         controller: 'teamPageController',      //  Team Page Controller
@@ -108,6 +112,11 @@ function config($routeProvider, $locationProvider) {
         controller: 'teamChecklistsPageController',      //  Team Page Controller
         controllerAs: 'vm'
     })
+    .when('/team/salesSummary', {
+        templateUrl: 'views/teamSalesSummary-page.htm',     //  Team sales summary Page View
+        controller: 'teamSalesSummaryPageController',      //  Team sales summary Page Controller
+        controllerAs: 'vm'
+    })  
 	.otherwise({
         redirectTo: '/'
     });
