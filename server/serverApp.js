@@ -10,8 +10,8 @@ var express		= require('express');
 var bodyParser 	= require('body-parser');
 
 //	DECLARE PROPRIATRY DEPENDENCIES
-var cldb 		= require('./dbScripts/db-team-checklists.js');
-var asprop 		= require('./asprop.js'); 
+//var cldb 		= require('./dbScripts/db-team-checklists.js');
+//var asprop 		= require('./asprop.js'); 
 
 //  Return the express object
 var serverApp = express();
@@ -46,9 +46,6 @@ serverApp.use('/', function(req, res, next) {
 	next();
 });
 
-/*
-*	GET Declarations
-*/
 //	GET: ROOT 
 serverApp.get('/', function(req, res) {
 	//return an affirmative status code
@@ -63,82 +60,18 @@ serverApp.get('/template/wklySalesSummary', function(req, res) {
 	
 });
 
-//	GET: API/data/allChecklists
-serverApp.get('/API/data/allChecklists', function(req, res) {
-	
-	//run the requird function
-	cldb.getAllChecklists().then(function success(s) {
-		
-		//return an affirmative status code
-		res.setHeader('Content-Type', 'application/json');
-    	res.status(200);
-    	res.send(JSON.stringify(s));
-
-	}).catch(function error(e) {
-		
-		//return an error status code
-		res.sendStatus(550);
-
-	});
-	
-});
-
-//	GET: API/data/aChecklist/:listId
-serverApp.get('/API/data/aChecklist/:listId', function(req, res) {
-	
-	//run the requird function
-	cldb.getAChecklist(req.params.listId).then(function success(s) {
-		
-		//return an affirmative status code
-		res.setHeader('Content-Type', 'application/json');
-    	res.status(200);
-    	res.send(JSON.stringify(s));
-
-	}).catch(function error(e) {
-		
-		//return an error status code
-		res.sendStatus(550);
-
-	});
-	
-});
-
-
+//	ROUTING
 /*
-*	POST Declarations
+*	To clena up the code we've moved it to externl files
 */
-//	POST: /sqrwebhook
-serverApp.post('/sqrwebhook', function(req, res) {
-	
-	//advise of the post body
-	console.log(req.body);
+//	API ROUTES
+var APIRoutes = require('./routes/API');
+serverApp.use('/API', APIRoutes);
 
-	if(req.body.event_type == 'TEST_NOTIFICATION') { console.log('confirming test'); res.sendStatus(200); }
-	else if(req.body.event_type == 'PAYMENT_UPDATED') { 
-	
-	//	NOTIFY PROGRESS
-	console.log('testing payment');
+//	API ROUTES
+var webhookRoutes = require('./routes/webhooks');
+serverApp.use('/webhook', webhookRoutes);
 
-	//run the requird function
-	asprop.sqPushUpdates(req.body).then(function success(s) {
-
-		//	NOTIFY PROGRESS
-		console.log(s);
-		
-		//return an affirmative status code
-		res.sendStatus(200);
-
-	}).catch(function error(e) {
-
-		//return an error status code
-		res.sendStatus(550);
-		
-	});
-
-
-	}
-
-});
 
 /*
 *	Running the server

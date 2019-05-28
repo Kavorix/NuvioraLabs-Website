@@ -9,11 +9,11 @@ angular
     .factory('fireBaseService', fireBaseService);
 
 //  DEPENDENCY INJECTION
-fireBaseService.$inject = ['$firebase', '$firebaseObject', '$firebaseArray'];
+fireBaseService.$inject = ['$http'];
 
 //  DECLARE THE SERVICE
 /* @ngInject */
-function fireBaseService($firebase, $firebaseObject, $firebaseArray) {
+function fireBaseService($http) {
 
     //  DEFINE METHODS
     var firebaseMod = {
