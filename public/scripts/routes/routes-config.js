@@ -14,102 +14,106 @@ function config($routeProvider, $locationProvider) {
 
 	//PUBLIC ROUTES
     .when('/', {
-        templateUrl: 'views/landing-page.htm',       //  Landing Page View
-        controller: 'landingPageController',        //  Landing Page Controller
+        templateUrl: 'views/landing-page.htm',              //  Landing Page View
+        controller: 'landingPageController',                //  Landing Page Controller
         controllerAs: 'vm'
     })
     .when('/products', {
-        templateUrl: 'views/products-page.htm',      //  Product Page View
-        controller: 'productPageController',        //  Product Page Controller
+        templateUrl: 'views/products-page.htm',             //  Product Page View
+        controller: 'productPageController',                //  Product Page Controller
         controllerAs: 'vm'
     })
     .when('/products/:productName/:productId', {
-        templateUrl: 'views/products-page.htm',      //  Product Page View with a product Id & varient Id
-        controller: 'productPageController',        //  Product Page Controller
+        templateUrl: 'views/products-page.htm',             //  Product Page View with a product Id & varient Id
+        controller: 'productPageController',                //  Product Page Controller
         controllerAs: 'vm'
     })
     .when('/products/:productId', {
-        templateUrl: 'views/products-page.htm',      //  Product Page View with a product Id
-        controller: 'productPageController',        //  Product Page Controller
+        templateUrl: 'views/products-page.htm',             //  Product Page View with a product Id
+        controller: 'productPageController',                //  Product Page Controller
         controllerAs: 'vm'
     })
     .when('/pricing', {
-        templateUrl: 'views/pricing-page.htm',       //  Pricing Page View
-        controller: 'pricingPageController',        //  Pricing Page Controller
+        templateUrl: 'views/pricing-page.htm',              //  Pricing Page View
+        controller: 'pricingPageController',                //  Pricing Page Controller
         controllerAs: 'vm'
     })
     .when('/story', {
-        templateUrl: 'views/story-page.htm',         //  Story Page View
-        controller: 'storyPageController',          //  Story Page Controller
+        templateUrl: 'views/story-page.htm',                //  Story Page View
+        controller: 'storyPageController',                  //  Story Page Controller
         controllerAs: 'vm'
     })
     .when('/channels', {
-        templateUrl: 'views/channels-page.htm',      //  Channels Page View
-        controller: 'channelsPageController',       //  Channels Page Controller
+        templateUrl: 'views/channels-page.htm',             //  Channels Page View
+        controller: 'channelsPageController',               //  Channels Page Controller
         controllerAs: 'vm'
     })
     .when('/channels/:channelId', {
-        templateUrl: 'views/channels-page.htm',      //  Channels Page View & Channel Id
-        controller: 'channelsPageController',       //  Channels Page Controller
+        templateUrl: 'views/channels-page.htm',             //  Channels Page View & Channel Id
+        controller: 'channelsPageController',               //  Channels Page Controller
         controllerAs: 'vm'
     })
     .when('/support', {
-        templateUrl: 'views/support-page.htm',       //  Support Page View
-        controller: 'supportPageController',        //  Support Page Controller
+        templateUrl: 'views/support-page.htm',              //  Support Page View
+        controller: 'supportPageController',                //  Support Page Controller
         controllerAs: 'vm'
     })
     .when('/reviews', {
-        templateUrl: 'views/reviews-page.htm',       //  Reviews Page View
-        controller: 'reviewsPageController',        //  Reviews Page Controller
+        templateUrl: 'views/reviews-page.htm',              //  Reviews Page View
+        controller: 'reviewsPageController',                //  Reviews Page Controller
         controllerAs: 'vm'
     })
     .when('/jobs', {
-        templateUrl: 'views/jobs-page.htm',          //  Jobs Page View
-        controller: 'jobsPageController',           //  Jobs Page Controller
+        templateUrl: 'views/jobs-page.htm',                 //  Jobs Page View
+        controller: 'jobsPageController',                   //  Jobs Page Controller
         controllerAs: 'vm'
     })
     .when('/cart', {
-        templateUrl: 'views/cart-page.htm',          //  Cart Page View
-        controller: 'cartPageController',           //  Cart Page Controller
+        templateUrl: 'views/cart-page.htm',                 //  Cart Page View
+        controller: 'cartPageController',                   //  Cart Page Controller
         controllerAs: 'vm'
     })
     .when('/checkout', {
-        templateUrl: 'views/checkout-page.htm',      //  Checkout Page View
-        controller: 'checkoutPageController',       //  Checkout Page Controller
+        templateUrl: 'views/checkout-page.htm',             //  Checkout Page View
+        controller: 'checkoutPageController',               //  Checkout Page Controller
         controllerAs: 'vm'
     })
     .when('/checkout/:sessionId', {
-        templateUrl: 'views/checkout-page.htm',      //  Checkout Page View & Session Id
-        controller: 'checkoutPageController',       //  Checkout Page Controller
+        templateUrl: 'views/checkout-page.htm',             //  Checkout Page View & Session Id
+        controller: 'checkoutPageController',               //  Checkout Page Controller
         controllerAs: 'vm'
     })
     .when('/checkout/:sessionId/:ticketId', {
-        templateUrl: 'views/checkout-page.htm',      //  Checkout Page View & Session Id & Ticket Id
-        controller: 'checkoutPageController',       //  Checkout Page Controller
+        templateUrl: 'views/checkout-page.htm',             //  Checkout Page View & Session Id & Ticket Id
+        controller: 'checkoutPageController',               //  Checkout Page Controller
         controllerAs: 'vm'
     })
     .when('/login', {
-        templateUrl: 'views/login-page.htm',         //  Login Page View
-        controller: 'loginPageController',          //  Login Page Controller
+        templateUrl: 'views/login-page.htm',                //  Login Page View
+        controller: 'loginPageController',                  //  Login Page Controller
         controllerAs: 'vm'
     })
     .when('/dashboard', {
-        templateUrl: 'views/dashboard-page.htm',     //  Dashboard Page View
-        controller: 'dashboardPageController',      //  Dashboard Page Controller
+        templateUrl: 'views/dashboard-page.htm',            //  Dashboard Page View
+        controller: 'dashboardPageController',              //  Dashboard Page Controller
         controllerAs: 'vm'
     })
-    .when('/admin', {})     //  TODO: This section can be sued for various admin tasks
-    .when('/admin/inventory/instance/:instanceId', {})   //  TODO: add this section to update instances
+    .when('/admin', {})                                     //  TODO: This section can be sued for various admin tasks
+    .when('/admin/inventory/instance/:instanceId', {        //  TODO: add this section to update instances
+        templateUrl: 'views/inventory-instance-page.htm',
+        controller: 'inventoryInstancePageController',
+        controllerAs: 'vm'
+    })   
     .when('/admin/inventory/operations', {})
     .when('/admin/inventory/templates', {})
     .when('/team', {
-        templateUrl: 'views/team-page.htm',     //  Team Page View
-        controller: 'teamPageController',      //  Team Page Controller
+        templateUrl: 'views/team-page.htm',                 //  Team Page View
+        controller: 'teamPageController',                   //  Team Page Controller
         controllerAs: 'vm'
     })
     .when('/team/checklists/:type/:listId', {
-        templateUrl: 'views/teamChecklists-page.htm',     //  Team Page View
-        controller: 'teamChecklistsPageController',      //  Team Page Controller
+        templateUrl: 'views/teamChecklists-page.htm',       //  Team Page View
+        controller: 'teamChecklistsPageController',         //  Team Page Controller
         controllerAs: 'vm'
     })
     .when('/team/salesSummary', {
