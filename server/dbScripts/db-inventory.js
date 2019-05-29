@@ -22,6 +22,9 @@ var inventoryMod = {
         operations: addInventoryOperations,
         acct_classes: addInventoryAcct_classes,
         instance: addInventoryInstances
+    },
+    run: {
+        entryOperation: runEntryOperation
     }
 };
 
@@ -311,6 +314,192 @@ function addInventoryInstances(name, date, type) {
 
 };
 
+/*
+*   RUN ENTRY OPERATION
+*
+*   When an operation is initiated each step is handled here.  Usually this is called from ASPROP.  Several
+*   steps must be initiated to identify which operation is being executed.  Once the id of that operation is
+*   known, along with the instanceId, the operation can be run.
+*
+*   The steps are as follows:
+*   1) load the operation componts object (async 1)
+*   2) Iterate over each component
+*       a)  query firebase for the accounts with the class the component is looking for (async 2)
+*       b)  from the returned colletion, identify the acctId for the acct for the desired instance
+*       c)  for each component write a new TX, identifiying the acct it is being executed on, save the txIds
+*       d)  write the [timestampe]: [txId] into the tx field of the necessary acct
+*       e)  update balance as instructed by the operation component
+*       f)  add a new EntryId to the instance, listing each component step as 1: [txId], etc
+*   3) return success or error 
+*/
+function runEntryOperation(operationId, instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    var readPath = 'inventory/operations/' + operationId + '/components';
+
+    //  NOTIFY PROGRESS
+    console.log('running operation method');
+
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+        
+        //  READ THE COMPONENT OBJECT
+        firebase.read(readPath)
+        .then(function success(componentObject) {
+
+            //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
+            _writeOpComponents(componentObject, instanceId)
+            .then(function success(s) {
+
+                //  PASS BACK SUCCESSFUL OBJECT
+                resolve({"success": true, message: "all records writen successfully"});
+
+            }).catch(function error(e) {
+                reject(e);
+            });
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+        
+    });
+
+};
+
+//  PRIVATE: WRITE OUT COMPONENTS
+function _writeOpComponents(componentObject, instanceId) {
+    //  DEFINE LOCAL VARIABLE
+    //  NOTIFY PROGRESS
+    console.log('_writeOpComponents');
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  COMPILE ALL COMPONENT LISTS
+        _compileOpComponents(componentObject, instanceId) 
+        .then(function success(allLists) {
+
+            //  DEFINE LOCAL VARIABLES
+            var componentList       = allLists[0];
+            var targetAcctsIdList   = allLists[1];
+            var updateBalancesList  = allLists[2];
+            var txIdsList           = allLists[3];
+
+            //  USE THESE LISTS TO WRITE THE REQUIRED RECORDS
+
+            //  RESOLVE WHEN COMPLETED WRITING
+            resolve("SUCCESS");
+
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
+};
+
+//  PRIVATE: COMPILE OPERATION COMPONENTS
+function _compileOpComponents(componentObject, instanceId) {
+    //  DEFINE LOCAL VARIABLE
+    var returnObject = [];
+
+    //  NOTIFY PROGRESS
+    console.log('_compileOpComponents');
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+        
+        //  COLLECTING ALL COMPONENT DATA
+        _collectOpComponents(componentObject, instanceId) 
+        .then(function success(allLists) {
+
+            //  DEFINE LOCAL VARIABLES
+            var componentList       = allLists[0];
+            var targetAcctsIdList   = allLists[1];
+            var updateBalancesList  = allLists[2];
+
+            //  ONCE CALCULATIONS HAVE BEEN COMPLETED, RETURN THE OBJECT WITH ALL LISTS
+            resolve(returnObject);
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
+};
+
+//  PRIVATE: COLLECT OPERATION COMPONENTS
+function _collectOpComponents(componentObject, instanceId) {
+    //  DEFINE LOCAL VARIABLE
+    var componentList = [];
+    var targetAcctsIdListPromises = [];
+    var returnObject = [];
+
+    //  NOTIFY PROGRESS
+    console.log('_collectOpComponents');
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+        
+
+        //  ITERATE OVER THE COMPONENT OBJECT
+        Object.keys(componentObject).forEach(function(key) {
+
+            //  CONVERT THE OBJECT TO A LIST BY ADDING EACH COMPONENT OBJECT TO THE LIST
+            componentList.push(componentObject[key]);
+
+            //  BUILD THE LIST OF TARGET ACCT IDS
+            targetAcctsIdListPromises.push(_identifyTargetAccts(componentObject[key].class, instanceId))
+        });
+
+        // WHEN ALL PROMISES RESOLVE, THEN PASS THE VALUES UP THE CHAIN
+        Promise.all(targetAcctsIdListPromises)
+        .then(function success(targetAcctsIdCollection) {
+
+            console.log('targetAcctsIdCollection', targetAcctsIdCollection);
+
+            //  DEFINE LOCAL VARIABLES
+            var targetAcctsIdList = targetAcctsIdCollection[0];
+            var updateBalancesList = targetAcctsIdCollection[1];
+
+            //  WHEN WE HAVE EVERYTHIGN WE NEED, PASS IT BACK UP
+            resolve([componentList, targetAcctsIdList, updateBalancesList]);
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
+};
+
+//  PRIVATE: IDENTIFY OPERATION COMPONENTS
+function _identifyTargetAccts(acctClass, instanceId) {
+    //  DEFINE LOCAL VARIABLE
+    var targetAcctsId = "";
+
+    //  NOTIFY PROGRESS
+    console.log('_identifyTargetAccts');
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        firebase.query.childValue('inventory/accts', 'class', acctClass)
+        .then(function success(acctsWClassObject) {
+
+            //  ITERATE OVER ALL THE ACCOUNTS
+            Object.keys(acctsWClassObject).forEach(function (key) {
+
+                if(acctsWClassObject[key].instance_id == instanceId) targetAcctsId = key;
+            });
+
+            //  WHEN FINISHED PASS THE RETURN OBJET BACK UP
+            resolve(targetAcctsId);
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+
+    });
+};
 
 //  RETURN THE MODULE
 module.exports = inventoryMod;

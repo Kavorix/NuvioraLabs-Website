@@ -8,7 +8,7 @@ var fs 		    = require('fs');
 var path 	    = require('path');
 
 
-ivdb.add.instance('TestInstance', '2019-05-27', 'testing')
+ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL')
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -16,6 +16,16 @@ ivdb.add.instance('TestInstance', '2019-05-27', 'testing')
     console.log('got this error');
     console.log(e);
 });
+
+//  TO-DO: might need this later, hold on to it
+/*ivdb.add.instance('TestInstance', '2019-05-27', 'testing')
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
 
 /*asprop.sqPushUpdates({"location_id": "M53KQT35YKE5C", "entity_id": "YmsX65meD8SlFz53TAkVOvMF"})
 .then(function success(s) {

@@ -8,6 +8,7 @@
 //var fetch 			= require('node-fetch');
 var admin 			= require("firebase-admin");
 
+
 //define global variables
 var serviceAccount = {
 	"type": 						process.env.FB_TYPE,
@@ -41,6 +42,10 @@ var firebase = {
 	update: update,
 	push: push,
 	del: del,
+	query: {
+		inventoryAccts: queryInventoryAccts,
+		childValue: queryChildValue
+	},
 	aTest: aTest
 };
 
@@ -123,6 +128,33 @@ function read_most_recent(path) {
 		});
 
 	});
+};
+
+/*
+*
+*/
+function queryChildValue(path, key, value) {
+	//notify progress
+	console.log('queryChildValue', path, key, value);
+
+	//define local variable
+	var ref = admin.database().ref(path).orderByChild(key).equalTo(value);
+
+	//return async work
+	return new Promise(function(resolve, reject) {
+		//hit the database
+		ref.once("value")
+		.then(function(snapshot) {
+				
+			//console.log(snapshot.val());
+
+			//pass the data back
+			resolve(snapshot.val());
+
+		});
+		
+	});
+
 };
 
 /*
@@ -230,6 +262,15 @@ function del(path) {
 	});
 
 };
+
+/*
+*		QUERY INVENTORY ACCOUNTS
+*/
+function queryInventoryAccts() {
+	//	DEFINE LOCAL VARIABLES
+	var ref = admin.database().ref('inventory/accts');
+
+}
 
 /*
 *	ATEST
