@@ -431,6 +431,8 @@ function _compileOpComponents(componentObject, instanceId) {
 function _collectOpComponents(componentObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
     var componentList = [];
+    var targetAcctsIdList = [];
+    var updatedBalancesList = [];
     var targetAcctsIdListPromises = [];
     var returnObject = [];
 
@@ -456,12 +458,23 @@ function _collectOpComponents(componentObject, instanceId) {
 
             console.log('targetAcctsIdCollection', targetAcctsIdCollection);
 
-            //  DEFINE LOCAL VARIABLES
-            var targetAcctsIdList = targetAcctsIdCollection[0];
-            var updateBalancesList = targetAcctsIdCollection[1];
+            //  ITERATE OVER EACH OJBECT AND ADD TO THE APPROPRIATE LIST
+            for(var i = 0; i < componentList.length; i++) {
+
+                //  ADD THE TARGET ACCOUNT ID TO THE LIST
+                targetAcctsIdList.push(targetAcctsIdCollection[i].targetAcctsId);
+
+                //  ADD THE UPDATED BALANCE TO THE LIST
+                updatedBalancesList.push(targetAcctsIdCollection[i].acctBalance + componentList[i].credits - componentList[i].debits);
+            };
+
+            console.log('working with all these lists');
+            console.log(componentList);
+            console.log(targetAcctsIdList);
+            console.log(updatedBalancesList);
 
             //  WHEN WE HAVE EVERYTHIGN WE NEED, PASS IT BACK UP
-            resolve([componentList, targetAcctsIdList, updateBalancesList]);
+            resolve([componentList, targetAcctsIdList, updatedBalancesList]);
 
         }).catch(function error(e) {
             reject(e);
@@ -471,13 +484,25 @@ function _collectOpComponents(componentObject, instanceId) {
 
 };
 
-//  PRIVATE: IDENTIFY OPERATION COMPONENTS
+/*
+*   PRIVATE: IDENTIFY OPERATION COMPONENTS
+*
+*   This method identifies the target accts that transactions will be assigned to
+*
+*   @param - acctClass: string
+*   @param - instanceId: string
+*   @return - targetAcctsId: Object { targetAcct: "", acctBalance: "" }
+*/
 function _identifyTargetAccts(acctClass, instanceId) {
     //  DEFINE LOCAL VARIABLE
-    var targetAcctsId = "";
+    var returnObject = {
+        targetAcctsId: "",
+        acctBalance: ""
+    };
 
     //  NOTIFY PROGRESS
     console.log('_identifyTargetAccts');
+
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
 
@@ -487,11 +512,18 @@ function _identifyTargetAccts(acctClass, instanceId) {
             //  ITERATE OVER ALL THE ACCOUNTS
             Object.keys(acctsWClassObject).forEach(function (key) {
 
-                if(acctsWClassObject[key].instance_id == instanceId) targetAcctsId = key;
+                if(acctsWClassObject[key].instance_id == instanceId) {
+
+                    //  SAVE THE KEY
+                    returnObject.targetAcctsId = key;
+                    
+                    //  SAVE THE BALANCE
+                    returnObject.acctBalance = acctsWClassObject[key].balance;
+                }
             });
 
             //  WHEN FINISHED PASS THE RETURN OBJET BACK UP
-            resolve(targetAcctsId);
+            resolve(returnObject);
 
         }).catch(function error(e) {
             reject(e);
