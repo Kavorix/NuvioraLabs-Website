@@ -400,6 +400,8 @@ function _writeOpComponents(componentObject, instanceId) {
 //  PRIVATE: COMPILE OPERATION COMPONENTS
 function _compileOpComponents(componentObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
+    var txIdListPromises = [];
+    var txIdsList = [];
     var returnObject = [];
 
     //  NOTIFY PROGRESS
@@ -414,10 +416,34 @@ function _compileOpComponents(componentObject, instanceId) {
             //  DEFINE LOCAL VARIABLES
             var componentList       = allLists[0];
             var targetAcctsIdList   = allLists[1];
-            var updateBalancesList  = allLists[2];
+            var updatedBalancesList  = allLists[2];
 
-            //  ONCE CALCULATIONS HAVE BEEN COMPLETED, RETURN THE OBJECT WITH ALL LISTS
-            resolve(returnObject);
+            //  ITERATE OVER ALL COMPONENTS, TURN INTO TRANSACTION OBEJCTS, SAVE, AND RECEIVE THE IDS
+            for(var i = 0; i < componentList.length; i++) {
+                //  DEFINE LOCAL VARIABLES
+                var txObject = componentList[i];
+
+                //  ADD THE TARGET ACCT DATA
+                txObject['targetAcctId'] = targetAcctsIdList[i];
+
+                //  ADD THE PUSH PROMISE TO THE ARRAY
+                txIdListPromises.push(firebase.push('inventory/txs', txObject));
+            };
+
+            //   collect results from all promises
+            Promise.all(txIdListPromises)
+            .then(function success(txWriteList) {
+                //  ITERATE OVER RAW LIST
+                txWriteList.forEach(function(tx) {
+                    txIdsList.push(tx.id);
+                });
+
+                //  PASS THE RESULT BACK UP THE CHAIN
+                resolve([componentList, targetAcctsIdList, updatedBalancesList, txIdsList]);
+
+            }).catch(function error(e) {
+                reject(e);
+            });
 
         }).catch(function error(e) {
             reject(e);
@@ -427,14 +453,17 @@ function _compileOpComponents(componentObject, instanceId) {
 
 };
 
-//  PRIVATE: COLLECT OPERATION COMPONENTS
+/*
+*   PRIVATE: COLLECT OPERATION COMPONENTS
+*
+*   This method builds most of our required lists.
+*/
 function _collectOpComponents(componentObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
     var componentList = [];
     var targetAcctsIdList = [];
     var updatedBalancesList = [];
     var targetAcctsIdListPromises = [];
-    var returnObject = [];
 
     //  NOTIFY PROGRESS
     console.log('_collectOpComponents');
@@ -467,11 +496,6 @@ function _collectOpComponents(componentObject, instanceId) {
                 //  ADD THE UPDATED BALANCE TO THE LIST
                 updatedBalancesList.push(targetAcctsIdCollection[i].acctBalance + componentList[i].credits - componentList[i].debits);
             };
-
-            console.log('working with all these lists');
-            console.log(componentList);
-            console.log(targetAcctsIdList);
-            console.log(updatedBalancesList);
 
             //  WHEN WE HAVE EVERYTHIGN WE NEED, PASS IT BACK UP
             resolve([componentList, targetAcctsIdList, updatedBalancesList]);
