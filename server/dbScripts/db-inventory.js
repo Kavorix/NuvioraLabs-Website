@@ -131,7 +131,7 @@ function readInstanceId(dateTime, employeeId) {
                 //  if the path was no good, create the path and resturn the instanceId anyway
                 
                 addInventoryInstances(instanceName, date, 'CME')
-                }).then(function success(instanceId) {
+                .then(function success(instanceId) {
                     
                     console.log('creating new path new path');
 
