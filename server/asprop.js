@@ -35,6 +35,9 @@ function retreiveTemplate(readpath) {
 *   then it returns a response
 */
 function sqPushUpdates(pushObject) {
+    //  DEFINE LOCAL VARIABLES
+    var opsPromiseList = [];
+
     //  NOTIFY PROGRESS
     console.log("sqPushUpdates got this notification:"); 
     console.log(pushObject);
@@ -46,23 +49,40 @@ function sqPushUpdates(pushObject) {
 
         //  DOWNLOAD SQUARE TRANSACTION
         squareV1.retrievePayment(pushObject.location_id, pushObject.entity_id)
-        .then(function success(s) {
+        .then(function success(sqTx) {
             
+           //var instanceIdPromise = ivdb.read.instanceId(s.created_at, s.tender[0].employee_id);
+           //var sqTxToOpMapPromise = ivdb.
+           
             //  AFTER THE TRANSACTION HAS BEEN OBTAINED COLLECT THE INVENTORY INSTANCES
-            ivdb.read.instanceId(s.created_at, s.tender[0].employee_id).then(function success(ss) {
+            ivdb.read.instanceId(sqTx.created_at, sqTx.tender[0].employee_id).then(function success(instanceId) {
 
-                resolve(ss);
+                //  ONCE THE INSTANCE ID HAS BEEN IDENTIFIED, RECORDS CAN BE ADDED TO IT
+                ivdb.map.txToOp(sqTx)
+                .then(function success(opsList) {
+
+                    //  ITERATE OVER THE LIST OF OPERATIONS
+                    opsList.forEach(function(operationId) {
+                        opsPromiseList.push(
+                            vdb.run.entryOperation(operationId, instanceId, ivdb.data.formatDate(sqTx.created_at))
+                        );
+                    });
+                    
+                    //  FINALLY RUN ALL THE PROMISES
+                    Promise.all(opsPromiseList)
+                    .then(function succes(s) {
+                        resolve(s);
+                    }).catch(function error(e) {
+                        reject(e);
+                    });
+                    
+                }).catch(function error(e) {
+                    reject(e);
+                });
 
             }).catch(function error(e) {
                 reject(e);
             });
-
-            //  TODO: take this out later, was being used for pushes, but not anymore
-            /*cldb.processPushTx.checkItems(s).then(function success(ss) {
-                response(ss);
-            }).catch(function error(e) {
-                reject(e);
-            });*/
 
         }).catch(function error(e) {
 

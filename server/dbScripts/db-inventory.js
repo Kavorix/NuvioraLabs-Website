@@ -25,8 +25,21 @@ var inventoryMod = {
     },
     run: {
         entryOperation: runEntryOperation
+    },
+    map: {
+        txToOp: mapTxToOp
+    },
+    data: {
+        formatDate: formatDate
     }
 };
+
+function formatDate(dateTime) {
+    var GMT = moment(dateTime);
+    var PST = GMT.clone().tz("America/Los_Angeles");
+    var date = PST.format().split("T")[0];
+    return date;
+}
 
 /*
 *   PRIVATE: COPY ACCTS
@@ -103,9 +116,7 @@ function _validateInstancePath(timestamp, response) {
 */
 function readInstanceId(dateTime, employeeId) {
     //  DEFINE LOCAL VARIABLES
-    var GMT = moment(dateTime);
-    var PST = GMT.clone().tz("America/Los_Angeles");
-    var date = PST.format().split("T")[0];
+    var date = formatDate(dateTime);
     var path = 'inventory/routing/' + date + "/" + employeeId;
     var instanceName = moment(date).format("MMM Do YY");
 
@@ -596,6 +607,21 @@ function _identifyTargetAccts(acctClass, instanceId) {
         });
 
 
+    });
+};
+
+/*
+*   MAP TRANSACTION TO OPERATION
+*
+*   This method takes a tx, breaks it apart into it's pieces, and assigns operation ids to them
+*   @param - sqTx: OBJECT - contains all the elements of the square object
+*   @return - operations: ARRAY - list of all the operations to execute
+*/
+function mapTxToOp(sqTx) {
+    //  DEFINE LOCAL VARAIBLES
+
+    return new Promise(function (resolve, reject) {
+        resolve(['-Lfog4noAvg_ccCmkX3m']);
     });
 };
 
