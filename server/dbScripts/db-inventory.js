@@ -136,7 +136,7 @@ function readInstanceId(dateTime, employeeId) {
             */
             var pathValidity = _validateInstancePath(dateTime, s);
             if(pathValidity.validPath) {
-                console.log('good path');
+                console.log('good path', pathValidity.instanceId);
                 resolve(pathValidity.instanceId);
             } else {
                 //  if the path was no good, create the path and resturn the instanceId anyway

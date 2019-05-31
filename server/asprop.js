@@ -57,6 +57,9 @@ function sqPushUpdates(pushObject) {
             //  AFTER THE TRANSACTION HAS BEEN OBTAINED COLLECT THE INVENTORY INSTANCES
             ivdb.read.instanceId(sqTx.created_at, sqTx.tender[0].employee_id).then(function success(instanceId) {
 
+                //  NOTIFY PROGRESS
+                console.log('sqPushUpdates: instanceId', instanceId );
+
                 //  ONCE THE INSTANCE ID HAS BEEN IDENTIFIED, RECORDS CAN BE ADDED TO IT
                 ivdb.map.txToOp(sqTx)
                 .then(function success(opsList) {
@@ -71,7 +74,12 @@ function sqPushUpdates(pushObject) {
                     //  FINALLY RUN ALL THE PROMISES
                     Promise.all(opsPromiseList)
                     .then(function succes(s) {
+
+                        //  NOTIFY PROGRESS
+                        console.log('sqPushUpdates: All operations run');
+
                         resolve(s);
+                        
                     }).catch(function error(e) {
                         reject(e);
                     });
