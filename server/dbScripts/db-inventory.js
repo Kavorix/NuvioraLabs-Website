@@ -107,6 +107,7 @@ function readInstanceId(dateTime, employeeId) {
     var PST = GMT.clone().tz("America/Los_Angeles");
     var date = PST.format().split("T")[0];
     var path = 'inventory/routing/' + date + "/" + employeeId;
+    var instanceName = moment(date).format("MMM Do YY");
 
     //  NOTIFY PROGRESS
     //console.log('got this dateTime', dateTime, date);
@@ -128,19 +129,26 @@ function readInstanceId(dateTime, employeeId) {
                 resolve(pathValidity.instanceId);
             } else {
                 //  if the path was no good, create the path and resturn the instanceId anyway
-                console.log('new path create');
+                
+                addInventoryInstances(instanceName, date, 'CME')
+                }).then(function success(instanceId) {
+                    
+                    console.log('creating new path new path');
 
-                var startString = date + "T00:00:00-07:00";
-                var endString = date + "T23:59:59-07:00";
-                var instanceId = "-LfoUDW8ITo_v23gsDss";
+                    var startString = date + "T00:00:00-07:00";
+                    var endString = date + "T23:59:59-07:00";
+    
+                    //  ADD THE ROUTE TO THE OBJECT IF IT DOENS'T ALREADY EXIST
+                    firebase.push(path, {
+                        start: startString,
+                        end: endString,
+                        instance_id: instanceId
+                    }).then(function success(ss) {
+                        resolve(instanceId);
+                    }).catch(function error(e) {
+                        reject(e);
+                    });
 
-                //  ADD THE ROUTE TO THE OBJECT IF IT DOENS'T ALREADY EXIST
-                firebase.push(path, {
-                    start: startString,
-                    end: endString,
-                    instance_id: instanceId
-                }).then(function success(ss) {
-                    resolve(instanceId);
                 }).catch(function error(e) {
                     reject(e);
                 });
@@ -298,7 +306,7 @@ function addInventoryInstances(name, date, type) {
             Promise.all(newAcctPromises).then(function success(ss) {
                 console.log('got these ids');
                 console.log('ss');
-                resolve('finished adding');
+                resolve(instanceId);
             }).catch(function error(e) {
                 reject(e);
             });
@@ -519,7 +527,7 @@ function _collectOpComponents(componentObject, instanceId) {
         Promise.all(targetAcctsIdListPromises)
         .then(function success(targetAcctsIdCollection) {
 
-            console.log('targetAcctsIdCollection', targetAcctsIdCollection);
+            //console.log('targetAcctsIdCollection', targetAcctsIdCollection);
 
             //  ITERATE OVER EACH OJBECT AND ADD TO THE APPROPRIATE LIST
             for(var i = 0; i < componentList.length; i++) {

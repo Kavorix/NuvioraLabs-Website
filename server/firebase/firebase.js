@@ -135,7 +135,7 @@ function read_most_recent(path) {
 */
 function queryChildValue(path, key, value) {
 	//notify progress
-	console.log('queryChildValue', path, key, value);
+	console.log('queryChildValue', path, key/*, value*/);
 
 	//define local variable
 	var ref = admin.database().ref(path).orderByChild(key).equalTo(value);
@@ -197,7 +197,7 @@ function push(path, data) {
 	//define local variables
 	var ref = admin.database().ref(path);
 
-	console.log('pushing new record', path, data);
+	console.log('pushing new record', path/*, data*/);
 
 	//return async work
 	return new Promise(function(resolve, reject) {
@@ -221,7 +221,7 @@ function update(path, data) {
 	//define local variables
 	var ref = admin.database().ref(path);
 
-	console.log('updating record record at, with', path, data);
+	console.log('updating record record at, with', path/*, data*/);
 
 	//return async work
 	return new Promise(function(resolve, reject) {

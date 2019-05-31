@@ -49,7 +49,7 @@ function sqPushUpdates(pushObject) {
         .then(function success(s) {
             
             //  AFTER THE TRANSACTION HAS BEEN OBTAINED COLLECT THE INVENTORY INSTANCES
-            ivdb.read.ke(s.created_at, s.tender[0].employee_id).then(function success(ss) {
+            ivdb.read.instanceId(s.created_at, s.tender[0].employee_id).then(function success(ss) {
 
                 resolve(ss);
 
