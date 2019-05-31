@@ -134,7 +134,7 @@ function readInstanceId(dateTime, employeeId) {
             /*  If null, then this route doesn't exist
             *   If the route does exist check the timeStamp against the endpoints
             */
-           var pathValidity = _validateInstancePath(dateTime, s);
+            var pathValidity = _validateInstancePath(dateTime, s);
             if(pathValidity.validPath) {
                 console.log('good path');
                 resolve(pathValidity.instanceId);
@@ -153,9 +153,9 @@ function readInstanceId(dateTime, employeeId) {
                     firebase.push(path, {
                         start: startString,
                         end: endString,
-                        instance_id: instanceId
+                        instance_id: instanceId.id
                     }).then(function success(ss) {
-                        resolve(instanceId);
+                        resolve(instanceId.id);
                     }).catch(function error(e) {
                         reject(e);
                     });
