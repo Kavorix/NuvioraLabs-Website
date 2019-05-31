@@ -332,7 +332,7 @@ function addInventoryInstances(name, date, type) {
 *       f)  add a new EntryId to the instance, listing each component step as 1: [txId], etc
 *   3) return success or error 
 */
-function runEntryOperation(operationId, instanceId) {
+function runEntryOperation(operationId, instanceId, txTime) {
     //  DEFINE LOCAL VARIABLES
     var readPath = 'inventory/operations/' + operationId + '/components';
 
@@ -347,7 +347,7 @@ function runEntryOperation(operationId, instanceId) {
         .then(function success(componentObject) {
 
             //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
-            _writeOpComponents(componentObject, instanceId)
+            _writeOpComponents(componentObject, instanceId, txTime)
             .then(function success(s) {
 
                 //  PASS BACK SUCCESSFUL OBJECT
@@ -366,8 +366,11 @@ function runEntryOperation(operationId, instanceId) {
 };
 
 //  PRIVATE: WRITE OUT COMPONENTS
-function _writeOpComponents(componentObject, instanceId) {
+function _writeOpComponents(componentObject, instanceId, txTime) {
     //  DEFINE LOCAL VARIABLE
+    var writePromises = [];
+    var instanceEntryObject = {};
+
     //  NOTIFY PROGRESS
     console.log('_writeOpComponents');
     //  RETURN ASYNC WORK
@@ -380,14 +383,45 @@ function _writeOpComponents(componentObject, instanceId) {
             //  DEFINE LOCAL VARIABLES
             var componentList       = allLists[0];
             var targetAcctsIdList   = allLists[1];
-            var updateBalancesList  = allLists[2];
+            var updatedBalancesList  = allLists[2];
             var txIdsList           = allLists[3];
 
             //  USE THESE LISTS TO WRITE THE REQUIRED RECORDS
+            for(var i = 0; i < componentList.length; i++) {
+                //  DEFINE LOCAL VARIABLES
+                var acctTxObject = {};
+                acctTxObject[txTime] = txIdsList[i];
 
-            //  RESOLVE WHEN COMPLETED WRITING
-            resolve("SUCCESS");
+                //  WRITE TXID TO ACCT/TX
+                var acctTxUpdatePath = "inventory/accts/" + targetAcctsIdList[i] + "/txs"
+                writePromises.push(firebase.update(acctTxUpdatePath, acctTxObject));
 
+                //  UPDATE ACCT BALANCES
+                //  TODO - THIS IF FUCKING UP FOR SOME REASON
+                var acctBalanceUpdatePath = "inventory/accts/" + targetAcctsIdList[i];
+                writePromises.push(firebase.update(acctBalanceUpdatePath, { "balance": updatedBalancesList[i] } ));
+
+                //  BUILD INSTANCE ENTRY OBJECT
+                instanceEntryObject[i] = componentList[i];
+                instanceEntryObject[i]['txId'] = txIdsList[i];
+            };
+
+            //  ADD THE INSTANCE ENTRY WRITE TO THE QUE
+            var instanceEntryPath = 'inventory/instances/' + instanceId + '/entries';
+            var instanceEntry = {};
+            instanceEntry[txTime] = instanceEntryObject;
+            writePromises.push(firebase.update(instanceEntryPath, instanceEntry));
+
+            //  RESOLVE ALL PROMISES
+            Promise.all(writePromises)
+            .then(function success(s) {
+                
+                //  RESOLVE WHEN COMPLETED WRITING
+                resolve("SUCCESS");
+
+            }).catch(function error(e) {
+                reject(e);
+            });
 
         }).catch(function error(e) {
             reject(e);

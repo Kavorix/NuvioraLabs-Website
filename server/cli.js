@@ -6,9 +6,10 @@ var asprop      = require('./asprop.js');
 var squareV1    = require('./square/square_V1.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
+var moment      = require('moment');
 
 
-ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL')
+ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(new Date()).format())
 .then(function success(s) {
     console.log('success');
     console.log(s);
