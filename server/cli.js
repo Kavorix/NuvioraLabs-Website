@@ -9,7 +9,7 @@ var path 	    = require('path');
 var moment      = require('moment');
 
 
-ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(new Date()).format())
+asprop.sqPushUpdates({ entity_id: 'P9XiUrSZ722VvylioHMkKQB', event_type: 'PAYMENT_UPDATED',merchant_id: 'FCGJQY3GC9BNW',location_id: 'M53KQT35YKE5C' })
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -17,6 +17,15 @@ ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(n
     console.log('got this error');
     console.log(e);
 });
+
+/*ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(new Date()).format())
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
 
 //  TO-DO: might need this later, hold on to it
 /*ivdb.add.instance('TestInstance', '2019-05-27', 'testing')

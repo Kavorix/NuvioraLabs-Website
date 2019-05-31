@@ -47,12 +47,18 @@ function sqPushUpdates(pushObject) {
     //  RETURN ASYNC WORK
     return new Promise(function sqPushUpdatesPromise(resolve, reject) {
 
+        //  NOTIFY PROGRESS
+        console.log('sqPushUpdates: squareV1.retrievePayment');
+
         //  DOWNLOAD SQUARE TRANSACTION
         squareV1.retrievePayment(pushObject.location_id, pushObject.entity_id)
         .then(function success(sqTx) {
             
            //var instanceIdPromise = ivdb.read.instanceId(s.created_at, s.tender[0].employee_id);
            //var sqTxToOpMapPromise = ivdb.
+
+           //  NOTIFY PROGRESS
+            console.log('sqPushUpdates: ivdb.read.instanceId');
            
             //  AFTER THE TRANSACTION HAS BEEN OBTAINED COLLECT THE INVENTORY INSTANCES
             ivdb.read.instanceId(sqTx.created_at, sqTx.tender[0].employee_id).then(function success(instanceId) {
@@ -67,7 +73,7 @@ function sqPushUpdates(pushObject) {
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     opsList.forEach(function(operationId) {
                         opsPromiseList.push(
-                            vdb.run.entryOperation(operationId, instanceId, ivdb.data.formatDate(sqTx.created_at))
+                            ivdb.run.entryOperation(operationId, instanceId, ivdb.data.formatDate(sqTx.created_at))
                         );
                     });
                     

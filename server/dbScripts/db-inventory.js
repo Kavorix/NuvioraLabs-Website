@@ -144,7 +144,7 @@ function readInstanceId(dateTime, employeeId) {
                 addInventoryInstances(instanceName, date, 'CME')
                 .then(function success(instanceId) {
                     
-                    console.log('creating new path new path');
+                    console.log('creating new path new path', instanceId);
 
                     var startString = date + "T00:00:00-07:00";
                     var endString = date + "T23:59:59-07:00";
@@ -153,9 +153,9 @@ function readInstanceId(dateTime, employeeId) {
                     firebase.push(path, {
                         start: startString,
                         end: endString,
-                        instance_id: instanceId.id
+                        instance_id: instanceId
                     }).then(function success(ss) {
-                        resolve(instanceId.id);
+                        resolve(instanceId);
                     }).catch(function error(e) {
                         reject(e);
                     });
@@ -309,14 +309,13 @@ function addInventoryInstances(name, date, type) {
                     //  TODO: CAN'T ADD THE PARENT ACCOUNT UNLESS IT EXISTS
                     
                     newAcctPromises.push(
-                        firebase.push(acctsPath, acctObject).then(function(key) { resolve(key); })
+                        firebase.push(acctsPath, acctObject)
                     );
                 }
             });
 
             Promise.all(newAcctPromises).then(function success(ss) {
-                console.log('got these ids');
-                console.log('ss');
+                console.log('got these ids', instanceId);
                 resolve(instanceId);
             }).catch(function error(e) {
                 reject(e);
