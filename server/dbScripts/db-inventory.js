@@ -649,6 +649,9 @@ function mapTxToOp(itemsArray) {
                // } 
             });
 
+            console.log('have ', returnArray/length, " items in the Ops Array");
+            console.log(returnArray);
+
             resolve(returnArray);
 
         }).catch(function error(e) {
