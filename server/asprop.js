@@ -73,7 +73,7 @@ function sqPushUpdates(pushObject) {
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     opsList.forEach(function(operationId) {
                         opsPromiseList.push(
-                            ivdb.run.entryOperation(operationId, instanceId, ivdb.data.formatDate(sqTx.created_at))
+                            ivdb.run.entryOperation(operationId, instanceId, ivdb.data.formatDateLong(sqTx.created_at))
                         );
                     });
                     

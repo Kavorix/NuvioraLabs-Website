@@ -40,6 +40,12 @@ function formatDate(dateTime) {
     var PST = GMT.clone().tz("America/Los_Angeles");
     var date = PST.format().split("T")[0];
     return date;
+};
+
+function formatDateLong(datetime) {
+    var GMT = moment(dateTime);
+    var PST = GMT.clone().tz("America/Los_Angeles");
+    return PST;    
 }
 
 /*
