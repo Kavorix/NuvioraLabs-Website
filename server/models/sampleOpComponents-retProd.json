@@ -1,0 +1,56 @@
+[
+    {
+			"acct": "Raw Materials: 4oz Paper Cones",
+			"class": "-LfoUfO3dgamqNsxjsxd",
+			"credits": 0,
+			"debits": 1,
+			"discription": "",
+			"units": "no of",
+			"units_id": "-LfoOrkKKemIoGGWeURx"
+		},
+		{
+			"acct": "Raw Materials: Label",
+			"class": "-LfoUx0oq7rSOCfKAH9E",
+			"credits": 0,
+			"debits": 1,
+			"discription": "Branding Label",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Resources: Invisible Tape",
+			"class": "-LfoXjXVBLTNErRt_0Mo",
+			"credits": 0,
+			"debits": 1,
+			"discription": "tape to seal packages",
+			"units": "in of",
+			"units_id": "-LfoP-FooZF2QE5bh-vi"
+		},
+		{
+			"acct": "Cooked Drunk Hazelnuts",
+			"class": "-LfoUTUs3cwzar_PqVCJ",
+			"credits": 0,
+			"debits": 4,
+			"discription": "",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Funds: Incoming Revenue",
+			"class": "-LfoYIVkKqCYyw-cTc5l",
+			"credits": 7,
+			"debits": 0,
+			"discription": "",
+			"units": "$",
+			"units_id": "-LfoP1XhhXWIE1djZKjd"
+		},
+		{
+			"acct": "Sales Analysis: Smalls: Drunk Hazelnuts",
+			"class": "-LfobsjIoFUon9n4QoGO",
+			"credits": 1,
+			"debits": 0,
+			"discription": "",
+			"units": "no of",
+			"units_id": "-LfoOrkKKemIoGGWeURx"
+		}
+]

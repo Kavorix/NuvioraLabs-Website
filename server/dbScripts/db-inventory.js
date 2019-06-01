@@ -21,7 +21,8 @@ var inventoryMod = {
         units: addInventoryUnits,
         operations: addInventoryOperations,
         acct_classes: addInventoryAcct_classes,
-        instance: addInventoryInstances
+        instance: addInventoryInstances,
+        opComponents: addOpComponents
     },
     run: {
         entryOperation: runEntryOperation
@@ -636,7 +637,10 @@ function mapTxToOp(itemsArray) {
            
             //  ITERATE OVER EACH ITEM
             itemsArray.forEach(function (item) {
-                returnArray.push(sqTxMap[item.item_detail.item_variation_id])
+                //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
+                for (var i = 0; i < item.quantity; i++) {
+                    returnArray.push(sqTxMap[item.item_detail.item_variation_id])
+                } 
             });
 
             resolve(returnArray);
@@ -647,6 +651,23 @@ function mapTxToOp(itemsArray) {
 
         //resolve(['-Lfog4noAvg_ccCmkX3m']);
     });
+};
+
+/*
+*
+*/
+function addOpComponents(writePath, compsArray) {
+    //  DEFINE LOCAL VARIABLES
+
+    return new Promise(function (resolve, reject) {
+        firebase.create(writePath, compsArray)
+        .then(function success(s) {
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+
 };
 
 //  RETURN THE MODULE
