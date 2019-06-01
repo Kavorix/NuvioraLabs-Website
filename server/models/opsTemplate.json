@@ -1,0 +1,62 @@
+{
+	"components": [
+		null,
+		{
+			"acct": "Staged Half Baches: Pecans",
+			"class": "-LfoWAp3bJQprLA0REU4",
+			"credits": 0,
+			"debits": 2,
+			"discription": "",
+			"units": "no of",
+			"units_id": "-LfoOrkKKemIoGGWeURx"
+		},
+		{
+			"acct": "Swalty Mix",
+			"class": "-LfoXHSFAnpRdxtdSNDz",
+			"credits": 0,
+			"debits": 4,
+			"discription": "Liquid",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Swalty Mix",
+			"class": "-LfoXHSFAnpRdxtdSNDz",
+			"credits": 0,
+			"debits": 0.25,
+			"discription": "spritz",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Salt",
+			"class": "-LfoV4xFHX6CXULyzewB",
+			"credits": 0,
+			"debits": 0.33333333333333,
+			"discription": "",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Cooked Swalty Pecans",
+			"class": "-LfoTn0Y5HOp5pKAp8_a",
+			"credits": 33,
+			"debits": 0,
+			"discription": "",
+			"units": "oz of",
+			"units_id": "-LfoOjFkJi-_rNWrugmM"
+		},
+		{
+			"acct": "Batches Cooked: Fulls: Swalty Pecans",
+			"class": "-LfoZ4gVkx9Dl4n621Uq",
+			"credits": 1,
+			"debits": 0,
+			"discription": "",
+			"units": "no of",
+			"units_id": "-LfoOrkKKemIoGGWeURx"
+		}
+	],
+	"discription": "record the cooking of a full batch of swalty pecans",
+	"name": "Cook Full SW Pecan",
+	"type": "mfg"
+}

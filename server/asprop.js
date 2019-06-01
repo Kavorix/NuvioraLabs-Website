@@ -67,7 +67,7 @@ function sqPushUpdates(pushObject) {
                 console.log('sqPushUpdates: instanceId', instanceId );
 
                 //  ONCE THE INSTANCE ID HAS BEEN IDENTIFIED, RECORDS CAN BE ADDED TO IT
-                ivdb.map.txToOp(sqTx)
+                ivdb.map.txToOp(sqTx.itemizations)
                 .then(function success(opsList) {
 
                     //  ITERATE OVER THE LIST OF OPERATIONS

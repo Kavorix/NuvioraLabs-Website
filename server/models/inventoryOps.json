@@ -1,0 +1,842 @@
+{
+	"NTQGKNBP5AAXCYI3RCMYVADU": {
+		"name": "Small (4) Cin Almonds",
+		"itemId": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"XUGOPNT3YM3QXRTJ76WCIRUC": {
+		"name": "Average (8) Cin Almonds",
+		"itemId": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"SLPG5XHIAFV3U5YUDDSHXHVP": {
+		"name": "Impressive (16) Cin Almonds",
+		"itemId": "TQ6ZBZXVKUCQKJWCFOW5UXGT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"B4ABCI3DAMCB4IGYBCG6QYE3": {
+		"name": "Small (4) Cin Pecans",
+		"itemId": "W3J4QNNKIMJWTVE5KZIFZHOU",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"K62GJZH2ELCP2MK6YQ43EE6R": {
+		"name": "Average (8) Cin Pecans",
+		"itemId": "W3J4QNNKIMJWTVE5KZIFZHOU",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"YFJBO6PJFVMKDEOIIWAUIA5I": {
+		"name": "Impressive (16) Cin Pecans",
+		"itemId": "W3J4QNNKIMJWTVE5KZIFZHOU",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"Z725MGBNRMYLCMRIKX2ONFXC": {
+		"name": "Small (4) DR Pecans",
+		"itemId": "577E4LQ4E4LCJ2OAMJ454ICT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"R2KSZBSXJ7J2KU4Q4EWKOKIU": {
+		"name": "Average (8) DR Pecans",
+		"itemId": "577E4LQ4E4LCJ2OAMJ454ICT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"PZ2E2X3SSXYRI7FL5BIW5NNA": {
+		"name": "Impressive (16) DR Pecans",
+		"itemId": "577E4LQ4E4LCJ2OAMJ454ICT",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"RBFXLFHA7EYWAGIELEHNVY6M": {
+		"name": "Swalty Cashews Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"CKVBBOXWKJVZVIT5ZQMB63XS": {
+		"name": "Swalty Peanuts Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"MS3P7FI5DJC5DT6M4DEF4GYE": {
+		"name": "Swalty Pecans Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"GGRIQDCPL5EMASW2IXEMHO46": {
+		"name": "Drunk Pecans Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"2Z4FEPCZTH5KCWS3GJ54H3MN": {
+		"name": "Swalty Almonds Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"TDTKE7W4TVKTUBVAUU7ZWPI5": {
+		"name": "Drunk Almonds Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"4FWS5AX2W2KACB6NUXZCS6DA": {
+		"name": "Swalty Hazelnuts Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"2WLOUJPEW3TO2KYY2IE4TH5W": {
+		"name": "Drunk Hazelnuts Cooked - Full",
+		"itemId": "KRQC2TWVFEOP2XYUPHIOLK4M",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"UTNRIUDVW5W6FT2I3ZNIAJK3": {
+		"name": "Swalty Pecans Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"73SRGSY6TKISXVSDFXAL3765": {
+		"name": "Drunk Pecans Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"XPZ5FIHW7EPJRXAIGKEYJWMY": {
+		"name": "Swalty Almonds Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"ZK6L4ON3CON5CH7K5XAJRHED": {
+		"name": "Drunken Almonds Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"FMSVMIHSSLILZ3RSETSCTJFA": {
+		"name": "Swalty Hazelnuts Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"WKIEJWEXSMOISONULCWVE5W4": {
+		"name": "Drunken Hazelnuts Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"2PRAYS7PQBCNPXUANBX7EB52": {
+		"name": "Swalty Cashews Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"Q7BEBDCGKPZE3YO3NASKN7UH": {
+		"name": "Swalty Peanuts Cooked - Half",
+		"itemId": "PTFGIERKVM6YTDJZ4DOAJ7VE",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"GAPGZBFTTETCYILQYCZL2V4I": {
+		"name": "Small (4) Mix",
+		"itemId": "WUF7O3UIU5K5AXTFLHDSX6LL",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"DSFEEQY3IGEC4XZPJ5JQHKIK": {
+		"name": "Average (8) Mix",
+		"itemId": "WUF7O3UIU5K5AXTFLHDSX6LL",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"UPUCCHDMVNVEGIANPUN6Y4UF": {
+		"name": "Impressive (16) Mix",
+		"itemId": "WUF7O3UIU5K5AXTFLHDSX6LL",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"C5MIEQCUM4JEMCPRVEVDSCG7": {
+		"name": "Regular Platter (20)",
+		"itemId": "26XIT6ZR5U4Q6IEHKJBMMANC",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"QAHB7ZXYT4HDUN5NQHAYY7A4": {
+		"name": "Small (4) SW Almonds",
+		"itemId": "MHQX76ZZYR6TVFWFC6BJQN7O",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"XKLXPPF2U25NVLJJBFSPL4XI": {
+		"name": "Average (8) SW Almonds",
+		"itemId": "MHQX76ZZYR6TVFWFC6BJQN7O",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"HCPDT5U2NLKJ7USSEXBU2HIS": {
+		"name": "Impressive (16) SW Almonds",
+		"itemId": "MHQX76ZZYR6TVFWFC6BJQN7O",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"N423EI6ZPEAW47FEKYCHYEB3": {
+		"name": "Small (4) SW Cashews",
+		"itemId": "MMYGVAY3HW3HSJPNPXVNGDL5",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"TPAJRXQN4YTSW63ZN426J2YN": {
+		"name": "Average (8) SW Cashews",
+		"itemId": "MMYGVAY3HW3HSJPNPXVNGDL5",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"3Z5HDOQQJ2WZN3SD636LIOOQ": {
+		"name": "Impressive (16) SW Cashews",
+		"itemId": "MMYGVAY3HW3HSJPNPXVNGDL5",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"554Y36NIUEL2NVHDH447NIEA": {
+		"name": "Small (4) SW Peanuts",
+		"itemId": "U3IWHJKVPHKKKCX4P3AHVFAN",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"QRZMPSW5LHWQLY6KBOF4BOQX": {
+		"name": "Average (8) SW Peanuts",
+		"itemId": "U3IWHJKVPHKKKCX4P3AHVFAN",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"6UIOC3TNVANBX4GP4X5ZRPWG": {
+		"name": "Impressive (16) SW Peanuts",
+		"itemId": "U3IWHJKVPHKKKCX4P3AHVFAN",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"IKIGTSXDGF3RJKMW7OWI3GZX": {
+		"name": "Small (4) SW Pecans",
+		"itemId": "FK5TAQBEQ24U6WPJLJWGOGFR",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"NEIFZMRUJEQVXT2BUETWL2WT": {
+		"name": "Average (8) SW Pecans",
+		"itemId": "FK5TAQBEQ24U6WPJLJWGOGFR",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"OGMWDQZEPHI5M63EJHMO5URL": {
+		"name": "Impressive (16) SW Pecans",
+		"itemId": "FK5TAQBEQ24U6WPJLJWGOGFR",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"ZWI6GJ52WBHKHOCD3DKWYPIJ": {
+		"name": " Variable Nut",
+		"itemId": "5UB7XQQ2NDOVAZW4HFBZZVNN",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"76T576547DTHVXRMHXNKWKFU": {
+		"name": "Salem Hospital FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"32K6PJAM4VH7YPJD2JLDEQVL": {
+		"name": "Oregon City FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"IS3PVEX5C62VWAFYFCCFRPE2": {
+		"name": "Beaverton FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"6764ROV4MCFTMET54BQSKNSA": {
+		"name": "Hillsboro FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"PY5UTE3C3CRTK4C3PIPVLX6K": {
+		"name": "St. Johns FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"TJ2KXD7OBSPMIN42OIV2BNBH": {
+		"name": "Salem Saturday FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"HF7CS4YJ7XSIXFQQSE5ZXAY2": {
+		"name": "Orenco Station FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"KDXDCVG5NXHOE6BJKZSJ3STK": {
+		"name": "Dallas FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ECIX477PDIZVNE7P4XQH3IGI": {
+		"name": "McMinnville FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ZJJPWRZBQOQDHQSRTLZ4BKUX": {
+		"name": "Aloha FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"PQRD27GK2BCRX5HIUPPJQFBJ": {
+		"name": "Hawthorne FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"OM2FM4I5MOPVOYF7G7OXFJEY": {
+		"name": "Salem Wednesday FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"RUJV4Y2WVL7SO2KEYPPRKKTT": {
+		"name": "Moreland FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"3MWE2BL52H3N6QYP46BXZLC5": {
+		"name": "Forest Grove FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"T5RTR7PCXHMAQZC2NLCFRYGB": {
+		"name": "South Waterfront FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ZDTNZ3LJVBLHL6UM2NSFLFEO": {
+		"name": "Bridgeport Village FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"VHV34G5HNFQ7TBSRZWQVL7RS": {
+		"name": "Hillsboro Kaiser FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"Q3M3PXLF7S5NNOCMAPEMVRZC": {
+		"name": "West Linn FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"C62FJ2NRB6WMB5V532GO6JKW": {
+		"name": "Happy Valley FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"MELGVQPUY5PWHJWC624DU7ZY": {
+		"name": "Hillsdale FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"72RWDGBQHHEFBKYZHBFF2QTR": {
+		"name": "Tigard FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"MGT4PMHDLT4MUSBTDB37HP5J": {
+		"name": "Tuality FM Market OR",
+		"itemId": "62OESSZLCKXJ6L7DP4F2L6NW",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"LYB7KSKGPWXXWROXFBK73LTE": {
+		"name": "Regular Team",
+		"itemId": "5QDKXY6ZCQYWNEHSQACQI5FH",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"B77C45E3-48BD-4AB3-8E8E-85609942B217": {
+		"name": "Regular Crumbs",
+		"itemId": "99576691-5F55-474C-A84C-EFD5B0919F7E",
+		"type": "Crumbs",
+		"components": "",
+		"discription": ""
+	},
+	"DE879B3F-82EE-471D-AD71-0944C70EC44B": {
+		"name": "Small DR Hazelnuts",
+		"itemId": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"A58402D0-8D8C-47ED-AF58-8313483C52DC": {
+		"name": "Average DR Hazelnuts",
+		"itemId": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"85FA0D7E-2849-4AE2-A148-36D3B6A53062": {
+		"name": "Impressive DR Hazelnuts",
+		"itemId": "78A22A1E-A1B9-4F71-A4AE-3C15B7D516E1",
+		"type": "Completed Items",
+		"components": "",
+		"discription": ""
+	},
+	"4271E368-4929-4B37-9728-8156D02A2048": {
+		"name": "Small (4) SW Hazelnut",
+		"itemId": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"3EMG5OU3RTDKF44XYAMJGZZD": {
+		"name": "Average (8) SW Hazelnut",
+		"itemId": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"UGMR2SRZHOLWZZIERFYDID2V": {
+		"name": "Impressive (16) SW Hazelnut",
+		"itemId": "FA5E6879-E85A-4AED-BD93-AB092DBA62FC",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"747D3155-9AD9-408C-8303-80944C9DEA0C": {
+		"name": "Regular Balls",
+		"itemId": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"0C6044A2-AD23-413F-9285-6A943449AC4D": {
+		"name": "Medium Balls",
+		"itemId": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"CEA8D770-8811-4463-9DB7-6F556B99F2F7": {
+		"name": "Large Balls",
+		"itemId": "5CCDBAB3-40D8-4536-8D08-5CD492DECE8A",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"A29B1D30-5809-47CE-99E5-E5C45EFA8205": {
+		"name": "Regular Caramel Corn",
+		"itemId": "F7F55038-632B-4525-B54A-07DF5A21A287",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"73ECB41C-E647-4C2F-A129-063ABE2230C1": {
+		"name": "Medium Caramel Corn",
+		"itemId": "F7F55038-632B-4525-B54A-07DF5A21A287",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"32F42013-9E0D-4E8C-89CA-37C0A0059E8F": {
+		"name": "Large Caramel Corn",
+		"itemId": "F7F55038-632B-4525-B54A-07DF5A21A287",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"6SX5N5EG2R6D66GIAPD4J4PL": {
+		"name": "Small (4oz) DR Almonds",
+		"itemId": "JUSJWH3FZSANCPU5U3WYPDDL",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"BTIDAROXU7D3LGSMMBIEGSXZ": {
+		"name": "Average (8oz) DR Almonds",
+		"itemId": "JUSJWH3FZSANCPU5U3WYPDDL",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"GK3N5DLWMDGBJ2UCM3E3RY5Q": {
+		"name": "Impressive (16oz) DR Almonds",
+		"itemId": "JUSJWH3FZSANCPU5U3WYPDDL",
+		"type": "",
+		"components": "",
+		"discription": ""
+	},
+	"MWQHLXPKF23MDIJMNLP2AHNC": {
+		"name": "Kit One (1) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"WRZACHMLAQQ5H2F64MPLXSN3": {
+		"name": "Kit Two (2) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"OKGUDVS5B5KCRVPTTWFPXBE5": {
+		"name": "Kit Three (3) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"52RQ3BIYJ4XX632K6KOC4ESA": {
+		"name": "Kit Four (4) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"6VYLZHT4CXOXAPDURP4N3ZQL": {
+		"name": "Kit Five (5) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"VPEL6JLSWZDT2PNNUOBNHONU": {
+		"name": "Kit Six (6) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"XIOHZNMKH64EEGJJNRFTRM7Y": {
+		"name": "Kit Seven (7) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ENCMGO4TNB3JKGYCTG4WZNVU": {
+		"name": "Kit Eight (8) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"LYARP5Z74FXSAL2YAZ4XV7XX": {
+		"name": "Kit Nine (9) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"G3GA6HEWUN2CPTQILXRF33ZS": {
+		"name": "Kit Ten (10) Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ECELVNGBJF3ZEZA46NRRSSAG": {
+		"name": "Beaverton Warehouse Kit Marker",
+		"itemId": "WNIMUOOTOCTAQC26CEHRC745",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ABO3QSXX56APGQFIVEXEEVF6": {
+		"name": "Gallon Pecans Staged - Full Batches",
+		"itemId": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"B6OS2D67T7HXKFKZ4XRD7FKZ": {
+		"name": "Gallon Almonds Staged - Full Batches",
+		"itemId": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"II6GQGIBRDDOBXQZULBGMTJU": {
+		"name": "Gallon Cashews Staged - Full Batches",
+		"itemId": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"5KLODGK3QCSUOBWKTEFMBJIB": {
+		"name": "Gallon Peanuts Staged - Full Batches",
+		"itemId": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"T6266OPHWSIA5RLYO52FX5XD": {
+		"name": "Gallon Hazelnuts Staged - Full Batches",
+		"itemId": "HZ6ZXBIPXHH57IRGTGBT6KKX",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"LPXXPL4CGC2KFLUKD44QV6YP": {
+		"name": "Quart Pecans Staged - Half Batches",
+		"itemId": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"XGBDDRPW4TV2QGNI74LA7NLW": {
+		"name": "Quart Almonds Staged - Half Batches",
+		"itemId": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"4YIOWOVXJHR2HP2IABNYLPK7": {
+		"name": "Quart Hazelnuts Staged - Half Batches",
+		"itemId": "JMDCVDXC2XRPZTO5BCHTFQ7L",
+		"type": "Manufacturing",
+		"components": "",
+		"discription": ""
+	},
+	"DRI3ITMMAPEPD5KCLOYIJ6DO": {
+		"name": "Gallon Pecans Returning - Full Batches",
+		"itemId": "APUX556C7NKW5MVGACEUMDOS",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"UR2VI43YM2L5RGQ43AZ4M5EY": {
+		"name": "Gallon Almonds Returning - Full Batches",
+		"itemId": "APUX556C7NKW5MVGACEUMDOS",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"SDFJ3CI3POYQPZNHAB7M32IO": {
+		"name": "Gallon Cashews Returning - Full Batches",
+		"itemId": "APUX556C7NKW5MVGACEUMDOS",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"G4VZKZNDACO3KCE4NOEOGMIT": {
+		"name": "Gallon Peanuts Returning - Full Batches",
+		"itemId": "APUX556C7NKW5MVGACEUMDOS",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"GJPPGK3CX73ABUTTBWFJ4VHK": {
+		"name": "Gallon Hazelnuts Returning - Full Batches",
+		"itemId": "APUX556C7NKW5MVGACEUMDOS",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"5WRHGXHJKQM7ICX4BI2TBDUJ": {
+		"name": "Quart Pecans Returning - Half Batches",
+		"itemId": "VB32P5LHMJN3KT26YTCEJ6S7",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"2IGJTGGLNLMFP4BRDL7NQ5TX": {
+		"name": "Quart Almonds Returning - Half Batches",
+		"itemId": "VB32P5LHMJN3KT26YTCEJ6S7",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"XSIRWZDWYKYO6TWD6WF7LXMZ": {
+		"name": "Quart Hazelnuts Returning - Half Batches",
+		"itemId": "VB32P5LHMJN3KT26YTCEJ6S7",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"O675SYPMGXEX6HAF6QKOFT5G": {
+		"name": "Regular Checkout",
+		"itemId": "L5HDYYQYHUMU5PEP6VJ3LZ7M",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"D7RE5HEGOXJOE6GLNNDM4HJS": {
+		"name": "Gallon Pecans Loading - Full Batches",
+		"itemId": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"AL6CSGUZJ36WNAPAYVQUZQGU": {
+		"name": "Gallon Almonds Loading - Full Batches",
+		"itemId": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"FO3IWYYBDHKMUBFCRN26NQS2": {
+		"name": "Gallon Cashews Loading - Full Batches",
+		"itemId": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"DQZXA2SLOBWRNBMLCXAEJBDT": {
+		"name": "Gallon Peanuts Loading - Full Batches",
+		"itemId": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"66EALD7HASFHBOONDUG2DVOC": {
+		"name": "Gallon Hazelnuts Loading - Full Batches",
+		"itemId": "IMBQNGQHFAJ6UXFPJWWTRK75",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"IFU5DXF3CQ3DAE6RSLTESWS7": {
+		"name": "Half Batch Pecans Loading - Half Batches",
+		"itemId": "ETJSK2PTU3JVWNTSVLPJQQWK",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"AAZITPNZEBLOE4VJJZKQV3HG": {
+		"name": "Half Batch Almonds Loading - Half Batches",
+		"itemId": "ETJSK2PTU3JVWNTSVLPJQQWK",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"ZXIUDC3QQCYL4MJCLSOGVOO4": {
+		"name": "Half Batch Hazelnuts Loading - Half Batches",
+		"itemId": "ETJSK2PTU3JVWNTSVLPJQQWK",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"DNAMGQNBYLY2GDICOSRQ7OZ2": {
+		"name": "Extra Carafe Swalty Mix Loading - Extra Liquids",
+		"itemId": "BILKKZAUCEZGPAPTVSZQVJAN",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"XSTM43ALROFNZ52BRH5TJ7XB": {
+		"name": "Extra Carafe Drunken Mix Loading - Extra Liquids",
+		"itemId": "BILKKZAUCEZGPAPTVSZQVJAN",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	},
+	"5C4CLCA2XHYKCEZFEFM4HMJD": {
+		"name": "Regular Loading - Platters",
+		"itemId": "KISBTFQWIV5NED7CIH63A7ND",
+		"type": "Data",
+		"components": "",
+		"discription": ""
+	}
+}

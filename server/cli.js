@@ -2,14 +2,97 @@
 //	DEFINE DEPENDENCIES
 var cldb        = require('./dbScripts/db-team-checklists.js');
 var ivdb        = require('./dbScripts/db-inventory.js');
+var firebase	= require('./firebase/firebase.js');
 var asprop      = require('./asprop.js'); 
 var squareV1    = require('./square/square_V1.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 var moment      = require('moment');
+var stdio       = require('./stdio/stdio.js');
 
 
-asprop.sqPushUpdates({ entity_id: 'P9XiUrSZ722VvylioHMkKQB', event_type: 'PAYMENT_UPDATED',merchant_id: 'FCGJQY3GC9BNW',location_id: 'M53KQT35YKE5C' })
+/*asprop.sqPushUpdates({ entity_id: 'P9XiUrSZ722VvylioHMkKQB', event_type: 'PAYMENT_UPDATED',merchant_id: 'FCGJQY3GC9BNW',location_id: 'M53KQT35YKE5C' })
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+/*
+ivdb.map.txToOp([
+    {
+        "name": "Kit Marker",
+        "quantity": 1,
+        "itemization_type": "ITEM",
+        "item_detail": {
+            "category_name": "Data",
+            "sku": "",
+            "item_id": "WNIMUOOTOCTAQC26CEHRC745",
+            "item_variation_id": "4271E368-4929-4B37-9728-8156D02A2048"
+        },
+        "item_variation_name": "Kit One (1)",
+        "total_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "single_quantity_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "gross_sales_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "discount_money": {
+            "amount": 0,
+            "currency_code": "USD"
+        },
+        "net_sales_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "taxes": [],
+        "discounts": [],
+        "modifiers": []
+    },
+    {
+        "name": "Loading - Full Batches",
+        "quantity": 1,
+        "itemization_type": "ITEM",
+        "item_detail": {
+            "category_name": "Data",
+            "sku": "",
+            "item_id": "IMBQNGQHFAJ6UXFPJWWTRK75",
+            "item_variation_id": "D7RE5HEGOXJOE6GLNNDM4HJS"
+        },
+        "item_variation_name": "Gallon Pecans",
+        "total_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "single_quantity_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "gross_sales_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "discount_money": {
+            "amount": 0,
+            "currency_code": "USD"
+        },
+        "net_sales_money": {
+            "amount": 700,
+            "currency_code": "USD"
+        },
+        "taxes": [],
+        "discounts": [],
+        "modifiers": []
+    }
+])
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -17,6 +100,7 @@ asprop.sqPushUpdates({ entity_id: 'P9XiUrSZ722VvylioHMkKQB', event_type: 'PAYMEN
     console.log('got this error');
     console.log(e);
 });
+*/
 
 /*ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(new Date()).format())
 .then(function success(s) {

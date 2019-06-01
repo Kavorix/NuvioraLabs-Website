@@ -199,12 +199,16 @@ function addInventoryUnits(value) {
 */
 function addInventoryOperations(value) {
     //  DEFINE LOCAL VARIABLES
-    var path = 'inventory/operations'
+    var opsPath = 'inventory/operations';
+    var indexPath = 'inventory/opsSqTxMap';
+    var txsArray = [];
 
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
 
-        firebase.push(path, value).then(function(key) { resolve(key); })
+        //  ADD TO THE 
+
+        firebase.push(opsPath, value).then(function(key) { resolve(key); })
     });
 
 };
@@ -364,16 +368,20 @@ function runEntryOperation(operationId, instanceId, txTime) {
         firebase.read(readPath)
         .then(function success(componentObject) {
 
-            //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
-            _writeOpComponents(componentObject, instanceId, txTime)
-            .then(function success(s) {
+            if(componentObject != "") {
+                //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
+                _writeOpComponents(componentObject, instanceId, txTime)
+                .then(function success(s) {
 
-                //  PASS BACK SUCCESSFUL OBJECT
-                resolve({"success": true, message: "all records writen successfully"});
+                    //  PASS BACK SUCCESSFUL OBJECT
+                    resolve({"success": true, message: "all records writen successfully"});
 
-            }).catch(function error(e) {
-                reject(e);
-            });
+                }).catch(function error(e) {
+                    reject(e);
+                });
+            } else {
+                resolve({"success": fail, message: "no components to write"});
+            }
 
         }).catch(function error(e) {
             reject(e);
@@ -616,11 +624,28 @@ function _identifyTargetAccts(acctClass, instanceId) {
 *   @param - sqTx: OBJECT - contains all the elements of the square object
 *   @return - operations: ARRAY - list of all the operations to execute
 */
-function mapTxToOp(sqTx) {
+function mapTxToOp(itemsArray) {
     //  DEFINE LOCAL VARAIBLES
+    var readPath = 'inventory/opsSqTxMap';
+    var returnArray = [];
 
     return new Promise(function (resolve, reject) {
-        resolve(['-Lfog4noAvg_ccCmkX3m']);
+
+        firebase.read(readPath)
+        .then(function success(sqTxMap) {
+           
+            //  ITERATE OVER EACH ITEM
+            itemsArray.forEach(function (item) {
+                returnArray.push(sqTxMap[item.item_detail.item_variation_id])
+            });
+
+            resolve(returnArray);
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+        //resolve(['-Lfog4noAvg_ccCmkX3m']);
     });
 };
 
