@@ -20,7 +20,7 @@ var stdio       = require('./stdio/stdio.js');
     console.log(e);
 });*/
 
-/*
+
 ivdb.map.txToOp([
     {
         "name": "Kit Marker",
@@ -100,7 +100,7 @@ ivdb.map.txToOp([
     console.log('got this error');
     console.log(e);
 });
-*/
+
 
 /*ivdb.run.entryOperation('-Lfog4noAvg_ccCmkX3m', '-LfvzdamPdlmy_QMujwL', moment(new Date()).format())
 .then(function success(s) {
