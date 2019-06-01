@@ -644,9 +644,9 @@ function mapTxToOp(itemsArray) {
             //  ITERATE OVER EACH ITEM
             itemsArray.forEach(function (item) {
                 //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
-                for (var i = 0; i < item.quantity; i++) {
+                //for (var i = 0; i < item.quantity; i++) {
                     returnArray.push(sqTxMap[item.item_detail.item_variation_id])
-                } 
+               // } 
             });
 
             resolve(returnArray);
