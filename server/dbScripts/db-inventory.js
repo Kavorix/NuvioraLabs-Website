@@ -640,6 +640,8 @@ function mapTxToOp(itemsArray) {
 
         firebase.read(readPath)
         .then(function success(sqTxMap) {
+
+            console.log('got sqTxMap. itemsArray', itemsArray);
            
             //  ITERATE OVER EACH ITEM
             itemsArray.forEach(function (item) {
