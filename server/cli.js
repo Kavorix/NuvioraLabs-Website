@@ -10,11 +10,20 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-var theArray = stdio.read.json('./models/sampleOpComponents-retProd.json');
+var aTransaction = stdio.read.json('./models/transaction.json');
 
-console.log(theArray);
+/*console.log(theArray);
 
 ivdb.add.opComponents('inventory/operations/-LgGWsCjdKwfNyv_qcCw/components', theArray)
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+ivdb.map.txToOp(aTransaction.itemizations)
 .then(function success(s) {
     console.log('success');
     console.log(s);

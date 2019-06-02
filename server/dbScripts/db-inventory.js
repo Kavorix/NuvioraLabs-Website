@@ -361,9 +361,9 @@ function addInventoryInstances(name, date, type) {
 *       f)  add a new EntryId to the instance, listing each component step as 1: [txId], etc
 *   3) return success or error 
 */
-function runEntryOperation(operationId, instanceId, txTime) {
+function runEntryOperation(opObject, instanceId, txTime) {
     //  DEFINE LOCAL VARIABLES
-    var readPath = 'inventory/operations/' + operationId + '/components';
+    var readPath = 'inventory/operations/' + opObject.target + '/components';
 
     //  NOTIFY PROGRESS
     console.log('running operation method');
@@ -377,7 +377,7 @@ function runEntryOperation(operationId, instanceId, txTime) {
 
             if(componentObject != "") {
                 //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
-                _writeOpComponents(componentObject, instanceId, txTime)
+                _writeOpComponents(componentObject, opObject, instanceId, txTime)
                 .then(function success(s) {
 
                     //  PASS BACK SUCCESSFUL OBJECT
@@ -399,7 +399,8 @@ function runEntryOperation(operationId, instanceId, txTime) {
 };
 
 //  PRIVATE: WRITE OUT COMPONENTS
-function _writeOpComponents(componentObject, instanceId, txTime) {
+//  TO-DO: ADD THE OPOBJECT SO THAT QTY IS ACCOUNTED FOR IN TRANSACTIONS
+function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
     //  DEFINE LOCAL VARIABLE
     var writePromises = [];
     var instanceEntryObject = {};
@@ -636,23 +637,31 @@ function mapTxToOp(itemsArray) {
     var readPath = 'inventory/opsSqTxMap';
     var returnArray = [];
 
+    console.log('got this array', itemsArray);
+
     return new Promise(function (resolve, reject) {
 
         firebase.read(readPath)
         .then(function success(sqTxMap) {
-
-            console.log('got sqTxMap. itemsArray', itemsArray);
            
             //  ITERATE OVER EACH ITEM
             itemsArray.forEach(function (item) {
-                //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
-                //for (var i = 0; i < item.quantity; i++) {
-                    returnArray.push(sqTxMap[item.item_detail.item_variation_id])
-               // } 
-            });
 
-            console.log('have ', returnArray/length, " items in the Ops Array");
-            console.log(returnArray);
+                //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
+                for (var i = 0; i < item.quantity; i++) {
+                    //  DEFINE LOCAL VARIABLES
+                    var returnObject = {
+                        target: sqTxMap[item.item_detail.item_variation_id],
+                        qty: item.quantity,
+                        gross: item.single_quantity_money.amount,
+                        discounts: item.discount_money.amount,
+                        net: item.net_sales_money.amount,
+                        modifiers: item.modifiers
+                    };
+
+                    returnArray.push(returnObject)
+                } 
+            });
 
             resolve(returnArray);
 
