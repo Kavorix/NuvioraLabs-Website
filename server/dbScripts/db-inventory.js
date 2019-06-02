@@ -31,7 +31,8 @@ var inventoryMod = {
         txToOp: mapTxToOp
     },
     data: {
-        formatDate: formatDate
+        formatDate: formatDate,
+        formatDateLong: formatDateLong
     }
 };
 
@@ -43,7 +44,7 @@ function formatDate(dateTime) {
 };
 
 function formatDateLong(datetime) {
-    var GMT = moment(dateTime);
+    var GMT = moment(datetime);
     var PST = GMT.clone().tz("America/Los_Angeles");
     return PST;    
 }
@@ -387,7 +388,7 @@ function runEntryOperation(opObject, instanceId, txTime) {
                     reject(e);
                 });
             } else {
-                resolve({"success": fail, message: "no components to write"});
+                resolve({"success": false, message: "no components to write"});
             }
 
         }).catch(function error(e) {
@@ -648,7 +649,8 @@ function mapTxToOp(itemsArray) {
             itemsArray.forEach(function (item) {
 
                 //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
-                for (var i = 0; i < item.quantity; i++) {
+                //for (var i = 0; i < item.quantity; i++) {
+                    
                     //  DEFINE LOCAL VARIABLES
                     var returnObject = {
                         target: sqTxMap[item.item_detail.item_variation_id],
@@ -660,7 +662,7 @@ function mapTxToOp(itemsArray) {
                     };
 
                     returnArray.push(returnObject)
-                } 
+                //} 
             });
 
             resolve(returnArray);

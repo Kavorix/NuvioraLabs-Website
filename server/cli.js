@@ -10,20 +10,11 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-var aTransaction = stdio.read.json('./models/transaction.json');
+var aPush = stdio.read.json('./models/example_sq_push.json');
 
-/*console.log(theArray);
+//console.log(theArray);
 
-ivdb.add.opComponents('inventory/operations/-LgGWsCjdKwfNyv_qcCw/components', theArray)
-.then(function success(s) {
-    console.log('success');
-    console.log(s);
-}).catch(function error(e) {
-    console.log('got this error');
-    console.log(e);
-});*/
-
-ivdb.map.txToOp(aTransaction.itemizations)
+asprop.sqPushUpdates(aPush)
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -32,7 +23,7 @@ ivdb.map.txToOp(aTransaction.itemizations)
     console.log(e);
 });
 
-/*asprop.sqPushUpdates({ entity_id: 'P9XiUrSZ722VvylioHMkKQB', event_type: 'PAYMENT_UPDATED',merchant_id: 'FCGJQY3GC9BNW',location_id: 'M53KQT35YKE5C' })
+/*ivdb.add.opComponents('inventory/operations/-LgGWsCjdKwfNyv_qcCw/components', theArray)
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -40,6 +31,17 @@ ivdb.map.txToOp(aTransaction.itemizations)
     console.log('got this error');
     console.log(e);
 });*/
+
+/*ivdb.map.txToOp(aTransaction.itemizations)
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+
 
 
 
