@@ -46,7 +46,7 @@ function formatDate(dateTime) {
 function formatDateLong(datetime) {
     var GMT = moment(datetime);
     var PST = GMT.clone().tz("America/Los_Angeles");
-    return PST;    
+    return PST.format();    
 }
 
 /*
