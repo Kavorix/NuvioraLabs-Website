@@ -760,7 +760,7 @@ function _quantifyComponents(component, txValues) {
             var currentFlavor = modifiersMap[modifier.modifier_option_id];
             var volumeSplit = txValues.volume / txValues.modifiers.length;
 
-            if(component.class == currentFlavor) component.debit = volumeSplit;
+            if(component.class == currentFlavor) component.debits = volumeSplit;
 
         });
         
