@@ -58,7 +58,7 @@ function sqPushUpdates(pushObject) {
            //var sqTxToOpMapPromise = ivdb.
 
            //  NOTIFY PROGRESS
-            console.log('sqPushUpdates: ivdb.read.instanceId');
+            console.log('sqPushUpdates: ivdb.read.instanceId', sqTx);
            
             //  AFTER THE TRANSACTION HAS BEEN OBTAINED COLLECT THE INVENTORY INSTANCES
             ivdb.read.instanceId(sqTx.created_at, sqTx.tender[0].employee_id).then(function success(instanceId) {

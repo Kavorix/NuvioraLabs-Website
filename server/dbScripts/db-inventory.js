@@ -13,6 +13,7 @@ var moment 			= require('moment-timezone');
 var inventoryMod = {
     _copyAccts: _copyAccts,
     _validateInstancePath: _validateInstancePath,
+    _quantifyComponents: _quantifyComponents,
     load: load,
     read: {
         instanceId: readInstanceId
@@ -412,7 +413,7 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
     return new Promise(function (resolve, reject) {
 
         //  COMPILE ALL COMPONENT LISTS
-        _compileOpComponents(componentObject, instanceId) 
+        _compileOpComponents(componentObject, opObject, instanceId) 
         .then(function success(allLists) {
 
             //  DEFINE LOCAL VARIABLES
@@ -467,11 +468,10 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
 };
 
 //  PRIVATE: COMPILE OPERATION COMPONENTS
-function _compileOpComponents(componentObject, instanceId) {
+function _compileOpComponents(componentObject, opObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
     var txIdListPromises = [];
     var txIdsList = [];
-    var returnObject = [];
 
     //  NOTIFY PROGRESS
     console.log('_compileOpComponents');
@@ -479,7 +479,7 @@ function _compileOpComponents(componentObject, instanceId) {
     return new Promise(function (resolve, reject) {
         
         //  COLLECTING ALL COMPONENT DATA
-        _collectOpComponents(componentObject, instanceId) 
+        _collectOpComponents(componentObject, opObject, instanceId) 
         .then(function success(allLists) {
 
             //  DEFINE LOCAL VARIABLES
@@ -527,7 +527,7 @@ function _compileOpComponents(componentObject, instanceId) {
 *
 *   This method builds most of our required lists.
 */
-function _collectOpComponents(componentObject, instanceId) {
+function _collectOpComponents(componentObject, opObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
     var componentList = [];
     var targetAcctsIdList = [];
@@ -543,8 +543,11 @@ function _collectOpComponents(componentObject, instanceId) {
         //  ITERATE OVER THE COMPONENT OBJECT
         Object.keys(componentObject).forEach(function(key) {
 
+            //  NOTIFY PROGRESS
+            //console.log("this is the component we're looking at: " ,componentObject[key], key);
+
             //  CONVERT THE OBJECT TO A LIST BY ADDING EACH COMPONENT OBJECT TO THE LIST
-            componentList.push(componentObject[key]);
+            componentList.push(_quantifyComponents(componentObject[key], opObject));
 
             //  BUILD THE LIST OF TARGET ACCT IDS
             targetAcctsIdListPromises.push(_identifyTargetAccts(componentObject[key].class, instanceId))
@@ -602,8 +605,12 @@ function _identifyTargetAccts(acctClass, instanceId) {
         firebase.query.childValue('inventory/accts', 'class', acctClass)
         .then(function success(acctsWClassObject) {
 
+            if(acctsWClassObject == undefined || acctsWClassObject == null) reject(acctClass);
+
             //  ITERATE OVER ALL THE ACCOUNTS
-            Object.keys(acctsWClassObject).forEach(function (key) {
+            Object.keys(acctsWClassObject).forEach(function(key) {
+
+                //console.log(key);
 
                 if(acctsWClassObject[key].instance_id == instanceId) {
 
@@ -614,6 +621,8 @@ function _identifyTargetAccts(acctClass, instanceId) {
                     returnObject.acctBalance = acctsWClassObject[key].balance;
                 }
             });
+
+            //console.log('returnign this object', returnObject);
 
             //  WHEN FINISHED PASS THE RETURN OBJET BACK UP
             resolve(returnObject);
@@ -638,7 +647,7 @@ function mapTxToOp(itemsArray) {
     var readPath = 'inventory/opsSqTxMap';
     var returnArray = [];
 
-    console.log('got this array', itemsArray);
+    //console.log('got this array', itemsArray);
 
     return new Promise(function (resolve, reject) {
 
@@ -648,21 +657,24 @@ function mapTxToOp(itemsArray) {
             //  ITERATE OVER EACH ITEM
             itemsArray.forEach(function (item) {
 
-                //  ACCOUNT FOR THE QUNATITY OF TRANSACTIONS
-                //for (var i = 0; i < item.quantity; i++) {
-                    
-                    //  DEFINE LOCAL VARIABLES
-                    var returnObject = {
-                        target: sqTxMap[item.item_detail.item_variation_id],
-                        qty: item.quantity,
-                        gross: item.single_quantity_money.amount,
-                        discounts: item.discount_money.amount,
-                        net: item.net_sales_money.amount,
-                        modifiers: item.modifiers
-                    };
+                var returnObject = {
+                    target: sqTxMap[item.item_detail.item_variation_id],
+                    qty: item.quantity,
+                    volume: _mapVolume(item.item_detail.item_variation_id),
+                    gross: item.single_quantity_money.amount,
+                    discounts: item.discount_money.amount,
+                    net: item.net_sales_money.amount,
+                    modifiers: item.modifiers
+                };
+                
+                if(returnObject.modifiers.length > 0) {
+                    console.log('THIS IS A MIX');
+                    console.log(returnObject.volume);
+                    console.log(returnObject.modifiers.length, returnObject.modifiers);
+                }
 
-                    returnArray.push(returnObject)
-                //} 
+                returnArray.push(returnObject)
+
             });
 
             resolve(returnArray);
@@ -673,6 +685,26 @@ function mapTxToOp(itemsArray) {
 
         //resolve(['-Lfog4noAvg_ccCmkX3m']);
     });
+};
+
+function _mapVolume(sqId) {
+    //  DEFINE LOCAL VARIABLES
+    var returnValue = "";
+    var volumeMap = {
+        "WUF7O3UIU5K5AXTFLHDSX6LL": 4,
+        "GAPGZBFTTETCYILQYCZL2V4I": 4,
+        "WUF7O3UIU5K5AXTFLHDSX6LL": 8,
+        "DSFEEQY3IGEC4XZPJ5JQHKIK": 8,
+        "WUF7O3UIU5K5AXTFLHDSX6LL": 16,
+        "UPUCCHDMVNVEGIANPUN6Y4UF": 16,
+        "C5MIEQCUM4JEMCPRVEVDSCG7": 20
+    };
+
+    console.log('mapping volume', sqId, volumeMap[sqId]);
+
+    if(volumeMap[sqId] != undefined) returnValue = volumeMap[sqId];
+
+    return returnValue;
 };
 
 /*
@@ -690,6 +722,54 @@ function addOpComponents(writePath, compsArray) {
         });
     });
 
+};
+
+/*
+*   PRIVATE: QUANTIFY COMPONENTS
+*
+*   Multiply the credits and debits by the quantity.
+*   Also, if modifers are present the value needs to be split across the appropriate modifiers
+*/
+function _quantifyComponents(component, txValues) {
+    //  DEFINE LOCAL VARIABLES
+    var modifiersMap = {
+        "ZPPGFZBSPNYNHDAWHTBDRICZ": "-LfoThQV3F6j9jrStgn8",     //  Cooked Swalty Cashews
+        "TQ44AXR75I7WJFFHUNAI6GIB": "-LfoTkTDc5pBACaXp1f4",     //  Cooked Swalty Peanuts
+        "TNU4J2OZHBNISIGQ2JS5DVR5": "-LfoTn0Y5HOp5pKAp8_a",     //  Cooked Swalty Pecans
+        "JBJCJE3RGSM65UBHS7LP7CDT": "-LfoUDW8ITo_v23gsDss",     //  Cooked Drunk Pecans
+        "XRHVGDT5VGJYZ5XJEYCK7XPF": "-LfoUIW1xDRKJIAaNrhb",     //  Cooked Swalty Almonds
+        "LTXT4SCAXILGYKZKJI4HC5CW": "-LfoULKkXOFPk6rw48Zl",     //  Cooked Drunk Almonds
+        "M744QEV6LJ7NR7TLZOREQVYN": "-LfoUP8k4u-vcl547-l-",     //  Cooked Swalty Hazelnuts
+        "QQ5P2NJNK3P4UEXUELN7HFTV": "-LfoUTUs3cwzar_PqVCJ"      //  Cooked Drunk Hazelnuts
+    };
+
+    component.credits = component.credits * txValues.qty;
+    component.debits = component.debits * txValues.qty;
+
+    // NOTIFY PROGRESS
+    console.log('_quantifyComponents, modifiers:', txValues.modifiers.length, " volume: ", txValues.volume);
+    console.log(txValues.modifiers);
+
+    //  IF FLAVOR MODIFIERS ARE AT PLAY HERE
+    if(txValues.modifiers.length > 0) {
+
+        //  ITERATE OVER EACH OF THE MODIFIERS
+        txValues.modifiers.forEach(function(modifier) {
+            
+            //  DEFINE LOCAL VARIABLES
+            var currentFlavor = modifiersMap[modifier.modifier_option_id];
+            var volumeSplit = txValues.volume / txValues.modifiers.length;
+
+            if(component.class == currentFlavor) component.debit = volumeSplit;
+
+        });
+        
+
+    }
+
+
+    //  RETURN VALUE
+    return component;
 };
 
 //  RETURN THE MODULE

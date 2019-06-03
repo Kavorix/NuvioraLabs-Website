@@ -1,0 +1,578 @@
+[
+	{
+		"id": "SI253W64OJHIUDPF7FBYCI5Z",
+		"name": "Nut",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "YHW7BS5SPO3CQB3R7V3J37MU",
+				"name": "Peanut",
+				"on_by_default": false,
+				"ordinal": 0,
+				"modifier_list_id": "SI253W64OJHIUDPF7FBYCI5Z",
+				"v2_id": "YHW7BS5SPO3CQB3R7V3J37MU"
+			},
+			{
+				"id": "5FK2LVSWOOGZIP4ADSUZ44AI",
+				"name": "Almond",
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "SI253W64OJHIUDPF7FBYCI5Z",
+				"v2_id": "5FK2LVSWOOGZIP4ADSUZ44AI"
+			},
+			{
+				"id": "OUPIB6CSTL7R5FKD7IDYEWRO",
+				"name": "Pecan",
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "SI253W64OJHIUDPF7FBYCI5Z",
+				"v2_id": "OUPIB6CSTL7R5FKD7IDYEWRO"
+			},
+			{
+				"id": "LAQ7UPFSCMIJTJ5QF5UVGPPP",
+				"name": "Cashew",
+				"on_by_default": false,
+				"ordinal": 3,
+				"modifier_list_id": "SI253W64OJHIUDPF7FBYCI5Z",
+				"v2_id": "LAQ7UPFSCMIJTJ5QF5UVGPPP"
+			}
+		],
+		"v2_id": "SI253W64OJHIUDPF7FBYCI5Z"
+	},
+	{
+		"id": "ZXZFVOVW6UJJNOFOTAH3347A",
+		"name": "Drunken",
+		"selection_type": "SINGLE",
+		"modifier_options": [
+			{
+				"id": "TKKFAGRGUJVKIY3OTQ2UL7KR",
+				"name": "Drunken",
+				"price_money": {
+					"amount": 100,
+					"currency_code": "USD"
+				},
+				"on_by_default": true,
+				"ordinal": 0,
+				"modifier_list_id": "ZXZFVOVW6UJJNOFOTAH3347A",
+				"v2_id": "TKKFAGRGUJVKIY3OTQ2UL7KR"
+			}
+		],
+		"v2_id": "ZXZFVOVW6UJJNOFOTAH3347A"
+	},
+	{
+		"id": "LW462OFC336PHTR2MHL4SHHY",
+		"name": "Split Size",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "SSBKILNDYQKQRDA2KN6DTUMN",
+				"name": "2 Small",
+				"on_by_default": false,
+				"ordinal": 0,
+				"modifier_list_id": "LW462OFC336PHTR2MHL4SHHY",
+				"v2_id": "SSBKILNDYQKQRDA2KN6DTUMN"
+			},
+			{
+				"id": "ZHTDYTLB6E2ZJKTPYK5ZPUOZ",
+				"name": "2 Average",
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "LW462OFC336PHTR2MHL4SHHY",
+				"v2_id": "ZHTDYTLB6E2ZJKTPYK5ZPUOZ"
+			},
+			{
+				"id": "WLNMAGQ6UCE2RD75TVSWMZVX",
+				"name": "4 Small",
+				"on_by_default": false,
+				"ordinal": 3,
+				"modifier_list_id": "LW462OFC336PHTR2MHL4SHHY",
+				"v2_id": "WLNMAGQ6UCE2RD75TVSWMZVX"
+			}
+		],
+		"v2_id": "LW462OFC336PHTR2MHL4SHHY"
+	},
+	{
+		"id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+		"name": "Flavors",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "ZPPGFZBSPNYNHDAWHTBDRICZ",
+				"name": "Swalty Cashews",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "ZPPGFZBSPNYNHDAWHTBDRICZ"
+			},
+			{
+				"id": "TQ44AXR75I7WJFFHUNAI6GIB",
+				"name": "Swalty Peanuts",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "TQ44AXR75I7WJFFHUNAI6GIB"
+			},
+			{
+				"id": "TNU4J2OZHBNISIGQ2JS5DVR5",
+				"name": "Swalty Pecans",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 3,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "TNU4J2OZHBNISIGQ2JS5DVR5"
+			},
+			{
+				"id": "JBJCJE3RGSM65UBHS7LP7CDT",
+				"name": "Drunk Pecans",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 4,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "JBJCJE3RGSM65UBHS7LP7CDT"
+			},
+			{
+				"id": "XRHVGDT5VGJYZ5XJEYCK7XPF",
+				"name": "Swalty Almonds",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 5,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "XRHVGDT5VGJYZ5XJEYCK7XPF"
+			},
+			{
+				"id": "LTXT4SCAXILGYKZKJI4HC5CW",
+				"name": "Drunk Almonds",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 6,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "LTXT4SCAXILGYKZKJI4HC5CW"
+			},
+			{
+				"id": "M744QEV6LJ7NR7TLZOREQVYN",
+				"name": "Swalty Hazelnuts",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 7,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "M744QEV6LJ7NR7TLZOREQVYN"
+			},
+			{
+				"id": "QQ5P2NJNK3P4UEXUELN7HFTV",
+				"name": "Drunk Hazelnuts",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 8,
+				"modifier_list_id": "SBJMJF3NSMQ6B4OENLU6NN2S",
+				"v2_id": "QQ5P2NJNK3P4UEXUELN7HFTV"
+			}
+		],
+		"v2_id": "SBJMJF3NSMQ6B4OENLU6NN2S"
+	},
+	{
+		"id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+		"name": "Team Members",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "4HANNG2MBJMCEXYP4OVKLDAI",
+				"name": "Hannah",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "4HANNG2MBJMCEXYP4OVKLDAI"
+			},
+			{
+				"id": "34DQT6DYEB7LJ2AHXWKACN6Q",
+				"name": "Mateo",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "34DQT6DYEB7LJ2AHXWKACN6Q"
+			},
+			{
+				"id": "3OQSU2MWUGDWRS75JJFVVQKP",
+				"name": "Domonic",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 3,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "3OQSU2MWUGDWRS75JJFVVQKP"
+			},
+			{
+				"id": "XDMSW4PPV4GWTW5ISCKFHE7C",
+				"name": "Lexie",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 4,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "XDMSW4PPV4GWTW5ISCKFHE7C"
+			},
+			{
+				"id": "7KWD33NPPVRHUJ4XLOFMQEXO",
+				"name": "Caitlin",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 5,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "7KWD33NPPVRHUJ4XLOFMQEXO"
+			},
+			{
+				"id": "SS5Y23GXRAZQ2TUROAIKUBHS",
+				"name": "Lindsey",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 6,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "SS5Y23GXRAZQ2TUROAIKUBHS"
+			},
+			{
+				"id": "4Q63GBUV447NHW3EYJAJW7BO",
+				"name": "Kylie",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 7,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "4Q63GBUV447NHW3EYJAJW7BO"
+			},
+			{
+				"id": "IPTB7IYGK2M7FKDPQJDJYTOT",
+				"name": "Eden",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 8,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "IPTB7IYGK2M7FKDPQJDJYTOT"
+			},
+			{
+				"id": "3KRX2KRE6PZO2ZPOWVYBS6KH",
+				"name": "Ian",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 9,
+				"modifier_list_id": "SE2UKUJKV6S5K6XDRNNRBI7H",
+				"v2_id": "3KRX2KRE6PZO2ZPOWVYBS6KH"
+			}
+		],
+		"v2_id": "SE2UKUJKV6S5K6XDRNNRBI7H"
+	},
+	{
+		"id": "HOTIAP376G4WC3WA3SJNQYZI",
+		"name": "Market Check-in",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "UUREKCWIYPLYQEEK7IGC4ARB",
+				"name": "Open",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "HOTIAP376G4WC3WA3SJNQYZI",
+				"v2_id": "UUREKCWIYPLYQEEK7IGC4ARB"
+			},
+			{
+				"id": "FHKD6IREEJ7RGCRMQBFB4VAC",
+				"name": "Close",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "HOTIAP376G4WC3WA3SJNQYZI",
+				"v2_id": "FHKD6IREEJ7RGCRMQBFB4VAC"
+			}
+		],
+		"v2_id": "HOTIAP376G4WC3WA3SJNQYZI"
+	},
+	{
+		"id": "QLAHZGTEMGFUTGWANQNUXMJF",
+		"name": "Burned",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "ZSJGDUQCF7GIJCFCPHPVV6WM",
+				"name": "Yes",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "QLAHZGTEMGFUTGWANQNUXMJF",
+				"v2_id": "ZSJGDUQCF7GIJCFCPHPVV6WM"
+			}
+		],
+		"v2_id": "QLAHZGTEMGFUTGWANQNUXMJF"
+	},
+	{
+		"id": "U5HL46L3QYCDSYZIU3R53XQ6",
+		"name": "Kit Items",
+		"selection_type": "MULTIPLE",
+		"modifier_options": [
+			{
+				"id": "RCBQ4XEG3R4IWW2MAJXX4GEJ",
+				"name": "Canopy",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 1,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "RCBQ4XEG3R4IWW2MAJXX4GEJ"
+			},
+			{
+				"id": "KCDEXBWWZFZEC4NDDIJT23HZ",
+				"name": "Roaster",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 2,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "KCDEXBWWZFZEC4NDDIJT23HZ"
+			},
+			{
+				"id": "UZH3QB4SBHXGRGWEGP62KMZW",
+				"name": "Generator",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 3,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "UZH3QB4SBHXGRGWEGP62KMZW"
+			},
+			{
+				"id": "YCK2EGFRRVLBMMPVZJDBO6UG",
+				"name": "Cooking Box",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 4,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "YCK2EGFRRVLBMMPVZJDBO6UG"
+			},
+			{
+				"id": "5KFNHDQAFG5LY6DVI4SOLYUT",
+				"name": "Packaging Box",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 5,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "5KFNHDQAFG5LY6DVI4SOLYUT"
+			},
+			{
+				"id": "T4AOMXFMZOF2VOX5XZ4BXVNK",
+				"name": "Cleaning Box",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 6,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "T4AOMXFMZOF2VOX5XZ4BXVNK"
+			},
+			{
+				"id": "AGSMNZOGNQVFOIDDO4TDPPXO",
+				"name": "Returning Bags Container",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 7,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "AGSMNZOGNQVFOIDDO4TDPPXO"
+			},
+			{
+				"id": "CFOQFEOEIQ2DA56YVP3I6VAY",
+				"name": "Walls Bag",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 8,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "CFOQFEOEIQ2DA56YVP3I6VAY"
+			},
+			{
+				"id": "LV7I3VC5JU2CK7A3DYW2FZOD",
+				"name": "Serving Bins Box",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 9,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "LV7I3VC5JU2CK7A3DYW2FZOD"
+			},
+			{
+				"id": "DLNAR2ERSO7O2PLCRYV4OLJA",
+				"name": "Tables",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 10,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "DLNAR2ERSO7O2PLCRYV4OLJA"
+			},
+			{
+				"id": "M3FU3ZWWVKBVOZTKJNY5EDX4",
+				"name": "Table Raisers",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 11,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "M3FU3ZWWVKBVOZTKJNY5EDX4"
+			},
+			{
+				"id": "Q36V76E4EJYFCZCY77TF4MI2",
+				"name": "Handwash Station",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 12,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "Q36V76E4EJYFCZCY77TF4MI2"
+			},
+			{
+				"id": "WPMRKRAK5GZ7XPWJM2OEPFWT",
+				"name": "Extension Cord",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 13,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "WPMRKRAK5GZ7XPWJM2OEPFWT"
+			},
+			{
+				"id": "SQ4THD7UWSN67ZFTXTRCVVMK",
+				"name": "Platters",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 14,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "SQ4THD7UWSN67ZFTXTRCVVMK"
+			},
+			{
+				"id": "MEE5BCUDULVBBD4T5JE33DM4",
+				"name": "Canopy Weights",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 15,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "MEE5BCUDULVBBD4T5JE33DM4"
+			},
+			{
+				"id": "EHRD7YZ54ATERRDS6AVW6VFK",
+				"name": "Water Jugs",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 16,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "EHRD7YZ54ATERRDS6AVW6VFK"
+			},
+			{
+				"id": "PZDJB5EBPUEYHC5YCFHFGHFJ",
+				"name": "Staged Nuts",
+				"price_money": {
+					"amount": 0,
+					"currency_code": "USD"
+				},
+				"on_by_default": false,
+				"ordinal": 17,
+				"modifier_list_id": "U5HL46L3QYCDSYZIU3R53XQ6",
+				"v2_id": "PZDJB5EBPUEYHC5YCFHFGHFJ"
+			}
+		],
+		"v2_id": "U5HL46L3QYCDSYZIU3R53XQ6"
+	}
+]

@@ -10,10 +10,19 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
+
+/*squareV1.listModifiers('M53KQT35YKE5C')
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+    stdio.write.json('./models/modifiersList.json', s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+
 var aPush = stdio.read.json('./models/example_sq_push.json');
-
-//console.log(theArray);
-
 asprop.sqPushUpdates(aPush)
 .then(function success(s) {
     console.log('success');

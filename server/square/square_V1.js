@@ -16,8 +16,25 @@ _oauth2.accessToken = process.env.SQUARE_APP_TOKEN;
 var squarv1 = {
 	listItems: listItems,
 	listCategories: listCategories,
+	listModifiers: listModifiers,
 	retrievePayment: retrievePayment
 };
+
+function listModifiers(locationId) {
+	//	DEFINE LOCAL VARIABLES
+	var apiInstance = new SquareConnect.V1ItemsApi();
+
+	var body = new SquareConnect.UpdateItemModifierListsRequest(); // UpdateItemModifierListsRequest | An object containing the fields to POST for the request.  See the corresponding object definition for field details.
+
+	//	RETURN ASYNC WORK
+	return new Promise(function retrieveModifersListPromise(resolve, reject) {
+		apiInstance.listModifierLists(locationId).then(function(data) {
+			resolve(data);
+		}, function(error) {
+			reject(error);
+		});
+	});
+}
 
 /*
 *	RETRIEVE TRANSACTION
