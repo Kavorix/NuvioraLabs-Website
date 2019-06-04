@@ -1,52 +1,16 @@
 [
-    {
-		"acct": "Raw Materials: Platter Lids",
-		"class": "-LfoUplQHoGfTcn1Jf2v",
-		"credits": 0,
-		"debits": 1,
-		"discription": "",
-		"units": "no of",
-		"units_id": "-LfoOrkKKemIoGGWeURx"
-	},
-    {
-		"acct": "Raw Materials: Platter Bases",
-		"class": "-LfoUsE-w65TmpcplWkh",
-		"credits": 0,
-		"debits": 1,
-		"discription": "",
-		"units": "no of",
-		"units_id": "-LfoOrkKKemIoGGWeURx"
-	},
-	{
-		"acct": "Raw Materials: Label",
-		"class": "-LfoUx0oq7rSOCfKAH9E",
-		"credits": 0,
-		"debits": 1,
-		"discription": "Branding Label",
-		"units": "oz of",
-		"units_id": "-LfoOjFkJi-_rNWrugmM"
-	},
-	{
-		"acct": "Resources: Invisible Tape",
-		"class": "-LfoXjXVBLTNErRt_0Mo",
-		"credits": 0,
-		"debits": 4,
-		"discription": "to seal the package",
-		"units": "in of",
-		"units_id": "-LfoP-FooZF2QE5bh-vi"
-	},
 	{
 		"acct": "Funds: Incoming Revenue",
 		"class": "-LfoYIVkKqCYyw-cTc5l",
-		"credits": 22,
+		"credits": 0,
 		"debits": 0,
 		"discription": "",
 		"units": "$",
 		"units_id": "-LfoP1XhhXWIE1djZKjd"
 	},
 	{
-		"acct": "Sales Analysis: Platters",
-		"class": "-Lfo_d3FTcx2vM6dIW2J",
+		"acct": "Sales Analysis: Variables",
+		"class": "-Lfo_fg7eTUqu19WLdds",
 		"credits": 1,
 		"debits": 0,
 		"discription": "",
