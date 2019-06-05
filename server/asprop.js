@@ -69,14 +69,16 @@ function sqPushUpdates(pushObject) {
                 //  ONCE THE INSTANCE ID HAS BEEN IDENTIFIED, RECORDS CAN BE ADDED TO IT
                 ivdb.map.txToOp(sqTx.itemizations)
                 .then(function success(opsList) {
+                    //  DEFINE LOCAL VARIABLES
+
 
                     //  ITERATE OVER THE LIST OF OPERATIONS
-                    opsList.forEach(function(opObject) {
+                    for(var i = 0; i < opsList.length; i++) {
                         opsPromiseList.push(
-                            ivdb.run.entryOperation(opObject, instanceId, ivdb.data.formatDateLong(sqTx.created_at))
+                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i)
                         );
-                    });
-                    
+                    };
+
                     //  FINALLY RUN ALL THE PROMISES
                     Promise.all(opsPromiseList)
                     .then(function succes(s) {

@@ -286,8 +286,8 @@ function addInventoryInstances(name, date, type) {
             var instanceId = s[2].id;
 
             //  NOTIFY PROGRESS
-            console.log('got these back');
-            console.log(instanceId);
+            console.log('got these back', instanceId);
+            
 
             //  ITERATE OVER ALL THE ACCTS
             Object.keys(template).forEach(function(key) {
@@ -363,9 +363,10 @@ function addInventoryInstances(name, date, type) {
 *       f)  add a new EntryId to the instance, listing each component step as 1: [txId], etc
 *   3) return success or error 
 */
-function runEntryOperation(opObject, instanceId, txTime) {
+function runEntryOperation(opObject, instanceId, txTime, index) {
     //  DEFINE LOCAL VARIABLES
     var readPath = 'inventory/operations/' + opObject.target + '/components';
+    var acctUpdatePromises = [];
 
     //  NOTIFY PROGRESS
     console.log('running operation method');
@@ -379,12 +380,25 @@ function runEntryOperation(opObject, instanceId, txTime) {
 
             if(componentObject != "") {
                 //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
-                _writeOpComponents(componentObject, opObject, instanceId, txTime)
-                .then(function success(s) {
+                _writeOpComponents(componentObject, opObject, instanceId, txTime, index)
+                .then(function success(targetAcctsIdList) {
 
-                    //  PASS BACK SUCCESSFUL OBJECT
-                    resolve({"success": true, message: "all records writen successfully"});
+                    //  ONCE THE TRANSACTIONS HAVE ALL BEEN WRITEN, UPDATE THE BALANCES
+                    for(var i = 0; i < targetAcctsIdList.length; i++) {
 
+                        acctUpdatePromises.push(_updateAcctBalances(targetAcctsIdList[i]));
+                    };
+
+                    Promise.all(acctUpdatePromises)
+                    .then(function success(s) {
+                        //  PASS BACK SUCCESSFUL OBJECT
+                        console.log("finished updating balances");
+                        resolve({"success": true, message: ""});
+                    }).catch(function error(e) {
+                        reject(e);
+                    });
+
+    
                 }).catch(function error(e) {
                     reject(e);
                 });
@@ -402,7 +416,7 @@ function runEntryOperation(opObject, instanceId, txTime) {
 
 //  PRIVATE: WRITE OUT COMPONENTS
 //  TO-DO: ADD THE OPOBJECT SO THAT QTY IS ACCOUNTED FOR IN TRANSACTIONS
-function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
+function _writeOpComponents(componentObject, opObject, instanceId, txTime, index) {
     //  DEFINE LOCAL VARIABLE
     var writePromises = [];
     var instanceEntryObject = {};
@@ -417,25 +431,23 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
         .then(function success(allLists) {
 
             //  DEFINE LOCAL VARIABLES
-            var componentList       = allLists[0];
-            var targetAcctsIdList   = allLists[1];
-            var updatedBalancesList  = allLists[2];
-            var txIdsList           = allLists[3];
+            var componentList           = allLists[0];
+            var targetAcctsIdList       = allLists[1];
+            var txIdsList               = allLists[2];
+            var acctTxUID               = txTime + "-" + ("00" + index).slice(-3);
 
             //  USE THESE LISTS TO WRITE THE REQUIRED RECORDS
             for(var i = 0; i < componentList.length; i++) {
                 //  DEFINE LOCAL VARIABLES
                 var acctTxObject = {};
-                acctTxObject[txTime] = txIdsList[i];
+                acctTxObject[acctTxUID] = {
+                    "targetTxId": txIdsList[i],
+                    "balance_change": componentList[i].credits - componentList[i].debits
+                };
 
                 //  WRITE TXID TO ACCT/TX
                 var acctTxUpdatePath = "inventory/accts/" + targetAcctsIdList[i] + "/txs"
                 writePromises.push(firebase.update(acctTxUpdatePath, acctTxObject));
-
-                //  UPDATE ACCT BALANCES
-                //  TODO - THIS IF FUCKING UP FOR SOME REASON
-                var acctBalanceUpdatePath = "inventory/accts/" + targetAcctsIdList[i];
-                writePromises.push(firebase.update(acctBalanceUpdatePath, { "balance": updatedBalancesList[i] } ));
 
                 //  BUILD INSTANCE ENTRY OBJECT
                 instanceEntryObject[i] = componentList[i];
@@ -453,7 +465,7 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime) {
             .then(function success(s) {
                 
                 //  RESOLVE WHEN COMPLETED WRITING
-                resolve("SUCCESS");
+                resolve(targetAcctsIdList);
 
             }).catch(function error(e) {
                 reject(e);
@@ -485,7 +497,6 @@ function _compileOpComponents(componentObject, opObject, instanceId) {
             //  DEFINE LOCAL VARIABLES
             var componentList       = allLists[0];
             var targetAcctsIdList   = allLists[1];
-            var updatedBalancesList  = allLists[2];
 
             //  ITERATE OVER ALL COMPONENTS, TURN INTO TRANSACTION OBEJCTS, SAVE, AND RECEIVE THE IDS
             for(var i = 0; i < componentList.length; i++) {
@@ -508,7 +519,7 @@ function _compileOpComponents(componentObject, opObject, instanceId) {
                 });
 
                 //  PASS THE RESULT BACK UP THE CHAIN
-                resolve([componentList, targetAcctsIdList, updatedBalancesList, txIdsList]);
+                resolve([componentList, targetAcctsIdList, txIdsList]);
 
             }).catch(function error(e) {
                 reject(e);
@@ -531,7 +542,6 @@ function _collectOpComponents(componentObject, opObject, instanceId) {
     //  DEFINE LOCAL VARIABLE
     var componentList = [];
     var targetAcctsIdList = [];
-    var updatedBalancesList = [];
     var targetAcctsIdListPromises = [];
 
     //  NOTIFY PROGRESS
@@ -565,12 +575,10 @@ function _collectOpComponents(componentObject, opObject, instanceId) {
                 //  ADD THE TARGET ACCOUNT ID TO THE LIST
                 targetAcctsIdList.push(targetAcctsIdCollection[i].targetAcctsId);
 
-                //  ADD THE UPDATED BALANCE TO THE LIST
-                updatedBalancesList.push(targetAcctsIdCollection[i].acctBalance + componentList[i].credits - componentList[i].debits);
             };
 
             //  WHEN WE HAVE EVERYTHIGN WE NEED, PASS IT BACK UP
-            resolve([componentList, targetAcctsIdList, updatedBalancesList]);
+            resolve([componentList, targetAcctsIdList]);
 
         }).catch(function error(e) {
             reject(e);
@@ -597,7 +605,7 @@ function _identifyTargetAccts(acctClass, instanceId) {
     };
 
     //  NOTIFY PROGRESS
-    console.log('_identifyTargetAccts');
+    //console.log('_identifyTargetAccts');
 
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
@@ -669,8 +677,8 @@ function mapTxToOp(itemsArray) {
                 
                 if(returnObject.modifiers.length > 0) {
                     console.log('THIS IS A MIX');
-                    console.log(returnObject.volume);
-                    console.log(returnObject.modifiers.length, returnObject.modifiers);
+                    //console.log(returnObject.volume);
+                    //console.log(returnObject.modifiers.length, returnObject.modifiers);
                 }
 
                 returnArray.push(returnObject)
@@ -748,7 +756,7 @@ function _quantifyComponents(component, txValues) {
 
     // NOTIFY PROGRESS
     console.log('_quantifyComponents, modifiers:', txValues.modifiers.length, " volume: ", txValues.volume);
-    console.log(txValues.modifiers);
+    //console.log(txValues.modifiers);
 
     //  IF FLAVOR MODIFIERS ARE AT PLAY HERE
     if(txValues.modifiers.length > 0) {
@@ -770,6 +778,42 @@ function _quantifyComponents(component, txValues) {
 
     //  RETURN VALUE
     return component;
+};
+
+function _updateAcctBalances(acctId) {
+    //  DEFINE LOCAL VARIABLES
+    var acctReadWritePath = "inventory/accts/" + acctId;
+
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+
+        //  READ THE REQUIRED RECORD
+        firebase.read(acctReadWritePath)
+        .then(function success(acctObj) {
+            
+            //  DEFINE LOCAL VARIABLES
+            var currentBalance = acctObj.balance;
+
+            //  ITERATE OVER THE TXS, PULLING OUT THE CHANGES
+            for(var i = 0; i < acctObj.txs.length; i++) {
+                currentBalance += acctObj.txs[i].balance_change;
+            };
+
+            //  notify progress
+            console.log('balance changes', currentBalance);
+
+            firebase.update(acctReadWritePath, { "balance": currentBalance})
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+
 };
 
 //  RETURN THE MODULE
