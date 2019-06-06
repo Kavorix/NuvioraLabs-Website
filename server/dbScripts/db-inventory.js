@@ -798,9 +798,12 @@ function _updateAcctBalances(acctId) {
             var currentBalance = acctObj.balance;
 
             //  ITERATE OVER THE TXS, PULLING OUT THE CHANGES
-            for(var i = 0; i < acctObj.txs.length; i++) {
+            Object.keys(acctObj.txs).forEach(function(key) {
+                currentBalance += acctObj.txs[key].balance_change;
+            });
+            /*for(var i = 0; i < acctObj.txs.length; i++) {
                 currentBalance += acctObj.txs[i].balance_change;
-            };
+            };*/
 
             //  notify progress
             console.log('balance changes', currentBalance);
