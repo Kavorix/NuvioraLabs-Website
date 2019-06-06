@@ -11,6 +11,7 @@ var moment 			= require('moment-timezone');
 
 //  DEFINE THE MODULE
 var inventoryMod = {
+    _updateAcctBalances: _updateAcctBalances,
     _copyAccts: _copyAccts,
     _validateInstancePath: _validateInstancePath,
     _quantifyComponents: _quantifyComponents,
@@ -790,9 +791,6 @@ function _updateAcctBalances(acctId) {
         //  READ THE REQUIRED RECORD
         firebase.read(acctReadWritePath)
         .then(function success(acctObj) {
-
-            //  NOTIFY PROGRESS
-            console.log('acctObj', acctObj);
             
             //  DEFINE LOCAL VARIABLES
             var currentBalance = acctObj.balance;
@@ -801,9 +799,6 @@ function _updateAcctBalances(acctId) {
             Object.keys(acctObj.txs).forEach(function(key) {
                 currentBalance += acctObj.txs[key].balance_change;
             });
-            /*for(var i = 0; i < acctObj.txs.length; i++) {
-                currentBalance += acctObj.txs[i].balance_change;
-            };*/
 
             //  notify progress
             console.log('balance changes', currentBalance);

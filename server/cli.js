@@ -11,6 +11,33 @@ var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
 
+ivdb.add.acct_classes({
+    category: "Funds",
+    isSubAcct: true,
+    name: "Tips",
+    parentAcct: "-LfoY7JUJV0fFDpkjh9O",
+    units: "$",
+    units_id: "-LfoP1XhhXWIE1djZKjd"
+})
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});
+
+/*var aPush = stdio.read.json('./models/example_sq_push.json');
+asprop.sqPushUpdates(aPush)
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+
 /*squareV1.listModifiers('M53KQT35YKE5C')
 .then(function success(s) {
     console.log('success');
@@ -22,15 +49,7 @@ var stdio       = require('./stdio/stdio.js');
 });*/
 
 
-var aPush = stdio.read.json('./models/example_sq_push.json');
-asprop.sqPushUpdates(aPush)
-.then(function success(s) {
-    console.log('success');
-    console.log(s);
-}).catch(function error(e) {
-    console.log('got this error');
-    console.log(e);
-});
+
 
 /*ivdb.add.opComponents('inventory/operations/-LgGWsCjdKwfNyv_qcCw/components', theArray)
 .then(function success(s) {
