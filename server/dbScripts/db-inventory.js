@@ -790,6 +790,9 @@ function _updateAcctBalances(acctId) {
         //  READ THE REQUIRED RECORD
         firebase.read(acctReadWritePath)
         .then(function success(acctObj) {
+
+            //  NOTIFY PROGRESS
+            console.log('acctObj', acctObj);
             
             //  DEFINE LOCAL VARIABLES
             var currentBalance = acctObj.balance;
