@@ -10,8 +10,10 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
+//  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
 
-ivdb.add.acct_classes({
+
+/*ivdb.add.acct_classes({
     category: "Funds",
     isSubAcct: true,
     name: "Tips",
@@ -25,7 +27,7 @@ ivdb.add.acct_classes({
 }).catch(function error(e) {
     console.log('got this error');
     console.log(e);
-});
+});*/
 
 /*var aPush = stdio.read.json('./models/example_sq_push.json');
 asprop.sqPushUpdates(aPush)

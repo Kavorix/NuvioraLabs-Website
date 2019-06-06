@@ -75,7 +75,7 @@ function sqPushUpdates(pushObject) {
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     for(var i = 0; i < opsList.length; i++) {
                         opsPromiseList.push(
-                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i)
+                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i, sqTx.tip_money.amount)
                         );
                     };
 

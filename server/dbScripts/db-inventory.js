@@ -364,7 +364,7 @@ function addInventoryInstances(name, date, type) {
 *       f)  add a new EntryId to the instance, listing each component step as 1: [txId], etc
 *   3) return success or error 
 */
-function runEntryOperation(opObject, instanceId, txTime, index) {
+function runEntryOperation(opObject, instanceId, txTime, index, tipMoney) { //TO DO: FIGURE OUT HOW TO HANDLE THE TIPS ACCOUNTING
     //  DEFINE LOCAL VARIABLES
     var readPath = 'inventory/operations/' + opObject.target + '/components';
     var acctUpdatePromises = [];
@@ -793,17 +793,18 @@ function _updateAcctBalances(acctId) {
         .then(function success(acctObj) {
             
             //  DEFINE LOCAL VARIABLES
-            var currentBalance = acctObj.balance;
+            //var currentBalance = acctObj.balance;
+            var newBalance = 0;
 
             //  ITERATE OVER THE TXS, PULLING OUT THE CHANGES
             Object.keys(acctObj.txs).forEach(function(key) {
-                currentBalance += acctObj.txs[key].balance_change;
+                newBalance += acctObj.txs[key].balance_change;
             });
 
             //  notify progress
-            console.log('balance changes', currentBalance);
+            console.log('balance changes', newBalance);
 
-            firebase.update(acctReadWritePath, { "balance": currentBalance})
+            firebase.update(acctReadWritePath, { "balance": newBalance})
             .then(function success(s) {
                 resolve(s);
             }).catch(function error(e) {
