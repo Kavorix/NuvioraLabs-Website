@@ -381,7 +381,7 @@ function runEntryOperation(opObject, instanceId, txTime, index, tipMoney) { //TO
 
             if(componentObject != "") {
                 //  WRITE ALL OPERATION COMPONENTS AS TRANSACTIONS
-                _writeOpComponents(componentObject, opObject, instanceId, txTime, index)
+                _writeOpComponents(componentObject, opObject, instanceId, txTime, index, tipMoney)
                 .then(function success(targetAcctsIdList) {
 
                     //  ONCE THE TRANSACTIONS HAVE ALL BEEN WRITEN, UPDATE THE BALANCES
@@ -417,7 +417,7 @@ function runEntryOperation(opObject, instanceId, txTime, index, tipMoney) { //TO
 
 //  PRIVATE: WRITE OUT COMPONENTS
 //  TO-DO: ADD THE OPOBJECT SO THAT QTY IS ACCOUNTED FOR IN TRANSACTIONS
-function _writeOpComponents(componentObject, opObject, instanceId, txTime, index) {
+function _writeOpComponents(componentObject, opObject, instanceId, txTime, index, tipMoney) {
     //  DEFINE LOCAL VARIABLE
     var writePromises = [];
     var instanceEntryObject = {};
@@ -428,7 +428,7 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime, index
     return new Promise(function (resolve, reject) {
 
         //  COMPILE ALL COMPONENT LISTS
-        _compileOpComponents(componentObject, opObject, instanceId) 
+        _compileOpComponents(componentObject, opObject, instanceId, tipMoney) 
         .then(function success(allLists) {
 
             //  DEFINE LOCAL VARIABLES
@@ -481,7 +481,7 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime, index
 };
 
 //  PRIVATE: COMPILE OPERATION COMPONENTS
-function _compileOpComponents(componentObject, opObject, instanceId) {
+function _compileOpComponents(componentObject, opObject, instanceId, tipMoney) {
     //  DEFINE LOCAL VARIABLE
     var txIdListPromises = [];
     var txIdsList = [];
@@ -503,6 +503,11 @@ function _compileOpComponents(componentObject, opObject, instanceId) {
             for(var i = 0; i < componentList.length; i++) {
                 //  DEFINE LOCAL VARIABLES
                 var txObject = componentList[i];
+
+                if(txObject.class == '-LgfD3E5LcQeLRg1EDY-') {
+                    console.log('found a tip', tipMoney);
+                    txObject.credits = tipMoney;
+                };
 
                 //  ADD THE TARGET ACCT DATA
                 txObject['targetAcctId'] = targetAcctsIdList[i];

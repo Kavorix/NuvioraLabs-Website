@@ -12,6 +12,16 @@ var stdio       = require('./stdio/stdio.js');
 
 //  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
 
+var writeObject = stdio.read.json('../server/models/component_model.json');
+
+firebase.create('inventory/operations/-LgGWsBy9DRN6eXCXp37/components/6', writeObject)
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});
 
 /*ivdb.add.acct_classes({
     category: "Funds",
