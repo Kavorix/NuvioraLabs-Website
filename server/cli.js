@@ -13,8 +13,15 @@ var stdio       = require('./stdio/stdio.js');
 //  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
 
 var writeObject = stdio.read.json('../server/models/component_model.json');
+var writePromises = [];
+var records = ['-LgGWsCEzR_l8O09y0Fl', '-LgGWsCQf9H1kXF3y9Gq', '-LgGWsCIucGA_18H6MuU', '-LgGWsCLJqbfmVwUqFJa', '-LgGWsCN6LKdhx1PBhqw', '-LgGWsCF6nV-RsSZ9r7m', '-LgGWsCyhDgrqsp9FObW', '-LgGWsCkCbRz3HEwssXV', '-LgGWsCjdKwfNyv_qcCw', '-LgGWsCBD-GCmnpr1tNt', '-LgGWsCJxGAiKhSis4C5', '-LgGWsCMhd-eh-i4zOY3', '-LgGWsCOdnYThFvv1b_6', '-LgGWsBy9DRN6eXCXp38', '-LgGWsCGejWJwSazISck', '-LgGWsCyhDgrqsp9FObX', '-LgGWsClb3k6K3JUI7Q6', '-LgGWsCjdKwfNyv_qcCx', '-LgGWsCBD-GCmnpr1tNu', '-LgGWsCKMQEjV7d_X3WS', '-LgGWsCMhd-eh-i4zOY4', '-LgGWsCPa0McRPimtxTW', '-LgGWsBzsDirUvdxZMUJ', '-LgGWsCHOKw6O8IDFtTk', '-LgGWsCyhDgrqsp9FObY', '-LgGWsCt_ljTI47erxz0', '-LgGWsCkCbRz3HEwssXU', '-LgGWsCD5xmtJXUZkUHg']
 
-firebase.create('inventory/operations/-LgGWsBy9DRN6eXCXp37/components/6', writeObject)
+
+for(var i = 0; i < records.length; i++) {
+    var writePath = 'inventory/operations/' + records[i] + '/components/6';
+    writePromises.push(firebase.create(writePath, writeObject))
+}
+Promise.all(writePromises)
 .then(function success(s) {
     console.log('success');
     console.log(s);

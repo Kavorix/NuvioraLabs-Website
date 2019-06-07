@@ -504,9 +504,15 @@ function _compileOpComponents(componentObject, opObject, instanceId, tipMoney) {
                 //  DEFINE LOCAL VARIABLES
                 var txObject = componentList[i];
 
-                if(txObject.class == '-LgfD3E5LcQeLRg1EDY-') {
+                if(txObject.class == '-LgfD3E5LcQeLRg1EDY-') {  //handle tips
                     console.log('found a tip', tipMoney);
                     txObject.credits = tipMoney;
+                };
+                
+                //add variable nut
+                if(txObject.class == '-LfoYIVkKqCYyw-cTc5l') {  //handle revenue
+                    console.log('adjusting variable', opObject);
+                    txObject.credits = opObject.gross;
                 };
 
                 //  ADD THE TARGET ACCT DATA
