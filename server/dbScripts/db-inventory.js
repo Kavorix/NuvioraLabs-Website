@@ -458,7 +458,7 @@ function _writeOpComponents(componentObject, opObject, instanceId, txTime, index
             //  ADD THE INSTANCE ENTRY WRITE TO THE QUE
             var instanceEntryPath = 'inventory/instances/' + instanceId + '/entries';
             var instanceEntry = {};
-            instanceEntry[txTime] = instanceEntryObject;
+            instanceEntry[acctTxUID] = instanceEntryObject;
             writePromises.push(firebase.update(instanceEntryPath, instanceEntry));
 
             //  RESOLVE ALL PROMISES
