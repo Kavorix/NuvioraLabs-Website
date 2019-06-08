@@ -75,9 +75,12 @@ function sqPushUpdates(pushObject) {
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     for(var i = 0; i < opsList.length; i++) {
                         opsPromiseList.push(
-                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i, (sqTx.tip_money.amount / (opsList.length + 1)))
+                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i, (sqTx.tip_money.amount / (opsList.length)))
                         );
                     };
+
+                    //  NOTIFY PROGRESS
+                    console.log('running ', opsPromiseList.length, " operations");
 
                     //  FINALLY RUN ALL THE PROMISES
                     Promise.all(opsPromiseList)
