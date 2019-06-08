@@ -8,6 +8,7 @@
 var cldb        = require('./dbScripts/db-team-checklists.js');
 var ivdb        = require('./dbScripts/db-inventory.js');
 var squareV1    = require('./square/square_V1.js');
+var rptBldr     = require('./reportBuilder/reportBuilder.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 
@@ -15,6 +16,9 @@ var path 	    = require('path');
 var asprop = {
     retreiveTemplate: retreiveTemplate,
     sqPushUpdates: sqPushUpdates,
+    reports: {
+        instance: runInstanceReport
+    },
     test: test
 };
 
@@ -115,6 +119,25 @@ function sqPushUpdates(pushObject) {
 
         
     });
+};
+
+/*
+*   RUN INSTANCE REPORT
+*/
+function runInstanceReport(instanceId) {
+
+    console.log('running instance report');
+
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+
+        var instanceData = {"testing": "test"};
+
+        var emailHTML = rptBldr.emails.employeeEarnings(instanceData);
+
+        resolve(emailHTML)
+    });
+
 };
 
 //  TEST

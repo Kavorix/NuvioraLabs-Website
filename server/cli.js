@@ -10,9 +10,8 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-//  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
 
-firebase.create('inventory/routing', "")
+asprop.reports.instance('-LgpDw9V0S0ZqnY9bJsb')
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -20,6 +19,10 @@ firebase.create('inventory/routing', "")
     console.log('got this error');
     console.log(e);
 });
+
+
+//  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
+
 
 /*ivdb.add.acct_classes({
     category: "Funds",

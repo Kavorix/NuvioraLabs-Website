@@ -11,11 +11,21 @@ var path 	= require('path');
 //  DEFINE MODULE
 var stdio = {
     read: {
+        html: readHTML,
         json: readJson
     },
     write: {
         json: writeJson
     }
+};
+
+function readHTML(filepath) {
+    //  DEFINE LOCAL VARIABLES
+    var readpath = path.join(__dirname, '..', filepath);
+
+	var file = fs.readFileSync(readpath, 'utf8');
+
+	return file;
 };
 
 /*

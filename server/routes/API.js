@@ -6,6 +6,8 @@ module.exports = (function() {
     'use strict';
     //  DEFINE DEPENDENCIES
     var cldb 		= require('../dbScripts/db-team-checklists.js');
+    var ivdb        = require('../dbScripts/db-inventory.js');
+    var asprop      = require('../asprop.js'); 
     var APIRoutes = require('express').Router();
 
     //	GET: API/data/allChecklists
@@ -46,6 +48,25 @@ module.exports = (function() {
 
         });
         
+    });
+
+    APIRoutes.get('/report/instance/:instanceId', function(req, res) {
+
+        //run the requird function
+        asprop.reports.instance(req.params.instanceId).then(function success(s) {
+            
+            //return an affirmative status code
+            //res.setHeader('Content-Type', 'application/json');
+            res.status(200);
+            res.send(s);
+
+        }).catch(function error(e) {
+            
+            //return an error status code
+            res.sendStatus(550);
+
+        });
+
     });
 
     return APIRoutes;
