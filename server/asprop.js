@@ -70,12 +70,12 @@ function sqPushUpdates(pushObject) {
                 ivdb.map.txToOp(sqTx.itemizations)
                 .then(function success(opsList) {
                     //  DEFINE LOCAL VARIABLES
-
+                    var isVariable = ()
 
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     for(var i = 0; i < opsList.length; i++) {
                         opsPromiseList.push(
-                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i, sqTx.tip_money.amount)
+                            ivdb.run.entryOperation(opsList[i], instanceId, ivdb.data.formatDateLong(sqTx.created_at), i, (sqTx.tip_money.amount / (opsList.length + 1)))
                         );
                     };
 
