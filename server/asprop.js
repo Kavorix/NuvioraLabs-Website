@@ -70,7 +70,7 @@ function sqPushUpdates(pushObject) {
                 ivdb.map.txToOp(sqTx.itemizations)
                 .then(function success(opsList) {
                     //  DEFINE LOCAL VARIABLES
-                    var isVariable = ()
+                    //var isVariable = ()
 
                     //  ITERATE OVER THE LIST OF OPERATIONS
                     for(var i = 0; i < opsList.length; i++) {
