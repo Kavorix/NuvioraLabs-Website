@@ -510,13 +510,15 @@ function _compileOpComponents(componentObject, opObject, instanceId, tipMoney) {
                 };
                 
                 //add variable nut
-                if(txObject.class == '-LfoYIVkKqCYyw-cTc5l') {  //handle revenue
+                if(txObject.class == '-LfoYIVkKqCYyw-cTc5l' && opObject.qty == 1) {  //handle revenue
                     console.log('adjusting variable', opObject);
                     txObject.credits = opObject.gross;
                 };
 
                 //  ADD THE TARGET ACCT DATA
                 txObject['targetAcctId'] = targetAcctsIdList[i];
+
+                console.log('ushing this tx', txObject);
 
                 //  ADD THE PUSH PROMISE TO THE ARRAY
                 txIdListPromises.push(firebase.push('inventory/txs', txObject));
@@ -575,11 +577,16 @@ function _collectOpComponents(componentObject, opObject, instanceId) {
             targetAcctsIdListPromises.push(_identifyTargetAccts(componentObject[key].class, instanceId))
         });
 
+        /*console.log('componentList');
+        componentList.forEach(function(item) {
+            console.log(item);
+        })*/
+
         // WHEN ALL PROMISES RESOLVE, THEN PASS THE VALUES UP THE CHAIN
         Promise.all(targetAcctsIdListPromises)
         .then(function success(targetAcctsIdCollection) {
 
-            //console.log('targetAcctsIdCollection', targetAcctsIdCollection);
+            console.log('targetAcctsIdCollection', targetAcctsIdCollection);
 
             //  ITERATE OVER EACH OJBECT AND ADD TO THE APPROPRIATE LIST
             for(var i = 0; i < componentList.length; i++) {
@@ -593,6 +600,7 @@ function _collectOpComponents(componentObject, opObject, instanceId) {
             resolve([componentList, targetAcctsIdList]);
 
         }).catch(function error(e) {
+            console.log('hitting the error here', e);
             reject(e);
         });
 
@@ -617,7 +625,7 @@ function _identifyTargetAccts(acctClass, instanceId) {
     };
 
     //  NOTIFY PROGRESS
-    //console.log('_identifyTargetAccts');
+    console.log('_identifyTargetAccts');
 
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
@@ -625,7 +633,7 @@ function _identifyTargetAccts(acctClass, instanceId) {
         firebase.query.childValue('inventory/accts', 'class', acctClass)
         .then(function success(acctsWClassObject) {
 
-            if(acctsWClassObject == undefined || acctsWClassObject == null) reject(acctClass);
+            if(acctsWClassObject == undefined || acctsWClassObject == null) reject({ "error": true, "acctClass":acctClass, "message": "something wrong with this acctClass", "returned": acctsWClassObject});
 
             //  ITERATE OVER ALL THE ACCOUNTS
             Object.keys(acctsWClassObject).forEach(function(key) {
@@ -752,6 +760,7 @@ function addOpComponents(writePath, compsArray) {
 */
 function _quantifyComponents(component, txValues) {
     //  DEFINE LOCAL VARIABLES
+    var returnComponent = {};
     var modifiersMap = {
         "ZPPGFZBSPNYNHDAWHTBDRICZ": "-LfoThQV3F6j9jrStgn8",     //  Cooked Swalty Cashews
         "TQ44AXR75I7WJFFHUNAI6GIB": "-LfoTkTDc5pBACaXp1f4",     //  Cooked Swalty Peanuts
@@ -763,12 +772,19 @@ function _quantifyComponents(component, txValues) {
         "QQ5P2NJNK3P4UEXUELN7HFTV": "-LfoUTUs3cwzar_PqVCJ"      //  Cooked Drunk Hazelnuts
     };
 
-    component.credits = component.credits * txValues.qty;
-    component.debits = component.debits * txValues.qty;
+    //  DEEP COPY THE OBJECT, MAKING CHANGES AS NECESSARY
+    Object.keys(component).forEach(function(key) {
 
-    // NOTIFY PROGRESS
-    console.log('_quantifyComponents, modifiers:', txValues.modifiers.length, " volume: ", txValues.volume);
-    //console.log(txValues.modifiers);
+        //  MULTIPLY QTY IF NECESSARY
+        if(key == 'credits' || key == 'debits') {
+            returnComponent[key] = component[key] * txValues.qty;
+        } else {
+            returnComponent[key] = component[key];
+        }
+
+        
+    });
+
 
     //  IF FLAVOR MODIFIERS ARE AT PLAY HERE
     if(txValues.modifiers.length > 0) {
@@ -780,16 +796,17 @@ function _quantifyComponents(component, txValues) {
             var currentFlavor = modifiersMap[modifier.modifier_option_id];
             var volumeSplit = txValues.volume / txValues.modifiers.length;
 
-            if(component.class == currentFlavor) component.debits = volumeSplit;
+            if(component.class == currentFlavor) returnComponent.debits = volumeSplit;
 
         });
         
 
     }
 
+    console.log('returning component', returnComponent);
 
     //  RETURN VALUE
-    return component;
+    return returnComponent;
 };
 
 function _updateAcctBalances(acctId) {

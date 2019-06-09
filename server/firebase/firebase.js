@@ -147,11 +147,14 @@ function queryChildValue(path, key, value) {
 		.then(function(snapshot) {
 				
 			//console.log(snapshot.val());
-
+			
 			//pass the data back
 			resolve(snapshot.val());
 
-		});
+		})
+		.catch(function(e) {
+			reject(e);
+		})
 		
 	});
 
