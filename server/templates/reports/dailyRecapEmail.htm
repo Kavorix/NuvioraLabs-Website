@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+    </head>
+    <body style='background-color:#F7D6E4'>
+        
+        <h1 style='text-align: center; margin: auto; color: rgb(104, 104, 104); margin-top: 30px;'> Awe Sweet </h1>
+        
+        <div    class="container" 
+                style=' background-color: white; 
+                        padding: 30px;
+                        margin: auto;
+                        width: 600px;'>
+            
+            <!-- Email title -->
+            <h3 style=' color:#73797d;
+                        margin: auto;
+                        text-align: center;'>
+                
+                Daily recap for {{ Date }}
+                <br>
+                {{ CME Name }}
+            </h3>
+
+            <!-- Section:-->
+            <section style='margin-top: 20px;'>
+
+                <!-- Section Header -->
+                <h2 style=' color:#73797d;
+                            margin: auto;
+                            text-align: center;'>
+                    Cooking Bonus
+                </h2>
+
+                <!-- Explaination -->
+                <h4 style='     color:#73797d;
+                                margin: auto;
+                                text-align: center;
+                                margin-bottom: 20px;'>
+                    Cook {{x}} more lbs of nuts for {{reward}}!
+                </h4>
+
+                <!--Data Table-->
+                <table  class='table table-bordered'
+                        style=' margin: auto;
+                                text-align:center;'>
+                    <tr>
+                        <td>$0</td>
+                        <td>$2</td>
+                        <td>$3</td>
+                        <td>$4</td>
+                        <td>$5</td>
+                    </tr>
+                </table>
+            </section>
+
+            <hr>
+
+            <section>
+
+                <!-- Section Header -->
+                <h2 style=' color:#73797d;
+                            margin: auto;
+                            text-align: center;
+                            margin-bottom: 20px;'>
+                    Hourly Sales
+                </h2>
+                
+                <!--Data Table-->
+                <table  class='table table-bordered'
+                        style=' margin: auto;
+                                text-align: center;'>
+                    <tr>
+                        <th style='text-align: center'>Hour</th>
+                        <th style='text-align: center'># Nuts</th>
+                        <th style='text-align: center'>$ Sales</th>
+                        <th style='text-align: center'>Commission</th>
+                        <th style='text-align: center'>Tips</th>
+                        <th style='text-align: center'>Portion</th>
+                    </tr>
+                    <tr>
+                        <td>10AM</td>
+                        <td>13.8</td>
+                        <td>$180</td>
+                        <td>$11.77</td>
+                        <td>$8.92</td>
+                        <td>100%</td>
+                    </tr>
+                </table>
+
+                <table  class="table table-borderless" style='margin: auto; width: 80%; margin-top: 30px;'>
+                    <!--Shift hours-->
+                    <tr>
+                        <td>Shift Hours:</td>
+                        <td style='text-align:right'>6h</td>
+                    </tr>
+                    <!--Guaranteed Pay-->
+                    <tr>
+                        <td>Guaranteed Pay:</td>
+                        <td style='text-align:right'>$64.50</td>
+                    </tr>
+                    <!--Commissions-->
+                    <tr>
+                        <td>Commissions:</td>
+                        <td style='text-align:right'>$44.84</td>
+                    </tr>
+                    <!--Tips-->
+                    <tr>
+                        <td>Tips:</td>
+                        <td style='text-align:right'>$17.90</td>
+                    </tr>
+                    <!--Cooking Bonus-->
+                    <tr>
+                        <td>Cooking Bonus:</td>
+                        <td style='text-align:right'>$5.00</td>
+                    </tr>
+                    <!--Your Earnings-->
+                    <tr>
+                        <td><strong>Your Earnings:</strong></td>
+                        <td style='text-align:right'><strong>$127.24</strong></td>
+                    </tr>
+                    <!--Effective Rate-->
+                    <tr>
+                        <td>Effective Rate:</td>
+                        <td style='text-align:right'>$21.21 / Hr</td>
+                    </tr>
+                </table>
+            </section>
+            
+        </div>
+    </body>
+</html>

@@ -18,7 +18,7 @@ var rptbldr = {
 function employeeEarningsEmail(data) {
 
     //  DEFINE LOCAL VARIABLES
-    var template = stdio.read.html('./templates/reports/employeeEarningsEmail.htm');
+    var template = stdio.read.html('./templates/reports/dailyRecapEmail.htm');
     
     return template;
 };
