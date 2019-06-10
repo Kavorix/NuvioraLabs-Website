@@ -133,7 +133,7 @@ function runInstanceReport(instanceId) {
 
         var instanceData = {"testing": "test"};
 
-        var emailHTML = rptBldr.emails.employeeEarnings(instanceData);
+        var emailHTML = rptBldr.emails.dailyRecap(instanceData);
 
         resolve(emailHTML)
     });

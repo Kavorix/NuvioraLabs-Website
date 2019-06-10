@@ -10,38 +10,39 @@
                 style=' background-color: white; 
                         padding: 30px;
                         margin: auto;
-                        width: 600px;'>
+                        width: 600px;
+                        margin-bottom: 50px;'>
             
             <!-- Email title -->
             <h3 style=' color:#73797d;
                         margin: auto;
                         text-align: center;'>
                 
-                Daily recap for {{ Date }}
+                Daily recap for {{cme_date}}
                 <br>
-                {{ CME Name }}
+                {{CME_name}}
             </h3>
 
-            <!-- Section:-->
-            <section style='margin-top: 20px;'>
+            <!-- Section: Cooking Bonus-->
+            <!--<section style='margin-top: 20px;'>-->
 
                 <!-- Section Header -->
-                <h2 style=' color:#73797d;
+                <!--<h2 style=' color:#73797d;
                             margin: auto;
                             text-align: center;'>
                     Cooking Bonus
-                </h2>
+                </h2>-->
 
                 <!-- Explaination -->
-                <h4 style='     color:#73797d;
+                <!--<h4 style='     color:#73797d;
                                 margin: auto;
                                 text-align: center;
                                 margin-bottom: 20px;'>
                     Cook {{x}} more lbs of nuts for {{reward}}!
-                </h4>
+                </h4>-->
 
                 <!--Data Table-->
-                <table  class='table table-bordered'
+                <!--<table  class='table table-bordered'
                         style=' margin: auto;
                                 text-align:center;'>
                     <tr>
@@ -52,7 +53,7 @@
                         <td>$5</td>
                     </tr>
                 </table>
-            </section>
+            </section>-->
 
             <hr>
 
@@ -78,51 +79,55 @@
                         <th style='text-align: center'>Tips</th>
                         <th style='text-align: center'>Portion</th>
                     </tr>
+                    <!--Iterate over sales hours-->
+                    {{#salesHrs hrly portion}}{{/salesHrs}}
+
+                    <!-- Sum up all hours-->
                     <tr>
-                        <td>10AM</td>
-                        <td>13.8</td>
-                        <td>$180</td>
-                        <td>$11.77</td>
-                        <td>$8.92</td>
-                        <td>100%</td>
-                    </tr>
+                            <td></td>
+                            <td><strong>{{sum.nuts}}</strong></td>
+                            <td><strong>{{#formatMoney sum.sales}}{{/formatMoney}}</strong></td>
+                            <td><strong>{{#formatMoney sum.comm}}{{/formatMoney}}</strong></td>
+                            <td><strong>{{#formatMoney sum.tips}}{{/formatMoney}}</strong></td>
+                            <td></td>
+                        </tr>
                 </table>
 
                 <table  class="table table-borderless" style='margin: auto; width: 80%; margin-top: 30px;'>
                     <!--Shift hours-->
                     <tr>
                         <td>Shift Hours:</td>
-                        <td style='text-align:right'>6h</td>
+                        <td style='text-align:right'>{{results.total_hours}}</td>
                     </tr>
                     <!--Guaranteed Pay-->
                     <tr>
                         <td>Guaranteed Pay:</td>
-                        <td style='text-align:right'>$64.50</td>
+                        <td style='text-align:right'>{{#formatMoney results.guaranteed_pay}}{{/formatMoney}}</td>
                     </tr>
                     <!--Commissions-->
                     <tr>
                         <td>Commissions:</td>
-                        <td style='text-align:right'>$44.84</td>
+                        <td style='text-align:right'>{{#formatMoney results.commissions}}{{/formatMoney}}</td>
                     </tr>
                     <!--Tips-->
                     <tr>
                         <td>Tips:</td>
-                        <td style='text-align:right'>$17.90</td>
+                        <td style='text-align:right'>{{#formatMoney results.tips}}{{/formatMoney}}</td>
                     </tr>
                     <!--Cooking Bonus-->
-                    <tr>
+                    <!--<tr>
                         <td>Cooking Bonus:</td>
-                        <td style='text-align:right'>$5.00</td>
-                    </tr>
+                        <td style='text-align:right'>{{results.cooking_bonus}}</td>
+                    </tr>-->
                     <!--Your Earnings-->
                     <tr>
                         <td><strong>Your Earnings:</strong></td>
-                        <td style='text-align:right'><strong>$127.24</strong></td>
+                        <td style='text-align:right'><strong>{{#formatMoney results.your_earnings}}{{/formatMoney}}</strong></td>
                     </tr>
                     <!--Effective Rate-->
                     <tr>
                         <td>Effective Rate:</td>
-                        <td style='text-align:right'>$21.21 / Hr</td>
+                        <td style='text-align:right'>{{#formatMoney results.effective_rate}}{{/formatMoney}} / hr</td>
                     </tr>
                 </table>
             </section>

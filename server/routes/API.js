@@ -63,8 +63,8 @@ module.exports = (function() {
         }).catch(function error(e) {
             
             //return an error status code
-            res.sendStatus(550);
-
+            res.status(550);
+            res.send(e);
         });
 
     });
