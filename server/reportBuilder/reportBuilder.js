@@ -7,6 +7,7 @@
 //  DEFINE DEPENDENCIES
 var handlebars 	= require('handlebars');
 var stdio       = require('../stdio/stdio.js');
+var moment 		= require('moment-timezone');
 
 //  DEFINE MODULE
 var rptbldr = {
@@ -93,6 +94,14 @@ function dailyRecapEmail(data) {
         if(minutes > 0) { returnString = returnString + minutes + "m"; }
 
         return returnString;
+    });
+
+    handlebars.registerHelper('cme_date', function(dateString) {
+        //  DEFINE LOCAL VARIABLES
+        var momentDate = moment(dateString);
+
+        //  RETURN 
+        return momentDate.format("dddd, MMMM Do");
     });
 
     //  COMPILE DOCUMENT

@@ -19,6 +19,7 @@ var inventoryMod = {
     _validateInstancePath: _validateInstancePath,
     _quantifyComponents: _quantifyComponents,
     _parseHrlySales: _parseHrlySales,
+    _calcGuaranteedPay: _calcGuaranteedPay,
     load: load,
     read: {
         instanceId: readInstanceId,
@@ -188,6 +189,24 @@ function _parseHrlySales(salesSummary, tipsSummary) {
 
     return returnObject;
 };
+
+/*
+*   PRIVATE: CALCULATE GURANTEED PAY
+*/
+function _calcGuaranteedPay(laborHours, rate) {
+    //  DEFINE LOCAL VARAIBLES
+    var returnValue = 0;
+
+    if(laborHours < 8) {
+        returnValue = laborHours * rate
+    } else {
+        returnValue = (8 * rate) + ((labourHours - 8) * rate)
+    }
+
+    //  RETURN
+    return returnValue;
+};
+
 /*
 *   READ INSTANCE ID
 *
@@ -868,6 +887,9 @@ function addDailyRecapModel(instanceId) {
             //  DEFINE LOCAL VARIABLES
             var tipsSummary = _queryChildRecord(allInstanceAccts, 'class', '-LgfD3E5LcQeLRg1EDY-');
             var salesSummary = _queryChildRecord(allInstanceAccts, 'class', '-LfoYIVkKqCYyw-cTc5l');
+            var laborRate = 1200;
+            var shiftHours = 6;
+            var shiftDate = "";
 
             console.log(' got this sales summary', salesSummary);
 
@@ -884,14 +906,17 @@ function addDailyRecapModel(instanceId) {
 
                 console.log(recapTemplate.sum);
             });
-            
 
-            recapTemplate.results.total_hours = 0;
-            recapTemplate.results.guaranteed_pay = 0;
+            //  ADD STRING VALUES
+            recapTemplate.cme_date = ""
+            
+            //  ADD NUMERIC VALUES
+            recapTemplate.results.total_hours = shiftHours;
+            recapTemplate.results.guaranteed_pay = _calcGuaranteedPay(recapTemplate.results.total_hours, laborRate);
             recapTemplate.results.commissions = recapTemplate.sum.comm;
             recapTemplate.results.tips = recapTemplate.sum.tips;
-            recapTemplate.results.your_earnings = 0;
-            recapTemplate.results.effective_rate = 0;
+            recapTemplate.results.your_earnings = recapTemplate.results.guaranteed_pay + recapTemplate.results.commissions + recapTemplate.results.tips;
+            recapTemplate.results.effective_rate = recapTemplate.results.your_earnings / recapTemplate.results.total_hours;
 
             //  WRITE THE MODEL
             firebase.create(writePath, recapTemplate)
