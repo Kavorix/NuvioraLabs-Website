@@ -1,0 +1,19 @@
+{
+    "cme_date": "",
+    "CME_name": "",
+    "hrly": [],
+    "sum": {
+        "nuts": 0,
+        "sales": 0,
+        "comm": 0,
+        "tips": 0
+    },
+    "results": {
+        "total_hours": 0,
+        "guaranteed_pay": 0,
+        "commissions": 0,
+        "tips": 0,
+        "your_earnings": 0,
+        "effective_rate": 0
+    }
+}

@@ -10,9 +10,23 @@ var stdio       = require('../stdio/stdio.js');
 
 //  DEFINE MODULE
 var rptbldr = {
+    _timeToHrMarker: _timeToHrMarker,
     emails: {
         dailyRecap: dailyRecapEmail
     }
+};
+
+function _timeToHrMarker(hour) {
+    //  DEFINE LOCAL VARIABLES
+    var returnString = "";
+
+    if(hour < 12) { returnString = hour + " AM"; }
+
+    if(hour == 12) { returnString = " Noon"; }
+
+    if(hour > 12) { returnString = (hour - 12) + " PM"; }
+
+    return returnString;
 };
 
 /*
@@ -53,7 +67,7 @@ function dailyRecapEmail(data) {
         for(var i = 0; i < hrlyList.length; i++) {
 
             returnString = returnString + "<tr>" +
-                "<td>" + hrlyList[i].marker + "</td>" +
+                "<td>" + _timeToHrMarker(hrlyList[i].hour) + "</td>" +
                 "<td>" + hrlyList[i].nuts.toFixed(1) + "</td>" +
                 "<td> $ "+ (hrlyList[i].sales / 100).toFixed(2)+ "</td>" +
                 "<td> $" + (hrlyList[i].comm / 100).toFixed(2) + "</td>" +
