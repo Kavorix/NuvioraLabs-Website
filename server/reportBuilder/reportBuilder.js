@@ -69,7 +69,7 @@ function dailyRecapEmail(data) {
 
             returnString = returnString + "<tr>" +
                 "<td>" + _timeToHrMarker(hrlyList[i].hour) + "</td>" +
-                "<td>" + hrlyList[i].nuts.toFixed(1) + "</td>" +
+                //"<td>" + hrlyList[i].nuts.toFixed(1) + "</td>" +
                 "<td> $ "+ (hrlyList[i].sales / 100).toFixed(2)+ "</td>" +
                 "<td> $" + (hrlyList[i].comm / 100).toFixed(2) + "</td>" +
                 "<td> $" + (hrlyList[i].tips / 100).toFixed(2) + "</td>" +

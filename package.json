@@ -25,6 +25,7 @@
     "handlebars": "^4.1.2",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.25",
+    "nodemailer": "^6.2.1",
     "querybase": "^0.6.0",
     "square-connect": "^2.20190410.1"
   },

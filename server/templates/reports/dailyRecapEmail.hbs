@@ -1,6 +1,39 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+         <!-- The character set should be utf-8 -->
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <title>Daily Recap Email</title>
+
+        <!--
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+        -->
+        <style>
+            .body {
+                    margin: 0;
+                    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                    font-size: 1rem;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    color: #212529;
+                    text-align: left;
+                    display: block;
+            }
+            .table {
+                width: 100%;
+                max-width: 100%;
+                background-color: transparent;
+                border-collapse: collapse;
+                display: table;
+            }
+            .table-bordered  {
+                border: 1px solid #dee2e6;
+            }
+            .table-borderless {
+
+            }
+        </style>
     </head>
     <body style='background-color:#F7D6E4'>
         
@@ -73,7 +106,7 @@
                                 text-align: center;'>
                     <tr>
                         <th style='text-align: center'>Hour</th>
-                        <th style='text-align: center'># Nuts</th>
+                        <!--<th style='text-align: center'># Nuts</th>-->
                         <th style='text-align: center'>$ Sales</th>
                         <th style='text-align: center'>Commission</th>
                         <th style='text-align: center'>Tips</th>
@@ -85,7 +118,7 @@
                     <!-- Sum up all hours-->
                     <tr>
                             <td></td>
-                            <td><strong>{{sum.nuts}}</strong></td>
+                            <!--<td><strong>{{sum.nuts}}</strong></td>-->
                             <td><strong>{{#formatMoney sum.sales}}{{/formatMoney}}</strong></td>
                             <td><strong>{{#formatMoney sum.comm}}{{/formatMoney}}</strong></td>
                             <td><strong>{{#formatMoney sum.tips}}{{/formatMoney}}</strong></td>

@@ -9,6 +9,7 @@ var cldb        = require('./dbScripts/db-team-checklists.js');
 var ivdb        = require('./dbScripts/db-inventory.js');
 var squareV1    = require('./square/square_V1.js');
 var rptBldr     = require('./reportBuilder/reportBuilder.js');
+var mail        = require('./mailCenter/mailCenter.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 
@@ -17,6 +18,7 @@ var asprop = {
     retreiveTemplate: retreiveTemplate,
     sqPushUpdates: sqPushUpdates,
     reports: {
+        emailDailyRecap: emailDailyRecapReport,
         instance: runInstanceReport
     },
     test: test
@@ -126,6 +128,7 @@ function sqPushUpdates(pushObject) {
 */
 function runInstanceReport(instanceId) {
 
+    //  NOTIFY PROGRESS
     console.log('running instance report');
 
     //  RETURN ASYNC WORK
@@ -142,6 +145,52 @@ function runInstanceReport(instanceId) {
     });
 
 };
+
+/*
+*
+*/
+function emailDailyRecapReport(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    var managerCCs = ["ian@ah-nuts.com", 'steve@ah-nuts.com'];
+    var employeeEmail = "iemcallister@gmail.com"; //"hgschwartz08@yahoo.com";
+    var subject = "Daily Recap for Wednesday, June 12th: West Linn FM - Hannah Schwartz"
+
+    //  NOTIFY PROGRESS
+    console.log('emailing daily Recap report');
+
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+
+        //   PROCESS THROUGH FIREBASE
+        ivdb.read.dailyRecap(instanceId)
+        .then(function success(instanceData) {
+            //  DEFINE LOCAL VARIABLES
+            var sendOptions = {
+                from: 'info@ah-nuts.com',
+                to: employeeEmail,
+                cc: managerCCs,
+                subject: subject,
+                //text: "this is a test",
+                html: rptBldr.emails.dailyRecap(instanceData)
+            };
+
+            //  SEND THE MAIL
+            mail.send(sendOptions)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+
+        }).catch(function error(e) {
+            resolve(e);
+        });
+
+    });
+
+};
+
+
 
 //  TEST
 function test() { console.log('good test for asprop'); }

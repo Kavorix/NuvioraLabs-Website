@@ -17,7 +17,8 @@ var squarv1 = {
 	listItems: listItems,
 	listCategories: listCategories,
 	listModifiers: listModifiers,
-	retrievePayment: retrievePayment
+	retrievePayment: retrievePayment,
+	listEmployees: listEmployees
 };
 
 function listModifiers(locationId) {
@@ -95,6 +96,47 @@ function retrievePayment(locationId, transactionId) {
 		});
 
 	});
+};
+
+/*
+*	LIST EMPLOYEES
+*/
+function listEmployees() {
+	//	DECLARE LOCAL VARIABLES
+	var api = new SquareConnect.V1EmployeesApi();
+	var opts = { 
+	  'order': "ASC", // String | The order in which employees are listed in the response, based on their created_at field.      Default value: ASC 
+	  //'beginUpdatedAt': "beginUpdatedAt_example", // String | If filtering results by their updated_at field, the beginning of the requested reporting period, in ISO 8601 format
+	  //'endUpdatedAt': "endUpdatedAt_example", // String | If filtering results by there updated_at field, the end of the requested reporting period, in ISO 8601 format.
+	  //'beginCreatedAt': "beginCreatedAt_example", // String | If filtering results by their created_at field, the beginning of the requested reporting period, in ISO 8601 format.
+	  //'endCreatedAt': "endCreatedAt_example", // String | If filtering results by their created_at field, the end of the requested reporting period, in ISO 8601 format.
+	  //'status': "status_example", // String | If provided, the endpoint returns only employee entities with the specified status (ACTIVE or INACTIVE).
+	  //'externalId': "externalId_example", // String | If provided, the endpoint returns only employee entities with the specified external_id.
+	  'limit': 200, // Number | The maximum integer number of employee entities to return in a single response. Default 100, maximum 200.
+	  //'batchToken': "batchToken_example" // String | A pagination cursor to retrieve the next set of results for your original query to the endpoint.
+	};
+
+	//	RETURN ASYNC WORK
+	return new Promise(function(resolve, reject) {
+		
+		//calling the endpoint
+		api.listEmployees(opts).then(function(data) {
+				
+			//notifying successful call
+			console.log('listEmployees called successfully. Returning data');
+		  	
+		  	//returning data
+			resolve(data)
+			//resolve('roles success');
+
+		}, function(error) {
+
+			//returning error on unsucessful call
+			reject(error);
+		});
+
+	});
+	
 };
 
 //  RETURN THE MODULE

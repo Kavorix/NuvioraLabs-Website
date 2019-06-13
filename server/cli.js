@@ -10,8 +10,10 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
+var inventoryInstance = '-LgrdaIz2RQi6oy0fHx3';
 
-ivdb.add.dailyRecapModel('-LhCtrIHF88R_izZKz_L')
+//  USE THIS TO SEND DAILY RECAP EMAILS
+asprop.reports.emailDailyRecap(inventoryInstance)
 .then(function success(s) {
     console.log('success');
     console.log(s);
@@ -19,6 +21,18 @@ ivdb.add.dailyRecapModel('-LhCtrIHF88R_izZKz_L')
     console.log('got this error');
     console.log(e);
 });
+
+// USE THIS TO BUILD DAILY RECAP MODELS
+/*ivdb.add.dailyRecapModel(inventoryInstance)
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});*/
+
+
 
 
 /*asprop.reports.instance('-LgpDw9V0S0ZqnY9bJsb')
