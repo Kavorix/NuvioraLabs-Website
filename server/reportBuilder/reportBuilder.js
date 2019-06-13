@@ -21,35 +21,6 @@ var rptbldr = {
 *   This method combines a template and data to return an html email
 */
 function dailyRecapEmail(data) {
-    data = {
-        "cme_date": "Sunday, June 9th",
-        "CME_name": "Orenco",
-        "portion": 1,
-        "hrly": [
-            {
-                marker: "10AM",
-                nuts: 13.8,
-                sales: 18000,
-                comm: 1177,
-                tips: 892
-            }
-        ],
-        sum: {
-            nuts: 53.74,
-            sales: 70000,
-            comm: 4484,
-            tips: 1790
-        },
-        results: {
-            "total_hours": "6h",
-            "guaranteed_pay": 6450,
-            "commissions": 4484,
-            "tips": 1790,
-            //"cooking_bonus": "500",
-            "your_earnings": 12724,
-            "effective_rate": 2121
-        }
-    }
 
     //  DEFINE LOCAL VARIABLES
     var htmlSource = stdio.read.html('./templates/reports/dailyRecapEmail.hbs');
@@ -74,7 +45,7 @@ function dailyRecapEmail(data) {
         return returnString;
     });
 
-    handlebars.registerHelper('salesHrs', function(hrlyList, portion) {
+    handlebars.registerHelper('salesHrs', function(hrlyList) {
         //  DEFINE LOCAL VARIABLES
         var returnString = '';
 
@@ -87,12 +58,25 @@ function dailyRecapEmail(data) {
                 "<td> $ "+ (hrlyList[i].sales / 100).toFixed(2)+ "</td>" +
                 "<td> $" + (hrlyList[i].comm / 100).toFixed(2) + "</td>" +
                 "<td> $" + (hrlyList[i].tips / 100).toFixed(2) + "</td>" +
-                "<td>" + (portion * 100).toFixed(0) + " % </td>" +
+                "<td>" + (hrlyList[i].portion * 100).toFixed(0) + " % </td>" +
                 "</tr>";
             
         };
 
-        console.log(returnString);
+        return returnString;
+    });
+
+    handlebars.registerHelper('shiftTime', function(duration) {
+        //  DEFINE LOCAL VARIABLES
+        var returnString = "";
+        var hours = Math.floor(duration);
+        var minutes = ((duration - Math.floor(duration)) * 60).toFixed(0);
+
+        if(hours > 0) { returnString = returnString + hours +"h"; }
+
+        if(hours > 0 && minutes > 0) { returnString = returnString + ", "; }
+
+        if(minutes > 0) { returnString = returnString + minutes + "m"; }
 
         return returnString;
     });

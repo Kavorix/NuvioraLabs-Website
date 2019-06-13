@@ -18,9 +18,9 @@
                         margin: auto;
                         text-align: center;'>
                 
-                Daily recap for {{cme_date}}
+                Daily Recap for {{cme_date}}
                 <br>
-                {{CME_name}}
+                @{{CME_name}}
             </h3>
 
             <!-- Section: Cooking Bonus-->
@@ -80,7 +80,7 @@
                         <th style='text-align: center'>Portion</th>
                     </tr>
                     <!--Iterate over sales hours-->
-                    {{#salesHrs hrly portion}}{{/salesHrs}}
+                    {{#salesHrs hrly }}{{/salesHrs}}
 
                     <!-- Sum up all hours-->
                     <tr>
@@ -97,7 +97,7 @@
                     <!--Shift hours-->
                     <tr>
                         <td>Shift Hours:</td>
-                        <td style='text-align:right'>{{results.total_hours}}</td>
+                        <td style='text-align:right'>{{#shiftTime results.total_hours}}{{/shiftTime}}</td>
                     </tr>
                     <!--Guaranteed Pay-->
                     <tr>

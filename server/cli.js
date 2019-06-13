@@ -11,6 +11,9 @@ var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
 
+
+
+
 /*asprop.reports.instance('-LgpDw9V0S0ZqnY9bJsb')
 .then(function success(s) {
     console.log('success');
@@ -19,10 +22,6 @@ var stdio       = require('./stdio/stdio.js');
     console.log('got this error');
     console.log(e);
 });*/
-
-
-//  NEED TO ADD THE TIPS COMPONENT TO EVERY PRODUCT SALE
-
 
 /*ivdb.add.acct_classes({
     category: "Funds",
@@ -40,7 +39,7 @@ var stdio       = require('./stdio/stdio.js');
     console.log(e);
 });*/
 
-var aPush = stdio.read.json('./models/example_sq_push.json');
+/*var aPush = stdio.read.json('./models/example_sq_push.json');
 asprop.sqPushUpdates(aPush)
 .then(function success(s) {
     console.log('success');
@@ -48,7 +47,7 @@ asprop.sqPushUpdates(aPush)
 }).catch(function error(e) {
     console.log('got this error');
     console.log(e);
-});
+});*/
 
 
 /*squareV1.listModifiers('M53KQT35YKE5C')

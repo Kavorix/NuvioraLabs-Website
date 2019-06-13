@@ -106,6 +106,11 @@ function config($routeProvider, $locationProvider) {
     })   
     .when('/admin/inventory/operations', {})
     .when('/admin/inventory/templates', {})
+    .when('/admin/inventory/reports', {
+        templateUrl: "views/admin-inv-rpt-page.htm",
+        controller: 'adminInvRptController',
+        controllerAs: 'vm'
+    })
     .when('/team', {
         templateUrl: 'views/team-page.htm',                 //  Team Page View
         controller: 'teamPageController',                   //  Team Page Controller

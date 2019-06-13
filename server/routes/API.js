@@ -52,6 +52,7 @@ module.exports = (function() {
 
     APIRoutes.get('/report/instance/:instanceId', function(req, res) {
 
+        console.log('got this param',req.params.instanceId );
         //run the requird function
         asprop.reports.instance(req.params.instanceId).then(function success(s) {
             

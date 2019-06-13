@@ -17,14 +17,16 @@ var inventoryMod = {
     _quantifyComponents: _quantifyComponents,
     load: load,
     read: {
-        instanceId: readInstanceId
+        instanceId: readInstanceId,
+        dailyRecap: readDailyRecap, 
     },
     add: {
         units: addInventoryUnits,
         operations: addInventoryOperations,
         acct_classes: addInventoryAcct_classes,
         instance: addInventoryInstances,
-        opComponents: addOpComponents
+        opComponents: addOpComponents,
+        dailyRecapModel: addDailyRecapModel
     },
     run: {
         entryOperation: runEntryOperation
@@ -183,6 +185,28 @@ function readInstanceId(dateTime, employeeId) {
         });
 
     });
+};
+
+/*
+*
+*
+*
+*/
+function readDailyRecap(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+
+        //  HIT THE SERVER
+        firebase.read('inventory/dailyRecaps/' + instanceId)
+        .then(function success(s) {
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
 };
 
 /*
@@ -750,6 +774,16 @@ function addOpComponents(writePath, compsArray) {
         });
     });
 
+};
+
+/*
+*
+*
+*/
+function addDailyRecapModel(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+
+    //  
 };
 
 /*

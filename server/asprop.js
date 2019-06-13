@@ -131,11 +131,14 @@ function runInstanceReport(instanceId) {
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
 
-        var instanceData = {"testing": "test"};
+        //   PROCESS THROUGH FIREBASE
+        ivdb.read.dailyRecap(instanceId)
+        .then(function success(instanceData) {
+            resolve(rptBldr.emails.dailyRecap(instanceData));
+        }).catch(function error(e) {
+            resolve(e);
+        });
 
-        var emailHTML = rptBldr.emails.dailyRecap(instanceData);
-
-        resolve(emailHTML)
     });
 
 };
