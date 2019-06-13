@@ -11,7 +11,14 @@ var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
 
-
+ivdb.add.dailyRecapModel('-LhCtrIHF88R_izZKz_L')
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});
 
 
 /*asprop.reports.instance('-LgpDw9V0S0ZqnY9bJsb')

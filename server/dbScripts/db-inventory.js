@@ -7,14 +7,18 @@
 
 //  DECLARE DEPENDENCIES
 var firebase		= require('../firebase/firebase.js');
+var stdio           = require('../stdio/stdio.js');
 var moment 			= require('moment-timezone');
 
 //  DEFINE THE MODULE
 var inventoryMod = {
+    _queryChildBalance: _queryChildBalance,
+    _queryChildRecord: _queryChildRecord,
     _updateAcctBalances: _updateAcctBalances,
     _copyAccts: _copyAccts,
     _validateInstancePath: _validateInstancePath,
     _quantifyComponents: _quantifyComponents,
+    _parseHrlySales: _parseHrlySales,
     load: load,
     read: {
         instanceId: readInstanceId,
@@ -38,6 +42,30 @@ var inventoryMod = {
         formatDate: formatDate,
         formatDateLong: formatDateLong
     }
+};
+
+function _queryChildBalance(collection, key, value) {
+    //   DEFINE LOCAL VARIABLES
+    var returnValue = "";
+    
+    //  ITERATE OVER VALUES
+    Object.keys(collection).forEach(function(aKey) {
+        if(collection[aKey][key] == value) returnValue = collection[aKey].balance;
+    });
+
+    return returnValue;
+};
+
+function _queryChildRecord(collection, key, value) {
+    //   DEFINE LOCAL VARIABLES
+    var returnValue = "";
+    
+    //  ITERATE OVER VALUES
+    Object.keys(collection).forEach(function(aKey) {
+        if(collection[aKey][key] == value) returnValue = collection[aKey];
+    });
+
+    return returnValue;
 };
 
 function formatDate(dateTime) {
@@ -119,6 +147,47 @@ function _validateInstancePath(timestamp, response) {
     return returnObject;
 }
 
+/*
+*
+*/
+function _parseHrlySales(salesSummary, tipsSummary) {
+    //  DEFINE LOCAL VARIABLES
+    var buildObject = {};
+    var returnObject= [];
+
+    //  ITERATE OVER SUMMARY;
+    Object.keys(salesSummary.txs).forEach(function(timeStamp){
+
+        //  DEFINE LOCAL VARIABLES
+        var time = timeStamp.split("T")[1];
+        var hour = time.split(":")[0];
+
+        //  SUM THE TRANSACTIONS
+        if(buildObject[hour] == undefined) { 
+            buildObject[hour] = { sales: 0, tips: 0, comm: 0 };
+            buildObject[hour].sales += salesSummary.txs[timeStamp].balance_change; 
+            buildObject[hour].tips += tipsSummary.txs[timeStamp].balance_change; 
+            buildObject[hour].comm = ((buildObject[hour].sales / 275200) * buildObject[hour].sales).toFixed(0); 
+        } else {
+            buildObject[hour].sales += salesSummary.txs[timeStamp].balance_change;
+            buildObject[hour].tips += tipsSummary.txs[timeStamp].balance_change;
+            buildObject[hour].comm = ((buildObject[hour].sales / 275200) * buildObject[hour].sales).toFixed(0); 
+        };
+
+    });
+
+    //  ITERATE OVER THE BUILD OBJECT
+    Object.keys(buildObject).forEach(function (hour) {
+        var salsHrTempalte = stdio.read.json('./models/template_dailyRecap_salesHr_modal.json');
+        salsHrTempalte.hour = hour;
+        salsHrTempalte.sales = buildObject[hour].sales;
+        salsHrTempalte.tips = buildObject[hour].tips;
+        salsHrTempalte.comm = buildObject[hour].comm;
+        returnObject.push(salsHrTempalte);
+    });
+
+    return returnObject;
+};
 /*
 *   READ INSTANCE ID
 *
@@ -782,8 +851,63 @@ function addOpComponents(writePath, compsArray) {
 */
 function addDailyRecapModel(instanceId) {
     //  DEFINE LOCAL VARIABLES
+    var recapTemplate = stdio.read.json('./models/template_dailyRecap_modal.json');
+    var writePath = "inventory/dailyRecaps/" + instanceId;
+    var allInstanceAcctsPromise = firebase.query.childValue('inventory/accts', 'instance_id', instanceId);
 
-    //  
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //   GRAB ALL REQUIRED VALUES
+        Promise.all([allInstanceAcctsPromise])
+        .then(function success(s) {
+            
+            //  SPLIT PROMISES
+            var allInstanceAccts = s[0];
+
+            //  DEFINE LOCAL VARIABLES
+            var tipsSummary = _queryChildRecord(allInstanceAccts, 'class', '-LgfD3E5LcQeLRg1EDY-');
+            var salesSummary = _queryChildRecord(allInstanceAccts, 'class', '-LfoYIVkKqCYyw-cTc5l');
+
+            console.log(' got this sales summary', salesSummary);
+
+            //  add the values
+            recapTemplate.hrly = _parseHrlySales(salesSummary, tipsSummary);
+
+            //  ITERATE OVER HOURLY SALES TO SUM
+            Object.keys(recapTemplate.hrly).forEach( function(key) {
+
+                recapTemplate.sum.nuts = 0;
+                recapTemplate.sum.sales += recapTemplate.hrly[key].sales;
+                recapTemplate.sum.comm += parseInt(recapTemplate.hrly[key].comm);
+                recapTemplate.sum.tips += recapTemplate.hrly[key].tips;
+
+                console.log(recapTemplate.sum);
+            });
+            
+
+            recapTemplate.results.total_hours = 0;
+            recapTemplate.results.guaranteed_pay = 0;
+            recapTemplate.results.commissions = recapTemplate.sum.comm;
+            recapTemplate.results.tips = recapTemplate.sum.tips;
+            recapTemplate.results.your_earnings = 0;
+            recapTemplate.results.effective_rate = 0;
+
+            //  WRITE THE MODEL
+            firebase.create(writePath, recapTemplate)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
 };
 
 /*
