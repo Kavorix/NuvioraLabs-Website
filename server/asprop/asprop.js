@@ -5,11 +5,11 @@
 */
 
 //  DEFINE PROPRIATARY DEPENDENCIES
-var cldb        = require('./dbScripts/db-team-checklists.js');
-var ivdb        = require('./dbScripts/db-inventory.js');
-var squareV1    = require('./square/square_V1.js');
-var rptBldr     = require('./reportBuilder/reportBuilder.js');
-var mail        = require('./mailCenter/mailCenter.js');
+var cldb        = require('../dbScripts/db-team-checklists.js');
+var ivdb        = require('../dbScripts/db-inventory.js');
+var squareV1    = require('../square/square_V1.js');
+var rptBldr     = require('../reportBuilder/reportBuilder.js');
+var mail        = require('../mailCenter/mailCenter.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 

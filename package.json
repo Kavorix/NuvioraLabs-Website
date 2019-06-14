@@ -27,7 +27,8 @@
     "moment-timezone": "^0.5.25",
     "nodemailer": "^6.2.1",
     "querybase": "^0.6.0",
-    "square-connect": "^2.20190410.1"
+    "square-connect": "^2.20190410.1",
+    "wheniwork": "^2.0.3"
   },
   "devDependencies": {
     "browser-sync": "^2.24.5",

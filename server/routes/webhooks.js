@@ -5,7 +5,7 @@
 module.exports = (function() {
     'use strict';
     //  DEFINE DEPENDENCIES
-    var asprop 		= require('../asprop.js'); 
+    var asprop 		= require('../asprop/asprop.js'); 
     var webhookRoutes = require('express').Router();
 
    //	POST: /sqrwebhook

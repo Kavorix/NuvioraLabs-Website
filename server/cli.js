@@ -3,24 +3,42 @@
 var cldb        = require('./dbScripts/db-team-checklists.js');
 var ivdb        = require('./dbScripts/db-inventory.js');
 var firebase	= require('./firebase/firebase.js');
-var asprop      = require('./asprop.js'); 
+var asprop      = require('./asprop/asprop.js'); 
+var proReport   = require('./asprop/prop-reporting.js');
 var squareV1    = require('./square/square_V1.js');
+var wiw         = require('./wiw/wiw.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-var inventoryInstance = '-LgrdaIz2RQi6oy0fHx3';
+var inventoryInstance = '-LhCtrIHF88R_izZKz_L';
+
+
+//  TODO: NEED TO FIGURE OUT A WAY TO ADD ADJUSTMENT TRANSACTIONS
+//  TODO: ADD HOURLY WAGE BREAK DOWN (REGULAR TIME, OT)
+//  TODO: NEED TO FULL AUTOMATE THE SENDING PROCESS
+//  TODO: NEED TO ADD WHEN I WORK SUPPORT
+
+proReport.dailyRecaps.update()
+.then(function success(s) {
+    console.log('success');
+    console.log(s);
+    //stdio.write.json('./models/example_wiw_shifts.json', s);
+}).catch(function error(e) {
+    console.log('got this error');
+    console.log(e);
+});
 
 //  USE THIS TO SEND DAILY RECAP EMAILS
-asprop.reports.emailDailyRecap(inventoryInstance)
+/*asprop.reports.emailDailyRecap(inventoryInstance)
 .then(function success(s) {
     console.log('success');
     console.log(s);
 }).catch(function error(e) {
     console.log('got this error');
     console.log(e);
-});
+});*/
 
 // USE THIS TO BUILD DAILY RECAP MODELS
 /*ivdb.add.dailyRecapModel(inventoryInstance)

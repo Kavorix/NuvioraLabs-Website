@@ -7,7 +7,7 @@ module.exports = (function() {
     //  DEFINE DEPENDENCIES
     var cldb 		= require('../dbScripts/db-team-checklists.js');
     var ivdb        = require('../dbScripts/db-inventory.js');
-    var asprop      = require('../asprop.js'); 
+    var asprop      = require('../asprop/asprop.js'); 
     var APIRoutes = require('express').Router();
 
     //	GET: API/data/allChecklists
