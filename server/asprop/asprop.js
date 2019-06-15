@@ -10,6 +10,7 @@ var ivdb        = require('../dbScripts/db-inventory.js');
 var squareV1    = require('../square/square_V1.js');
 var rptBldr     = require('../reportBuilder/reportBuilder.js');
 var mail        = require('../mailCenter/mailCenter.js');
+var wiw         = require('../wiw/wiw.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 
@@ -19,7 +20,8 @@ var asprop = {
     sqPushUpdates: sqPushUpdates,
     reports: {
         emailDailyRecap: emailDailyRecapReport,
-        instance: runInstanceReport
+        instance: runInstanceReport,
+        setupRouting: setupReportsRouting
     },
     test: test
 };
@@ -190,7 +192,49 @@ function emailDailyRecapReport(instanceId) {
 
 };
 
+/*
+*
+*/
+function setupReportsRouting() {
+    //  DEFINE LOCAL VARIABLES
+    var wiwToSqr = stdio.read.json('../models/wiwUserId_to_sqEmployee_id.json');
+    var today = moment(new Date('2019-06-13T20:00:00-07:00'));
+    var PST = today.tz('America/Los_Angeles');
+    var start = PST.set({ 'hour': 0, 'minute': 0, 'second': 0 }).format();
+    var end = PST.set({ 'hour': 23, 'minute': 59, 'second': 59 }).format();
 
+    //  DOWNLOAD TODAY'S SHIFTS
+    wiw.get.shifts({ start: start, end: end })
+    .then(function success(shiftsObject) {
+
+        //  DEFINE LOCAL VARIABLS
+        var routePromises = [];
+
+        if(shiftsObject.shifts.length == 0) {
+            reject({complete: true, status: "no shifts"});
+        } else {
+
+            //  ITERATE OVER ALL SHIFTS
+            shiftsObject.shifts.forEach(function(shift) {
+                //  DEFINE LOCAL VARIABLES
+                var startTime = shift.start_time;
+                var endTime = shift.end_time;
+                var instanceDate = startTime.split("T")[0];
+                var writePath = "inventory/routing/" + instanceDate + "/";
+
+                //  ARGH, CAN'T FINISH THIS, BECAUSE WE DON'T HAVE AN INSTANCE ID
+
+            });
+
+        }
+        
+    }).catch(function error(e) {
+       reject(e);
+    });
+
+    //  MAP WIW User ID to Square Employee Id
+
+};
 
 //  TEST
 function test() { console.log('good test for asprop'); }
