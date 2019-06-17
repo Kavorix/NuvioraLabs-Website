@@ -1,6 +1,8 @@
 {
     "cme_date": "",
     "CME_name": "",
+    "employee": "",
+    "email": "",
     "hrly": [],
     "sum": {
         "nuts": 0,
@@ -10,6 +12,8 @@
     },
     "results": {
         "total_hours": 0,
+        "reg": 0,
+        "ot": 0,
         "guaranteed_pay": 0,
         "commissions": 0,
         "tips": 0,

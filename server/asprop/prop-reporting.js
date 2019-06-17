@@ -9,6 +9,7 @@ var moment 			= require('moment-timezone');
 var wiw             = require('../wiw/wiw.js');
 var firebase	    = require('../firebase/firebase.js');
 var stdio           = require('../stdio/stdio.js');
+var ivdb            = require('../dbScripts/db-inventory.js');
 
 //  DEFINE GLOBALS
 
@@ -118,12 +119,29 @@ function _notifyRecapUpdates(shiftsObject, routeObject) {
 *
 */
 function _saveRecapUpdates(shiftsObject, routeObject) {
+    //  DEFINE LOCAL VARIABLES
+    var updatePromisesList = [];
+
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
         
         _buildRecaps(shiftsObject, routeObject)
-        .then(function success(s) {
-            resolve(s)
+        .then(function success(updatesList) {
+
+            //  ITERATE OVER LIST
+            updatesList.forEach(function(update) {
+
+                updatePromisesList.push(ivdb.add.dailyRecapModel(update))
+            });
+
+            //  RUN ALL PROMISES
+            Promise.all(updatePromisesList)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+
         }).catch(function error(e) {
             reject(e);
         });

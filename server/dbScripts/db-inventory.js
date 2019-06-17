@@ -193,18 +193,8 @@ function _parseHrlySales(salesSummary, tipsSummary) {
 /*
 *   PRIVATE: CALCULATE GURANTEED PAY
 */
-function _calcGuaranteedPay(laborHours, rate) {
-    //  DEFINE LOCAL VARAIBLES
-    var returnValue = 0;
-
-    if(laborHours < 8) {
-        returnValue = laborHours * rate
-    } else {
-        returnValue = (8 * rate) + ((labourHours - 8) * rate)
-    }
-
-    //  RETURN
-    return returnValue;
+function _calcGuaranteedPay(regHrs, OThrs, rate) {
+    return (regHrs * rate) + (OThrs * rate * 1.5);
 };
 
 /*
@@ -868,11 +858,11 @@ function addOpComponents(writePath, compsArray) {
 *
 *
 */
-function addDailyRecapModel(instanceId) {
+function addDailyRecapModel(updateObject) {
     //  DEFINE LOCAL VARIABLES
     var recapTemplate = stdio.read.json('./models/template_dailyRecap_modal.json');
-    var writePath = "inventory/dailyRecaps/" + instanceId;
-    var allInstanceAcctsPromise = firebase.query.childValue('inventory/accts', 'instance_id', instanceId);
+    var writePath = "inventory/dailyRecaps/" + updateObject.instanceId;
+    var allInstanceAcctsPromise = firebase.query.childValue('inventory/accts', 'instance_id', updateObject.instanceId);
 
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
@@ -887,9 +877,9 @@ function addDailyRecapModel(instanceId) {
             //  DEFINE LOCAL VARIABLES
             var tipsSummary = _queryChildRecord(allInstanceAccts, 'class', '-LgfD3E5LcQeLRg1EDY-');
             var salesSummary = _queryChildRecord(allInstanceAccts, 'class', '-LfoYIVkKqCYyw-cTc5l');
-            var laborRate = 1200;
-            var shiftHours = 6;
-            var shiftDate = "";
+            var laborRate = updateObject.hours.rate;
+            var shiftHours = updateObject.hours.duration;
+            var shiftDate = updateObject.date;
 
             console.log(' got this sales summary', salesSummary);
 
@@ -908,15 +898,20 @@ function addDailyRecapModel(instanceId) {
             });
 
             //  ADD STRING VALUES
-            recapTemplate.cme_date = ""
+            recapTemplate.cme_date = shiftDate;
+            recapTemplate.CME_name = updateObject.channel;
+            recapTemplate.employee = updateObject.employee;
+            recapTemplate.email = updateObject.email;
             
             //  ADD NUMERIC VALUES
-            recapTemplate.results.total_hours = shiftHours;
-            recapTemplate.results.guaranteed_pay = _calcGuaranteedPay(recapTemplate.results.total_hours, laborRate);
-            recapTemplate.results.commissions = recapTemplate.sum.comm;
-            recapTemplate.results.tips = recapTemplate.sum.tips;
-            recapTemplate.results.your_earnings = recapTemplate.results.guaranteed_pay + recapTemplate.results.commissions + recapTemplate.results.tips;
-            recapTemplate.results.effective_rate = recapTemplate.results.your_earnings / recapTemplate.results.total_hours;
+            recapTemplate.results.total_hours       = shiftHours
+            recapTemplate.results.reg               = updateObject.hours.reg;
+            recapTemplate.results.ot                = updateObject.hours.ot;
+            recapTemplate.results.guaranteed_pay    = _calcGuaranteedPay(updateObject.hours.reg, updateObject.hours.ot, laborRate);
+            recapTemplate.results.commissions       = recapTemplate.sum.comm;
+            recapTemplate.results.tips              = recapTemplate.sum.tips;
+            recapTemplate.results.your_earnings     = recapTemplate.results.guaranteed_pay + recapTemplate.results.commissions + recapTemplate.results.tips;
+            recapTemplate.results.effective_rate    = recapTemplate.results.your_earnings / recapTemplate.results.total_hours;
 
             //  WRITE THE MODEL
             firebase.create(writePath, recapTemplate)
