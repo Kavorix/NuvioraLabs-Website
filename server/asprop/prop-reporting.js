@@ -9,6 +9,7 @@ var moment 			= require('moment-timezone');
 var wiw             = require('../wiw/wiw.js');
 var firebase	    = require('../firebase/firebase.js');
 var rptBldr         = require('../reportBuilder/reportBuilder.js');
+var mail            = require('../mailCenter/mailCenter.js');
 var stdio           = require('../stdio/stdio.js');
 var ivdb            = require('../dbScripts/db-inventory.js');
 
@@ -116,9 +117,22 @@ function _notifyRecapUpdates(shiftsObject, routeObject) {
         _saveRecapUpdates(shiftsObject, routeObject)
         .then(function success(updatesList) {
 
-            
+            //  DEFINE LOCAL VARIABLES
+            var sendOptions = {
+                from: 'info@ah-nuts.com',
+                to: 'info@ah-nuts.com',
+                subject: 'New Daily Recaps are available',
+                html: "<a href='http://localhost:3000/API/report/approveDailyRecaps'>Recap Approval Page</a>"
+            };
 
-            resolve(updatesList)
+            //  SEND THE MAIL
+            mail.send(sendOptions)
+            .then(function success(s) {
+                resolve({mail: s, updates: updatesList});
+            }).catch(function error(e) {
+                reject(e);
+            });
+
         }).catch(function error(e) {
             reject(e);
         });
