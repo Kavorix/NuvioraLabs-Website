@@ -60,7 +60,7 @@ function updateDailyRecaps() {
     console.log('got here');
 
     //  DEFINE LOCAL VARIABLES
-    var today = moment(new Date('2019-06-16T00:00:00-07:00'));
+    var today = moment(new Date());
     var PST = today.tz('America/Los_Angeles');
     var start = PST.set({ 'hour': 0, 'minute': 0, 'second': 0 }).format();
     var end = PST.set({ 'hour': 23, 'minute': 59, 'second': 59 }).format();
