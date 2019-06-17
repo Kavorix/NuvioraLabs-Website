@@ -20,6 +20,7 @@ var inventoryInstance = '-LhCtrIHF88R_izZKz_L';
 //  TODO: NEED TO FULL AUTOMATE THE SENDING PROCESS
 //  TODO: NEED TO ADD WHEN I WORK SUPPORT
 
+//
 proReport.dailyRecaps.update()
 .then(function success(s) {
     console.log('success');
