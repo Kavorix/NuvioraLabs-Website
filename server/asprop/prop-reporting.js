@@ -122,7 +122,7 @@ function _notifyRecapUpdates(shiftsObject, routeObject) {
                 from: 'info@ah-nuts.com',
                 to: 'info@ah-nuts.com',
                 subject: 'New Daily Recaps are available',
-                html: "<a href='http://localhost:3000/API/report/approveDailyRecaps'>Recap Approval Page</a>"
+                html: "<a href='https://awesweetv1.herokuapp.com/API/report/approveDailyRecaps'>Recap Approval Page</a>"
             };
 
             //  SEND THE MAIL
