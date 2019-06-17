@@ -9,6 +9,9 @@ var cldb        = require('../dbScripts/db-team-checklists.js');
 var ivdb        = require('../dbScripts/db-inventory.js');
 var squareV1    = require('../square/square_V1.js');
 var rptBldr     = require('../reportBuilder/reportBuilder.js');
+var proReport   = require('../asprop/prop-reporting.js');
+var moment 		= require('moment-timezone');
+var firebase	= require('../firebase/firebase.js');
 var mail        = require('../mailCenter/mailCenter.js');
 var wiw         = require('../wiw/wiw.js');
 var fs 		    = require('fs');
@@ -19,7 +22,9 @@ var asprop = {
     retreiveTemplate: retreiveTemplate,
     sqPushUpdates: sqPushUpdates,
     reports: {
-        emailDailyRecap: emailDailyRecapReport,
+        buildDailyRecap: buildDailyRecapReports,
+        publishDlyRecps: publishDlyRecpsReports,
+        emailDailyRecap: emailDailyRecapReports,
         instance: runInstanceReport,
         setupRouting: setupReportsRouting
     },
@@ -149,35 +154,48 @@ function runInstanceReport(instanceId) {
 };
 
 /*
-*
+*   BUILD DAILY RECAP REPORT
 */
-function emailDailyRecapReport(instanceId) {
-    //  DEFINE LOCAL VARIABLES
-    var managerCCs = ["ian@ah-nuts.com", 'steve@ah-nuts.com'];
-    var employeeEmail = "iemcallister@gmail.com"; //"hgschwartz08@yahoo.com";
-    var subject = "Daily Recap for Wednesday, June 12th: West Linn FM - Hannah Schwartz"
-
-    //  NOTIFY PROGRESS
-    console.log('emailing daily Recap report');
-
+function buildDailyRecapReports() {
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
+        console.log('buildDailyRecapReport');
+        proReport.dailyRecaps.update()
+        .then(function success(s) {
+            resolve(s)
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+};
 
-        //   PROCESS THROUGH FIREBASE
-        ivdb.read.dailyRecap(instanceId)
-        .then(function success(instanceData) {
-            //  DEFINE LOCAL VARIABLES
-            var sendOptions = {
-                from: 'info@ah-nuts.com',
-                to: employeeEmail,
-                cc: managerCCs,
-                subject: subject,
-                //text: "this is a test",
-                html: rptBldr.emails.dailyRecap(instanceData)
-            };
+/*
+*   PUBLISH DAILY RECAP REPORTS
+*/
+function publishDlyRecpsReports() {
+    //  NOTIFY PROGRESS
+    console.log('publishDlyRecpsReports');
 
-            //  SEND THE MAIL
-            mail.send(sendOptions)
+    //  DEFINE LOCAL VARIABLES
+    var emailPromises = [];
+
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  COLLECT TODAY'S REPORTS
+        proReport.dailyRecaps.publish()
+        .then(function success(publishableRecaps) {
+
+            if(publishableRecaps.length == 0) reject({"error": true, "message": "no recaps approved"});
+
+            //  ITERATE OVER REPORTS
+            publishableRecaps.forEach(function(recap) {
+                
+                emailPromises.push(emailDailyRecapReports(recap));
+
+            });
+
+            Promise.all(emailPromises)
             .then(function success(s) {
                 resolve(s);
             }).catch(function error(e) {
@@ -185,7 +203,45 @@ function emailDailyRecapReport(instanceId) {
             });
 
         }).catch(function error(e) {
-            resolve(e);
+            reject(e);
+        });
+
+    });
+
+};
+
+/*
+*
+*/
+function emailDailyRecapReports(recapObject) {
+    //  DEFINE LOCAL VARIABLES
+    var managerCCs = ["ian@ah-nuts.com"/*, 'steve@ah-nuts.com'*/];
+    var employeeEmail = "iemcallister@gmail.com"; //"hgschwartz08@yahoo.com";
+    var subject = "Daily Recap for " + moment(recapObject.cme_date).format("dddd, MMMM Do YYYY") + ": " + recapObject.CME_name + " - " + recapObject.employee;
+    //var subject = "Daily Recap for Wednesday, June 12th: West Linn FM - Hannah Schwartz"
+
+    //  NOTIFY PROGRESS
+    console.log('emailing daily Recap report');
+
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+
+        //  DEFINE LOCAL VARIABLES
+        var sendOptions = {
+            from: 'info@ah-nuts.com',
+            to: employeeEmail,
+            cc: managerCCs,
+            subject: subject,
+            //text: "this is a test",
+            html: rptBldr.emails.dailyRecap(recapObject)
+        };
+
+        //  SEND THE MAIL
+        mail.send(sendOptions)
+        .then(function success(s) {
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
         });
 
     });

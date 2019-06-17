@@ -8,6 +8,7 @@
 var moment 			= require('moment-timezone');
 var wiw             = require('../wiw/wiw.js');
 var firebase	    = require('../firebase/firebase.js');
+var rptBldr         = require('../reportBuilder/reportBuilder.js');
 var stdio           = require('../stdio/stdio.js');
 var ivdb            = require('../dbScripts/db-inventory.js');
 
@@ -20,7 +21,9 @@ var propReporting = {
         _saveRecapUpdates: _saveRecapUpdates,
         _buildRecaps: _buildRecaps,
         _identifyCompletedShifts: _identifyCompletedShifts,
-        update: updateDailyRecaps
+        update: updateDailyRecaps,
+        publish: publishDailyRecaps,
+        approve: approveDailyRecaps
     }
 };
 
@@ -53,14 +56,19 @@ function _calculateOTHrs(duration) {
 *   UPDATE DAILY RECAPS
 */
 function updateDailyRecaps() {
+    console.log('got here');
+
     //  DEFINE LOCAL VARIABLES
-    var today = moment(new Date());
+    var today = moment(new Date('2019-06-16T00:00:00-07:00'));
     var PST = today.tz('America/Los_Angeles');
     var start = PST.set({ 'hour': 0, 'minute': 0, 'second': 0 }).format();
     var end = PST.set({ 'hour': 23, 'minute': 59, 'second': 59 }).format();
     var dateString = PST.year() + "-" + _formatMonth(PST.month()) + "-" + PST.date();
     var shiftsPromise = wiw.get.shifts({ start: start, end: end });
     var routesPromsie = firebase.read('inventory/routing/' + dateString);
+
+    //  NOTIFY PROGRESS
+    console.log('running daily reports for ', dateString);
 
     //  RETURN ASYNC WORK
     return new Promise(function (resolve, reject) {
@@ -106,8 +114,11 @@ function _notifyRecapUpdates(shiftsObject, routeObject) {
     return new Promise(function (resolve, reject) {
         
         _saveRecapUpdates(shiftsObject, routeObject)
-        .then(function success(s) {
-            resolve(s)
+        .then(function success(updatesList) {
+
+            
+
+            resolve(updatesList)
         }).catch(function error(e) {
             reject(e);
         });
@@ -136,8 +147,8 @@ function _saveRecapUpdates(shiftsObject, routeObject) {
 
             //  RUN ALL PROMISES
             Promise.all(updatePromisesList)
-            .then(function success(s) {
-                resolve(s);
+            .then(function success(resolvedUpdates) {
+                resolve(updatesList);
             }).catch(function error(e) {
                 reject(e);
             });
@@ -173,6 +184,7 @@ function _buildRecaps(shiftsObject, routeObject) {
                 //  DEFINE LOCAL VARIABLES
                 var shiftValues = new Object({
                     instanceId: routeObject[sqId][fbPushId].instance_id,
+                    approved: false,
                     hours: {
                         rate: 0,
                         reg: 0,
@@ -182,7 +194,8 @@ function _buildRecaps(shiftsObject, routeObject) {
                     date: "",
                     channel: "",
                     employee: "",
-                    email: ""
+                    email: "",
+                    subject: ""
                 });
 
                 //  ITERATE OVER SHIFTS TO FIND THE MATCH
@@ -197,7 +210,7 @@ function _buildRecaps(shiftsObject, routeObject) {
                         shiftValues.hours.reg       = _calculateRegHrs(shiftValues.hours.duration);
                         shiftValues.hours.ot        = _calculateOTHrs(shiftValues.hours.duration);
                         shiftValues.date            = moment(wiwShift.start_time).format().split('T')[0];
-
+                        
                         //  ITERATE OVER THE SITES TO FIND THE CHANNEL
                         shiftsObject.sites.forEach(function(site) {
                             if(site.id == site_id) shiftValues.channel = site.name;
@@ -211,6 +224,9 @@ function _buildRecaps(shiftsObject, routeObject) {
                                 shiftValues.hours.rate  = parseInt(user.hourly_rate) * 100;
                             }
                         });
+
+                        shiftValues.subject         = "Daily Recap for " + moment(shiftValues.date).format("dddd, MMMM Do YYYY") + ": " + shiftValues.channel + " - " + shiftValues.employee;
+                        
 
                     };
 
@@ -253,7 +269,65 @@ function _identifyCompletedShifts(shiftsObject) {
 
     //  RETURN THE LIST FOR FURTHER PROCESSING
     return recapsToBuildList;
-}
+};
+
+/*
+*   PUBLISH DAILY RECAPS
+*/
+function publishDailyRecaps() {
+    //  DEFINE LOCAL VARIABLES
+    var today = moment(new Date());
+    var PST = today.tz('America/Los_Angeles');
+    var dateString = PST.year() + "-" + _formatMonth(PST.month()) + "-" + PST.date();
+    var publishList = [];
+
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        //  NOTIFY PROGRESS
+
+        //  COLLECT ONLY TODAY'S RECAPS
+        firebase.query.childValue('inventory/dailyRecaps', 'cme_date', dateString)
+        .then(function success(recapsToday) {
+
+            //  ITERATE OVER THE RECAPS
+            Object.keys(recapsToday).forEach(function(key) {
+
+                //  IF THE RECAPS ARE APPROVED, PUSH THEM TO THE LIST
+                if(recapsToday[key].approved == true) {
+                    recapsToday[key]['id'] = key;
+                    publishList.push(recapsToday[key]);
+                }
+            });
+
+            //  SEND BACK ALL RECAPS READY FOR PUBLISH
+            resolve(publishList)
+    
+        }).catch(function error(e) {
+            resolve(e);
+        });
+    });
+};
+
+/*
+*   APPROVE DAILY RECAPS
+*   
+*   This method...
+*/
+function approveDailyRecaps() {
+    //  DEFINE LOCAL VARIABLES
+    
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+        //  DEFINE LOCA VARIABLES
+        ivdb.read.pendingRecaps()
+        .then(function success(pendingRecapData) {
+            resolve(rptBldr.emails.approveRecaps(pendingRecapData));
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+
+};
 
 //  RETURN MODULE
 module.exports = propReporting;

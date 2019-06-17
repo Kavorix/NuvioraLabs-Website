@@ -32,7 +32,7 @@ proReport.dailyRecaps.update()
 });
 
 //  USE THIS TO SEND DAILY RECAP EMAILS
-/*asprop.reports.emailDailyRecap(inventoryInstance)
+/*asprop.reports.publishDlyRecps()
 .then(function success(s) {
     console.log('success');
     console.log(s);

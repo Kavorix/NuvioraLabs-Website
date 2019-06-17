@@ -24,6 +24,7 @@ var inventoryMod = {
     read: {
         instanceId: readInstanceId,
         dailyRecap: readDailyRecap, 
+        pendingRecaps: readPendingRecaps
     },
     add: {
         units: addInventoryUnits,
@@ -902,6 +903,7 @@ function addDailyRecapModel(updateObject) {
             recapTemplate.CME_name = updateObject.channel;
             recapTemplate.employee = updateObject.employee;
             recapTemplate.email = updateObject.email;
+            recapTemplate.subject = updateObject.subject;
             
             //  ADD NUMERIC VALUES
             recapTemplate.results.total_hours       = shiftHours
@@ -912,6 +914,9 @@ function addDailyRecapModel(updateObject) {
             recapTemplate.results.tips              = recapTemplate.sum.tips;
             recapTemplate.results.your_earnings     = recapTemplate.results.guaranteed_pay + recapTemplate.results.commissions + recapTemplate.results.tips;
             recapTemplate.results.effective_rate    = recapTemplate.results.your_earnings / recapTemplate.results.total_hours;
+
+            //  ADD BOOLIAN VALUES
+            recapTemplate.approved = updateObject.approved;
 
             //  WRITE THE MODEL
             firebase.create(writePath, recapTemplate)
@@ -1022,6 +1027,27 @@ function _updateAcctBalances(acctId) {
         });
     });
 
+};
+
+/*
+*   READ PENDING RECAPS
+*
+*   This method retreives all pending recaps from firebase and returns the data
+*/
+function readPendingRecaps() {
+    //  DEFINE LOCAL VARIABLES
+
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        firebase.query.childValue('inventory/dailyRecaps', 'approved', false)
+        .then(function success(pendingRecapsData) {
+            resolve(pendingRecapsData);
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
 };
 
 //  RETURN THE MODULE

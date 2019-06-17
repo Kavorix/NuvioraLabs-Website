@@ -13,7 +13,8 @@ var moment 		= require('moment-timezone');
 var rptbldr = {
     _timeToHrMarker: _timeToHrMarker,
     emails: {
-        dailyRecap: dailyRecapEmail
+        dailyRecap: dailyRecapEmail,
+        approveRecaps: approveRecapsEmail
     }
 };
 
@@ -110,6 +111,63 @@ function dailyRecapEmail(data) {
     
     
     return emailBody;
+};
+
+/*
+*   APPROVE DAILY RECAP EMAIL
+*
+*/
+function approveRecapsEmail(data) {
+    //  DEFINE LOCAL VARIABLES
+    var htmlSource = stdio.read.html('./templates/reports/recapsApprovalEmail.hbs');
+    var emailBodyTemplate = handlebars.compile(htmlSource);
+
+    console.log('got this data', data);
+
+    //  REGISTER HELPERS
+
+    /*
+    *   PENDING RECAPS HELPER
+    *
+    *   This helper formats the table rows to display all pending reports
+    */
+    handlebars.registerHelper('pendingRecaps', function(data) {
+        //  DEFINE LOCAL VARIABLES
+        var returnString = "";
+
+        //  ITERATE OVER EACH OF THE RECAPS
+        Object.keys(data).forEach(function (key) {
+
+            //  ADD THE TR
+            returnString += "<tr>";
+
+            returnString += "<td style='padding-bottom: 30px'> <strong>Channel: </strong>" + data[key].CME_name;
+
+            returnString += '<br> <strong>Date: </strong>' + data[key].cme_date;
+            
+            returnString += "<br> <strong>To: </strong>" + data[key].email;
+
+            returnString += "<br> <strong>Subject: </strong>" + data[key].subject + "</td>";
+
+            returnString += "<td style='padding-bottom: 30px'><form action='/API/report/instance/" + key + "'><input class='btn btn-primary' type='submit' value='Reveiew'></form></td>";
+
+            returnString += "<td style='padding-bottom: 30px'><form action='/API/report/publishARecap/" + key + "'><input class='btn btn-success' type='submit' value='Submit'></form></td>";
+
+            returnString += "</tr>";
+        });
+
+
+        //  RETURN 
+        return returnString;
+    });
+
+    //  COMPILE DOCUMENT
+    var emailBody = emailBodyTemplate({list: data});
+
+    
+    //  return html
+    return emailBody;    
+
 };
 
 //  RETURN THE MODULE
