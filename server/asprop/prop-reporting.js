@@ -471,7 +471,7 @@ function _sendRecapEmail(instanceId) {
             var sendOptions = {
                 from: 'info@ah-nuts.com',
                 to: recapObject.email,
-                cc: ['ian@ah-nuts.com'],
+                cc: ['ian@ah-nuts.com', 'steve@ah-nuts.com'],
                 subject: recapObject.subject,
                 //text: "this is a test",
                 html: rptBldr.emails.dailyRecap(recapObject)
