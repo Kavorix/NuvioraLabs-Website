@@ -12,6 +12,9 @@ var moment 		= require('moment-timezone');
 //  DEFINE MODULE
 var rptbldr = {
     _timeToHrMarker: _timeToHrMarker,
+    pages: {
+        recapPublishConf: recapPublishConfirmation
+    },
     emails: {
         dailyRecap: dailyRecapEmail,
         approveRecaps: approveRecapsEmail
@@ -168,6 +171,50 @@ function approveRecapsEmail(data) {
     //  return html
     return emailBody;    
 
+};
+
+function recapPublishConfirmation(responseObject) {
+    //  DEFINE LOCAL VARIABLES
+    var htmlSource = stdio.read.html('./templates/reports/publishRecapsConf.hbs');
+    var responseBodyTemplate = handlebars.compile(htmlSource);
+
+    handlebars.registerHelper('emailDisplay', function(data) {
+        //  DEFINE LOCAL VARIABLES
+        var returnString = "<ol>";
+
+        //  ITERATE OVER OJECTES
+        Object.keys(data).forEach(function(key) {
+            returnString += "<li><strong>" + key + "</strong>: " + data[key] + "</li>";
+        });
+
+        //  RETURN
+        return returnString + "</ol>";
+    });
+    
+    handlebars.registerHelper('cleanReport', function(data) {
+        //  DEFINE LOCAL VARIABLES
+        var returnString = "";
+
+        returnString += "<ol>";
+
+        //  ITERATE OVER OBJECTS
+        data.forEach(function(file){
+
+            returnString += "<li>" + file.path + ": " + file.status + "</li>";
+
+        });
+
+        returnString += "</ol>";
+
+        //  return
+        return returnString;
+    });
+
+    //  COMPILE DOCUMENT
+    var responseBody = responseBodyTemplate(responseObject);
+
+    //  RETURN HTML
+    return responseBody;
 };
 
 //  RETURN THE MODULE

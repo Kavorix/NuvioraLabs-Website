@@ -20,7 +20,15 @@ var inventoryInstance = '-LhCtrIHF88R_izZKz_L';
 //  TODO: NEED TO FULL AUTOMATE THE SENDING PROCESS
 //  TODO: NEED TO ADD WHEN I WORK SUPPORT
 
-//
+proReport.dailyRecaps.singleRecapPublish('-LgrdaIz2RQi6oy0fHx3')
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});
+
+/*
 proReport.dailyRecaps.update()
 .then(function success(s) {
     console.log('success');
@@ -29,7 +37,7 @@ proReport.dailyRecaps.update()
 }).catch(function error(e) {
     console.log('got this error');
     console.log(e);
-});
+});*/
 
 //  USE THIS TO SEND DAILY RECAP EMAILS
 /*asprop.reports.publishDlyRecps()

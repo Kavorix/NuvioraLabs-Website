@@ -107,7 +107,16 @@ module.exports = (function() {
         //  NOTIFY PROGRESS
         console.log('publishing Daily Recap', req.params.instanceId);
 
-        res.sendStatus(200);
+        proReport.dailyRecaps.singleRecapPublish(req.params.instanceId)
+        .then(function success(s) {
+            //return an affirmative status code
+            res.status(200);
+            res.send(s);
+        }).catch(function error(e) {
+            //return an error status code
+            res.status(550);
+            res.send(e);
+        });
 
     });
 

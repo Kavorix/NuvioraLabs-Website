@@ -24,6 +24,7 @@ var propReporting = {
         _identifyCompletedShifts: _identifyCompletedShifts,
         update: updateDailyRecaps,
         publish: publishDailyRecaps,
+        singleRecapPublish: publishSingleRecap,
         approve: approveDailyRecaps
     }
 };
@@ -341,6 +342,170 @@ function approveDailyRecaps() {
         });
     });
 
+};
+
+/*
+*   PUBLISH SINGLE RECAP
+*/
+function publishSingleRecap(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  1. COLLECT THE RECAP OBJECT
+        //  2. SEND THE EMAIL
+        //  3. UPDATE QUICKBOOKS
+        //  4. DELETE THE RECORDS
+        _deleteRecapRecords(instanceId)
+        .then(function success(responseObject) {
+            resolve(rptBldr.pages.recapPublishConf(responseObject));
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+};
+
+function _deleteRecapRecords(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    var deletePromises = [];
+
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  1. COLLECT THE RECAP OBJECT
+        //  2. SEND THE EMAIL
+        //  3. UPDATE QUICKBOOKS
+        _updateQuickbooks(instanceId)
+        .then(function success(responseObject) {
+
+            responseObject['cleaning'] = [];
+
+            //  COLLECT INVENTORY INSTANCE
+            firebase.read('inventory/instances/' + instanceId)
+            .then(function success(instance) {
+
+                //  ITERATE OVER ALL INSTANCES ENTRIES
+                Object.keys(instance.entries).forEach(function (timestamp) {
+
+                    Object.keys(instance.entries[timestamp]).forEach(function (entry) {
+
+                        //  PUSH ALL OF THE TXS TO THE DELETE LIST
+                        var txPath = 'inventory/txs/' + instance.entries[timestamp][entry].txId;
+                        deletePromises.push(firebase.del(txPath));
+                        responseObject.cleaning.push({path: txPath, status: ""});
+
+                        //  PUSH ALL OF THE ACCST TO THE DELETE LIST
+                        var acctPath = 'inventory/accts/' + instance.entries[timestamp][entry].targetAcctId;
+                        deletePromises.push(firebase.del(acctPath));
+                        responseObject.cleaning.push({path: acctPath, status: ""});
+                    });
+
+                });
+
+                //  daily recap: inventory/dailyRecaps/[instanceId]
+                var recapPath = 'inventory/dailyRecaps/' + instanceId;
+                deletePromises.push(firebase.del(recapPath));
+                responseObject.cleaning.push({path: recapPath, status: ""});
+
+                //  instance: inventory/instances/[instanceId]
+                var instancePath = 'inventory/instances/' + instanceId;
+                deletePromises.push(firebase.del(instancePath));
+                responseObject.cleaning.push({path: instancePath, status: ""});
+
+                Promise.all(deletePromises)
+                .then(function success(responses) {
+
+                    //  ITERATE OVER RESPONSES
+                    for(var i = 0; i < responses.length; i++) {
+                        responseObject.cleaning[i].status = responses[i]; 
+                    };
+
+                    //  pass along the response object
+                    resolve(responseObject);
+
+                }).catch(function error(e) {
+                    reject(e);
+                });
+
+            }).catch(function error(e) {
+                reject(e);
+            });
+            
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+};
+
+function _updateQuickbooks(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  1. COLLECT THE RECAP OBJECT
+        //  2. SEND THE EMAIL
+        _sendRecapEmail(instanceId)
+        .then(function success(responseObject) {
+            //  TO DO - ADD THIS LATER SO IT UPDATES ALL THE QUICKBOOKS RECORDS
+            responseObject['quickbooks'] = "Nothing Right now";
+            resolve(responseObject);
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+};
+
+function _sendRecapEmail(instanceId) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  1. COLLECT THE RECAP OBJECT
+        _collectRecapObject('inventory/dailyRecaps/' + instanceId)
+        .then(function success(recapObject) {
+
+            //  DEFINE LOCAL VARIABLES
+            var sendOptions = {
+                from: 'info@ah-nuts.com',
+                to: recapObject.email,
+                cc: ['ian@ah-nuts.com'],
+                subject: recapObject.subject,
+                //text: "this is a test",
+                html: rptBldr.emails.dailyRecap(recapObject)
+            };
+
+            //  SEND THE MAIL
+            mail.send(sendOptions)
+            .then(function success(response) {
+                resolve({email: response});
+            }).catch(function error(e) {
+                reject(e);
+            });            
+
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+};
+
+function _collectRecapObject(path) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        //  1. COLLECT THE RECAP OBJECT
+        firebase.read(path)
+        .then(function success(recapObject) {
+            resolve(recapObject);
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
 };
 
 //  RETURN MODULE

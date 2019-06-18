@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Daily Recaps Confirmation</title>
+        
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" />
+        
+    </head>
+    <body>
+        <div class="container">
+            <h1>SUCCESS!</h1>
+
+            <H3>Email Status</H3>
+            <p>{{#emailDisplay email}}{{/emailDisplay}}</p>
+
+            <h3>Quickbooks Status</h3>
+            <p>{{quickbooks}}</p>
+
+            <h3>Cleaning Up</h3>
+            <p>
+                {{#cleanReport cleaning}}{{/cleanReport}}
+            </p>
+        </div>
+        
+    </body>
+</html>
