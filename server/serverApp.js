@@ -68,10 +68,13 @@ serverApp.get('/template/wklySalesSummary', function(req, res) {
 var APIRoutes = require('./routes/API');
 serverApp.use('/API', APIRoutes);
 
-//	API ROUTES
+//	AUTHENTICATION ROUTES
+var authRoutes = require('./routes/authentication');
+serverApp.use('/authentication', authRoutes);
+
+//	WEBHOOK ROUTES
 var webhookRoutes = require('./routes/webhooks');
 serverApp.use('/webhook', webhookRoutes);
-
 
 /*
 *	Running the server

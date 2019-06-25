@@ -8,8 +8,9 @@ module.exports = (function() {
     var cldb 		= require('../dbScripts/db-team-checklists.js');
     var ivdb        = require('../dbScripts/db-inventory.js');
     var asprop      = require('../asprop/asprop.js'); 
+    var intuit      = require('../intuit/intuit.js');
     var proReport   = require('../asprop/prop-reporting.js');
-    var APIRoutes = require('express').Router();
+    var APIRoutes   = require('express').Router();
 
     //	GET: API/data/allChecklists
     APIRoutes.get('/data/allChecklists', function(req, res) {
@@ -161,6 +162,39 @@ module.exports = (function() {
         });
 
     });
+
+    /*
+    *   GET:    INTUIT LOGIN REDIRECT
+    *   URL:    API/intuit/authorize
+    */
+    APIRoutes.get('/intuit/authorize', function(req, res) {
+        //  DEFINE LOCAL VARAIBLES
+        // Redirect the authUri 
+        res.redirect(intuit.authorize());
+    });
+
+    /*
+    *   GET:    AUTH TOKEN FROM INTUIT
+    *   URL:    API/intuit/callback
+    */
+   APIRoutes.get('/intuit/callback', function(req, res) {
+        //  DEFINE LOCAL VARAIBLES
+        
+        // Parse the redirect URL for authCode and exchange them for tokens
+        var parseRedirect = req.url;
+        
+        // Exchange the auth code retrieved from the **req.url** on the redirectUri
+        oauthClient.createToken(parseRedirect)
+        .then(function(authResponse) {
+            console.log('The Token is  '+ JSON.stringify(authResponse.getJson()));
+        })
+        .catch(function(e) {
+            console.error("The error message is :"+e.originalMessage);
+            console.error(e.intuit_tid);
+        });
+        
+    });
+
 
     return APIRoutes;
 })();

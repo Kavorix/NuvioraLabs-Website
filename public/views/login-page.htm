@@ -1,3 +1,36 @@
 <div>
-    Login Page
+    <div class="container">
+    <div class="login-form" style='width: 340px; margin: 50px auto;'>
+        <h2 style='text-align: center;'>Team Member Login</h2>
+
+        <form method="POST" action='/authentication/teamMemberLogin'>
+
+            <!--Username-->
+            <div class="form-group">
+                <input name='username' ng-model='vm.username' type="text" class='form-control' placeholder='Username' required='required'>
+            </div>
+            
+            <br>
+            <!--Password-->
+            <div class="form-group">
+                <input name='password' ng-model='vm.password' type="password" class='form-control' placeholder='Password' required='required'>
+            </div>
+
+            <!--Log in Button-->
+            <div class="form-group">
+                <button type='button' class='btn btn-primary btn-block' ng-click='vm.submit()'>
+                    Log in
+                </button>
+            </div>
+
+            <!--Remember Me // Forgot password-->
+            <div class="clearfix">
+                <label for="" class="pull-left checkbox-inline">
+                    <input type="checkbox">Remember me
+                </label>
+                <a href="#" class='pull-right'>Forgot Password?</a>
+            </div>
+            
+        </form>
+    </div></div>
 </div>

@@ -116,6 +116,16 @@ function config($routeProvider, $locationProvider) {
         controller: 'teamPageController',                   //  Team Page Controller
         controllerAs: 'vm'
     })
+    .when('/team/:userId/dashboard', {
+        templateUrl: 'views/team-dash-page.htm',                 //  Team Dashboard Page View
+        controller: 'teamDashPageController',                   //  Team Dashboard Page Controller
+        controllerAs: 'vm'
+    })
+    .when('/team/:userId/CMERecap/:recapId', {
+        templateUrl: 'views/cme-recap-page.htm',                 //  Team Dashboard Page View
+        controller: 'CMERecapController',                   //  Team Dashboard Page Controller
+        controllerAs: 'vm'
+    }) 
     .when('/team/checklists/:type/:listId', {
         templateUrl: 'views/teamChecklists-page.htm',       //  Team Page View
         controller: 'teamChecklistsPageController',         //  Team Page Controller

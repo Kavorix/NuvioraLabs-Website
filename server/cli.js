@@ -15,18 +15,19 @@ var stdio       = require('./stdio/stdio.js');
 var inventoryInstance = '-LhCtrIHF88R_izZKz_L';
 
 
+
 //  TODO: NEED TO FIGURE OUT A WAY TO ADD ADJUSTMENT TRANSACTIONS
 //  TODO: ADD HOURLY WAGE BREAK DOWN (REGULAR TIME, OT)
 //  TODO: NEED TO FULL AUTOMATE THE SENDING PROCESS
 //  TODO: NEED TO ADD WHEN I WORK SUPPORT
 
-proReport.dailyRecaps.singleRecapPublish('-LgrdaIz2RQi6oy0fHx3')
+/*proReport.dailyRecaps.singleRecapPublish('-LgrdaIz2RQi6oy0fHx3')
 .then(function success(s) {
     //return an affirmative status code
     console.log(s)
 }).catch(function error(e) {
     console.log(e);
-});
+});*/
 
 /*
 proReport.dailyRecaps.update()
