@@ -72,6 +72,10 @@ serverApp.use('/API', APIRoutes);
 var authRoutes = require('./routes/authentication');
 serverApp.use('/authentication', authRoutes);
 
+//	CONFIG ROUTES
+var configRoutes = require('./routes/config');
+serverApp.use('/config', configRoutes);
+
 //	WEBHOOK ROUTES
 var webhookRoutes = require('./routes/webhooks');
 serverApp.use('/webhook', webhookRoutes);

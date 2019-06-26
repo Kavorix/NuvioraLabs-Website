@@ -1,3 +1,3 @@
 
 // MODULE
-var awesweet = angular.module('awesweet', ['ngRoute', 'ngSanitize', 'ui.bootstrap']);
+var awesweet = angular.module('awesweet', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'firebase']);
