@@ -121,7 +121,7 @@ function config($routeProvider, $locationProvider) {
         controller: 'teamDashPageController',                   //  Team Dashboard Page Controller
         controllerAs: 'vm'
     })
-    .when('/team/:userId/CMERecap/:recapId', {
+    .when('/team/:userId/CMERecap/:instanceId', {
         templateUrl: 'views/cme-recap-page.htm',                 //  Team Dashboard Page View
         controller: 'CMERecapController',                   //  Team Dashboard Page Controller
         controllerAs: 'vm'

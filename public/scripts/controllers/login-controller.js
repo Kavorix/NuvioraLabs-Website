@@ -4,10 +4,10 @@ angular
     .module('awesweet')
     .controller('loginPageController', loginPageController);
 
-	loginPageController.$inject = ['$scope','$log', '$http', '$location'];
+	loginPageController.$inject = ['$scope','$log', '$http', '$location', 'firebaseService'];
 
 /* @ngInject */
-function loginPageController($scope, $log, $http, $location) {
+function loginPageController($scope, $log, $http, $location, firebaseService) {
 
 	//define view model variable
 	var vm = this;
@@ -17,18 +17,12 @@ function loginPageController($scope, $log, $http, $location) {
 	vm.submit = function() {
 		console.log('submitting form');
 
-		$http({
-			method: 'POST',
-			url: 'authentication/teamMemberLogin',
-			data: {
-				username: vm.username,
-				password: vm.password
-			}
-		}).then(function(response) {
-			console.log('SUCCESS:', response);
-			$location.path('/team/ASighobosuib/dashboard')
-		}).catch(function(error) {
-			console.log('ERROR', error);
+		firebaseService.authenticate.email(vm.username, vm.password)
+		.then(function sucess(s) {
+			$log.info(s)
+		}).catch(function(e) {
+			$log.error(e);
 		});
+
 	}
 }

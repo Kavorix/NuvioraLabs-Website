@@ -5,10 +5,10 @@
         <h1 class='pull-left'>Daily Recap</h1>
         <h3 class="pull-right" style='color:gray'>
             <!--Market-->
-            <span style='text-align: right;' class='pull-right'>Some Market</span>
+            <span style='text-align: right;' class='pull-right'>{{data.CME_name}}</span>
             <br>
             <!--Date-->
-            <span style='text-align: right;' class='pull-right'>5/15/19</span>
+            <span style='text-align: right;' class='pull-right'>{{data.cme_date | date: "shortDate"}}</span>
         </h3>
         <div class="clearfix"></div>
         
@@ -16,7 +16,7 @@
         <div>
             <h3 class=''><strong><u>Sales</u></strong></h3>
             <ul style='list-style: none; font-size: 1.25em;'>
-                <li><strong>Gross:</strong> </li>
+                <li><strong>Gross:</strong> {{data.sum.sales / 100 | currency : "$" : 0}}</li>
                 <li><strong>Discounts:</strong> </li>
                 <li><strong>Refunds:</strong> </li>
                 <li><strong>Net:</strong> </li>
@@ -39,6 +39,11 @@
                                 <th class="text-center">Used</th>
                                 <th class="text-center">Produced</th>
                             </tr>
+                            <tr ng-repeat='product in vm.cookingProducts'>
+                                <td>{{product.class}}</td>
+                                <td></td>
+                                <td style='text-align: center'>{{vm.accts[product.id].balance * product.multiplier}} {{product.unit}}</td>
+                            </tr>
                         </table>
                     </div>
 
@@ -50,6 +55,11 @@
                                 <th class="text-center">Item</th>
                                 <th class="text-center">Used</th>
                                 <th class="text-center">Produced</th>
+                            </tr>
+                            <tr ng-repeat='product in vm.mfgProducts'>
+                                <td>{{product.class}}</td>
+                                <td style='text-align: center'>{{vm.accts[product.id].balance * product.multiplier | number: 2}} {{product.unit}}</td>
+                                <td></td>
                             </tr>
                         </table>
                     </div>
@@ -68,11 +78,22 @@
             <button class="btn btn-primary">Add Ending Values</button>
             <table class="table">
                 <tr>
+                    <th>Acct</th>
                     <th>Starting</th>
+                    <th>Units</th>
                     <th>Change</th>
                     <th>Expected</th>
                     <th>Actual</th>
                     <th>Difference</th>
+                </tr>
+                <tr ng-repeat="acct in vm.accts" ng-if='acct.category == "Cooked Goods" || acct.category ==  "Staged Materials"'>
+                    <td>{{acct.parent_acct}} {{acct.name}}</td>
+                    <td><input type="number"></td>
+                    <td>{{acct.units}}</td>
+                    <td>{{acct.balance}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
             </table>
         </div>
