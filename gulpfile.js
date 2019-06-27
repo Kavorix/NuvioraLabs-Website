@@ -97,3 +97,4 @@ gulp.task('copy-images', function() {
 	gulp.src('public/images/*')
 		.pipe(gulp.dest('dist/images'));
 });
+

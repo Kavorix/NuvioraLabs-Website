@@ -64,6 +64,10 @@ serverApp.get('/template/wklySalesSummary', function(req, res) {
 /*
 *	To clena up the code we've moved it to externl files
 */
+//	ASSETS ROUTES
+var AssetesRoutes = require('./routes/assets');
+serverApp.use('/assets', AssetesRoutes);
+
 //	API ROUTES
 var APIRoutes = require('./routes/API');
 serverApp.use('/API', APIRoutes);

@@ -15,6 +15,17 @@
         <!--Sales-->
         <div>
             <h3 class=''><strong><u>Sales</u></strong></h3>
+            
+            <canvas id="line"
+                    class="chart chart-line" 
+                    chart-data="data"
+                    chart-labels="labels" 
+                    chart-series="series" 
+                    chart-options="options"
+                    chart-dataset-override="datasetOverride" 
+                    chart-click="onClick">
+            </canvas>
+
             <ul style='list-style: none; font-size: 1.25em;'>
                 <li><strong>Gross:</strong> {{data.sum.sales / 100 | currency : "$" : 0}}</li>
                 <li><strong>Discounts:</strong> </li>
@@ -89,8 +100,8 @@
                 <tr ng-repeat="acct in vm.accts" ng-if='acct.category == "Cooked Goods" || acct.category ==  "Staged Materials"'>
                     <td>{{acct.parent_acct}} {{acct.name}}</td>
                     <td><input type="number"></td>
-                    <td>{{acct.units}}</td>
-                    <td>{{acct.balance}}</td>
+                    <td style='text-align: center;'>{{acct.units}}</td>
+                    <td style='text-align: center;'>{{acct.balance}}</td>
                     <td></td>
                     <td></td>
                     <td></td>
