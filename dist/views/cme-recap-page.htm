@@ -16,15 +16,7 @@
         <div>
             <h3 class=''><strong><u>Sales</u></strong></h3>
             
-            <canvas id="line"
-                    class="chart chart-line" 
-                    chart-data="data"
-                    chart-labels="labels" 
-                    chart-series="series" 
-                    chart-options="options"
-                    chart-dataset-override="datasetOverride" 
-                    chart-click="onClick">
-            </canvas>
+            <line-chart-directive data="vm.accts['-LfoThQV3F6j9jrStgn8']"></line-chart-directive>
 
             <ul style='list-style: none; font-size: 1.25em;'>
                 <li><strong>Gross:</strong> {{data.sum.sales / 100 | currency : "$" : 0}}</li>
