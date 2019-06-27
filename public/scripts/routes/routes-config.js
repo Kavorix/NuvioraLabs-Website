@@ -151,31 +151,3 @@ function config($routeProvider, $locationProvider) {
 *
 */
 
-/*
-*   INVENTORY INSTANCE ACCOUNTS LIST
-*/
-//  
-function inventoryInstanceAcctsList(firebaseService) {
-    //  DEFINE LOCAL VARIABLES
-    var accts = {};
-
-    //  RETURN ASYNC WORK
-    return new Promise(function(resolve, reject) {
-        resolve(firebaseService);
-        //  COLLECT DATA
-        //firebaseService.query.instanceAccts(instanceId)
-        //.then(function success(acctsObject) {
-            
-            //  ITERATE OVER THE ACCTSOBJECT
-        /*    Object.keys(acctsObject).forEach(function(key) {
-                accts[acctsObject[key].class] = key;
-            }); 
-            
-            resolve(accts);
-            
-        }).catch(function error(e) {
-            reject(e);
-        });*/
-        
-    }); 
-};

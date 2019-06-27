@@ -2,10 +2,10 @@ angular
     .module('awesweet')
     .controller('productPageController', productPageController);
 
-	productPageController.$inject = ['$scope','$log', '$routeParams', 'dataService'];
+	productPageController.$inject = ['$scope','$log', '$routeParams'];
 
 /* @ngInject */
-function productPageController($scope, $log, $routeParams, dataService) {
+function productPageController($scope, $log, $routeParams) {
 
 	//	DEFINE LOCAL VARIABLES
 	var vm = this;

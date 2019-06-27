@@ -107,6 +107,12 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         });
     };
 
+    /*
+    *   RESOLVE INSTANCE ACCTS
+    *   
+    *   This method takes the instance id.
+    *   
+    */
     function resolveInstanceAccts(data) {
         return new Promise(function(resolve, reject) {
             queryInstanceAccts(data)

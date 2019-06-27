@@ -15,12 +15,11 @@
         <!--Sales-->
         <div>
             <h3 class=''><strong><u>Sales</u></strong></h3>
-            
-            <line-chart-directive data="vm.accts['-LfoThQV3F6j9jrStgn8']"></line-chart-directive>
 
             <ul style='list-style: none; font-size: 1.25em;'>
-                <li><strong>Gross:</strong> {{data.sum.sales / 100 | currency : "$" : 0}}</li>
-                <li><strong>Discounts:</strong> </li>
+                <li><strong>Gross:</strong> {{vm.pullClass(vm.accts, '-LfoYIVkKqCYyw-cTc5l') / 100 | currency : "$" : 0}}</li>
+                <li><strong>Discounts:</strong> {{vm.pullClass(vm.accts, '-LfoYLCc9nwHp-M9gONA') / 100 | currency : "$" : 0}}</li>
+                <li><strong>Tips:</strong> {{vm.pullClass(vm.accts, '-LgfD3E5LcQeLRg1EDY-') / 100 | currency : "$" : 0}}</li>
                 <li><strong>Refunds:</strong> </li>
                 <li><strong>Net:</strong> </li>
             </ul>
@@ -74,9 +73,67 @@
         </div>
         
 
-        <!--Inventory-->
+        <!--Cooked Goods-->
         <div>
-            <h3 class=''><strong><u>Inventory</u></strong></h3>
+            <h3 class=''><strong><u>Cooked Goods</u></strong></h3>
+            <button class="btn btn-primary">Add Starting Values</button>
+            <button class="btn btn-primary">Add Ending Values</button>
+            <div class="table" style='list-style: none;'>
+                <div class='row'>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'><strong>Acct</strong></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'><strong>Starting</strong> </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'><strong>Units</strong> </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='text-align: center;'><strong>Δ</strong> </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'><strong>Expctd</strong> </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'><strong>Actual</strong> </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='text-align: center;'><strong>Diff</strong> </div>
+                </div>
+                <div    class='row' 
+                        ng-repeat="acct in vm.accts"
+                        style='border-top: 1px solid gray'
+                        ng-if='acct.category == "Cooked Goods"'>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a href="" ng-click='acct.graphVisible=true'>{{acct.parent_acct}} {{acct.name}}</a></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'>{{acct.units}}</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='text-align: center;'>{{acct.balance}}</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                    <br>
+                    <div    class=''
+                            ng-if='acct.graphVisible'>
+                                <line-chart-directive data="vm.processLineAccts(acct)"></line-chart-directive>
+                                <a href="" ng-click='acct.graphVisible=false'>close</a>
+                    </div>
+                </div><br>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>Acct</th>
+                    <th>Starting</th>
+                    <th>Units</th>
+                    <th>Change</th>
+                    <th>Expected</th>
+                    <th>Actual</th>
+                    <th>Difference</th>
+                </tr>
+                <tr     ng-repeat="acct in vm.accts" 
+                        ng-if='acct.category == "Cooked Goods"'
+                        >
+                    <td><a href="" ng-click=''>{{acct.parent_acct}} {{acct.name}}</a></td>
+                    <td><input type="number"></td>
+                    <td style='text-align: center;'>{{acct.units}}</td>
+                    <td style='text-align: center;'>{{acct.balance}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+        <!--Staged Materials-->
+        <div>
+            <h3 class=''><strong><u>Staged Materials</u></strong></h3>
             <button class="btn btn-primary">Add Starting Values</button>
             <button class="btn btn-primary">Add Ending Values</button>
             <table class="table">
@@ -89,7 +146,9 @@
                     <th>Actual</th>
                     <th>Difference</th>
                 </tr>
-                <tr ng-repeat="acct in vm.accts" ng-if='acct.category == "Cooked Goods" || acct.category ==  "Staged Materials"'>
+                <tr     ng-repeat="acct in vm.accts" 
+                        ng-if='acct.category == "Staged Materials"'
+                        ng-click='vm.rowClick(acct)'>
                     <td>{{acct.parent_acct}} {{acct.name}}</td>
                     <td><input type="number"></td>
                     <td style='text-align: center;'>{{acct.units}}</td>
