@@ -27,6 +27,9 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         },
         query: {
             instanceAccts: queryInstanceAccts
+        },
+        resolve: {
+            instanceAccts: resolveInstanceAccts
         }
     };
 
@@ -103,6 +106,18 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             });
         });
     };
+
+    function resolveInstanceAccts(data) {
+        return new Promise(function(resolve, reject) {
+            queryInstanceAccts(data)
+            .then(function(s) {
+                resolve(s);
+            })
+            .catch(function(e) {
+                reject(e);
+            });
+        });
+    }
 
     //  RETURN THE METHOD
     return firebaseMod;

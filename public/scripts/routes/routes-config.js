@@ -124,7 +124,12 @@ function config($routeProvider, $locationProvider) {
     .when('/team/:userId/CMERecap/:instanceId', {
         templateUrl: 'views/cme-recap-page.htm',                 //  Team Dashboard Page View
         controller: 'CMERecapController',                   //  Team Dashboard Page Controller
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            inventoryInstanceAcctsList: function(firebaseService, $route) {
+                return firebaseService.resolve.instanceAccts($route.current.params.instanceId)
+            }
+        }
     }) 
     .when('/team/checklists/:type/:listId', {
         templateUrl: 'views/teamChecklists-page.htm',       //  Team Page View
@@ -146,4 +151,31 @@ function config($routeProvider, $locationProvider) {
 *
 */
 
+/*
+*   INVENTORY INSTANCE ACCOUNTS LIST
+*/
+//  
+function inventoryInstanceAcctsList(firebaseService) {
+    //  DEFINE LOCAL VARIABLES
+    var accts = {};
 
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        resolve(firebaseService);
+        //  COLLECT DATA
+        //firebaseService.query.instanceAccts(instanceId)
+        //.then(function success(acctsObject) {
+            
+            //  ITERATE OVER THE ACCTSOBJECT
+        /*    Object.keys(acctsObject).forEach(function(key) {
+                accts[acctsObject[key].class] = key;
+            }); 
+            
+            resolve(accts);
+            
+        }).catch(function error(e) {
+            reject(e);
+        });*/
+        
+    }); 
+};

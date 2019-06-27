@@ -2,10 +2,10 @@ angular
     .module('awesweet')
     .controller('CMERecapController', CMERecapController);
 
-	CMERecapController.$inject = ['$scope','$log', '$routeParams', 'firebaseService', "$firebaseObject"];
+	CMERecapController.$inject = ['$scope','$log', '$routeParams', 'firebaseService', "$firebaseObject", 'inventoryInstanceAcctsList'];
 
 /* @ngInject */
-function CMERecapController($scope, $log, $routeParams, firebaseService, $firebaseObject) {
+function CMERecapController($scope, $log, $routeParams, firebaseService, $firebaseObject, inventoryInstanceAcctsList) {
 
 	//  DEFINE VIEW MODEL VARIABLES
   var vm = this;
@@ -31,47 +31,6 @@ function CMERecapController($scope, $log, $routeParams, firebaseService, $fireba
     {type: "Cooked", class: "Drunk Hazelnuts",  id: "-LfoUTUs3cwzar_PqVCJ", multiplier: 1, unit: "oz"}
   ];
 
+  $log.info('in the checkout CMERecapController', $routeParams, inventoryInstanceAcctsList);	    //  TODO: TAKE THIS OUT LATER
 
-  
-  /*
-  *
-  */
-  function init(instanceId) {
-
-    //  COLLECT DATA
-    firebaseService.query.instanceAccts(instanceId)
-    .then(function success(acctsObject) {
-      //  ITERATE OVER THE ACCTSOBJECT
-      Object.keys(acctsObject).forEach(function(key) {
-        vm.accts[acctsObject[key].class] = $firebaseObject(firebase.database().ref().child('inventory/accts/' + key));
-      });     
-      
-    }).catch(function error(e) {
-      $log.error(e);
-    });
-
-  };
-
-
-	//var obj = $firebaseObject(firebase.database().ref().child('inventory/dailyRecaps/-Li934i3caUN1mNDOnvm'));
-
-	 // to take an action after the data loads, use the $loaded() promise
-     //obj.$loaded().then(function() {
-
-       // To iterate the key/value pairs of the object, use angular.forEach()
-       /*angular.forEach(obj, function(value, key) {
-          console.log(key, value);
-       });
-     });*/
-
-     // To make the data available in the DOM, assign it to $scope
-     //$scope.data = obj;
-
-     // For three-way data bindings, bind it to the scope instead
-     //obj.$bindTo($scope, "data");
-
-
-  $log.info('in the checkout CMERecapController', $routeParams);	    //  TODO: TAKE THIS OUT LATER
-
-  init($routeParams.instanceId);
 }
