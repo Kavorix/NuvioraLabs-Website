@@ -107,28 +107,6 @@
                     </div>
                 </div><br>
             </div>
-            <table class="table">
-                <tr>
-                    <th>Acct</th>
-                    <th>Starting</th>
-                    <th>Units</th>
-                    <th>Change</th>
-                    <th>Expected</th>
-                    <th>Actual</th>
-                    <th>Difference</th>
-                </tr>
-                <tr     ng-repeat="acct in vm.accts" 
-                        ng-if='acct.category == "Cooked Goods"'
-                        >
-                    <td><a href="" ng-click=''>{{acct.parent_acct}} {{acct.name}}</a></td>
-                    <td><input type="number"></td>
-                    <td style='text-align: center;'>{{acct.units}}</td>
-                    <td style='text-align: center;'>{{acct.balance}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
         </div>
 
         <!--Staged Materials-->
