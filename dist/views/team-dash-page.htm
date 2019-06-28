@@ -1,6 +1,22 @@
 <div>
     <div class="container">
-        <h1 style='text-align: center;'>Team Member Dashboard</h1>
+        <!--Headers-->
+        <h1 style='text-align: left;'>Team Member Dashboard</h1>
         <h2 style='text-align: center;'>{{vm.username}}</h2>
+
+        <!--Recaps List-->
+        <h2><u>Recaps for Review</u></h2>
+        <div style='list-style: none' class='list-group'>
+            <div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'><strong>NAME</strong></div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'><strong>CREATED</strong></div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'><strong>(SOMETHING)</strong></div>
+            </div>
+            <button ng-repeat='(key, value) in vm.instances' ng-click='vm.loadInstance(key)' class='list-group-item list-group-item-action'>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'><strong>{{value.name}}</strong></div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'>{{value.created}}</div>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style='text-align: center;'>(SOMETHING)</div>
+            </button>
+        </div>
     </div>
 </div>

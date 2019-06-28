@@ -19,6 +19,9 @@ function loginPageController($scope, $log, $http, $location, firebaseService) {
 
 		firebaseService.authenticate.email(vm.username, vm.password)
 		.then(function sucess(s) {
+			//	ON SUCCESSFUL LOGIN REDIRECT DO TEAM MEMBER DASHBOARD
+			$location.path('/team/'+ s.user.uid +'/dashboard');
+			$scope.$apply();
 			$log.info(s)
 		}).catch(function(e) {
 			$log.error(e);

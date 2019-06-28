@@ -19,6 +19,9 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
 
     //  DEFINE METHODS
     var firebaseMod = {
+        read: {
+            inventoryInstances: readInventoryInstances
+        },
         create: {
             emailUser: create_user_email
         },
@@ -31,6 +34,24 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         resolve: {
             instanceAccts: resolveInstanceAccts
         }
+    };
+
+    /*
+    *   READ INVENTORY INSTANCES
+    */
+    function readInventoryInstances() {
+        //  DECLARE LOCAL VARIABLES
+        //  NOTIFY PROGRESS
+        console.log('reading inventory instances');
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+            firebase.database().ref('/inventory/instances').once('value')
+            .then(function success(snapshot) {
+                resolve(snapshot.val());
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });
     };
 
     /*
