@@ -25,7 +25,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             channels: readChannels
         },
         create: {
-            emailUser: create_user_email
+            emailUser: create_user_email,
+            season: createSeason
         },
         authenticate: {
             email: email_authentication
@@ -37,6 +38,38 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         resolve: {
             instanceAccts: resolveInstanceAccts
         }
+    };
+
+    /*
+    *   CREATE
+    */
+    function createSeason(chId, value) {
+        //  DECLARE LOCAL VARIABLES
+        var seasonObject = {
+            "channelId": chId,
+            "title": value
+        };
+        //  NOTIFY PROGRESS
+        console.log('creating a new season', seasonObject);
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+
+            //  Get a key for the new post
+            var newSeasonKey = firebase.database().ref().child('seasons').push().key;
+            var newChSeasonKey = firebase.database().ref('/channels/' + chId + "/seasons").push().key;
+
+            // Write the new post's data simultaneously in the posts list and the user's post list.
+            var updates = {};
+            updates['/seasons/' + newSeasonKey] = seasonObject;
+            updates['/channels/' + chId + '/seasons/' + newChSeasonKey] = seasonObject;
+
+            firebase.database().ref().update(updates)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });
     };
 
     /*

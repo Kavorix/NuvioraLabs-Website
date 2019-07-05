@@ -16,13 +16,30 @@
         <h4>Seasons</h4>
         <!--Options-->
         <button class='btn btn-info' ng-click="vm.seasonInput=!vm.seasonInput">Add Season</button>
-        <button class='btn btn-info'>Add Instance</button>
+        <button class='btn btn-info' ng-click="vm.instancesInput=!vm.instancesInput">Add Instances</button>
 
         <!--Season Input-->
         <div ng-if='vm.seasonInput' class='container'>
             <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Season Name:</strong>
+                <input  list="seasonSelector" 
+                        ng-model='vm.aChannel.newSeason'
+                        class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+            </div>
+            <div class="row">
+                <button ng-click='vm.saveNewSeason(vm.aChannel.newSeason)'
+                        class="btn btn-danger col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    Save
+                </button>
+            </div>
+            
+        </div>
+
+        <!--Instances Input-->
+        <div ng-if='vm.instancesInput' class='container'>
+            <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Name: </strong>
-                <input type="text" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <input list="seasonSelector" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Start Date: </strong>
@@ -32,11 +49,30 @@
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>End Date: </strong>
                 <input type="date" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
-            
-            
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Frequency: </strong>
+                <input list="fqncySelector" class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
+            </div>
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Opens: </strong>
+                <input list="hrPicker">: 
+                <input list="minPicker">
+            </div>            
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Closes: </strong>
+                <input list="hrPicker">: 
+                <input list="minPicker">
+            </div>  
+
+            <button class="btn btn-success">Preview</button>
+            <button class="btn btn-danger">Save</button>
+
+            <div class="row">
+                <strong><u>Preview</u></strong>
+            </div>
             
         </div>
-        <!--Instance Input-->
+        
         <!--Table-->
         <div class="table">
 
@@ -55,4 +91,46 @@
             </div>
         </div>
     </div>
+
+<!--    DATA LISTS  -->
+<!--    Season selector -->
+<datalist name="seasonSelector" id="seasonSelector">
+        <option ng-repeat="season in vm.channelData.seasons track by $index"
+                style='font-size: 12pt'
+                ng-click=''>
+                {{season.title}}
+        </option>
+    
+    </datalist>
+
+<!--    Frequency selector -->
+<datalist name="fqncySelector" id="fqncySelector">
+    <option ng-repeat="frequency in ['Daily', 'Weekly', 'Monthly'] track by $index"
+            style='font-size: 12pt'
+            ng-click=''>
+            {{frequency}}
+    </option>
+
+</datalist>
+
+<!--    Hour Picker     -->
+<datalist name="hrPicker" id="hrPicker">
+    <option ng-repeat="hr in ['01','02','03','04','05','06','07','08','09','10','11','12'] track by $index"
+            style='font-size: 12pt'
+            ng-click=''>
+            {{hr}}
+    </option>
+
+</datalist>
+
+<!--    Min Picker     -->
+<datalist name="minPicker" id="minPicker">
+    <option ng-repeat="min in ['00', '15', '30', '45',] track by $index"
+            style='font-size: 12pt'
+            ng-click=''>
+            {{min}}
+    </option>
+
+</datalist>
+
 </div>

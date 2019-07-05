@@ -13,7 +13,11 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
     //  DEFINE VIEWMODEL VARIABLES
     var vm = this;
     vm.seasonInput = false;
-    
+    vm.instancesInput = false;
+    vm.aChannel = {
+        newSeason: ""
+    }
+
     //  DEFINE VIEW MODEL FUNCTIONS
     vm.loadChannel = function(id) {
         $location.path('/admin/data/channel/' + id);
@@ -57,6 +61,16 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         //console.log('nav to next', index, pathIndex, channelsList[pathIndex].id);
         
         $location.path('/admin/data/channel/' + channelsList[pathIndex].id)
+    };
+    vm.saveNewSeason = function(name) {
+        //  DEFINE LOCAL VARIABLES
+        console.log('saving seasons: ', name);
+        firebaseService.create.season($routeParams.channelId, name)
+        .then(function success(s) {
+            alert('Saved Successfully', s);
+        }).catch(function error(e) {
+            alert('Error Savings', e);
+        });
     };
 
     //  LOAD DATA
