@@ -12,13 +12,35 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-database.instances.add()
-.then(function success(s) {
-    //return an affirmative status code
-    console.log(s)
+
+
+
+
+//  UPDATE FIREABES FIELDS QUICKLY
+/*
+firebase.read('channels')
+.then(function success(channels) {
+    //  iterate over the channels
+    Object.keys(channels).forEach(function(key) {
+
+        database.channels.update(key, { 
+            "seasons": {
+                0: 1
+            },
+            qbId: "",
+            sqId: "",
+            wiwId: ""
+        })
+        .then(function success(s) {
+            //return an affirmative status code
+            console.log(s)
+        }).catch(function error(e) {
+            console.log(e);
+        });
+    });
 }).catch(function error(e) {
     console.log(e);
-});
+});*/
 
 /*wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
 .then(function success(s) {

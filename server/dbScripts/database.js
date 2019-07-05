@@ -9,6 +9,7 @@
 var cldb        = require('../dbScripts/db-team-checklists.js');
 var ivdb        = require('../dbScripts/db-inventory.js');
 var indb        = require('../dbScripts/db-instances.js');
+var chdb        = require('../dbScripts/db-channels.js');
 
 //  DEFINE THE MODULE
 var database = {
@@ -16,7 +17,10 @@ var database = {
     instances: {
         add: addInstance
     },
-    checklists: {}
+    checklists: {},
+    channels: {
+        update: updateChannel
+    }
 };
 
 /*
@@ -31,6 +35,24 @@ function addInstance(data) {
         indb.add(data)
         .then(function success(s) {
             //return an affirmative status code
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        })
+    });
+};
+
+/*
+*   UPDATE CHANNEL
+*
+*   This is used to update a channel field
+*/
+function updateChannel(id, values) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        chdb.update(id, values)
+        .then(function success(s) {
             resolve(s);
         }).catch(function error(e) {
             reject(e);

@@ -1,0 +1,27 @@
+<div>
+    <div class="container">
+
+        <!--Header-->
+        <h1>Channels List</h1>
+
+        <!--Options-->
+        <h4>Options</h4>
+
+        <!--Table-->
+        <div class="table">
+            <!--Header Row-->
+            <div class="row">
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>ID</strong></div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Name</strong></div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Type</strong></div>
+            </div>
+
+            <!--Data Rows-->
+            <div class="row" ng-repeat="channel in vm.channels track by $index" ng-click='vm.loadChannel(channel.id)'>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{$index + 1}}</div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{channel.title}}</div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{channel.type}}</div>
+            </div>
+        </div>
+    </div>
+</div>

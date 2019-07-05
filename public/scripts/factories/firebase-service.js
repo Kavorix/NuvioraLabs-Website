@@ -21,7 +21,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     var firebaseMod = {
         read: {
             inventoryInstances: readInventoryInstances,
-            instances: readInstances
+            instances: readInstances,
+            channels: readChannels
         },
         create: {
             emailUser: create_user_email
@@ -59,12 +60,30 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     *   READ INSTANCES
     */
    function readInstances() {
+        //  DECLARE LOCAL VARIABLES
+        //  NOTIFY PROGRESS
+        console.log('reading instances');
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+            firebase.database().ref('/instances').once('value')
+            .then(function success(snapshot) {
+                resolve(snapshot.val());
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });
+    };
+
+    /*
+    *   READ Channels
+    */
+   function readChannels() {
     //  DECLARE LOCAL VARIABLES
     //  NOTIFY PROGRESS
-    console.log('reading instances');
+    console.log('reading Channels');
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
-        firebase.database().ref('/instances').once('value')
+        firebase.database().ref('/channels').once('value')
         .then(function success(snapshot) {
             resolve(snapshot.val());
         }).catch(function error(e) {

@@ -104,6 +104,16 @@ function config($routeProvider, $locationProvider) {
         controller: 'dataViewsController',
         controllerAs: 'vm'
     })
+    .when('/admin/data/channels', {
+        templateUrl: 'views/data_channels.htm',
+        controller: 'dataViewsController',
+        controllerAs: 'vm'
+    })
+    .when('/admin/data/channel/:channelId', {
+        templateUrl: 'views/data_channel_view.htm',
+        controller: 'dataViewsController',
+        controllerAs: 'vm'
+    })
     .when('/admin/inventory/instance/:instanceId', {        //  TODO: add this section to update instances
         templateUrl: 'views/inventory-instance-page.htm',
         controller: 'inventoryInstancePageController',
