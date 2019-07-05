@@ -10,10 +10,10 @@ var QuickBooks      = require('node-quickbooks');
 
 //  DEFINE GLOBAL VARIABLES
 var oauthClient = new OAuthClient({
-    clientId: 'Q0GOutIokYQH9aWc4U46GKyrHFV4UbouaTVDKxQ5jNG7KMLGeP',
-    clientSecret: 'tuFXbXSbp5q34vEQySj6N6oE0MV0mBjMD9I6ftEw',
-    environment: 'sandbox',
-    redirectUri: 'https://developer.intuit.com/v2/OAuth2Playground/RedirectUrl'
+    clientId:       process.env.AH_NUTS_INTUIT_CLIENT_ID,
+    clientSecret:   process.env.AH_NUTS_INTUIT_CLIENT_SECRET,
+    environment:    process.env.AH_NUTS_INTUIT_ENVIRONMENT,
+    redirectUri:    process.env.AH_NUTS_INTUIT_REDIRECT_URI,
 });
 //var qbo = new QuickBooks(consumerKey,
 //    consumerSecret,
@@ -26,12 +26,17 @@ var oauthClient = new OAuthClient({
 
 //  DEFINE MODULE
 var qbMod = {
-    authorize: authorize
+    authorize: authorize,
+    test: test
 };
 
 function authorize() {
     return oauthClient.authorizeUri({scope:[OAuthClient.scopes.Accounting,OAuthClient.scopes.OpenId],state:'testState'});  // can be an array of multiple scopes ex : {scope:[OAuthClient.scopes.Accounting,OAuthClient.scopes.OpenId]}
 };
+
+function test() {
+    console.log(oauthClient)
+}
 
 //  RETURN THE MODULE
 module.exports = qbMod;

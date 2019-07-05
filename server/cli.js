@@ -7,14 +7,31 @@ var asprop      = require('./asprop/asprop.js');
 var proReport   = require('./asprop/prop-reporting.js');
 var squareV1    = require('./square/square_V1.js');
 var wiw         = require('./wiw/wiw.js');
+var qckbks      = require('./intuit/intuit.js');
 var fs 		    = require('fs');
 var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-var inventoryInstance = '-LhCtrIHF88R_izZKz_L';
+qckbks.test();
 
+/*wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});*/
 
+/*firebase.push('instances/-Lik7zYUA524PsmdZyul/devices', {
+    id: "sa09gdi0bnnasb"
+})
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});*/
 
 //  TODO: NEED TO FIGURE OUT A WAY TO ADD ADJUSTMENT TRANSACTIONS
 //  TODO: ADD HOURLY WAGE BREAK DOWN (REGULAR TIME, OT)

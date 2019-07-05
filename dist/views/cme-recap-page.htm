@@ -12,6 +12,8 @@
         </h3>
         <div class="clearfix"></div>
         
+        <bar-chart-directive data='vm.accts'></bar-chart-directive>
+        
         <!--Sales-->
         <div>
             <h3 class=''><strong><u>Sales</u></strong></h3>
@@ -95,7 +97,7 @@
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><a href="" ng-click='acct.graphVisible=true'>{{acct.parent_acct}} {{acct.name}}</a></div>
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style='text-align: center;'>{{acct.units}}</div>
-                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='text-align: center;'>{{acct.balance}}</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='text-align: center;'>{{acct.balance | number: 2}}</div>
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
                     <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>

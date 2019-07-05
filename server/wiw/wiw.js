@@ -14,7 +14,8 @@ var wiw         = new WIW(process.env.WIW_API_KEY, process.env.WIW_USERNAME, pro
 var whenIWork = {
     get: {
         shifts: getShifts,       //  THIS REALLY COMES WITH EVERYTHIGN I NEED
-        users: getUsers
+        users: getUsers,
+        sites: getSites
     }
 };
 
@@ -50,6 +51,27 @@ function getUsers(params) {
     return new Promise(function (resolve, reject) {
 
         wiw.get('users', params)
+        .then(function success(s) {
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        });
+
+    });
+
+};
+
+/*
+*   GET SHIFTS
+*/
+function getSites() {
+    //  DEFINE LOCAL VARIABLES
+
+
+    //  RETURN ASYNC WORK
+    return new Promise(function (resolve, reject) {
+
+        wiw.get('sites')
         .then(function success(s) {
             resolve(s);
         }).catch(function error(e) {

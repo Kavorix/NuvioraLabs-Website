@@ -29,4 +29,5 @@ function CMERecapController($scope, $log, $routeParams, firebaseService, $fireba
 
   $log.info('in the checkout CMERecapController', $routeParams, inventoryInstanceAcctsList);	    //  TODO: TAKE THIS OUT LATER
 
+
 }

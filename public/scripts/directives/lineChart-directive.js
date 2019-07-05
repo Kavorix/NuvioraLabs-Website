@@ -1,5 +1,5 @@
 /*
-*	FOOTER DIRECTIVE
+*	LINE CHART DIRECTIVE
 *
 *	This module is designed to 
 */
@@ -34,11 +34,8 @@ function lineChartDirective() {
 		//	DEFINE LOCAL VARIABLES
         var vm = this;
         
-        $scope.labels = ["January", "February", "March", "April", "May", "June", "July"];
-        $scope.series = ['Series A'];
-        $scope.data = [
-          [65, 59, 80, -81, 56, 55, 40]
-        ];
+        $scope.labels = data.flavors;
+        $scope.data = data.levels;
 
 		//	DEFINE VIEW MODEL VARIABLES
 
