@@ -39,40 +39,75 @@
         <div ng-if='vm.instancesInput' class='container'>
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Name: </strong>
-                <input list="seasonSelector" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <input  list="seasonSelector" 
+                        ng-model='vm.aChannel.newSeason'
+                        class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Start Date: </strong>
-                <input type="date" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <input  type="date" 
+                        ng-blur="vm.previewIterations(vm.aChannel.seasonStart, vm.aChannel.seasonsEnd, vm.aChannel.itFrequency)"
+                        ng-model='vm.aChannel.seasonStart'
+                        class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>End Date: </strong>
-                <input type="date" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <input  type="date"
+                        ng-blur="vm.previewIterations(vm.aChannel.seasonStart, vm.aChannel.seasonsEnd, vm.aChannel.itFrequency)"
+                        ng-model='vm.aChannel.seasonsEnd' 
+                        class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Frequency: </strong>
-                <input list="fqncySelector" class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
+                <input  list="fqncySelector" 
+                        ng-blur="vm.previewIterations(vm.aChannel.seasonStart, vm.aChannel.seasonsEnd, vm.aChannel.itFrequency)"
+                        ng-model='vm.aChannel.itFrequency' 
+                        class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
             </div>
             <div class="row">
-                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Opens: </strong>
-                <input list="hrPicker">: 
-                <input list="minPicker">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Opens: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itOpens.hr' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itOpens.min' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itOpens.AP' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
             </div>            
             <div class="row">
-                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Closes: </strong>
-                <input list="hrPicker">: 
-                <input list="minPicker">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Closes: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itCloses.hr' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itCloses.min' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itCloses.AP' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
             </div>  
 
             <button class="btn btn-success">Preview</button>
             <button class="btn btn-danger">Save</button>
 
-            <div class="row">
-                <strong><u>Preview</u></strong>
+            <div class="row" style='text-align: center'>
+                <strong><u>Preview:</u></strong>
+                <div class="row">
+                    <!--Headers-->
+                    
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'><strong>Season</strong></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Iteration</strong></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Open</strong></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Close</strong></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Delete</strong></div>
+                </div>
+                <div class="row" ng-repeat="instance in vm.aChannel.newInstancesPreview track by $index">
+                    <!--Preview Data-->
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.date | date: "shortDate"}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{$index + 1}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itOpens}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itCloses}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><i class="glyphicon glyphicon-remove"></i></div>
+                </div>
             </div>
             
         </div>
         
+        <div class="row">
+            <u class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><strong>Currently:</strong></u>
+        </div>
         <!--Table-->
         <div class="table">
 
@@ -132,5 +167,15 @@
     </option>
 
 </datalist>
+
+<!--    AMPM Picker     -->
+<datalist name="AMPMPicker" id="AMPMPicker">
+        <option ng-repeat="AMPM in ['AM', 'PM'] track by $index"
+                style='font-size: 12pt'
+                ng-click=''>
+                {{AMPM}}
+        </option>
+    
+    </datalist>
 
 </div>

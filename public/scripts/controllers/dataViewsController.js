@@ -15,7 +15,13 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
     vm.seasonInput = false;
     vm.instancesInput = false;
     vm.aChannel = {
-        newSeason: ""
+        newSeason: "",
+        seasonStart: "",
+        seasonsEnd: "",
+        itFrequency: "",
+        itOpens: { hr: "", min: "", AP: "", time: ""},
+        itCloses: { hr: "", min: "", AP: "", time: ""},
+        newInstancesPreview: []
     }
 
     //  DEFINE VIEW MODEL FUNCTIONS
@@ -71,6 +77,98 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         }).catch(function error(e) {
             alert('Error Savings', e);
         });
+    };
+    vm.previewIterations = function(start, end, freq) {
+        //  DEFINE LOCAL VARIABLES
+        var startDate = moment(start);
+        var endDate = moment(end);
+        vm.aChannel.newInstancesPreview = [];
+
+        //  TEST FOR VIABLE VALUES
+        if(start != "" && end != "", freq !="") {
+            console.log('all values good');
+            //  iterate based on frequency
+            switch(freq) {
+                case "Daily":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'days')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.aChannel.newInstancesPreview.push(
+                            { 
+                                season: vm.aChannel.newSeason,
+                                date: cursorDate.format() 
+                            }
+                        );
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'days')
+                    };
+                    
+                    break;
+                case "Weekly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'weeks')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.aChannel.newInstancesPreview.push(
+                            { 
+                                season: vm.aChannel.newSeason,
+                                date: cursorDate.format() 
+                            }
+                        );
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'week')
+                    };
+                    break;
+                case "Monthly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'months')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.aChannel.newInstancesPreview.push(
+                            { 
+                                season: vm.aChannel.newSeason,
+                                date: cursorDate.format() 
+                            }
+                        );
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'month')
+                    };
+                    break;
+                default:
+            };
+        }
+    };
+    vm.setItTimes = function(path, hr, min, ap) {
+        //  TEST FOR VALUES
+        if (hr != "" && min != "" && ap != "") {
+            
+            if(ap == "PM") {
+                vm.aChannel[path].time = (parseInt(hr) + 12) + ":" + min + "-07:00";
+            } else {
+                vm.aChannel[path].time = hr + ":" + min + "-07:00";
+            }
+
+            //  Add to all of the instances
+            for(var i = 0; i < vm.aChannel.newInstancesPreview.length; i++) {
+                vm.aChannel.newInstancesPreview[i][path] = vm.aChannel[path].time;
+            };
+            
+        }
+
+        console.log('this time', vm.aChannel.itOpens.time)
     };
 
     //  LOAD DATA
