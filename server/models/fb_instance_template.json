@@ -8,5 +8,13 @@
     "instance_id": "",
     "instance": "",
     "channel_id": "",
-    "channel": ""
+    "channel": "",
+    "closes": "",
+    "opens": "",
+    "loadIn": "",
+    "loadOut": "",
+    "reports": {},
+    "season_id": "",
+    "season_name": "",
+    "shifts": {}
 }

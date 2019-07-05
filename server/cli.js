@@ -1,7 +1,6 @@
 
 //	DEFINE DEPENDENCIES
-var cldb        = require('./dbScripts/db-team-checklists.js');
-var ivdb        = require('./dbScripts/db-inventory.js');
+var database    = require('./dbScripts/database.js');
 var firebase	= require('./firebase/firebase.js');
 var asprop      = require('./asprop/asprop.js'); 
 var proReport   = require('./asprop/prop-reporting.js');
@@ -13,7 +12,13 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-qckbks.test();
+database.instances.add()
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});
 
 /*wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
 .then(function success(s) {
@@ -23,8 +28,8 @@ qckbks.test();
     console.log(e);
 });*/
 
-/*firebase.push('instances/-Lik7zYUA524PsmdZyul/devices', {
-    id: "sa09gdi0bnnasb"
+/*firebase.create('forecasts', {
+    0: 1
 })
 .then(function success(s) {
     //return an affirmative status code

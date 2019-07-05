@@ -1,0 +1,26 @@
+<div>
+    <div class="container">
+        <!--If this is the instances_by_channel route, display its div-->
+        <div ng-if="vm.view">
+            
+            <div class="table" style='text-align: center'>
+                <!--Header Row-->
+                <div class="row">
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>Channel</strong></div>
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Instance</strong></div>
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Date</strong></div>
+                </div>
+
+                <!--Iterate over the instances in the channel-->
+                <div class="row" ng-repeat='instance in vm.instances'> 
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.channel_name}}</div>
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.iteration}}</div>
+                    <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.opens | date: "shortDate"}}</div>
+                </div>
+                
+            </div>
+
+            
+        </div>
+    </div>
+</div>

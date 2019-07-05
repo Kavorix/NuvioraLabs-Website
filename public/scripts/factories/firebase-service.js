@@ -20,7 +20,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     //  DEFINE METHODS
     var firebaseMod = {
         read: {
-            inventoryInstances: readInventoryInstances
+            inventoryInstances: readInventoryInstances,
+            instances: readInstances
         },
         create: {
             emailUser: create_user_email
@@ -53,6 +54,24 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             });
         });
     };
+
+    /*
+    *   READ INSTANCES
+    */
+   function readInstances() {
+    //  DECLARE LOCAL VARIABLES
+    //  NOTIFY PROGRESS
+    console.log('reading instances');
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        firebase.database().ref('/instances').once('value')
+        .then(function success(snapshot) {
+            resolve(snapshot.val());
+        }).catch(function error(e) {
+            reject(e);
+        });
+    });
+};
 
     /*
     *   EMAIL AUTHENTICATION

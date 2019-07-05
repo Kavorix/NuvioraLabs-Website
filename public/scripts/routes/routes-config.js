@@ -99,6 +99,11 @@ function config($routeProvider, $locationProvider) {
         controllerAs: 'vm'
     })
     .when('/admin', {})                                     //  TODO: This section can be sued for various admin tasks
+    .when('/admin/data/instances_by_channel', {
+        templateUrl: 'views/data_instances_by_cannel.htm',
+        controller: 'dataViewsController',
+        controllerAs: 'vm'
+    })
     .when('/admin/inventory/instance/:instanceId', {        //  TODO: add this section to update instances
         templateUrl: 'views/inventory-instance-page.htm',
         controller: 'inventoryInstancePageController',
