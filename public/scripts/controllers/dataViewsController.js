@@ -15,7 +15,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
     vm.seasonInput = false;
     vm.instancesInput = false;
     vm.aChannel = {
-        newSeason: "",
+        newSeason: { id: "", title: "" },
         seasonStart: "",
         seasonsEnd: "",
         itFrequency: "",
@@ -98,7 +98,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
-                                season: vm.aChannel.newSeason,
+                                season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
                             }
                         );
@@ -118,7 +118,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
-                                season: vm.aChannel.newSeason,
+                                season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
                             }
                         );
@@ -137,7 +137,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
-                                season: vm.aChannel.newSeason,
+                                season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
                             }
                         );
@@ -170,6 +170,24 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
 
         console.log('this time', vm.aChannel.itOpens.time)
     };
+    vm.saveSeasonId = function(value) {
+        //  DEFINE LOCAL VARIABLES
+        //  ITERATE OVER VALUES
+        Object.keys(vm.channelData.seasons).forEach(function(key) {
+            console.log(vm.channelData.seasons[key]);
+            if(vm.channelData.seasons[key].title == value) vm.aChannel.newSeason.id = vm.channelData.seasons[key].seasonId;
+        }); 
+    };
+    vm.delItPreview = function(index) {
+        //   DEFINE LOCAL VARIABLES
+        console.log(index, vm.aChannel.newInstancesPreview[index]);
+        vm.aChannel.newInstancesPreview.splice(index, 1);
+    };
+    vm.saveIterations = function(array) {
+        //  DEFINE LOCAL VARIABLES
+        //  RETURN RESPONSE
+        console.log("got this array", array);
+    }
 
     //  LOAD DATA
     switch(view) {

@@ -23,11 +23,11 @@
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Season Name:</strong>
                 <input  list="seasonSelector" 
-                        ng-model='vm.aChannel.newSeason'
+                        ng-model='vm.aChannel.newSeason.title'
                         class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
-                <button ng-click='vm.saveNewSeason(vm.aChannel.newSeason)'
+                <button ng-click='vm.saveNewSeason(vm.aChannel.newSeason.title)'
                         class="btn btn-danger col-xs-8 col-sm-8 col-md-8 col-lg-8">
                     Save
                 </button>
@@ -40,7 +40,8 @@
             <div class="row">
                 <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Name: </strong>
                 <input  list="seasonSelector" 
-                        ng-model='vm.aChannel.newSeason'
+                        ng-model='vm.aChannel.newSeason.title'
+                        ng-blur='vm.saveSeasonId(vm.aChannel.newSeason.title)'
                         class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
             </div>
             <div class="row">
@@ -78,7 +79,7 @@
             </div>  
 
             <button class="btn btn-success">Preview</button>
-            <button class="btn btn-danger">Save</button>
+            <button class="btn btn-danger" ng-click='vm.saveIterations(vm.aChannel.newInstancesPreview)'>Save</button>
 
             <div class="row" style='text-align: center'>
                 <strong><u>Preview:</u></strong>
@@ -92,14 +93,14 @@
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Close</strong></div>
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Delete</strong></div>
                 </div>
-                <div class="row" ng-repeat="instance in vm.aChannel.newInstancesPreview track by $index">
+                <div class="row" ng-repeat="instance in vm.aChannel.newInstancesPreview track by $index" style='border-top: 1px black solid;'>
                     <!--Preview Data-->
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season}}</div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season.title}}</div>
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.date | date: "shortDate"}}</div>
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{$index + 1}}</div>
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itOpens}}</div>
                     <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itCloses}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><i class="glyphicon glyphicon-remove"></i></div>
+                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-click='vm.delItPreview($index)'><i class="glyphicon glyphicon-remove"></i></div>
                 </div>
             </div>
             
