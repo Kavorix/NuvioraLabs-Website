@@ -31,7 +31,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             email: email_authentication
         },
         query: {
-            instanceAccts: queryInstanceAccts
+            instanceAccts: queryInstanceAccts,
+            instance: queryInstances
         },
         resolve: {
             instanceAccts: resolveInstanceAccts
@@ -145,7 +146,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     };
 
     /*
-    *   EMAIL AUTHENTICATION
+    *   QUERY INSTANCE ACCTS
     *   
     *   This method takes a username (email) and password, and returns a sucess or failure 
     */
@@ -157,6 +158,28 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             var instanceAccts = firebase.database().ref('inventory/accts').orderByChild('instance_id').equalTo(instanceId);
 
             instanceAccts.once("value")
+            .then(function(snapshot) {
+                resolve(snapshot.val());
+            })
+            .catch(function(e) {
+                reject(e);
+            });
+        });
+    };
+
+    /*
+    *   QUERY INSTANCES
+    *   
+    *   This method takes a username (email) and password, and returns a sucess or failure 
+    */
+    function queryInstances(channelId) {
+        //  DEFINE LOCAL VARIABLES
+        //  RETURN ASYNC WORK
+        return new Promise(function (resolve, reject) {
+
+            var instances = firebase.database().ref('instances').orderByChild('channel_id').equalTo(channelId);
+
+            instances.once("value")
             .then(function(snapshot) {
                 resolve(snapshot.val());
             })

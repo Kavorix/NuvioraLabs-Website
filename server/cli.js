@@ -17,19 +17,15 @@ var stdio       = require('./stdio/stdio.js');
 
 
 //  UPDATE FIREABES FIELDS QUICKLY
-/*
-firebase.read('channels')
-.then(function success(channels) {
-    //  iterate over the channels
-    Object.keys(channels).forEach(function(key) {
 
-        database.channels.update(key, { 
-            "seasons": {
-                0: 1
-            },
-            qbId: "",
-            sqId: "",
-            wiwId: ""
+/*firebase.read('seasons')
+.then(function success(seasons) {
+    //  iterate over the channels
+    Object.keys(seasons).forEach(function(key) {
+
+        firebase.push('channels/' + seasons[key].channelId + "/seasons", {
+            "seasonId": key,
+            "title": seasons[key].title
         })
         .then(function success(s) {
             //return an affirmative status code

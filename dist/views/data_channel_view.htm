@@ -1,7 +1,58 @@
 <div>
     <div class="container">
-        <h1>Channel View: </h1>
+        <!--Navigation-->
+        <div class="pull-left">
+            <button class='btn btn-info' ng-click='vm.navPrevious()'>< Previous</button>
+        </div>
+        <div class="pull-right">
+            <button class='btn btn-info' ng-click='vm.navNext()'>Next ></button>
+        </div>
+        <div class="clearfix"></div>
 
+        <!--Header-->
+        <h2>Channel View: {{vm.channelData.title}}</h2>
+        <h4>Type: {{vm.channelData.type}}</h4>
+        
+        <h4>Seasons</h4>
+        <!--Options-->
+        <button class='btn btn-info' ng-click="vm.seasonInput=!vm.seasonInput">Add Season</button>
+        <button class='btn btn-info'>Add Instance</button>
 
+        <!--Season Input-->
+        <div ng-if='vm.seasonInput' class='container'>
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Name: </strong>
+                <input type="text" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+            </div>
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>Start Date: </strong>
+                <input type="date" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+            </div>
+            <div class="row">
+                <strong class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>End Date: </strong>
+                <input type="date" class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+            </div>
+            
+            
+            
+        </div>
+        <!--Instance Input-->
+        <!--Table-->
+        <div class="table">
+
+            <!--Header Row-->
+            <div class="row">
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>Season</strong></div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Iteration</strong></div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Date</strong></div>
+            </div>
+
+            <!-- Data Rows-->
+            <div class="row" ng-repeat='instance in vm.instances'>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.season_name}}</div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.iteration}}</div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.opens | date: "shortDate"}}</div>
+            </div>
+        </div>
     </div>
 </div>
