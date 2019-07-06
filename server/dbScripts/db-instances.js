@@ -11,6 +11,7 @@ var firebase		= require('../firebase/firebase.js');
 //  DEFINE THE MODULE
 var dbInstances = {
     add: addInstance,
+    addList: addInstancesList,
     test: test
 };
 
@@ -18,6 +19,17 @@ var dbInstances = {
 *   ADD INSTANCE
 */
 function addInstance(data) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        resolve('resolving addInstance');
+    });
+};
+
+/*
+*   ADD INSTANCES LIST
+*/
+function addInstancesList(data) {
     //  DEFINE LOCAL VARIABLES
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {

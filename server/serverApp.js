@@ -80,6 +80,10 @@ serverApp.use('/authentication', authRoutes);
 var configRoutes = require('./routes/config');
 serverApp.use('/config', configRoutes);
 
+//	TASKS
+var taskRoutes = require('./routes/task');
+serverApp.use('/task', taskRoutes);
+
 //	WEBHOOK ROUTES
 var webhookRoutes = require('./routes/webhooks');
 serverApp.use('/webhook', webhookRoutes);

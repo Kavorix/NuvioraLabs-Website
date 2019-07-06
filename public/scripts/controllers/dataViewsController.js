@@ -2,10 +2,10 @@ angular
     .module('awesweet')
     .controller('dataViewsController', dataViewsController);
 
-	dataViewsController.$inject = ['$scope','$log', '$location', "$routeParams", 'firebaseService'];
+	dataViewsController.$inject = ['$scope','$log', '$location', "$routeParams", 'firebaseService', '$http'];
 
 /* @ngInject */
-function dataViewsController($scope, $log, $location, $routeParams, firebaseService) {
+function dataViewsController($scope, $log, $location, $routeParams, firebaseService, $http) {
 
     //  DEFINE LOCAL VARIABLES
     var view = $location.$$path.split('/')[3];
@@ -187,6 +187,17 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         //  DEFINE LOCAL VARIABLES
         //  RETURN RESPONSE
         console.log("got this array", array);
+        $http({
+            method: "POST",
+            url: "/task/addIncidenceList",
+            data: array
+        })
+        .then(function success(s) {
+            //return an affirmative status code
+            console.log(s)
+        }).catch(function error(e) {
+            console.log(e);
+        });
     }
 
     //  LOAD DATA

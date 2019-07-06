@@ -15,7 +15,8 @@ var chdb        = require('../dbScripts/db-channels.js');
 var database = {
     inventory: {},
     instances: {
-        add: addInstance
+        add: addInstance,
+        addList: addInstanceList
     },
     checklists: {},
     channels: {
@@ -33,6 +34,25 @@ function addInstance(data) {
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
         indb.add(data)
+        .then(function success(s) {
+            //return an affirmative status code
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        })
+    });
+};
+
+/*
+*   ADD INSTANCES LIST
+*
+*   This adds an instance
+*/
+function addInstanceList(data) {
+    //  DEFINE LOCAL VARIABLES
+    //  RETURN ASYNC WORK
+    return new Promise(function(resolve, reject) {
+        indb.addList(data)
         .then(function success(s) {
             //return an affirmative status code
             resolve(s);
