@@ -40,7 +40,9 @@ var firebase = {
 		range: read_range
 	},
 	update: update,
+	updateBatch: updateBatch,
 	push: push,
+	pushId: pushId,
 	del: del,
 	query: {
 		inventoryAccts: queryInventoryAccts,
@@ -220,6 +222,15 @@ function push(path, data) {
 	});	
 };
 
+/*
+*
+*/
+function pushId(path) {
+	//define local variables
+	var ref = admin.database().ref(path);
+	return ref.push().key;
+};
+
 function update(path, data) {
 	//define local variables
 	var ref = admin.database().ref(path);
@@ -239,6 +250,29 @@ function update(path, data) {
 		});
 
 	});	
+};
+
+/*
+*
+*/
+function updateBatch(updates) {
+	//define local variables
+	var db = admin.database().ref();
+
+	//	notify progress
+	console.log('processing these updates', updates);
+	
+	//	return async work
+	return new Promise(function(resolve, reject) {
+		db.update(updates, function(error) {
+			if (error) {
+			  reject("Data could not be saved." + error);
+			} else {
+			  resolve("Data saved successfully.");
+			}
+		});
+	});
+
 };
 
 /*

@@ -33,7 +33,8 @@ function addInstance(data) {
 */
 function addInstancesList(data) {
     //  DEFINE LOCAL VARIABLES
-    
+    var updates = {};
+
     //  RETURN ASYNC WORK
     return new Promise(function(resolve, reject) {
 
@@ -45,6 +46,8 @@ function addInstancesList(data) {
             var startTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
             var endTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
             
+            itModel.instance_id     = firebase.pushId('instances');
+            itModel.instance        = iteration.instance;
             itModel.start_time      = startTime.format();
             itModel.end_time        = endTime.format();
             itModel.opens           = startTime.format();
@@ -56,12 +59,20 @@ function addInstancesList(data) {
             itModel.season_id       = iteration.season.seasonId;
             itModel.season_name     = iteration.season.title;
 
-            console.log(itModel);
+            //  TO-DO: ADD MUTLI DAY SUPPORT LATER // ALTERNATE OPEN TIMES // ALTERNATE LOAD IN AND OUT TIMES
+
+            //  ADD THE INSTANCE TO THE UPDATES LIST
+            updates['/instances/' + itModel.instance_id] = itModel;
         });
-        //  MAP THE ARRAY TO THE SAVABLE OBJECT
 
         //  SAVE THE OBJECT TO THE DATABSE
-        resolve('resolving addInstance');
+        firebase.updateBatch(updates)
+        .then(function success(s) {
+            resolve(s);
+        }).catch(function error(e) {
+            reject(e);
+        });
+        //resolve('resolving addInstance');
     });
 };
 

@@ -13,8 +13,13 @@ var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
 
-
-
+firebase.del('/instances')
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});
 
 //  UPDATE FIREABES FIELDS QUICKLY
 

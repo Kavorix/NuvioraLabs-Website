@@ -98,6 +98,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
+                                instance: i + 1,
                                 channel: { channel_id: vm.channelData.id, channel_name: vm.channelData.title },
                                 season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
@@ -119,6 +120,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
+                                instance: i + 1,
                                 channel: { channel_id: vm.channelData.id, channel_name: vm.channelData.title },
                                 season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
@@ -139,6 +141,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         //save the date
                         vm.aChannel.newInstancesPreview.push(
                             { 
+                                instance: i + 1,
                                 channel: { channel_id: vm.channelData.id, channel_name: vm.channelData.title },
                                 season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
                                 date: cursorDate.format() 
