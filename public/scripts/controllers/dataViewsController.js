@@ -178,10 +178,17 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
     };
     vm.saveSeasonId = function(value) {
         //  DEFINE LOCAL VARIABLES
+        console.log('got this value', value, 'looking at this data', vm.channelData.seasons);
         //  ITERATE OVER VALUES
         Object.keys(vm.channelData.seasons).forEach(function(key) {
-            console.log(vm.channelData.seasons[key]);
-            if(vm.channelData.seasons[key].title == value) vm.aChannel.newSeason.id = vm.channelData.seasons[key].seasonId;
+            //console.log(vm.channelData.seasons[key]);
+            if(vm.channelData.seasons[key].title == value) {
+                //notify progres
+                console.log('found season id', vm.channelData.seasons[key].seasonId);
+                vm.aChannel.newSeason.id = vm.channelData.seasons[key].seasonId;
+            } else {
+                console.log('no season ID found');
+            }
         }); 
     };
     vm.delItPreview = function(index) {

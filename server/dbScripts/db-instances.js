@@ -33,6 +33,7 @@ function addInstance(data) {
 */
 function addInstancesList(data) {
     //  DEFINE LOCAL VARIABLES
+    var instance = 1;
     var updates = {};
 
     //  RETURN ASYNC WORK
@@ -47,7 +48,7 @@ function addInstancesList(data) {
             var endTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
             
             itModel.instance_id     = firebase.pushId('instances');
-            itModel.instance        = iteration.instance;
+            itModel.instance        = instance;
             itModel.start_time      = startTime.format();
             itModel.end_time        = endTime.format();
             itModel.opens           = startTime.format();
@@ -63,6 +64,9 @@ function addInstancesList(data) {
 
             //  ADD THE INSTANCE TO THE UPDATES LIST
             updates['/instances/' + itModel.instance_id] = itModel;
+
+            //  INCRIMENT THE COUNTER
+            instance++;
         });
 
         //  SAVE THE OBJECT TO THE DATABSE

@@ -49,6 +49,10 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             "channelId": chId,
             "title": value
         };
+        var channelObject = {
+            "seasonId": "",
+            "title": value
+        };
         //  NOTIFY PROGRESS
         console.log('creating a new season', seasonObject);
         //  RETURN ASYNC WORK
@@ -61,7 +65,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             // Write the new post's data simultaneously in the posts list and the user's post list.
             var updates = {};
             updates['/seasons/' + newSeasonKey] = seasonObject;
-            updates['/channels/' + chId + '/seasons/' + newChSeasonKey] = seasonObject;
+            updates['/channels/' + chId + '/seasons/' + newChSeasonKey] = { seasonId: newSeasonKey, title: value };
 
             firebase.database().ref().update(updates)
             .then(function success(s) {
