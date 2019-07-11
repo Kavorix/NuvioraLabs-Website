@@ -132,6 +132,27 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                         cursorDate = cursorDate.add(1, 'week')
                     };
                     break;
+                case "Bi-Weekly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'weeks') / 2;
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.aChannel.newInstancesPreview.push(
+                            { 
+                                instance: i + 1,
+                                channel: { channel_id: vm.channelData.id, channel_name: vm.channelData.title },
+                                season: { seasonId: vm.aChannel.newSeason.id, title: vm.aChannel.newSeason.title },
+                                date: cursorDate.format() 
+                            }
+                        );
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(2, 'week')
+                    };
+                    break;
                 case "Monthly":
                     //  DEFINE LOCAL VARIBALES
                     var iterations = endDate.diff(startDate, 'months')

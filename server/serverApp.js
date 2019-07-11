@@ -88,6 +88,10 @@ serverApp.use('/task', taskRoutes);
 var webhookRoutes = require('./routes/webhooks');
 serverApp.use('/webhook', webhookRoutes);
 
+//	INTUIT ROUTES
+var intuitRoutes = require('./routes/intuit');
+serverApp.use('/intuit', intuitRoutes);
+
 /*
 *	Running the server
 */
