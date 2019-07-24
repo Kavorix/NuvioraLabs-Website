@@ -114,6 +114,11 @@ function config($routeProvider, $locationProvider) {
         controller: 'dataViewsController',
         controllerAs: 'vm'
     })
+    .when('/admin/data/instance/:instanceId', {
+        templateUrl: 'views/instance_data_view.htm',
+        controller: 'instanceDataViewsController',
+        controllerAs: 'vm'
+    })
     .when('/admin/inventory/instance/:instanceId', {        //  TODO: add this section to update instances
         templateUrl: 'views/inventory-instance-page.htm',
         controller: 'inventoryInstancePageController',

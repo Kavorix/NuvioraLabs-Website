@@ -233,6 +233,9 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         }).catch(function error(e) {
             console.log(e);
         });
+    };
+    vm.instanceReroute = function(id) {
+        console.log('got this id', id);
     }
 
     //  LOAD DATA

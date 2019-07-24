@@ -21,20 +21,20 @@ module.exports = (function() {
         console.log('testing payment');
 
         //run the requird function
-        asprop.sqPushUpdates(req.body).then(function success(s) {
+        //asprop.sqPushUpdates(req.body).then(function success(s) {
 
             //	NOTIFY PROGRESS
-            console.log(s);
+        //    console.log(s);
             
             //return an affirmative status code
             res.sendStatus(200);
 
-        }).catch(function error(e) {
+        //}).catch(function error(e) {
 
             //return an error status code
-            res.sendStatus(550);
+        //    res.sendStatus(550);
             
-        });
+        //});
 
 
         }

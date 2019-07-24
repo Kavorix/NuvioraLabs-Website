@@ -120,7 +120,10 @@
             </div>
 
             <!-- Data Rows-->
-            <div class="row" ng-repeat='instance in vm.instances'>
+            <div    class="row" 
+                    ng-repeat='instance in vm.instances track by $index'
+                    ng-click='vm.instanceReroute(instance.instance_id)'
+                    >
                 <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.season_name}}</div>
                 <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.instance}}</div>
                 <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.opens | date: "shortDate"}}</div>
