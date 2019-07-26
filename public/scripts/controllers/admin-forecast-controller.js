@@ -15,19 +15,21 @@ function adminForecastController($scope, $log, $routeParams, $location, firebase
     vm.week = $routeParams.week;
     vm.start = weekStart(vm.year, vm.week);
     vm.end = moment(vm.start).add(6, 'd').format();
-    vm.inflows = [
-        {testing:"firest test"}
-    ];
-    vm.outflows = [
-        {testing:"firest test"}
-    ];
+    vm.inflows = {
+        "Retail": {},
+        "Wholesale": {},
+        "Online": {},
+        "Other": {},
+    };
+    vm.outflows = [];
+
     
     //  QUERY DATABASE DATA
     firebaseService.query.instancesByDate(vm.start, vm.end)
     .then(function success(s) {
         //return an affirmative status code
         console.log(s);
-        vm.inflows = s;
+        vm.inflows.Retail = s;
         $scope.$apply();
     }).catch(function error(e) {
         console.log(e);

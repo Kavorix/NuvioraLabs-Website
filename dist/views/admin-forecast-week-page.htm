@@ -37,11 +37,28 @@
         <!--Income -->
         <div class="row">
             <h3>INCOME</h3>
-            <ul>
-                <li ng-repeat='channel in vm.inflows'>
-                    {{channel}}
-                </li>
-            </ul>
+            <div class="container table">
+
+                <!--Headers-->
+                <div    class="row" 
+                        style='border-bottom: 1px solid gray; padding-bottom: 10px;'>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>CATEGORY</strong></div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>PROJECTION</strong></div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>ACTUAL</strong></div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>DIFFERENCE</strong></div>
+                </div>
+
+                <!--ROWS-->
+                <div    class="row" 
+                        style='border-bottom: 1px solid gray; margin-top: 10px; padding-bottom: 10px;'
+                        ng-repeat='(key, value) in vm.inflows'>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{key}}</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{ 0 | currency:"$":2}}</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{ 0 | currency:"$":2}}</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{ 0 | currency:"$":2}}</div>
+                </div>
+            </div>
+            
         </div>
 
         <!--Expenses-->
