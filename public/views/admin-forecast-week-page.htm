@@ -1,0 +1,58 @@
+<div>
+    <div class="container">
+        <!--Location information-->
+        <div class="row">
+            
+            <!--Year-->
+            <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <h2 class='pull-left'>{{vm.year}}</h2>
+            </div>
+            
+            <!--Info-->
+            <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: center'>
+                <h2>{{vm.start | date:'shortDate'}}
+                    -
+                    {{vm.end | date:'shortDate'}}
+                </h2>
+            </div>
+            
+            <!--Week-->
+            <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>
+                <h2 class='pull-right'>Week {{vm.week}}</h2>
+            </div>
+            
+            
+            <div class="clearfix"></div>
+            <button class="btn btn-primary pull-left" ng-click='vm.changeWeek(vm.week, -1)'>Prev</button>
+            
+            <button class="btn btn-primary pull-right" ng-click='vm.changeWeek(vm.week, 1)'>Next</button>
+        </div>
+
+         <!--Net -->
+        <div class="row">
+            <h3>NET</h3>
+
+        </div>
+        
+        <!--Income -->
+        <div class="row">
+            <h3>INCOME</h3>
+            <ul>
+                <li ng-repeat='channel in vm.inflows'>
+                    {{channel}}
+                </li>
+            </ul>
+        </div>
+
+        <!--Expenses-->
+        <div class="row">
+            <h3>EXPENSES</h3>
+            <ul>
+                <li ng-repeat='channel in vm.outflows'>
+                    {{channel}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>

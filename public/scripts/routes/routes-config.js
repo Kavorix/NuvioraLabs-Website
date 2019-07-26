@@ -124,6 +124,11 @@ function config($routeProvider, $locationProvider) {
         controller: 'inventoryInstancePageController',
         controllerAs: 'vm'
     })   
+    .when('/admin/forecasts/weekly/:year/:week', {
+        templateUrl: "views/admin-forecast-week-page.htm",
+        controller: 'adminForecastController',
+        controllerAs: 'vm'
+    })
     .when('/admin/inventory/operations', {})
     .when('/admin/inventory/templates', {})
     .when('/admin/inventory/reports', {
