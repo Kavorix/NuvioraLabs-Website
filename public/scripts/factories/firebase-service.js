@@ -33,7 +33,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         },
         query: {
             instanceAccts: queryInstanceAccts,
-            instance: queryInstances
+            instance: queryInstances,
+            instancesByDate: queryInstancesByDate
         },
         resolve: {
             instanceAccts: resolveInstanceAccts
@@ -215,6 +216,28 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         return new Promise(function (resolve, reject) {
 
             var instances = firebase.database().ref('instances').orderByChild('channel_id').equalTo(channelId);
+
+            instances.once("value")
+            .then(function(snapshot) {
+                resolve(snapshot.val());
+            })
+            .catch(function(e) {
+                reject(e);
+            });
+        });
+    };
+
+    /*
+    *   QUERY INSTANCES BT DATE
+    *   
+    *   This method takes a start date and end ate
+    */
+    function queryInstancesByDate(startDate, endDate) {
+        //  DEFINE LOCAL VARIABLES
+        //  RETURN ASYNC WORK
+        return new Promise(function (resolve, reject) {
+
+            var instances = firebase.database().ref('instances').orderByChild('opens').startAt(startDate).endAt(endDate);
 
             instances.once("value")
             .then(function(snapshot) {

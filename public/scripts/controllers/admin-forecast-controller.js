@@ -2,10 +2,10 @@ angular
     .module('awesweet')
     .controller('adminForecastController', adminForecastController);
 
-	adminForecastController.$inject = ['$scope','$log', '$routeParams', '$location'];
+	adminForecastController.$inject = ['$scope','$log', '$routeParams', '$location', 'firebaseService'];
 
 /* @ngInject */
-function adminForecastController($scope, $log, $routeParams, $location) {
+function adminForecastController($scope, $log, $routeParams, $location, firebaseService) {
 
 	//define view model variable
     var vm = this;
@@ -21,11 +21,24 @@ function adminForecastController($scope, $log, $routeParams, $location) {
     vm.outflows = [
         {testing:"firest test"}
     ];
+    
+    //  QUERY DATABASE DATA
+    firebaseService.query.instancesByDate(vm.start, vm.end)
+    .then(function success(s) {
+        //return an affirmative status code
+        console.log(s);
+        vm.inflows = s;
+        $scope.$apply();
+    }).catch(function error(e) {
+        console.log(e);
+    });
+    
+    
 
     //  VIEW MODEL FUNCTIONS
     vm.changeWeek =function(currentWeek, change) {
         var newWeek = parseInt(currentWeek) + parseInt(change);
-        console.log('new week', newWeek);
+        //console.log('new week', newWeek);
         if(newWeek < 53 && newWeek > 0) $location.path('admin/forecasts/weekly/' + vm.year + '/'+ newWeek)
         else console.log('problem');
     };
@@ -44,7 +57,7 @@ function adminForecastController($scope, $log, $routeParams, $location) {
         var startMonday = calStart.add(additionalWeeks, 'w');
 
         //  NOTIFY PROGRESS
-        console.log("adding", additionalWeeks, "weeks", startMonday.format());
+        //console.log("adding", additionalWeeks, "weeks", startMonday.format());
 
         return startMonday.format();
     };
