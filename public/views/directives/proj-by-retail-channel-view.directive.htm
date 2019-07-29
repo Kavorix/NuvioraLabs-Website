@@ -1,0 +1,31 @@
+<div>
+    <u><strong>Revenue Streams by Channel:</strong> </u>
+    <div class="container" style='text-align: center'>
+        <!--Headers-->
+        <div    class="row" 
+                style='border: 1px solid gray; background-color: gray; color: white;'>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>DATE</strong></div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>CHANEL</strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>SEASON</strong></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>#</strong></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>HRLY</strong></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>L WK</strong></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>L YR</strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>PROJ</strong></div>
+        </div>
+
+        <!--Data-->
+        <div    class="row"
+                ng-repeat='(key, value) in vm.channelsList'
+                style='border: 1px solid gray'>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{value.opens | date:"shortDate"}}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{value.channel_name}} </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{value.season_name}} </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{value.instance}} </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"> </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+</div>

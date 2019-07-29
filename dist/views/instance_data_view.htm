@@ -1,3 +1,76 @@
 <div>
-    Tbis is the instace data view
+    <div class="container">
+
+        <!--Header row-->
+        <div class="row">
+            <h2>
+                <a ng-href="#/admin/data/channel/{{vm.instance.channel_id}}">{{vm.instance.channel_name}}</a>
+                ({{vm.instance.season_name}} - {{vm.instance.instance}})
+            </h2>
+        </div>
+
+        <!--Square Parameters-->
+        <div class="row">
+            <h4>Square Parameters</h4>
+            
+            <div class="container">
+                <!--Start & End-->
+                <div class="row">
+                    <!--Date/Times-->
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        Date:
+                        <input type="date" ng-model='vm.formatted.date'>
+                        Start:
+                        <input type="text" ng-model='vm.formatted.start.h' style='width: 30px;'>:
+                        <input type="text" ng-model='vm.formatted.start.m' style='width: 30px;'>
+                        <select name="" id="">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                        End:
+                        <input type="text" ng-model='vm.formatted.end.h' style='width: 30px;'>:
+                        <input type="text" ng-model='vm.formatted.end.m' style='width: 30px;'>
+                        <select name="" id="">
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </div>
+                    <!--Users/Devices-->
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!--Employees-->
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Employees:</h4>
+                            <ul style='list-style: none;'>
+                                <li ng-repeat="(key, value) in vm.employeeList">
+                                    <input type="checkbox" > {{value}}
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Devices-->
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            <h4>Devices:</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--Square Sales-->
+        <div class="row">
+            <h4>Square Results</h4>
+            <div class="container">
+                <!--Sales-->
+                <div class="row">
+                    Gross Sales: 
+                </div>
+            </div>
+            <button class="btn btn-success"
+                    ng-click="vm.saveSalesNumbers(vm.instance.financials)">
+                SAVE
+            </button>
+        </div>
+
+        <!---->
+    </div>
 </div>

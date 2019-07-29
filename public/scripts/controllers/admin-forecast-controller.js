@@ -11,31 +11,22 @@ function adminForecastController($scope, $log, $routeParams, $location, firebase
     var vm = this;
     
     //  DEFINE VIEW MODEL
+    vm.state = {
+        incomeRowDetails: { "Retail": false, "Wholesale": false, "Online": false, "Other": false }
+    }
     vm.year = $routeParams.year;
     vm.week = $routeParams.week;
     vm.start = weekStart(vm.year, vm.week);
     vm.end = moment(vm.start).add(6, 'd').format();
     vm.inflows = {
-        "Retail": {},
+        "Retail": {
+            'projection': 5
+        },
         "Wholesale": {},
         "Online": {},
         "Other": {},
     };
     vm.outflows = [];
-
-    
-    //  QUERY DATABASE DATA
-    firebaseService.query.instancesByDate(vm.start, vm.end)
-    .then(function success(s) {
-        //return an affirmative status code
-        console.log(s);
-        vm.inflows.Retail = s;
-        $scope.$apply();
-    }).catch(function error(e) {
-        console.log(e);
-    });
-    
-    
 
     //  VIEW MODEL FUNCTIONS
     vm.changeWeek =function(currentWeek, change) {
@@ -64,7 +55,7 @@ function adminForecastController($scope, $log, $routeParams, $location, firebase
         return startMonday.format();
     };
 
-	$log.info('in the adminForecastController', $routeParams, vm.start);	    //  TODO: TAKE THIS OUT LATER
+	//$log.info('in the adminForecastController', $routeParams, vm.start);	    //  TODO: TAKE THIS OUT LATER
 
 
 }

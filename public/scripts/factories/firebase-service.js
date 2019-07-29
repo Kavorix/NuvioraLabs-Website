@@ -22,7 +22,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         read: {
             inventoryInstances: readInventoryInstances,
             instances: readInstances,
-            channels: readChannels
+            channels: readChannels,
+            anInstance: readAnInstance
         },
         create: {
             emailUser: create_user_email,
@@ -35,6 +36,9 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             instanceAccts: queryInstanceAccts,
             instance: queryInstances,
             instancesByDate: queryInstancesByDate
+        },
+        update: {
+           record: updateRecord 
         },
         resolve: {
             instanceAccts: resolveInstanceAccts
@@ -78,6 +82,24 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     };
 
     /*
+    *
+    */
+    function updateRecord(updates) {
+        //  DEFINE LOCAL VARAIBLES
+        //  NOTIFY PROGRESS
+        console.log('reading inventory instances');
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+            firebase.database().ref().update(updates)
+            .then(function success(snapshot) {
+                resolve(snapshot);
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });        
+    }
+
+    /*
     *   READ INVENTORY INSTANCES
     */
     function readInventoryInstances() {
@@ -94,6 +116,26 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             });
         });
     };
+
+    /*
+    *   READ AN INSTANCE
+    */
+    function readAnInstance(instanceId) {
+        //  DECLARE LOCAL VARIABLES
+        var readPath = '/instances/' + instanceId;
+
+        //  NOTIFY PROGRESS
+        console.log('reading an instance');
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+            firebase.database().ref(readPath).once('value')
+            .then(function success(snapshot) {
+                resolve(snapshot.val());
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });     
+    }
 
     /*
     *   READ INSTANCES
@@ -208,7 +250,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     /*
     *   QUERY INSTANCES
     *   
-    *   This method takes a username (email) and password, and returns a sucess or failure 
+    *   This method takes 
     */
     function queryInstances(channelId) {
         //  DEFINE LOCAL VARIABLES
