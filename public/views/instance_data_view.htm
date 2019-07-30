@@ -73,4 +73,9 @@
 
         <!---->
     </div>
+    <ul>
+        <li ng-repeat='tx in vm.transactions'>
+            {{tx.created_at | date:"shortTime"}}
+        </li>
+    </ul>
 </div>

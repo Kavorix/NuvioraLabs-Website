@@ -2,18 +2,19 @@ angular
     .module('awesweet')
     .controller('instanceDataViewsController', instanceDataViewsController);
 
-	instanceDataViewsController.$inject = ['$scope','$log', '$routeParams', 'firebaseService'];
+	instanceDataViewsController.$inject = ['$scope','$log', '$routeParams', 'firebaseService', 'squareService'];
 
 /* @ngInject */
-function instanceDataViewsController($scope, $log, $routeParams, firebaseService) {
+function instanceDataViewsController($scope, $log, $routeParams, firebaseService, squareService) {
 
 	//	DEFINE LOCAL VARIALES
 	var vm = this;
 	var instanceId = $routeParams.instanceId;
 
 	//	DEFINE VIEW MODEL VARIABLES
+	vm.sqEmployeeList = squareService.employeeList;
 
-	//	RUN FUNCTIONS
+	//	COLLECT INSTANCE DATA
 	firebaseService.read.anInstance(instanceId)
 	.then(function success(s) {
 		vm.instance = s;
@@ -28,15 +29,25 @@ function instanceDataViewsController($scope, $log, $routeParams, firebaseService
 				m:((vm.instance.end_time.split('T')[1]).split('-')[0]).split(":")[1],
 			}
 		};
+		loadTransactions(vm.instance.start_time, vm.instance.end_time);
 		$scope.$apply();
 	}).catch(function error(e) {
 		console.log(e);
 	});
 
-	vm.employeeList ={
-		"one": "Ian",
-		"two": "Steve"
-	};
+	//	COLLECT TRANSACTION DATA
+	function loadTransactions(start, end) {
+		squareService.list.transactions(start, end)
+		.then(function success(s) {
+			vm.transactions = s.data;
+			console.log('got these transactions');
+			console.log(vm.transactions);
+			$scope.$apply();
+			
+		}).catch(function error(e) {
+			console.log(e);
+		});
+	}
 
 	//	VIEW MODEL FUNCTIONS
 	vm.saveSalesNumbers = function(financials) {
@@ -57,7 +68,7 @@ function instanceDataViewsController($scope, $log, $routeParams, firebaseService
 		}).catch(function error(e) {
 			console.log(e);
 		});
-	}
+	};
 
 	//	NOTIFY PROGRESS
 	$log.info('in the instance Data Views controller');	    //  TODO: TAKE THIS OUT LATER

@@ -18,7 +18,8 @@ var squarv1 = {
 	listCategories: listCategories,
 	listModifiers: listModifiers,
 	retrievePayment: retrievePayment,
-	listEmployees: listEmployees
+	listEmployees: listEmployees,
+	listTransactions: listTransactions
 };
 
 function listModifiers(locationId) {
@@ -137,6 +138,50 @@ function listEmployees() {
 
 	});
 	
+};
+
+function listTransactions(locationId, start, end, cursor) {
+	//	DECLARE LOCAL VARIABLES
+	var transactionlist = [];
+	var apiInstance = new SquareConnect.TransactionsApi();
+	var opts = { 
+		'beginTime': start, // String | The beginning of the requested reporting period, in RFC 3339 format.  See [Date ranges](#dateranges) for details on date inclusivity/exclusivity.  Default value: The current time minus one year.
+		'endTime': end, // String | The end of the requested reporting period, in RFC 3339 format.  See [Date ranges](#dateranges) for details on date inclusivity/exclusivity.  Default value: The current time.
+		//'sortOrder': "sortOrder_example", // String | The order in which results are listed in the response (`ASC` for oldest first, `DESC` for newest first).  Default value: `DESC`
+		'cursor': cursor // String | A pagination cursor returned by a previous call to this endpoint. Provide this to retrieve the next set of results for your original query.  See [Pagination](/basics/api101/pagination) for more information.
+	};
+	
+	//	return async work
+	return new Promise(function(resolve, reject) {
+		apiInstance.listTransactions(locationId, opts).then(function(data) {
+			console.log('looking for cursor', data.cursor);
+			//	CHECK FOR PAGINATION
+			if(data.cursor != undefined) {
+				listTransactions(locationId, start, end, data.cursor)
+				.then(function success(s) {
+					//iterate over list
+					data.transactions.forEach(function(tx) {
+						s.push(tx);
+					});
+					resolve(s);
+				}).catch(function error(e) {
+					console.log(e);
+				});
+			} else {
+				console.log('got to the bottom of the list');
+				//iterate over list
+				data.transactions.forEach(function(tx) {
+					transactionlist.push(tx);
+				});
+				resolve(transactionlist);
+			}
+			//console.log('API called successfully. Returned data: ' + data);
+			//resolve(data);
+		}, function(error) {
+			reject(error);
+		});
+	});
+
 };
 
 //  RETURN THE MODULE
