@@ -9,12 +9,12 @@ module.exports = (function() {
     var squareV1    = require('../square/square_V1.js');
 
    //	GET: /square/listTransations
-   square.get('/listTransactions', function(req, res) {
+   square.get('/listPayments', function(req, res) {
         
         //advise of the post body
         console.log('got this /square request', req.query);
 
-        squareV1.listTransactions(req.query.location, req.query.start, req.query.end)
+        squareV1.listPayments(req.query.location, 'desc', req.query.start, req.query.end)
         .then(function success(s) {
             res.status(200);
             res.send(s);

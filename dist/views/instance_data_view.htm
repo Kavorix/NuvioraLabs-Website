@@ -73,9 +73,29 @@
 
         <!---->
     </div>
-    <ul>
-        <li ng-repeat='tx in vm.transactions'>
-            {{tx.created_at | date:"shortTime"}}
-        </li>
-    </ul>
+
+    <div class="container">
+        <div class="row">
+            <h4>Transactions</h4>
+        </div>
+        <!--Table header-->
+        <div class="row">
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Time</strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Amount</strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+        </div>
+        <!--Table Data-->
+        <div class="row" ng-repeat='tx in vm.transactions track by $index'>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{$index + 1}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.created_at | date:"shortTime"}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.tenders[0].amount_money.amount / 100 | currency:"$"}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.tenders[0].type}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+
 </div>

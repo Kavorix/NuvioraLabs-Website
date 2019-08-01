@@ -48,7 +48,7 @@ function squareService($http) {
         return new Promise(function(resolve, reject) {
             $http({
                 method: "GET",
-                url: "/square/listTransactions?location=M53KQT35YKE5C&start=" + start + "&end=" + end
+                url: "/square/listPayments?location=M53KQT35YKE5C&start=" + start + "&end=" + end
             })
             .then(function success(s) {
                 //return an affirmative status code

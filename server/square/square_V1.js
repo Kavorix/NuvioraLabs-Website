@@ -19,7 +19,8 @@ var squarv1 = {
 	listModifiers: listModifiers,
 	retrievePayment: retrievePayment,
 	listEmployees: listEmployees,
-	listTransactions: listTransactions
+	listTransactions: listTransactions,
+	listPayments: listPayments
 };
 
 function listModifiers(locationId) {
@@ -140,6 +141,11 @@ function listEmployees() {
 	
 };
 
+/*
+*	LIST TRANSACTIONS
+* 	
+*	This provides a limited colection of transactions that focus on amount, time, and type of payment, not who collected it or what the item was
+*/
 function listTransactions(locationId, start, end, cursor) {
 	//	DECLARE LOCAL VARIABLES
 	var transactionlist = [];
@@ -154,25 +160,25 @@ function listTransactions(locationId, start, end, cursor) {
 	//	return async work
 	return new Promise(function(resolve, reject) {
 		apiInstance.listTransactions(locationId, opts).then(function(data) {
-			console.log('looking for cursor', data.cursor);
 			//	CHECK FOR PAGINATION
 			if(data.cursor != undefined) {
 				listTransactions(locationId, start, end, data.cursor)
 				.then(function success(s) {
 					//iterate over list
-					data.transactions.forEach(function(tx) {
-						s.push(tx);
-					});
+					for(var i = data.transactions.length -1; i >= 0; i--) {
+						s.push(data.transactions[i]);
+					}
+					
 					resolve(s);
 				}).catch(function error(e) {
 					console.log(e);
 				});
 			} else {
-				console.log('got to the bottom of the list');
+				
 				//iterate over list
-				data.transactions.forEach(function(tx) {
-					transactionlist.push(tx);
-				});
+				for(var i = data.transactions.length -1; i >= 0; i--) {
+					transactionlist.push(data.transactions[i]);
+				}
 				resolve(transactionlist);
 			}
 			//console.log('API called successfully. Returned data: ' + data);
@@ -183,6 +189,65 @@ function listTransactions(locationId, start, end, cursor) {
 	});
 
 };
+
+/*
+*	LIST PAYMENTS
+*/
+function listPayments(locationId, order, beginTime, endTime, batchToken) {
+	//	DECLARE LOCAL VARIABLES
+	var transactionlist = [];
+	var apiInstance = new SquareConnect.V1TransactionsApi();
+	var opts = { 
+		'order': order, // String | The order in which payments are listed in the response.
+		'beginTime': beginTime, // String | The beginning of the requested reporting period, in ISO 8601 format. If this value is before January 1, 2013 (2013-01-01T00:00:00Z), this endpoint returns an error. Default value: The current time minus one year.
+		'endTime': endTime, // String | The end of the requested reporting period, in ISO 8601 format. If this value is more than one year greater than begin_time, this endpoint returns an error. Default value: The current time.
+		//'limit': 56, // Number | The maximum number of payments to return in a single response. This value cannot exceed 200.
+		'batchToken': batchToken, // String | A pagination cursor to retrieve the next set of results for your original query to the endpoint.
+		'includePartial': true // Boolean | Indicates whether or not to include partial payments in the response. Partial payments will have the tenders collected so far, but the itemizations will be empty until the payment is completed.
+	};
+	//console.log('getting payments')
+
+	//	return async work
+	return new Promise(function(resolve, reject) {
+		apiInstance.listPaymentsWithHttpInfo(locationId, opts).then(function(data) {
+			//resolve(data.response.links);
+			//console.log('batch token', data.response.links.net);
+			//	CHECK FOR PAGINATION
+			if(data.response.links.next != undefined) {
+				var nextLink = data.response.links.next;
+				var splitpath = 'https://connect.squareup.com/v1/' + locationId + '/payments?batch_token='
+				var rawToken = nextLink.split(splitpath);
+				var isolateToken = rawToken[1].split('&begin_time');
+				var batch_token = isolateToken[0];
+
+				console.log('got this token', batch_token);
+
+				listPayments(locationId, order, beginTime, endTime, batch_token)
+				.then(function success(s) {
+					//iterate over list
+					for(var i = data.data.length -1; i >= 0; i--) {
+						s.push(data.data[i]);
+					}
+					
+					resolve(s);
+				}).catch(function error(e) {
+					console.log(e);
+				});
+			} else {
+				console.log('got to the end of the list');
+				//iterate over list
+				for(var i = data.data.length -1; i >= 0; i--) {
+					transactionlist.push(data.data[i]);
+				}
+				resolve(transactionlist);
+			}
+			//console.log('API called successfully. Returned data: ' + data);
+			//resolve(data);
+		}, function(error) {
+			reject(error);
+		});
+	});
+}
 
 //  RETURN THE MODULE
 module.exports = squarv1;
