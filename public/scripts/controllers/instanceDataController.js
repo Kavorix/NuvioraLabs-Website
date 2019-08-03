@@ -49,17 +49,39 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 			discounts: 0,
 			net: 0,
 			tips: 0,
-			total: 0
+			total: 0,
+			totalCollected: 0,
+			cash: 0,
+			card: 0,
+			other: 0,
+			fees: 0,
+			payNet: 0
 		};
 
 		//iterate over transactions
 		txs.forEach(function(tx) {
+			//	SUM UP THE EASY NUMBERS
 			returnSum.gross 	+= tx.gross_sales_money.amount;
 			returnSum.returns 	+= tx.refunded_money.amount;
 			returnSum.discounts += tx.discount_money.amount;
 			returnSum.net 		+= tx.net_sales_money.amount;
 			returnSum.tips	 	+= tx.tip_money.amount;
 			returnSum.total 	+= tx.total_collected_money.amount;
+			returnSum.fees 		+= tx.processing_fee_money.amount;
+			returnSum.payNet	+= tx.net_total_money.amount;
+
+			//	ITERATE OVER TENDER
+			tx.tender.forEach(function(payment) {
+				// ALWAYS INCRIMENT TOTAL
+				returnSum.totalCollected 								+= payment.total_money.amount
+
+				//	INCRIMENT APPROPRIATE CATEGORY
+				if(payment.type == "CREDIT_CARD")  	returnSum.card	 	+= payment.total_money.amount
+				else if(payment.type == "CASH") 	returnSum.cash	 	+= payment.total_money.amount
+				else if(payment.type == "OTHER") 	returnSum.other	 	+= payment.total_money.amount	
+
+
+			});
 		});
 
 		console.log(returnSum);
@@ -183,18 +205,27 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 
 		//	ITERATE OVER TRANSACTIONS
 		Object.keys(allTxs).forEach(function(key){
-			console.log(activeEmployees[allTxs[key].tender[0].employee_id])
+			//console.log(activeEmployees[allTxs[key].tender[0].employee_id])
 			if(activeEmployees[allTxs[key].tender[0].employee_id]) vm.activeTxs.push(allTxs[key]);
 		});
 
 		var allSums = sumTransactions(vm.activeTxs);
 
+		//	sales values
 		vm.instance.summary.sales[0].reported = allSums.gross;		// Gross Sales
 		vm.instance.summary.sales[1].reported = allSums.returns;	// Refunds
 		vm.instance.summary.sales[2].reported = allSums.discounts;	// discountds
 		vm.instance.summary.sales[3].reported = allSums.net;		// net
 		vm.instance.summary.sales[4].reported = allSums.tips;		// tips
 		vm.instance.summary.sales[5].reported = allSums.total;		// total
+
+		//	PAYMENT VALUES
+		vm.instance.summary.payments[0].reported = allSums.totalCollected;		// totalcollected
+		vm.instance.summary.payments[1].reported = allSums.cash;				// CASH
+		vm.instance.summary.payments[2].reported = allSums.card;				// CRDIT
+		vm.instance.summary.payments[3].reported = allSums.other;				// OTHER
+		vm.instance.summary.payments[4].reported = allSums.fees;				// FEES
+		vm.instance.summary.payments[5].reported = allSums.payNet;				// netPay
 
 		//vm.devicesList = identifyDevices(allTxs);
 		//vm.employeeList = idnetifyEmployees(allTxs);
