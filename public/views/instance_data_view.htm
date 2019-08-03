@@ -166,8 +166,8 @@
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{$index + 1}}</div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.created_at | date:"shortTime"}}</div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.gross_sales_money.amount / 100 | currency:"$"}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.tip_money.amount / 100 | currency:"$"}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.total_collected_money.amount / 100 | currency:"$"}}</div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
         </div>
     </div>

@@ -43,16 +43,31 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 	*/
 	function sumTransactions(txs) {
 		//	DEFINE LOCAL VARAIABLES
-		var returnSum = 0;
+		var returnSum = {
+			gross: 0,
+			returns: 0,
+			discounts: 0,
+			net: 0,
+			tips: 0,
+			total: 0
+		};
 
 		//iterate over transactions
 		txs.forEach(function(tx) {
-			returnSum += tx.gross_sales_money.amount;
+			returnSum.gross 	+= tx.gross_sales_money.amount;
+			returnSum.returns 	+= tx.refunded_money.amount;
+			returnSum.discounts += tx.discount_money.amount;
+			returnSum.net 		+= tx.net_sales_money.amount;
+			returnSum.tips	 	+= tx.tip_money.amount;
+			returnSum.total 	+= tx.total_collected_money.amount;
 		});
+
+		console.log(returnSum);
 
 		//	RETURN VALUES
 		return returnSum;
 	};
+
 	
 	/*
 	*
@@ -172,7 +187,15 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 			if(activeEmployees[allTxs[key].tender[0].employee_id]) vm.activeTxs.push(allTxs[key]);
 		});
 
-		vm.instance.summary.sales[0].reported = sumTransactions(vm.activeTxs);
+		var allSums = sumTransactions(vm.activeTxs);
+
+		vm.instance.summary.sales[0].reported = allSums.gross;		// Gross Sales
+		vm.instance.summary.sales[1].reported = allSums.returns;	// Refunds
+		vm.instance.summary.sales[2].reported = allSums.discounts;	// discountds
+		vm.instance.summary.sales[3].reported = allSums.net;		// net
+		vm.instance.summary.sales[4].reported = allSums.tips;		// tips
+		vm.instance.summary.sales[5].reported = allSums.total;		// total
+
 		//vm.devicesList = identifyDevices(allTxs);
 		//vm.employeeList = idnetifyEmployees(allTxs);
 
