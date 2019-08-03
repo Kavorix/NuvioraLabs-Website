@@ -2,34 +2,42 @@ angular
     .module('awesweet')
     .controller('instanceDataViewsController', instanceDataViewsController);
 
-	instanceDataViewsController.$inject = ['$scope','$log', '$routeParams', 'firebaseService', 'instanceData','sqEmployeeList','squareService'];
+	instanceDataViewsController.$inject = ['$scope','$log', 'firebaseService', 'instanceData','sqEmployeeList','squareService'];
 
 /* @ngInject */
-function instanceDataViewsController($scope, $log, $routeParams, firebaseService, instanceData, sqEmployeeList, squareService) {
+function instanceDataViewsController($scope, $log, firebaseService, instanceData, sqEmployeeList, squareService) {
 
 	//	DEFINE LOCAL VARIALES
 	var vm = this;
-	var instanceId = $routeParams.instanceId;
 
 	//	DEFINE VIEW MODEL VARIABLES
 	vm.instance = instanceData;
 	vm.sqEmployeeList = sqEmployeeList;
-	vm.formatted = {
-		date: new Date(vm.instance.start_time.split('T')[0]),
-		start: {
-			h: ((vm.instance.start_time.split('T')[1]).split('-')[0]).split(":")[0],
-			m: ((vm.instance.start_time.split('T')[1]).split('-')[0]).split(":")[1]
-		},
-		end: {
-			h:((vm.instance.end_time.split('T')[1]).split('-')[0]).split(":")[0],
-			m:((vm.instance.end_time.split('T')[1]).split('-')[0]).split(":")[1],
-		}
-	};
+	vm.formattedDateTime = formatDateTime(instanceData);
+
 
 	//	RUN FUNCTIONS
-	loadTransactions(vm.instance.start_time, vm.instance.end_time);
+	loadTransactions(vm.instance.start_time, vm.instance.end_time, vm.instance.txFilters);
 	
 	//	DEFINE LOCAL FUNCTIONS
+	/*
+	*	FORMAT DATE TIME
+	*/
+	function formatDateTime(instance) {
+		//	DEFINE LOCAL VARIABLES
+		return {
+			date: new Date(instance.start_time.split('T')[0]),
+			start: {
+				h: ((instance.start_time.split('T')[1]).split('-')[0]).split(":")[0],
+				m: ((instance.start_time.split('T')[1]).split('-')[0]).split(":")[1]
+			},
+			end: {
+				h:((instance.end_time.split('T')[1]).split('-')[0]).split(":")[0],
+				m:((instance.end_time.split('T')[1]).split('-')[0]).split(":")[1],
+			}
+		};
+	};
+	
 	/*
 	*	SUM TRANSACTIONS 
 	*/
@@ -98,25 +106,27 @@ function instanceDataViewsController($scope, $log, $routeParams, firebaseService
 	/*
 	*	LOAD TRANSACTIONS
 	*/	
-	function loadTransactions(start, end) {
+	function loadTransactions(start, end, txFilters) {
 		squareService.list.transactions(start, end)
 		.then(function success(s) {
 			//	ASSIGN VALUES
 			vm.transactions = s.data;
-			vm.txsSum = sumTransactions(s.data);
-			vm.devicesList = identifyDevices(s.data);
-			vm.employeeList = idnetifyEmployees(s.data);
 			
+			//	FILTER TRANSACTIONS
+			vm.filterTransactions(s.data, vm.instance.summary.filters);
+
+			//	NOTIFY PROGRESS
 			console.log('got these transactions', vm.transactions);
-			
-			$scope.$apply();
 			
 		}).catch(function error(e) {
 			console.log(e);
 		});
-	}
+	};
 
 	//	VIEW MODEL FUNCTIONS
+	/*
+	*	SAVE SALES NUMBERS
+	*/
 	vm.saveSalesNumbers = function(financials) {
 		//	DEFINE LOCAL VARIABLES
 		var updates = {};
@@ -136,9 +146,45 @@ function instanceDataViewsController($scope, $log, $routeParams, firebaseService
 			console.log(e);
 		});
 	};
+	
+	/*
+	*	FILTER TRANSACTIONS
+	*/
+	vm.filterTransactions = function(allTxs, filters) {
+		//	DEFINE LOCAL VARIABLES
+		var activeEmployees = {};
+		var activeDevices = {};
+		vm.activeTxs = [];
+
+		//	ITERATE OVER EMPLOYEES
+		Object.keys(filters.employees).forEach(function(key) {
+			if(filters.employees[key].active) activeEmployees[key] = true;
+		});
+
+		//	ITERATE OVER DEVICE
+		Object.keys(filters.devices).forEach(function(key) {
+			if(filters.devices[key].active) activeDevices[key] = true;
+		});
+
+		//	ITERATE OVER TRANSACTIONS
+		Object.keys(allTxs).forEach(function(key){
+			console.log(activeEmployees[allTxs[key].tender[0].employee_id])
+			if(activeEmployees[allTxs[key].tender[0].employee_id]) vm.activeTxs.push(allTxs[key]);
+		});
+
+		vm.instance.summary.sales[0].reported = sumTransactions(vm.activeTxs);
+		//vm.devicesList = identifyDevices(allTxs);
+		//vm.employeeList = idnetifyEmployees(allTxs);
+
+		//	APPLY UPDATES
+		$scope.$apply();
+
+		//	RETURN TRANSACTIONS
+		return allTxs;
+	};
 
 	//	NOTIFY PROGRESS
-	$log.info('in the instance Data Views controller');	    //  TODO: TAKE THIS OUT LATER
+	//$log.info('in the instance Data Views controller');	    //  TODO: TAKE THIS OUT LATER
 
 
-}
+};

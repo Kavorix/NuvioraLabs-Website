@@ -78,19 +78,6 @@ function squareService($http) {
         });
     }; 
 
-    //  RUN FUNCTIONS
-    listEmployees()
-    .then(function success(s) {
-        //  SAVE LIST
-        squareService.employeeList = s;
-
-        //  NOTIFY PROGRESS
-        console.log('got the employee list', s);
-        
-    }).catch(function error(e) {
-        console.log(e);
-    });
-
 	//turn the method
     return squareService;	
 };
