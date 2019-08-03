@@ -117,7 +117,15 @@ function config($routeProvider, $locationProvider) {
     .when('/admin/data/instance/:instanceId', {
         templateUrl: 'views/instance_data_view.htm',
         controller: 'instanceDataViewsController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            sqEmployeeList: function(squareService) {
+                return squareService.list.employees()
+            },
+            instanceData: function(firebaseService, $route) {
+                return firebaseService.read.anInstance($route.current.params.instanceId)
+            }
+        }
     })
     .when('/admin/inventory/instance/:instanceId', {        //  TODO: add this section to update instances
         templateUrl: 'views/inventory-instance-page.htm',

@@ -42,13 +42,18 @@
                             <h4>Employees:</h4>
                             <ul style='list-style: none;'>
                                 <li ng-repeat="(key, value) in vm.employeeList">
-                                    <input type="checkbox" > {{value}}
+                                    <input type="checkbox" > {{vm.sqEmployeeList[key].first_name}} {{vm.sqEmployeeList[key].last_name}}
                                 </li>
                             </ul>
                         </div>
                         <!--Devices-->
                         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                             <h4>Devices:</h4>
+                            <ul style='list-style: none;'>
+                                <li ng-repeat="(key, value) in vm.devicesList">
+                                    <input type="checkbox" > {{value}}
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -74,6 +79,17 @@
         <!---->
     </div>
 
+    <!--Sums-->
+    <div class="container">
+        <div class="row">
+            <h4>Sums</h4>
+        </div>
+        <div class="row">
+            <strong>Gross:</strong> {{vm.txsSum / 100 | currency:'$'}}
+        </div>
+    </div>
+
+    <!--Transactions-->
     <div class="container">
         <div class="row">
             <h4>Transactions</h4>
@@ -91,8 +107,8 @@
         <div class="row" ng-repeat='tx in vm.transactions track by $index'>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{$index + 1}}</div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.created_at | date:"shortTime"}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.tenders[0].amount_money.amount / 100 | currency:"$"}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.tenders[0].type}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.gross_sales_money.amount / 100 | currency:"$"}}</div>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
         </div>

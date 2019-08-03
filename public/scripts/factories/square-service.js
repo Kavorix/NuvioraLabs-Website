@@ -19,10 +19,26 @@ function squareService($http) {
 	//define methods
 	var squareService = {
         employeeList: {},
+        _format: {
+            employeeList: _formatEmployeeList
+        },
         list: {
             employees: listEmployees,
             transactions: listTransactions
         }
+    };
+
+    function _formatEmployeeList(sqEmpList) {
+        //  DEFINE LOCAL VARIABLES
+        var formattedCollection = {};
+
+        //  ITERATE OVER LIST
+        sqEmpList.forEach(function(employee) {
+            formattedCollection[employee.id] = employee;
+        });
+
+        //  RETURN VALUES
+        return formattedCollection;
     };
 
     function listEmployees() {
@@ -34,8 +50,11 @@ function squareService($http) {
                 url: "/square/listEmployees"
             })
             .then(function success(s) {
+                //  FORMAT LIST
+                var returnData = _formatEmployeeList(s.data);
+
                 //return an affirmative status code
-                resolve(s.data);
+                resolve(returnData);
             }).catch(function error(e) {
                 reject(e);
             });
@@ -62,9 +81,12 @@ function squareService($http) {
     //  RUN FUNCTIONS
     listEmployees()
     .then(function success(s) {
-        console.log('got the employee list', s);
-        //console.log(this);
+        //  SAVE LIST
         squareService.employeeList = s;
+
+        //  NOTIFY PROGRESS
+        console.log('got the employee list', s);
+        
     }).catch(function error(e) {
         console.log(e);
     });
