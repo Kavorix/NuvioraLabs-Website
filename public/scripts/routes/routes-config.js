@@ -119,9 +119,6 @@ function config($routeProvider, $locationProvider) {
         controller: 'instanceDataViewsController',
         controllerAs: 'vm',
         resolve: { /* @ngInject */
-            sqEmployeeList: function(squareService) {
-                return squareService.list.employees()
-            },
             instanceData: function(firebaseService, $route) {
                 return firebaseService.read.anInstance($route.current.params.instanceId)
             }

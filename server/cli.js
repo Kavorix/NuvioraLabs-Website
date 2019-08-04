@@ -12,7 +12,29 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
+var instanceData = {
+    "channel_id" : "-LdCgjSRL27Y9RruXGE4",
+    "channel_name" : "Beaverton",
+    "closes" : "2019-05-04T13:30:00-07:00",
+    "end_time" : "2019-05-04T14:30:00-07:00",
+    "instance" : 1,
+    "instance_id" : "-LjF1wbcEx7TY3yBjH6W",
+    "opens" : "2019-05-04T08:00:00-07:00",
+    "season_id" : "-LdClddvVSB5vxBSXHOI",
+    "season_name" : "Summer 2019",
+    "start_time" : "2019-05-04T06:00:00-07:00",
+    "summary": {
 
+    }
+  }
+  
+firebase.update('instances/-LjF1wbcEx7TY3yBjH6W', instanceData)
+.then(function success(s) {
+    //return an affirmative status code
+    console.log(s)
+}).catch(function error(e) {
+    console.log(e);
+});
 
 /*
 firebase.del('/instances')

@@ -9,212 +9,26 @@
             </h2>
         </div>
 
-        <!--Square Parameters-->
-        <div class="row">
-            <h4>Square Parameters</h4>
+         <!--Overview-->
+         <div class="row">
+            <h3>Summary</h3>
+            {{vm.instance.summary}}
+        </div>         
+
+        <!--Forecast-->
+        <div class="row" >
+            <h3 ng-click='vm.state.forecastVisible=!vm.state.forecastVisible'>1. Forecast Tool</h3>
             
-            <div class="container">
-                <!--Start & End-->
-                <div class="row">
-                    <!--Date/Times-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        Date:
-                        <input type="date" ng-model='vm.formattedDateTime.date'>
-                        Start:
-                        <input type="text" ng-model='vm.formattedDateTime.start.h' style='width: 30px;'>:
-                        <input type="text" ng-model='vm.formattedDateTime.start.m' style='width: 30px;'>
-                        <select name="" id="">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
-                        End:
-                        <input type="text" ng-model='vm.formattedDateTime.end.h' style='width: 30px;'>:
-                        <input type="text" ng-model='vm.formattedDateTime.end.m' style='width: 30px;'>
-                        <select name="" id="">
-                            <option value="AM">AM</option>
-                            <option value="PM">PM</option>
-                        </select>
-                    </div>
-                    <!--Users/Devices-->
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                        <!--Employees-->
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Employees:</h4>
-                            <ul style='list-style: none;'>
-                                <li ng-repeat="(key, value) in vm.instance.summary.filters.employees">
-                                    <input type="checkbox" name='empFilter' ng-checked='value.active' ng-value='key'> {{value.first_name}} {{value.last_name}}
-                                </li>
-                            </ul>
-                        </div>
-                        <!--Devices-->
-                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                            <h4>Devices:</h4>
-                            <ul style='list-style: none;'>
-                                <li ng-repeat="(key, value) in vm.instance.summary.filters.devices">
-                                    <input type="checkbox" name='devFilter' ng-checked='value.active' ng-value='key'> {{value.name}}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        </div>        
 
-            </div>
+        <!--Transactions-->
+        <div class="row" >
+            <h3 ng-click='vm.state.txsVisible=!vm.state.txsVisible'>2. Transactions Tool</h3>
+            <admin-instance-txs-directive   ng-show='vm.state.txsVisible'
+                                            data='vm.instance'>
+            </admin-instance-txs-directive>
         </div>
-
  
-    </div>
-
-    <!--Sums-->
-    <div class="container">
-        <div class="row">
-            <h4>Summary</h4>
-        </div>
-        <!--Summary Table-->  
-        <!--Header row-->
-        <div class="row" style='background-color: lightgray;'>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Sales</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Reported</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Adjustment</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Actual</div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Proj</div>
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Diff</div>
-        </div>
-
-        <!--TD-->
-        <div class="row" ng-repeat='line in vm.instance.summary.sales'>
-            <!--Name-->
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <strong ng-if='line.bold'>
-                    {{line.name}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.name}}
-                </span>
-            </div>
-            <!--Reported Value-->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <strong ng-if='line.bold'>
-                    {{line.reported / 100 | currency: "$"}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.reported / 100 | currency: "$"}}
-                </span>
-            </div>
-
-            <!--Adjustment Value-->
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">$</span>
-                <input type="text" class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='padding-left: 5px; padding-right: 5px;'>.</span>
-                <input type="text" class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-            </div>
-
-            <!--Actual Value-->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <strong ng-if='line.bold'>
-                    {{line.actual / 100 | currency: "$"}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.actual / 100 | currency: "$"}}
-                </span>
-            </div>
-
-            <!--Forecasted Value-->
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <strong ng-if='line.bold'>
-                    {{line.forecast / 100 | currency: "$"}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.forecast / 100 | currency: "$"}}
-                </span>                
-            </div>
-
-            <!--Difference Value-->
-            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                <strong ng-if='line.bold'>
-                    {{line.difference | number: 2}}%
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.difference | number: 2}}%
-                </span>                    
-            </div>
-        </div>
-
-        <!--Payments-->
-        <div class="row" style='background-color: lightgray;'>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Payments</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Reported</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Adjustment</div>
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Actual</div>
-        </div>
-
-        <!--TD-->
-        <div class="row" ng-repeat='line in vm.instance.summary.payments'>
-            <!--Name-->
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <strong ng-if='line.bold'>
-                    {{line.name}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.name}}
-                </span>
-            </div>
-
-            <!--Reported-->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                <strong ng-if='line.bold' >
-                    {{line.reported / 100 | currency:"$"}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.reported / 100 | currency:"$"}}
-                </span>               
-            </div>
-            
-            <!--Adjustment Value-->
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">$</span>
-                <input type="text" class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='padding-left: 5px; padding-right: 5px;'>.</span>
-                <input type="text" class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-            </div>
-
-            <!--Actual-->
-            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                <strong ng-if='line.bold' >
-                    {{line.actual / 100 | currency:"$"}}
-                </strong>
-                <span ng-if='!line.bold'>
-                    {{line.actual / 100 | currency:"$"}}
-                </span>               
-            </div>
-
-        </div>
-
-    </div>
-
-    <!--Transactions-->
-    <div class="container">
-        <div class="row">
-            <h4>Transactions</h4>
-        </div>
-        <!--Table header-->
-        <div class="row">
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Time</strong></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Amount</strong></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-        </div>
-        <!--Table Data-->
-        <div class="row" ng-repeat='tx in vm.activeTxs track by $index'>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{$index + 1}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.created_at | date:"shortTime"}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.gross_sales_money.amount / 100 | currency:"$"}}</div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-        </div>
     </div>
 
 </div>

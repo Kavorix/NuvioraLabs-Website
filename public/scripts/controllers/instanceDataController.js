@@ -2,41 +2,26 @@ angular
     .module('awesweet')
     .controller('instanceDataViewsController', instanceDataViewsController);
 
-	instanceDataViewsController.$inject = ['$scope','$log', 'firebaseService', 'instanceData','sqEmployeeList','squareService'];
+	instanceDataViewsController.$inject = ['$scope','$log', 'firebaseService', 'instanceData'];
 
 /* @ngInject */
-function instanceDataViewsController($scope, $log, firebaseService, instanceData, sqEmployeeList, squareService) {
+function instanceDataViewsController($scope, $log, firebaseService, instanceData) {
 
 	//	DEFINE LOCAL VARIALES
 	var vm = this;
 
 	//	DEFINE VIEW MODEL VARIABLES
+	vm.state = { txsVisible: false, forecastVisible: false }
 	vm.instance = instanceData;
-	vm.sqEmployeeList = sqEmployeeList;
-	vm.formattedDateTime = formatDateTime(instanceData);
 
+	// 	ADD FILTER TEMPLATE IF NEED BE
+	//if(vm.instance.summary == undefined) vm.instance.summary = firebaseService.templates.instanceFilters();
 
 	//	RUN FUNCTIONS
-	loadTransactions(vm.instance.start_time, vm.instance.end_time, vm.instance.txFilters);
+	//loadTransactions(vm.instance.start_time, vm.instance.end_time, vm.instance.summary.filters, sqEmployeeList);
 	
 	//	DEFINE LOCAL FUNCTIONS
-	/*
-	*	FORMAT DATE TIME
-	*/
-	function formatDateTime(instance) {
-		//	DEFINE LOCAL VARIABLES
-		return {
-			date: new Date(instance.start_time.split('T')[0]),
-			start: {
-				h: ((instance.start_time.split('T')[1]).split('-')[0]).split(":")[0],
-				m: ((instance.start_time.split('T')[1]).split('-')[0]).split(":")[1]
-			},
-			end: {
-				h:((instance.end_time.split('T')[1]).split('-')[0]).split(":")[0],
-				m:((instance.end_time.split('T')[1]).split('-')[0]).split(":")[1],
-			}
-		};
-	};
+
 	
 	/*
 	*	SUM TRANSACTIONS 
@@ -100,8 +85,8 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 
 		//	ITERATE OVER THE LIST
 		txs.forEach(function(tx) {
-			if(tx.device.name == undefined) devicesCollection[tx.device.id] = "(Undefined)"
-			else devicesCollection[tx.device.id] = tx.device.name
+			if(tx.device.name == undefined) devicesCollection[tx.device.id] = {name: "(Undefined)", active: false}
+			else devicesCollection[tx.device.id] = {name: tx.device.name, active: false}
 		});
 
 		//	NOTIFY PROGRESS
@@ -121,7 +106,7 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 	/*
 	*
 	*/
-	function idnetifyEmployees(txs) {
+	function identifyEmployees(txs, sqEmpList) {
 		//	DEFINE LOCAL VARABLES
 		var employeesCollection = {};
 
@@ -129,7 +114,11 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 		txs.forEach(function(tx) {
 			//	ITERATE OVER TENDER
 			tx.tender.forEach(function(step) {
-				employeesCollection[step.employee_id] = {}
+				employeesCollection[step.employee_id] = {
+					active: false,
+					first_name: sqEmpList[step.employee_id].first_name,
+					last_name: sqEmpList[step.employee_id].last_name
+				}
 			});
 		});
 
@@ -143,14 +132,17 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 	/*
 	*	LOAD TRANSACTIONS
 	*/	
-	function loadTransactions(start, end, txFilters) {
+	function loadTransactions(start, end, filters, sqEmpList) {
 		squareService.list.transactions(start, end)
 		.then(function success(s) {
 			//	ASSIGN VALUES
 			vm.transactions = s.data;
+
+			console.log(vm.instance);
 			
 			//	FILTER TRANSACTIONS
-			vm.filterTransactions(s.data, vm.instance.summary.filters);
+			vm.filterTransactions(s.data, filters, sqEmpList);
+
 
 			//	NOTIFY PROGRESS
 			console.log('got these transactions', vm.transactions);
@@ -159,6 +151,25 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 			console.log(e);
 		});
 	};
+
+	/*
+	*
+	*/
+	function updateDBValues(instance) {
+		//	DEFINE LOCAL VARIABLES
+		var updates = {};
+		var updatesPath = 'instances/' + instance.instance_id;
+		updates[updatesPath] = JSON.parse(angular.toJson(instance));
+
+		//	RUN UPDATE
+		firebaseService.update.record(updates)
+		.then(function success(s) {
+			//return an affirmative status code
+			console.log(s)
+		}).catch(function error(e) {
+			console.log(e);
+		});
+	}
 
 	//	VIEW MODEL FUNCTIONS
 	/*
@@ -183,31 +194,72 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 			console.log(e);
 		});
 	};
+
+	/*
+	*	LOAD TRANSACTIONS
+	*/
+	vm.loadTxs = function(start, end) {
+		squareService.list.transactions(start, end)
+		.then(function success(s) {
+			//	ASSIGN VALUES
+			vm.transactions = s.data;
+
+			console.log(vm.instance);
+			
+			//	FILTER TRANSACTIONS
+			//vm.filterTransactions(s.data, filters, sqEmpList);
+
+
+			//	NOTIFY PROGRESS
+			console.log('got these transactions', vm.transactions);
+			
+		}).catch(function error(e) {
+			console.log(e);
+		});
+	};
 	
 	/*
 	*	FILTER TRANSACTIONS
 	*/
-	vm.filterTransactions = function(allTxs, filters) {
+	vm.filterTransactions = function(allTxs, filters, sqrEmpList) {
 		//	DEFINE LOCAL VARIABLES
 		var activeEmployees = {};
 		var activeDevices = {};
 		vm.activeTxs = [];
 
-		//	ITERATE OVER EMPLOYEES
-		Object.keys(filters.employees).forEach(function(key) {
-			if(filters.employees[key].active) activeEmployees[key] = true;
-		});
+		if(filters == undefined) {
+			//	IF NO FILTERS EXIST, IDENTIFY THEM
+			vm.instance.summary.filters = { employees: {}, devices: {}};
+			vm.instance.summary.filters.employees = identifyEmployees(allTxs, sqrEmpList);
+			vm.instance.summary.filters.devices = identifyDevices(allTxs);
 
-		//	ITERATE OVER DEVICE
-		Object.keys(filters.devices).forEach(function(key) {
-			if(filters.devices[key].active) activeDevices[key] = true;
-		});
+			// 	assign values to all filters
+			filters = vm.instance.summary.filters;
 
-		//	ITERATE OVER TRANSACTIONS
-		Object.keys(allTxs).forEach(function(key){
-			//console.log(activeEmployees[allTxs[key].tender[0].employee_id])
-			if(activeEmployees[allTxs[key].tender[0].employee_id]) vm.activeTxs.push(allTxs[key]);
-		});
+			//	copy over transactions
+			vm.activeTxs = allTxs;
+
+		} else {
+			//	ITERATE OVER EMPLOYEES
+			Object.keys(filters.employees).forEach(function(key) {
+				if(filters.employees[key].active) activeEmployees[key] = true;
+			});
+
+			//	ITERATE OVER DEVICE
+			Object.keys(filters.devices).forEach(function(key) {
+				if(filters.devices[key].active) activeDevices[key] = true;
+			});
+
+			//	ITERATE OVER TRANSACTIONS
+			Object.keys(allTxs).forEach(function(key){
+				//	if any active employees exist
+
+				if(activeEmployees[allTxs[key].tender[0].employee_id]) vm.activeTxs.push(allTxs[key]);
+			
+			});
+		}
+		
+
 
 		var allSums = sumTransactions(vm.activeTxs);
 
@@ -227,8 +279,9 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 		vm.instance.summary.payments[4].reported = allSums.fees;				// FEES
 		vm.instance.summary.payments[5].reported = allSums.payNet;				// netPay
 
-		//vm.devicesList = identifyDevices(allTxs);
-		//vm.employeeList = idnetifyEmployees(allTxs);
+		//	SAVE FILTERED VALUES
+		console.log(vm.instance);
+		updateDBValues(vm.instance);
 
 		//	APPLY UPDATES
 		$scope.$apply();

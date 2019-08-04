@@ -1,8 +1,6 @@
 {
     "filters": {
-        "employees": {
-
-        },
+        "employees": {},
         "devices": {}
     },
     "sales": {
