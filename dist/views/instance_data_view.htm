@@ -12,7 +12,8 @@
          <!--Overview-->
          <div class="row">
             <h3>Summary</h3>
-            {{vm.instance.summary}}
+            Gross Sale: {{vm.instance.txsSummary.sales[0].actual / 100 | currency: "$"}} <br>
+            Tips: {{vm.instance.txsSummary.sales[4].actual / 100 | currency: "$"}}
         </div>         
 
         <!--Forecast-->
@@ -25,7 +26,8 @@
         <div class="row" >
             <h3 ng-click='vm.state.txsVisible=!vm.state.txsVisible'>2. Transactions Tool</h3>
             <admin-instance-txs-directive   ng-show='vm.state.txsVisible'
-                                            data='vm.instance'>
+                                            instance='vm.instance'
+                                            update='vm.updateSummary()'>
             </admin-instance-txs-directive>
         </div>
  

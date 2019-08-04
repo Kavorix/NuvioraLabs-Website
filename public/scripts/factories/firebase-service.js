@@ -314,17 +314,18 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
 
     function instanceFiltersTemplate() {
         return {
+            "skipped": false,
             "filters": {
                 "employees": {},
                 "devices": {}
             },
             "sales": {
-                "0": { "name": "Gross Sales", "reported": 0, "bold": true, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0},
-                "1": { "name": "Returns", "reported": 0, "bold": false, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 },
-                "2": { "name": "Discounts & Comps", "reported": 0, "bold": false, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 },
-                "3": { "name": "Net Sales", "reported": 0, "bold": true, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 },
-                "4": { "name": "Tips", "reported": 0, "bold": false, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 },
-                "5": { "name": "Total", "reported": 0, "bold": true, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 }
+                "0": { "name": "Gross Sales", "reported": 0, "bold": true, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0},
+                "1": { "name": "Returns", "reported": 0, "bold": false, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0 },
+                "2": { "name": "Discounts & Comps", "reported": 0, "bold": false, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0 },
+                "3": { "name": "Net Sales", "reported": 0, "bold": true, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0 },
+                "4": { "name": "Tips", "reported": 0, "bold": false, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0 },
+                "5": { "name": "Total", "reported": 0, "bold": true, "adjustment": 0.00, "actual": 0, "forecast": 0, "difference": 0 }
             },
             "payments": {
                 "0": { "name": "Total Collected", "reported": 0, "bold": true, "adjustment": 0, "actual": 0, "forecast": 0, "difference": 0 },

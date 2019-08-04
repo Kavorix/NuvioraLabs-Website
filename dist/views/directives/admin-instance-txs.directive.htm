@@ -31,10 +31,17 @@
             <!--Employees-->
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                 <h5>Employees</h5>
-                <ul style='list-style: none;'>
-                    <li ng-repeat="(key, value) in vm.instance.summary.filters.employees track by $index">
-                        <input type="checkbox" name='empFilter' ng-checked='value.active' ng-value='key' class='form-control' id='employee[$index]'>
-                        <label for="employee[$index]">{{value.first_name}} {{value.last_name}}</label>
+                <ul style='list-style: none; padding-left: 0px;'>
+                    <li ng-repeat="(key, value) in vm.activeEmployees track by $index" ng-show='true'>
+                        <input  type="checkbox" 
+                                name='empFilter' 
+                                ng-model='value.active' 
+                                ng-value='key' 
+                                class='' 
+                                id='anEmployee'
+                                ng-change='vm.reFilter()'>
+                        <label for="anEmployee">{{value.first_name}} {{value.last_name}}</label>
+                        
                     </li>
                 </ul>
             </div>
@@ -54,18 +61,23 @@
                 <button class="btn btn-primary col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     Load Transactions
                 </button>
-                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <div class="form-check">
-                        <input type="checkbox" class='form-check-input' type='checkbox' ng-checked='vm.state.filterTxs' value='' id='filterCheck'>
-                        <label for="filterCheck" class='form-check-label'>Filter Results</label>
-                    </div>
-                </div>
+                <button class="btn btn-success col-xs-6 col-sm-6 col-md-6 col-lg-6"
+                        ng-click='vm.saveSummary()'>
+                    Save Summary
+                </button>
             </div>  
         </div>
 
         <!--Summary-->
         <div class="row">
             <h4>Summary</h4>
+            <input  type="checkbox" 
+                    name='skipped' 
+                    ng-model='vm.txsSummary.skipped'
+                    class='' 
+                    id='instanceSkipped'
+                    ng-change='vm.markSkipped()'>
+            <label for="instanceSkipped">Event Skipped?</label>
         </div>
         <!--Summary Table-->  
         <!--Header row-->
@@ -79,7 +91,7 @@
         </div>
 
         <!--TD-->
-        <div class="row" ng-repeat='line in vm.summary.sales'>
+        <div class="row" ng-repeat='line in vm.txsSummary.sales track by $index'>
             <!--Name-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                 <strong ng-if='line.bold'>
@@ -102,9 +114,11 @@
             <!--Adjustment Value-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
                 <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">$</span>
-                <input type="text" class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='padding-left: 5px; padding-right: 5px;'>.</span>
-                <input type="text" class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
+                <input  type="text" 
+                        class="col-xs-5 col-sm-5 col-md-5 col-lg-5" 
+                        style='padding-left: 0px; padding-right: 0px;'
+                        ng-model='line.adjustment'
+                        ng-blur='vm.adjustmentUpdate("sales", $index)'>
             </div>
 
             <!--Actual Value-->
@@ -147,7 +161,7 @@
         </div>
 
         <!--TD-->
-        <div class="row" ng-repeat='line in vm.summary.payments'>
+        <div class="row" ng-repeat='line in vm.txsSummary.payments'>
             <!--Name-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                 <strong ng-if='line.bold'>
@@ -194,22 +208,28 @@
 
             <!--Table header-->
             <div class="row">
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>#</strong></div>
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Time</strong></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Amount</strong></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong></strong></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>Sale</strong></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong>Tip</strong></div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Type</strong></div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5"><strong>Order</strong></div>
             </div>
 
             <!--Table Data-->
             <div class="row" ng-repeat='tx in vm.activeTxs track by $index'>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{$index + 1}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{$index + 1}}</div>
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.created_at | date:"shortTime"}}</div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{tx.gross_sales_money.amount / 100 | currency:"$"}}</div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{tx.gross_sales_money.amount / 100 | currency:"$"}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{tx.tip_money.amount / 100 | currency:"$"}}</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{vm.typeDisplay(tx.tender)}}</div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                    <ul>
+                        <li ng-repeat='order in vm.orderDisply(tx.itemizations)'>
+                            {{order}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
