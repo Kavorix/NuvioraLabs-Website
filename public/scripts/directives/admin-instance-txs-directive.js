@@ -79,7 +79,7 @@ function adminInstanceTxsDirective() {
 			//	DEFINE LOCAL VARIABLES
 
 			//	NOTIFY PROGRESS
-			//console.log('refiltering', filter, key);
+			//console.log('refiltering', vm.txsSummary.filters);
 			
 			//	FILTER LIST
 			vm.activeTxs = filterTxs(vm.allTxs, vm.txsSummary.filters);
@@ -122,11 +122,11 @@ function adminInstanceTxsDirective() {
 					break;
 				default:
 					//	ADJUST TOTAL COLLECTED
-					vm.txsSummary[section][0].adjustment += parseInt(vm.txsSummary[section][line].adjustment);
+					vm.txsSummary[section][0].adjustment += parseFloat(vm.txsSummary[section][line].adjustment);
 					vm.txsSummary[section][0].actual = calculateActual(section, 0);
 
 					//	ADJUST NET TOTAL
-					vm.txsSummary[section][5].adjustment += parseInt(vm.txsSummary[section][line].adjustment);
+					vm.txsSummary[section][5].adjustment += parseFloat(vm.txsSummary[section][line].adjustment);
 					vm.txsSummary[section][5].actual = calculateActual(section, 5);
 					break;
 			};
@@ -190,7 +190,7 @@ function adminInstanceTxsDirective() {
 				});
 
 				//	add Device
-				employeesCollection[employee_id].devices[tx.device.name] = true;
+				if(employee_id != undefined) employeesCollection[employee_id].devices[tx.device.name] = true;
 			});
 
 			//	NOTIFY PROGRES
@@ -260,7 +260,7 @@ function adminInstanceTxsDirective() {
 				// 	ASSIGN ACTIVE EMPLOYEES LIST
 				vm.activeEmployees = identifyEmployees(allTxs, sqEmployees);
 				vm.activeDevices = identifyDevices(allTxs);
-
+				
 				//	ASSIGN ALL TXS LIST
 				vm.allTxs = allTxs;
 
@@ -276,8 +276,7 @@ function adminInstanceTxsDirective() {
 					console.log('no saved filters');
 					//	ASSIGN EMPLOYEE FILTERS
 					vm.txsSummary.filters.employees 	= vm.activeEmployees;
-					vm.txsSummary.filters.device 		= vm.activeDevices;
-					vm.txsSummary.filters.splitDevice 	= false;
+					vm.txsSummary.filters.devices 		= vm.activeDevices;
 				}
 
 				//	FILTER LIST
@@ -307,11 +306,17 @@ function adminInstanceTxsDirective() {
 			//	ITERATE OVER TRANSACTIONS
 			allTxs.forEach(function(tx) {
 				//	check for employee first
-				if(filters.employees[tx.tender[0].employee_id].active) {
-					//	THEN CHECK FOR DEVICE
-
-					newTxList.push(tx);
+				if(filters.employees[tx.tender[0].employee_id] != undefined) {
+					if(filters.employees[tx.tender[0].employee_id].active) {
+						//	THEN CHECK FOR DEVICE FILTERING
+						if(filters.devices[tx.device.id].active) {
+							//	FINALLY CHECK AGAINST THE INDUAL DEVICE
+							newTxList.push(tx);
+						}
+						
+					}
 				}
+
 			});
 
 			return newTxList;
