@@ -22,7 +22,7 @@ module.exports = (function() {
         returnString += "firebase.initializeApp(config);";
 
         //advise of the post body
-        //console.log('firebase config GET', returnString);
+        console.log('firebase config GET', returnString);
 
         res.status(200);
         res.send(returnString);
