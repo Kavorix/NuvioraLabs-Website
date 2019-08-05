@@ -102,11 +102,35 @@ function adminInstanceTxsDirective() {
 		};
 		vm.adjustmentUpdate = function(section, line) {
 			//	DEFINE LOCAL VARIABLES
+			var editPath = section + line;
 
 			//	NOTIFY PROGRESS
 			console.log('updating adjustment', section, line);
 
+			//	Adjust given line
 			vm.txsSummary[section][line].actual = calculateActual(section, line);
+
+			switch(editPath) {
+				case 'sales0':
+					//	ADJUST NET SALES
+					vm.txsSummary[section][3].adjustment = vm.txsSummary[section][line].adjustment;
+					vm.txsSummary[section][3].actual = calculateActual(section, 3);
+
+					//	ADJUST TOTAL SALES
+					vm.txsSummary[section][5].adjustment = vm.txsSummary[section][line].adjustment;
+					vm.txsSummary[section][5].actual = calculateActual(section, 5);
+					break;
+				default:
+					//	ADJUST TOTAL COLLECTED
+					vm.txsSummary[section][0].adjustment += parseInt(vm.txsSummary[section][line].adjustment);
+					vm.txsSummary[section][0].actual = calculateActual(section, 0);
+
+					//	ADJUST NET TOTAL
+					vm.txsSummary[section][5].adjustment += parseInt(vm.txsSummary[section][line].adjustment);
+					vm.txsSummary[section][5].actual = calculateActual(section, 5);
+					break;
+			};
+
 		};
 		vm.markSkipped = function() {
 			if(vm.txsSummary.skipped) console.log('marking as skipped');
@@ -145,22 +169,62 @@ function adminInstanceTxsDirective() {
 
 			//	ITERATE OVER THE LIST
 			txs.forEach(function(tx) {
+				//	DEFINE LOCAL VARIABLES
+				var employee_id = "";
+
 				//	ITERATE OVER TENDER
 				tx.tender.forEach(function(step) {
+					
+					employee_id = step.employee_id
+					//console.log(step);
 					//	EMPLOYEE COLLECTION
-					employeesCollection[step.employee_id] = {
-						active: true,
-						first_name: sqEmpList[step.employee_id].first_name,
-						last_name: sqEmpList[step.employee_id].last_name
-					};
+					if(employee_id != undefined && employeesCollection[employee_id] == undefined) {
+						employeesCollection[employee_id] = {
+							active: true,
+							first_name: sqEmpList[employee_id].first_name,
+							last_name: sqEmpList[employee_id].last_name,
+							devices: {}
+						};
+					}
+
 				});
+
+				//	add Device
+				employeesCollection[employee_id].devices[tx.device.name] = true;
 			});
 
 			//	NOTIFY PROGRES
-			//console.log('employeesCollection', employeesCollection);
+			console.log('employeesCollection', employeesCollection);
 
 			//	RETURN VALUES
 			return employeesCollection;
+		};
+
+		/*
+		*	IDENITYF DEVICES
+		*/
+		function identifyDevices(txs) {
+			//	DEFINE LOCAL VARIABLES
+			var devicesCollection = {};
+
+			//	ITERATE OVER THE LIST
+			txs.forEach(function(tx) {
+				if(tx.device.name == undefined) devicesCollection[tx.device.id] = {name: "(Undefined)", active: false}
+				else devicesCollection[tx.device.id] = {name: tx.device.name, active: true}
+			});
+
+			//	NOTIFY PROGRESS
+			//console.log('devices list', devicesCollection);
+
+			//	ASSIGN SELECTION
+			Object.keys(devicesCollection).forEach(function(key) {
+				devicesCollection[key]['included'] = true;
+			});
+
+			//console.log('devices list', devicesCollection);
+
+			//	RETURN VALUE
+			return devicesCollection;
 		};
 
 		/*
@@ -195,6 +259,7 @@ function adminInstanceTxsDirective() {
 
 				// 	ASSIGN ACTIVE EMPLOYEES LIST
 				vm.activeEmployees = identifyEmployees(allTxs, sqEmployees);
+				vm.activeDevices = identifyDevices(allTxs);
 
 				//	ASSIGN ALL TXS LIST
 				vm.allTxs = allTxs;
@@ -203,13 +268,16 @@ function adminInstanceTxsDirective() {
 				if(vm.instance.txsSummary != undefined) {
 					//	NOTIFY PROGRESS
 					console.log('found saved filters')
-					vm.txsSummary = vm.instance.txsSummary;
-					vm.activeEmployees = vm.instance.txsSummary.filters.employees;
+					vm.txsSummary 		= vm.instance.txsSummary;
+					vm.activeEmployees 	= vm.instance.txsSummary.filters.employees;
+					vm.activeDevices 	= vm.instance.txsSummary.filters.devices;
 				} else {
 					//	NOTIFY PROGRESS
 					console.log('no saved filters');
 					//	ASSIGN EMPLOYEE FILTERS
-					vm.txsSummary.filters.employees = vm.activeEmployees;
+					vm.txsSummary.filters.employees 	= vm.activeEmployees;
+					vm.txsSummary.filters.device 		= vm.activeDevices;
+					vm.txsSummary.filters.splitDevice 	= false;
 				}
 
 				//	FILTER LIST
@@ -238,7 +306,12 @@ function adminInstanceTxsDirective() {
 
 			//	ITERATE OVER TRANSACTIONS
 			allTxs.forEach(function(tx) {
-				if(filters.employees[tx.tender[0].employee_id].active) newTxList.push(tx);
+				//	check for employee first
+				if(filters.employees[tx.tender[0].employee_id].active) {
+					//	THEN CHECK FOR DEVICE
+
+					newTxList.push(tx);
+				}
 			});
 
 			return newTxList;

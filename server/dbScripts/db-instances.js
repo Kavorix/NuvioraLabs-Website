@@ -44,12 +44,16 @@ function addInstancesList(data) {
             //  DEFINE LOCAL VARIABLES
             var itJSON = stdio.read.json('./models/fb_instance_template.json');
             var itModel = Object.create(itJSON);
-            var startTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
-            var endTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
-            
+            var startTime = moment(iteration.date.split("T")[0] + "T" + iteration.itStarts);
+            var openTime = moment(iteration.date.split("T")[0] + "T" + iteration.itOpens);
+            var closeTime = moment(iteration.date.split("T")[0] + "T" + iteration.itCloses);
+            var endTime = moment(iteration.date.split("T")[0] + "T" + iteration.itEnds);
+
             itModel.instance_id     = firebase.pushId('instances');
             itModel.instance        = instance;
             itModel.start_time      = startTime.format();
+            itModel.opens           = openTime.format();
+            itModel.closes          = closeTime.format();
             itModel.end_time        = endTime.format();
             itModel.opens           = startTime.format();
             itModel.closes          = endTime.format();;

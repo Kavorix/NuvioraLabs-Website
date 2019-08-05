@@ -21,6 +21,8 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         itFrequency: "",
         itOpens: { hr: "", min: "", AP: "", time: ""},
         itCloses: { hr: "", min: "", AP: "", time: ""},
+        itStarts: { hr: "", min: "", AP: "", time: ""},
+        itEnds: { hr: "", min: "", AP: "", time: ""},
         newInstancesPreview: []
     }
 

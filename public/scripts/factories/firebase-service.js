@@ -316,6 +316,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         return {
             "skipped": false,
             "filters": {
+                "splitDevice": false,
                 "employees": {},
                 "devices": {}
             },

@@ -12,7 +12,8 @@
         <!--Header-->
         <h2>Channel View: {{vm.channelData.title}}</h2>
         <h4>Type: {{vm.channelData.type}}</h4>
-        
+        <a href="#/admin/data/channels">Back to Channels</a>
+
         <h4>Seasons</h4>
         <!--Options-->
         <button class='btn btn-info' ng-click="vm.seasonInput=!vm.seasonInput">Add Season</button>
@@ -70,14 +71,25 @@
                 <input list="hrPicker" ng-model='vm.aChannel.itOpens.hr' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>: 
                 <input list="minPicker" ng-model='vm.aChannel.itOpens.min' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
                 <input list="AMPMPicker" ng-model='vm.aChannel.itOpens.AP' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
+            </div> 
+            <div class="row">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Start: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itStarts.hr' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itStarts.min' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itStarts.AP' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
             </div>            
+            <div class="row">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>End: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itEnds.hr' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itEnds.min' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itEnds.AP' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
+            </div>             
             <div class="row">
                 <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Closes: </strong>
                 <input list="hrPicker" ng-model='vm.aChannel.itCloses.hr' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>: 
                 <input list="minPicker" ng-model='vm.aChannel.itCloses.min' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
                 <input list="AMPMPicker" ng-model='vm.aChannel.itCloses.AP' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
             </div>  
-
             <button class="btn btn-success">Preview</button>
             <button class="btn btn-danger" ng-click='vm.saveIterations(vm.aChannel.newInstancesPreview)'>Save</button>
 
@@ -86,21 +98,25 @@
                 <div class="row">
                     <!--Headers-->
                     
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'><strong>Season</strong></div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Iteration</strong></div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Open</strong></div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Close</strong></div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Delete</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' style='text-align: left'><strong>Season</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Date</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Iteration</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Start</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Open</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Close</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>End</strong></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Delete</strong></div>
                 </div>
                 <div class="row" ng-repeat="instance in vm.aChannel.newInstancesPreview track by $index" style='border-top: 1px black solid;'>
                     <!--Preview Data-->
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season.title}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.date | date: "shortDate"}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{$index + 1}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itOpens}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.itCloses}}</div>
-                    <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-click='vm.delItPreview($index)'><i class="glyphicon glyphicon-remove"></i></div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' style='text-align: left'>{{instance.season.title}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.date | date: "shortDate"}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{$index + 1}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.itStarts}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.itOpens}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.itCloses}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.itEnds}}</div>
+                    <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' ng-click='vm.delItPreview($index)'><i class="glyphicon glyphicon-remove"></i></div>
                 </div>
             </div>
             
@@ -114,9 +130,13 @@
 
             <!--Header Row-->
             <div class="row">
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>Season</strong></div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Iteration</strong></div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Date</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'><strong>Season</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>#</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Skip?</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Gross</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Tips</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>$/Hr</strong></div>
             </div>
 
             <!-- Data Rows-->
@@ -124,9 +144,13 @@
                     ng-repeat='instance in vm.instances track by $index'
                     ng-click='vm.instanceReroute(instance.instance_id)'
                     >
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.season_name}}</div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.instance}}</div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{instance.opens | date: "shortDate"}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season_name}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.instance}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.opens | date: "shortDate"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.skipped}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[0].actual /100 | currency: "$"}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[4].actual /100| currency: "$"}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[0].actual / 5.5 /100 | currency: "$"}}</div>
             </div>
         </div>
     </div>

@@ -41,17 +41,29 @@
                                 id='anEmployee'
                                 ng-change='vm.reFilter()'>
                         <label for="anEmployee">{{value.first_name}} {{value.last_name}}</label>
-                        
+                        <ul>
+                            <li ng-repeat='(key, value) in value.devices track by $index'>
+                                {{key}}
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
 
             <!--Devices-->
             <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                <h5>Device</h5>
+                <h5>Devices</h5>
+                <input type="checkbox" id='splitDeviceId' ng-model='vm.txssummary.filters.splitDevice'>
+                <label for="splitDeviceId">Split Between Device</label>
                 <ul style='list-style: none;'>
-                    <li ng-repeat="(key, value) in vm.instance.summary.filters.devices">
-                        <input type="checkbox" name='devFilter' ng-checked='value.active' ng-value='key'> {{value.name}}
+                    <li ng-repeat="(key, value) in vm.activeDevices track by $index">
+                        <input  type="checkbox" 
+                                name='devFilter' 
+                                ng-model='value.active' 
+                                ng-value='key'
+                                id='aDevice'
+                                ng-change='vm.reFilter()'> 
+                        <label for="aDevice">{{value.name}}</label>
                     </li>
                 </ul>
             </div>
@@ -113,12 +125,14 @@
 
             <!--Adjustment Value-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">$</span>
+                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" ng-show='$index == 0'>$</span>
                 <input  type="text" 
                         class="col-xs-5 col-sm-5 col-md-5 col-lg-5" 
                         style='padding-left: 0px; padding-right: 0px;'
                         ng-model='line.adjustment'
-                        ng-blur='vm.adjustmentUpdate("sales", $index)'>
+                        ng-blur='vm.adjustmentUpdate("sales", $index)'
+                        ng-show='$index == 0'>
+                <span ng-hide='$index == 0 || $index == 1 || $index == 2 || $index == 4'>{{line.adjustment | currency:"$"}}</span>
             </div>
 
             <!--Actual Value-->
@@ -161,7 +175,7 @@
         </div>
 
         <!--TD-->
-        <div class="row" ng-repeat='line in vm.txsSummary.payments'>
+        <div class="row" ng-repeat='line in vm.txsSummary.payments track by $index'>
             <!--Name-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                 <strong ng-if='line.bold'>
@@ -184,10 +198,14 @@
             
             <!--Adjustment Value-->
             <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">$</span>
-                <input type="text" class="col-xs-5 col-sm-5 col-md-5 col-lg-5" style='padding-left: 0px; padding-right: 0px;'>
-                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" style='padding-left: 5px; padding-right: 5px;'>.</span>
-                <input type="text" class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style='padding-left: 0px; padding-right: 0px;'>
+                <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1" ng-hide='$index == 0 || $index == 4 || $index == 5'>$</span>
+                <input  type="text" 
+                        class="col-xs-5 col-sm-5 col-md-5 col-lg-5" 
+                        style='padding-left: 0px; padding-right: 0px;'
+                        ng-model='line.adjustment'
+                        ng-blur='vm.adjustmentUpdate("payments", $index)'
+                        ng-hide='$index == 0 || $index == 4 || $index == 5'>
+                <span ng-show='$index == 0 || $index == 5'>{{line.adjustment | currency:"$"}}</span>
             </div>
 
             <!--Actual-->
@@ -225,7 +243,7 @@
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{vm.typeDisplay(tx.tender)}}</div>
                 <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
                     <ul>
-                        <li ng-repeat='order in vm.orderDisply(tx.itemizations)'>
+                        <li ng-repeat='order in vm.orderDisply(tx.itemizations) track by $index'>
                             {{order}}
                         </li>
                     </ul>

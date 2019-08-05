@@ -15,33 +15,6 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 	vm.instance = instanceData;
 
 	//	DEFINE LOCAL FUNCTIONS
-	
-	/*
-	*
-	*/
-	function identifyDevices(txs) {
-		//	DEFINE LOCAL VARIABLES
-		var devicesCollection = {};
-
-		//	ITERATE OVER THE LIST
-		txs.forEach(function(tx) {
-			if(tx.device.name == undefined) devicesCollection[tx.device.id] = {name: "(Undefined)", active: false}
-			else devicesCollection[tx.device.id] = {name: tx.device.name, active: false}
-		});
-
-		//	NOTIFY PROGRESS
-		//console.log('devices list', devicesCollection);
-
-		//	ASSIGN SELECTION
-		Object.keys(devicesCollection).forEach(function(key) {
-			devicesCollection[key]['included'] = true;
-		});
-
-		//console.log('devices list', devicesCollection);
-
-		//	RETURN VALUE
-		return devicesCollection;
-	};
 
 
 	/*
