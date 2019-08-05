@@ -14,10 +14,12 @@ function loginPageController($scope, $log, $http, $location, firebaseService) {
 
 	$log.info('in the login controller');	    //  TODO: TAKE THIS OUT LATER
 
-	vm.submit = function() {
-		console.log('submitting form');
+	vm.submit = function(username, password) {
+		
+		//	NOTIFY PROGRESS
+		console.log('submitting form', username, password);
 
-		firebaseService.authenticate.email(vm.username, vm.password)
+		firebaseService.authenticate.email(username, password)
 		.then(function sucess(s) {
 			//	ON SUCCESSFUL LOGIN REDIRECT DO TEAM MEMBER DASHBOARD
 			$location.path('/team/'+ s.user.uid +'/dashboard');
