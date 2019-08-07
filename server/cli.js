@@ -12,7 +12,7 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
-var instanceData = {
+/*var instanceData = {
     "channel_id" : "-LdCgjSRL27Y9RruXGE4",
     "channel_name" : "Beaverton",
     "closes" : "2019-05-04T13:30:00-07:00",
@@ -26,15 +26,15 @@ var instanceData = {
     "summary": {
 
     }
-  }
+}*/
   
-firebase.update('instances/-LjF1wbcEx7TY3yBjH6W', instanceData)
+/*firebase.update('instances/-LjF1wbcEx7TY3yBjH6W', instanceData)
 .then(function success(s) {
     //return an affirmative status code
     console.log(s)
 }).catch(function error(e) {
     console.log(e);
-});
+});*/
 
 /*
 firebase.del('/instances')
@@ -67,13 +67,13 @@ firebase.del('/instances')
     console.log(e);
 });*/
 
-/*wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
+wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
 .then(function success(s) {
     //return an affirmative status code
     console.log(s)
 }).catch(function error(e) {
     console.log(e);
-});*/
+});
 
 /*firebase.create('forecasts', {
     0: 1

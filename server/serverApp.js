@@ -96,6 +96,10 @@ serverApp.use('/square', square);
 var intuitRoutes = require('./routes/intuit');
 serverApp.use('/intuit', intuitRoutes);
 
+//	WIW ROUTES
+var wiwRoutes = require('./routes/wiw');
+serverApp.use('/wiw', wiwRoutes);
+
 /*
 *	Running the server
 */

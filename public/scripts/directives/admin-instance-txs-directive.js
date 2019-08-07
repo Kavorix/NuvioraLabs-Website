@@ -301,12 +301,14 @@ function adminInstanceTxsDirective() {
 			//	DEFINE LOCAL VARIABLES
 			var newTxList = [];
 
-			//filters.employees["o3c7hF88ajLrF4bzmAd7"].active = true;
+			//	NOTIFY PROGRES
+			console.log('filters', filters);
 
 			//	ITERATE OVER TRANSACTIONS
 			allTxs.forEach(function(tx) {
 				//	check for employee first
 				if(filters.employees[tx.tender[0].employee_id] != undefined) {
+					//
 					if(filters.employees[tx.tender[0].employee_id].active) {
 						//	THEN CHECK FOR DEVICE FILTERING
 						if(filters.devices[tx.device.id].active) {

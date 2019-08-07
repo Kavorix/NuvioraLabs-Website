@@ -5,30 +5,81 @@
         <div class="row">
             <h2>
                 <a ng-href="#/admin/data/channel/{{vm.instance.channel_id}}">{{vm.instance.channel_name}}</a>
-                ({{vm.instance.season_name}} - {{vm.instance.instance}})
+                ({{vm.instance.season_name}} - {{vm.instance.instance}} - {{vm.instance.opens | date: "fullDate"}})
             </h2>
         </div>
 
          <!--Overview-->
-         <div class="row">
-            <h3>Summary</h3>
-            Gross Sale: {{vm.instance.txsSummary.sales[0].actual / 100 | currency: "$"}} <br>
-            Tips: {{vm.instance.txsSummary.sales[4].actual / 100 | currency: "$"}}
+         <div class="row" style='margin-bottom: 30px;'>
+            
+            <!--Retail / MFG-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Retail</h3>
+              
+                <!--Performance #-->
+                <div class="row" style='background-color: black; color: white'>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Account</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Sub Acct</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Projection</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Actual</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Diff</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Change</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">%</div>
+                </div>
+                <div class="row" ng-repeat="line in vm.retailPerformance track by $index" style='border-bottom: solid black 1px; margin-top: 5px; margin-bottom: 5px;'>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong ng-hide="line.isSub">{{line.acct}}</strong></div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{line.subacct}}</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong ng-hide='line.isSub'>{{line.proj / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.proj / 100 | currency:"$"}}</span> </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong ng-hide='line.isSub'>{{line.act / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.act / 100 | currency:"$"}}</span> </div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong ng-hide='line.isSub'>{{line.diff / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.diff / 100 | currency:"$"}}</span> </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.change}}</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{line.perc}}</div>
+                </div>
+                    
+                <h3>Manufacturing</h3>
+
+                <!--Shifts-->
+                <h3>Shifts</h3>
+                <div class="row" style='background-color: black; color: white'>
+                    <!--Table Headers-->
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Member</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Rate</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reg Hrs</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">OT Hrs</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reg Pay</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">OT Pay</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Tips</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Comm</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Total</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Cost</div>
+                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+                </div>
+            </div>
+            
         </div>         
 
         <!--Forecast-->
-        <div class="row" >
+        <div class="row" style='background-color:lightgreen'>
             <h3 ng-click='vm.state.forecastVisible=!vm.state.forecastVisible'>1. Forecast Tool</h3>
             
         </div>        
 
         <!--Transactions-->
-        <div class="row" >
+        <div class="row" style='background-color:lightcyan'>
             <h3 ng-click='vm.state.txsVisible=!vm.state.txsVisible'>2. Transactions Tool</h3>
             <admin-instance-txs-directive   ng-show='vm.state.txsVisible'
                                             instance='vm.instance'
                                             update='vm.updateSummary()'>
             </admin-instance-txs-directive>
+        </div>
+
+        <!--Shifts-->
+        <div class="row">
+            <h3 ng-click='vm.state.shiftsVisible=!vm.state.shiftsVisible'>3. Shifts Selection Tool</h3>
+            <admin-instance-shifts-directive    ng-show='vm.state.shiftsVisible'
+                                                instance='vm.instance'
+                                                save-shifts='vm.saveShifts(data)'>
+            </admin-instance-shifts-directive>
         </div>
  
     </div>
