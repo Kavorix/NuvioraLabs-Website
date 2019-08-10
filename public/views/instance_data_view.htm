@@ -17,7 +17,8 @@
                 <h3 ng-click='vm.state.txsVisible=!vm.state.txsVisible'>1. Transactions & Acconting Tool</h3>
                 <admin-instance-txs-directive   ng-show='vm.state.txsVisible'
                                                 instance='vm.instance'
-                                                update='vm.updateSummary()'>
+                                                update='vm.updateSummary()'
+                                                active-txs='vm.activeTxs'>
                 </admin-instance-txs-directive>
             </div>
 
@@ -27,6 +28,7 @@
                 <admin-instance-shifts-directive    ng-show='vm.state.shiftsVisible'
                                                     instance='vm.instance'
                                                     shifts='vm.shifts'
+                                                    active-txs='vm.activeTxs'
                                                     save-shifts='vm.saveShifts(data)'
                                                     update='vm.updateSummary()'>
                 </admin-instance-shifts-directive>

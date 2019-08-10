@@ -3,16 +3,26 @@
         <!--Available Shifts-->
         <div class="row">
             <button class="btn btn-success" ng-click='vm.update()'>Update Summary</button>
-            <h4>Define Pool</h4>
+            
+            <h4>Define Commission Structure</h4>
+            <input type="radio" name='commission' value='perc' id='perc' ng-model='vm.comType'><label for="perc">Percentage of Sales</label> <br>
+            <input type="radio" name='commission' value='algr' id='algr' ng-model='vm.comType'><label for="algr">Algerithm</label>
 
+            <h4>Define Pool</h4>
             <!--WIW Shifts for today-->
             <div class="container">
                 <!--Items-->
                 <div class="row" >
                     
-                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-repeat='(key, value) in vm.activeShifts' style='margin-bottom: 30px;'>
+                    <div    class="col-xs-4 col-sm-4 col-md-4 col-lg-4" 
+                            ng-repeat='(key, value) in vm.activeShifts' 
+                            style='margin-bottom: 30px;'>
                         <!--Title-->
-                        <input type="checkbox" class='' id='aShift' ng-model='vm.instance.txsSummary.filters.shifts[key]'>
+                        <input  type="checkbox" 
+                                class='' 
+                                id='aShift' 
+                                ng-model='vm.instance.txsSummary.filters.shifts[key]'
+                                ng-click='vm.selectShift(key, vm.instance.txsSummary.filters.shifts, vm.activeShifts)'>
                         <label for="aShift">{{value.channel}}</label>
                         <br>
                         
@@ -33,14 +43,50 @@
 
                         <!--Labor Cost-->
                         <strong>REG Labor:</strong> {{value.hrs.reg}} - {{value.pay.reg_labor | currency: "$"}}<br>
-                        <strong>OT Labor: </strong> {{value.hrs.ot}} - {{value.pay.ot_labor | currency: "$"}}
+                        <strong>OT Labor: </strong> {{value.hrs.ot}} - {{value.pay.ot_labor | currency: "$"}} <br>
+                        <strong>Total Labor:</strong> {{value.pay.reg_labor + value.pay.ot_labor | currency: "$"}}
+                        <br>
+
+                        <!--Commission & Tips-->
+                        <input  type="checkbox" 
+                                id='aComFilter'
+                                ng-model='vm.instance.txsSummary.filters.comTips[key].commisions'>
+                        <label for="aComFilter">Receives Commissions</label>
+                        <br>
+                        <input  type="checkbox" 
+                                id='aTipFilter'
+                                ng-model='vm.instance.txsSummary.filters.comTips[key].tips'>
+                        <label for="aTipFilter">Receives Tips</label>
                     </div>
                     
                 </div>
             </div>
+            
+            <h4>Block Earnings</h4>
+            <!--Table Headers-->
+            <div class="row" style='background-color: black; color: white'>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Start</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">End</div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Members</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Sales</div>  
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Tips</div>  
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Comm.</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">%</div>                  
+            </div>
+            <!--Table DAta-->
+            <div class="row" ng-repeat='line in vm.blocks track by $index'>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.start | date: "short"}}</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.end | date: "short"}}</div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">{{line.members}}</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.total_sales / 100 | currency: "$"}}</div>  
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{line.total_tips / 100 | currency: "$"}}</div>  
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{line.total_com / 100 | currency: "$"}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{ ((1 / line.members.length) * 100).toFixed(2) }}%</div> 
+            </div>
+
 
             <!--Recorded Shifts-->
-            <h4>Shifts</h4>
+            <h4>Earnings</h4>
             <button class="btn btn-success" ng-click='vm.calculateCommissions()'>Calculate Sums</button>
             <div class="row" style='background-color: black; color: white'>
                 <!--Table Headers-->

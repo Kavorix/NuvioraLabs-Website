@@ -43,7 +43,7 @@ function wiwService($log, $http) {
             .then(function success(s) {
                 //  FORMAT LIST
                 //var returnData = _formatEmployeeList(s.data);
-
+                //console.log(s);
                 //return an affirmative status code
                 resolve(s);
             }).catch(function error(e) {

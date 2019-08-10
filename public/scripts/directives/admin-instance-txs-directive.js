@@ -17,7 +17,8 @@ function adminInstanceTxsDirective() {
 		replace: true,
 		scope: {
 			instance: "=",
-			update: "&"
+			update: "&",
+			activeTxs: "=" 
 		},
 		link: linkFunc,
 		controller: adminInstanceTxsDirectiveController,
@@ -38,6 +39,7 @@ function adminInstanceTxsDirective() {
 
 		//	DEFINE VIEW MODEL VARIABLES
 		vm.txsSummary = firebaseService.templates.instanceFilters();
+		vm.activeTxs = $scope.vm.activeTxs;
 		
 		//	LOAD DEPENDANT VALES
 		$timeout(function() {

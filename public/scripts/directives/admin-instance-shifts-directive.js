@@ -19,6 +19,7 @@ function adminInstanceShiftsDirective() {
 		scope: {
             instance: "=",
             shifts: '=',
+            activeTxs:'=',
             saveShifts: "&",
 			update: "&"
 		},
@@ -39,6 +40,8 @@ function adminInstanceShiftsDirective() {
         var vm = this;
         vm.instance = $scope.vm.instance;
         vm.activeShifts = {};
+        vm.activeTxs = $scope.vm.activeTxs;
+        vm.comType = 'algr';
 
 		//	DEFINE VIEW MODEL VARIABLES
         vm.sendShifts = function() {
@@ -55,6 +58,15 @@ function adminInstanceShiftsDirective() {
             //console.log('sending shift', sendableShifts);
 
             $scope.vm.saveShifts({data:sendableShifts});
+        };
+        vm.selectShift = function(key, filters, shifts) {
+            //  DEFINE LOCAL VARIABLES
+            //  DEFINE VIEW MODEL VARIABLES
+            vm.instance.txsSummary.filters.comTips[key].commisions = vm.instance.txsSummary.filters.shifts[key];
+            vm.instance.txsSummary.filters.comTips[key].tips = vm.instance.txsSummary.filters.shifts[key];
+
+            vm.blocks = calculatePool(filters, shifts);
+            
         };
         //  DEFINE LOCAL FUNCTIONS
         function _formatWIWData(collection) {
@@ -121,10 +133,14 @@ function adminInstanceShiftsDirective() {
 
                 //  ADD TO FILTER
                 if(vm.instance.txsSummary.filters.shifts[key] == undefined) vm.instance.txsSummary.filters.shifts[key] = false;
-               
+                if(vm.instance.txsSummary.filters.comTips[key] == undefined) {
+                    vm.instance.txsSummary.filters.comTips[key] = {};
+                    vm.instance.txsSummary.filters.comTips[key].commisions = false;
+                    vm.instance.txsSummary.filters.comTips[key].tips = false;
+                }
             });
 
-            //console.log(returnArray);
+            console.log('activeShifts', returnObject);
 
             return returnObject;
         };
@@ -159,10 +175,87 @@ function adminInstanceShiftsDirective() {
             });
         }
 
+        /*
+        *   CALCULATE POOL
+        */
+        function calculatePool(filters, shifts) {
+            //  DEFINE LOCAL VARIABLE
+            var blocks = [];
+
+            //  ITERATE OVER SHIFTS LIST
+            Object.keys(filters).forEach(function(key) {
+                if(filters[key]) {
+                    //  add the block
+                    blocks.push({
+                        start: shifts[key].time.start,
+                        end: shifts[key].time.end,
+                        members: [],
+                        total_com: 0,
+                        total_tips: 0,
+                        total_sales: 0
+                    });
+                    //  ADD THE MEMBER ID
+                    blocks[blocks.length - 1].members.push(key);
+                }
+            });
+
+            //  OPPERATE ACCORDING TO NUMBER OF SHIFTS
+            switch(blocks.length) {
+                case 0:
+                    console.log('0 blocks');
+                    break;
+                case 1:
+                    //  DEFINE LOCAL VARIABLES
+                    var start = blocks[0].start;
+                    var end = blocks[0].end;
+                    var duration = moment(end).diff(moment(start), 'hours');
+
+                    console.log('1 block', blocks, vm.activeTxs.length);
+                    //  iterate over all active TX
+                    vm.activeTxs.forEach(function(tx) {
+                        var timeStamp = moment(tx.created_at)
+                        if(timeStamp.isBetween(start, end)) {
+                            blocks[0].total_tips += tx.tip_money.amount
+                            blocks[0].total_sales += (tx.gross_sales_money.amount - tx.refunded_money.amount)
+                        }
+                    });
+
+                    blocks[0].total_com = calculateCommission(vm.comType, blocks[0].total_sales, duration);
+
+                    break;
+                default:
+                    console.log('multiple blocks');
+                    break;
+            };
+            return blocks;
+        };
+        
+        function calculateCommission(type, sales, duration) {
+            //  DEFINE LOCAL VALUES
+            var commission = 0;
+
+            switch(type) {
+                case "algr":
+                    //  DEFINE LOCAL VARIABLES
+                    var salesPHr = sales / 100 / duration;
+                    var multiplier = salesPHr / 2752;
+                    var comRate = multiplier * salesPHr;
+                    commission = comRate * duration;
+                    console.log('commission,', duration, sales, salesPHr, multiplier, comRate)
+                    break;
+                default: 
+                    break;
+            };
+
+            
+            return commission.toFixed(2) * 100
+        }
+
         //  WHEN EVERYTHING HAS LOADED
         $timeout(function() {
             vm.shifts = $scope.vm.shifts;
             if(vm.instance.txsSummary.filters.shifts == undefined) vm.instance.txsSummary.filters.shifts = {};
+            if(vm.instance.txsSummary.filters.comTips == undefined) vm.instance.txsSummary.filters.comTips = {};
             getShifts($scope.vm.instance.opens);
         })
 
