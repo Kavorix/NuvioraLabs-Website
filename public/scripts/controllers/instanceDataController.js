@@ -81,12 +81,7 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 		//	UPDATE SCOPE
 		$scope.$apply();
 	};
-	vm.calculateCommissions = function() {
-		//	DEFINE LOCAL VARIABLES
-		
-		//	NOTIFY PROGRESS
-		console.log('calculating commissions')
-	};
+
 
 	//	LOCAL FUNCTIONS
 

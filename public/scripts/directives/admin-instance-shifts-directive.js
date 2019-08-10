@@ -18,7 +18,9 @@ function adminInstanceShiftsDirective() {
 		replace: true,
 		scope: {
             instance: "=",
-            saveShifts: "&"
+            shifts: '=',
+            saveShifts: "&",
+			update: "&"
 		},
 		link: linkFunc,
 		controller: adminInstanceShiftsDirectiveController,
@@ -36,7 +38,7 @@ function adminInstanceShiftsDirective() {
 		//	DEFINE LOCAL VARIABLES
         var vm = this;
         vm.instance = $scope.vm.instance;
-        vm.activeShifts = [];
+        vm.activeShifts = {};
 
 		//	DEFINE VIEW MODEL VARIABLES
         vm.sendShifts = function() {
@@ -45,9 +47,9 @@ function adminInstanceShiftsDirective() {
             
 
             //  ITERATE OVER LIST
-            vm.activeShifts.forEach(function(shift) {
-                if(shift.status.selected) sendableShifts[shift.wiwShift_id] = shift;
-            });
+            //vm.activeShifts.forEach(function(shift) {
+            //    if(shift.status.selected) sendableShifts[shift.wiwShift_id] = shift;
+            //});
 
             //  NOTIFY PROGRES
             //console.log('sending shift', sendableShifts);
@@ -93,7 +95,7 @@ function adminInstanceShiftsDirective() {
             var shifts = _formatWIWData(data.shifts);
             var sites = _formatWIWData(data.sites);
             var users = _formatWIWData(data.users);
-            var returnArray = [];
+            var returnObject = {};
 
             //  ITERATE OVER THE SHIFTS
             Object.keys(shifts).forEach(function(key) {
@@ -114,13 +116,17 @@ function adminInstanceShiftsDirective() {
                 shiftData.pay.reg_labor         = shiftData.hrs.reg * shiftData.teamMemberRate;
                 shiftData.pay.ot_labor          = shiftData.hrs.ot * (shiftData.teamMemberRate * 1.5);
 
-                //  ADD TO ARRAY
-                returnArray.push(shiftData);
+                //  ADD TO OBJECT
+                returnObject[key] = shiftData;
+
+                //  ADD TO FILTER
+                if(vm.instance.txsSummary.filters.shifts[key] == undefined) vm.instance.txsSummary.filters.shifts[key] = false;
+               
             });
 
             //console.log(returnArray);
 
-            return returnArray;
+            return returnObject;
         };
 
         /*
@@ -155,6 +161,8 @@ function adminInstanceShiftsDirective() {
 
         //  WHEN EVERYTHING HAS LOADED
         $timeout(function() {
+            vm.shifts = $scope.vm.shifts;
+            if(vm.instance.txsSummary.filters.shifts == undefined) vm.instance.txsSummary.filters.shifts = {};
             getShifts($scope.vm.instance.opens);
         })
 
