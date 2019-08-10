@@ -121,6 +121,9 @@ function config($routeProvider, $locationProvider) {
         resolve: { /* @ngInject */
             instanceData: function(firebaseService, $route) {
                 return firebaseService.read.anInstance($route.current.params.instanceId)
+            },
+            shiftsData: function (firebaseService, $route) {
+                return firebaseService.query.shifts($route.current.params.instanceId)
             }
         }
     })

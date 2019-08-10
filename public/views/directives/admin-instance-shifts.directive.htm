@@ -10,34 +10,68 @@
             <!--WIW Shifts for today-->
             <div class="container">
                 <!--Items-->
-                <div class="row" ng-repeat='shift in vm.activeShifts' style='margin-bottom: 30px;'>
+                <div class="row" >
                     
-                    <!--Title-->
-                    <input type="checkbox" class='' id='aShift' ng-model='shift.status.selected'>
-                    <label for="aShift">{{shift.channel}}</label>
-                    <br>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-repeat='shift in vm.activeShifts' style='margin-bottom: 30px;'>
+                        <!--Title-->
+                        <input type="checkbox" class='' id='aShift' ng-model='shift.status.selected'>
+                        <label for="aShift">{{shift.channel}}</label>
+                        <br>
+                        
+                        <!--Team Member-->
+                        <strong>Team Member:</strong> 
+                        {{shift.shiftTeamMember}} @
+                        {{shift.teamMemberRate | currency:"$"}}/hr
+                        <br>
+
+                        <!--Duration-->
+                        <strong>Hours:</strong>
+                        {{shift.time.start | date: "h:mm a" }} -
+                        {{shift.time.end | date: "h:mm a" }}
+                        (
+                            {{shift.time.dHrs}}
+                        h )
+                        <br>
+
+                        <!--Labor Cost-->
+                        <strong>REG Labor:</strong> {{shift.hrs.reg}} - {{shift.pay.reg_labor | currency: "$"}}<br>
+                        <strong>OT Labor: </strong> {{shift.hrs.ot}} - {{shift.pay.ot_labor | currency: "$"}}
+                    </div>
                     
-                    <!--Team Member-->
-                    <strong>Team Member:</strong> 
-                    {{shift.shiftTeamMember}} @
-                    {{shift.teamMemberRate | currency:"$"}}/hr
-                    <br>
-
-                    <!--Duration-->
-                    <strong>Hours:</strong>
-                    {{shift.time.start | date: "h:mm a" }} -
-                    {{shift.time.end | date: "h:mm a" }}
-                    (
-                        {{shift.time.dHrs}}
-                    h )
-                    <br>
-
-                    <!--Labor Cost-->
-                    <strong>REG Labor:</strong> {{shift.hrs.reg}} - {{shift.pay.reg_labor | currency: "$"}}<br>
-                    <strong>OT Labor: </strong> {{shift.hrs.ot}} - {{shift.pay.ot_labor | currency: "$"}}
-                    
-
                 </div>
+            </div>
+
+            <!--Shifts-->
+            <h3>Shifts</h3>
+            <button class="btn btn-success" ng-click='vm.calculateCommissions()'>Calculate Sums</button>
+            <div class="row" style='background-color: black; color: white'>
+                <!--Table Headers-->
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Member</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Rate</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reg Hrs</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">OT Hrs</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Reg Pay</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">OT Pay</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Tips</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Comm</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Total</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Cost</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+            </div>
+            <!--Shifts Data-->
+            <div class="row" ng-repeat='shift in vm.shifts'>
+                <!--Table Headers-->
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{shift.shiftTeamMember}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.teamMemberRate | currency:"$"}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.hrs.reg}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.hrs.ot}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.pay.reg_labor | currency:"$"}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.pay.ot_labor | currency:"$"}}</div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
             </div>
 
             

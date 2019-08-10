@@ -194,7 +194,7 @@ function adminInstanceTxsDirective() {
 			});
 
 			//	NOTIFY PROGRES
-			console.log('employeesCollection', employeesCollection);
+			//console.log('employeesCollection', employeesCollection);
 
 			//	RETURN VALUES
 			return employeesCollection;
@@ -428,7 +428,7 @@ function adminInstanceTxsDirective() {
 		init();
 
 		//	NOTIFY PROGRESS
-		$log.info('in adminInstanceTxsDirectiveController', $scope.vm);
+		//$log.info('in adminInstanceTxsDirectiveController', $scope.vm);
 	}
 
 	//pass it back

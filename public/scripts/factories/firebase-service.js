@@ -35,10 +35,14 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         query: {
             instanceAccts: queryInstanceAccts,
             instance: queryInstances,
-            instancesByDate: queryInstancesByDate
+            instancesByDate: queryInstancesByDate,
+            shifts: queryShifts
         },
         update: {
            record: updateRecord 
+        },
+        push: {
+            record: pushRecord
         },
         resolve: {
             instanceAccts: resolveInstanceAccts
@@ -103,6 +107,15 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     }
 
     /*
+    *   PUSH RECORD
+    */
+    function pushRecord(path) {
+        //  DEFINE LOCAL VARIABLES
+        //  RETURN VALUE
+        return firebase.database().ref(path).push().key;
+    };
+
+    /*
     *   READ INVENTORY INSTANCES
     */
     function readInventoryInstances() {
@@ -138,7 +151,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
                 reject(e);
             });
         });     
-    }
+    };
 
     /*
     *   READ INSTANCES
@@ -146,7 +159,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
    function readInstances() {
         //  DECLARE LOCAL VARIABLES
         //  NOTIFY PROGRESS
-        console.log('reading instances');
+        //console.log('reading instances');
         //  RETURN ASYNC WORK
         return new Promise(function(resolve, reject) {
             firebase.database().ref('/instances').once('value')
@@ -286,6 +299,27 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
 
             instances.once("value")
             .then(function(snapshot) {
+                resolve(snapshot.val());
+            })
+            .catch(function(e) {
+                reject(e);
+            });
+        });
+    };
+
+    /*
+    *   QUERY SHIFTS
+    */
+    function queryShifts(instanceId) {
+        //  DEFINE LOCAL VARIABLES
+        //  RETURN ASYNC WORK
+        return new Promise(function (resolve, reject) {
+
+            var shifts = firebase.database().ref('shifts').orderByChild('instance_id').equalTo(instanceId);
+
+            shifts.once("value")
+            .then(function(snapshot) {
+                //console.log('got these shifts', snapshot.val());
                 resolve(snapshot.val());
             })
             .catch(function(e) {

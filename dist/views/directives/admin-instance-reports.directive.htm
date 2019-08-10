@@ -1,0 +1,33 @@
+<div>
+    <h3>Retail P&L Report</h3>   
+    <!--Retail Heders-->
+    <div class="row" style='background-color: black; color: white'>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Account</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Sub Acct</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Projection</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Actual</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">Diff</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Change</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">%</div>
+    </div>
+    <!--Retail Data-->
+    <div class="row" ng-repeat="line in vm.retailPerformance track by $index" style='border-bottom: solid black 1px; margin-top: 5px; margin-bottom: 5px;'>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong ng-hide="line.isSub">{{line.acct}}</strong></div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.subacct}}</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong ng-hide='line.isSub'>{{line.proj / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.proj / 100 | currency:"$"}}</span> </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong ng-hide='line.isSub'>{{line.act / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.act / 100 | currency:"$"}}</span> </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong ng-hide='line.isSub'>{{line.diff / 100 | currency:"$"}}</strong> <span ng-hide='!line.isSub'>{{line.diff / 100 | currency:"$"}}</span> </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{line.change}}</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><strong ng-hide='line.isSub'>{{(line.perc * 100).toFixed(2)}} %</strong> <span ng-hide='!line.isSub'>{{(line.perc * 100).toFixed(2)}} %</span> </div>
+    </div>
+        
+    <h3>Manufacturing Report</h3>
+    <!--MFG Headers-->
+    <div class="row">
+        
+    </div>
+    <!--MFG Data-->
+    <div class="row">
+
+    </div>
+</div>

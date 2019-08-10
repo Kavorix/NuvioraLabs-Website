@@ -50,7 +50,7 @@ function adminInstanceShiftsDirective() {
             });
 
             //  NOTIFY PROGRES
-            console.log('sending shift', sendableShifts);
+            //console.log('sending shift', sendableShifts);
 
             $scope.vm.saveShifts({data:sendableShifts});
         };
@@ -118,7 +118,7 @@ function adminInstanceShiftsDirective() {
                 returnArray.push(shiftData);
             });
 
-            console.log(returnArray);
+            //console.log(returnArray);
 
             return returnArray;
         };
@@ -138,12 +138,12 @@ function adminInstanceShiftsDirective() {
             };
 
             //  NOTIFY PROGRESS
-            console.log(params);
+            //console.log(params);
 
             wiwService.get.shifts(params)
             .then(function success(s) {
                 //  NOTIFY PROGRES
-                console.log(s);
+                //console.log('shifts',s);
 
                 vm.activeShifts = processShifts(s.data);
 
@@ -159,7 +159,7 @@ function adminInstanceShiftsDirective() {
         })
 
 		//	REPORT PROGRESS
-		$log.info('in adminInstanceShiftsDirectiveController');
+		//$log.info('in adminInstanceShiftsDirectiveController');
 	}
 
 	//pass it back

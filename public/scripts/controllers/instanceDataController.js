@@ -2,10 +2,10 @@ angular
     .module('awesweet')
     .controller('instanceDataViewsController', instanceDataViewsController);
 
-	instanceDataViewsController.$inject = ['$scope','$log', 'firebaseService', 'instanceData'];
+	instanceDataViewsController.$inject = ['$scope','$log', 'firebaseService', 'instanceData', 'shiftsData'];
 
 /* @ngInject */
-function instanceDataViewsController($scope, $log, firebaseService, instanceData) {
+function instanceDataViewsController($scope, $log, firebaseService, instanceData, shiftsData) {
 
 	//	DEFINE LOCAL VARIALES
 	var vm = this;
@@ -13,64 +13,12 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 	//	DEFINE VIEW MODEL VARIABLES
 	vm.state = { txsVisible: false, forecastVisible: false, shiftsVisible: false}
 	vm.instance = instanceData;
-	vm.retailPerformance = [
-		{ acct: "INCOME", subacct: "", proj: "", act: "", diff: "", change: "", perc: "", isSub: false },
-		{ acct: "INCOME", subacct: "Sales", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "INCOME", subacct: "Other", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "EXPENSE", subacct: "", proj: "", act: "", diff: "", change: "", perc: "", isSub: false  },
-		{ acct: "EXPENSE", subacct: "Cost Of Goods", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "EXPENSE", subacct: "Payroll", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "EXPENSE", subacct: "Rent", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "EXPENSE", subacct: "Power", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "EXPENSE", subacct: "Other", proj: "", act: "", diff: "", change: "", perc: "", isSub: true  },
-		{ acct: "NET", subacct: "", proj: "", act: "", diff: "", change: "", perc: "", isSub: false  }
-	];
+	vm.shifts = shiftsData;
+	
 
 	//	DEFINE LOCAL FUNCTIONS
 
-
-	/*
-	*
-	*/
-	function updateDBValues(instance) {
-		//	DEFINE LOCAL VARIABLES
-		var updates = {};
-		var updatesPath = 'instances/' + instance.instance_id;
-		updates[updatesPath] = JSON.parse(angular.toJson(instance));
-
-		//	RUN UPDATE
-		firebaseService.update.record(updates)
-		.then(function success(s) {
-			//return an affirmative status code
-			console.log(s)
-		}).catch(function error(e) {
-			console.log(e);
-		});
-	}
-
 	//	VIEW MODEL FUNCTIONS
-	/*
-	*	SAVE SALES NUMBERS
-	*/
-	vm.saveSalesNumbers = function(financials) {
-		//	DEFINE LOCAL VARIABLES
-		var updates = {};
-
-		console.log('got these financials', financials);
-
-		//	UPDATES FALES
-		financials.gross_sales = parseInt(financials.gross_sales) * 100;
-
-		updates['instances/' + instanceId + '/financials'] = financials;
-
-		//	SAVE CHANGES
-		firebaseService.update.record(updates)
-		.then(function success(s) {
-			console.log(s);
-		}).catch(function error(e) {
-			console.log(e);
-		});
-	};
 	vm.updateSummary = function() {
 		//	DEFINE LOCAL VARIABLES
 		var updates = {};
@@ -91,23 +39,57 @@ function instanceDataViewsController($scope, $log, firebaseService, instanceData
 		});
 	};
 	vm.saveShifts = function(newShifts) {
-		console.log('saving shifts', newShifts);
+		//	DEFINE LOCAL VARIABLES
+		var shifts = [];
+		var updates = {};
+		var i = 0;
+
+		//	PULL OUT SHIFTS
+		Object.keys(newShifts).forEach(function(key) {
+			//	ADD VALUE
+			newShifts[key].channel_id 	= vm.instance.channel_id;	//	channel ID
+			newShifts[key].instance_id 	= vm.instance.instance_id;	//	instance ID
+			newShifts[key].seasons 		= vm.instance.season_name;	//	season
+			newShifts[key].seasons_id 	= vm.instance.season_id;	//	season ID
+			newShifts[key].status.executed = true;					//	executed
+
+			shifts.push(newShifts[key]);
+		});
+
+		//	IF THERE ARE SHIFTS,  ADD THEM TO THE RECORD
+		if(shifts.length > 0) {
+			shifts.forEach(function(shift) {
+				var newPostKey = firebaseService.push.record('/shifts');
+				
+				//	PREPARE DB WRITE
+				updates['/shifts/' + newPostKey] = JSON.parse(angular.toJson(shift));
+				
+				//	ADD SHIFTS TO LOCAL MODEL
+				vm.shifts[newPostKey] = shift;
+			});
+		};
+
+		//	ADD TO DATABASE
+		firebaseService.update.record(updates)
+		.then(function success(s) {
+			//return an affirmative status code
+			console.log(s, shifts);
+		}).catch(function error(e) {
+			console.log(e);
+		});
+
+		//	UPDATE SCOPE
+		$scope.$apply();
+	};
+	vm.calculateCommissions = function() {
+		//	DEFINE LOCAL VARIABLES
+		
+		//	NOTIFY PROGRESS
+		console.log('calculating commissions')
 	};
 
 	//	LOCAL FUNCTIONS
-	function mapToSummary() {
-		vm.retailPerformance[1].act = vm.instance.txsSummary.sales[0].actual;
 
-		//	SUM VALUES
-		vm.retailPerformance[0].act = vm.retailPerformance[1].act + vm.retailPerformance[0].act; //Income total
-		vm.retailPerformance[9].act = vm.retailPerformance[0].act - vm.retailPerformance[8].act; //Net
-		
-		console.log(vm.retailPerformance[0].act);
-		//$scope.$apply();
-	};
-
-	//	RUN
-	mapToSummary();
 
 	//	NOTIFY PROGRESS
 	//$log.info('in the instance Data Views controller');	    //  TODO: TAKE THIS OUT LATER

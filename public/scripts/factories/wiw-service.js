@@ -89,12 +89,13 @@ function wiwService($log, $http) {
                 ot_labor: 0,
                 tips: 0,
                 comm: 0
-            }
+            },
+            commCalculatd: false
         });
     }
 
     //  NOTIFY PROGRESS
-    console.log('loaded WIW service');
+    //console.log('loaded WIW service');
 
     //  RETURN THE METHOD
     return wiwMod;
