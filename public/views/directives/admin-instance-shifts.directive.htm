@@ -87,7 +87,6 @@
 
             <!--Recorded Shifts-->
             <h4>Earnings</h4>
-            <button class="btn btn-success" ng-click='vm.calculateCommissions()'>Calculate Sums</button>
             <div class="row" style='background-color: black; color: white'>
                 <!--Table Headers-->
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Member</div>
@@ -111,10 +110,10 @@
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.hrs.ot}}</div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.pay.reg_labor | currency:"$"}}</div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">{{shift.pay.ot_labor | currency:"$"}}</div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
-                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{shift.pay.tips / 100 | currency:"$"}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{shift.pay.comm / 100 | currency:"$"}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{shift.pay.reg_labor + shift.pay.ot_labor + (shift.pay.tips / 100) + (shift.pay.comm /100) | currency:"$"}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"><span ng-show='shift.commCalculatd'>{{(shift.pay.reg_labor + shift.pay.ot_labor + (shift.pay.tips / 100) + (shift.pay.comm /100)) * 1.15 | currency:"$"}}</span><span ng-show='!shift.commCalculatd'>-</span></div>
                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
             </div>
 

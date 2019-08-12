@@ -66,6 +66,27 @@ function adminInstanceShiftsDirective() {
             vm.instance.txsSummary.filters.comTips[key].tips = vm.instance.txsSummary.filters.shifts[key];
 
             vm.blocks = calculatePool(filters, shifts);
+
+            //  ADD BLOCK VALUES TO SHIFTS
+            console.log('vm.shifts', vm.shifts);
+            //  ITERATE OVER THE BLOCKS
+            vm.blocks.forEach(function(block) {
+                //  DEFINE LOCAL VARIABLES
+
+                //  ITERATE OVER BLOCK MEMBERS
+                block.members.forEach(function(member) {
+
+                    vm.activeShifts[member].commCalculatd = true;
+                    vm.activeShifts[member].pay.tips = block.total_tips / (1/block.members.length);
+                    vm.activeShifts[member].pay.comm = block.total_com / (1/block.members.length);
+
+                    //  ITERATE OVER OJBECT
+                    Object.keys(vm.shifts).forEach(function(key) {
+                        if(vm.shifts[key].wiwShift_id == member) vm.shifts[key] = vm.activeShifts[member]
+                    });
+                });
+
+            });
             
         };
         //  DEFINE LOCAL FUNCTIONS
@@ -254,6 +275,7 @@ function adminInstanceShiftsDirective() {
         //  WHEN EVERYTHING HAS LOADED
         $timeout(function() {
             vm.shifts = $scope.vm.shifts;
+            if(vm.shifts == undefined) vm.shifts = {};
             if(vm.instance.txsSummary.filters.shifts == undefined) vm.instance.txsSummary.filters.shifts = {};
             if(vm.instance.txsSummary.filters.comTips == undefined) vm.instance.txsSummary.filters.comTips = {};
             getShifts($scope.vm.instance.opens);

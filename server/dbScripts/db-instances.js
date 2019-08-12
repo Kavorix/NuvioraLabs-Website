@@ -55,8 +55,6 @@ function addInstancesList(data) {
             itModel.opens           = openTime.format();
             itModel.closes          = closeTime.format();
             itModel.end_time        = endTime.format();
-            itModel.opens           = startTime.format();
-            itModel.closes          = endTime.format();;
             itModel.duration.time   = endTime.diff(startTime, 'hours').toFixed(2);
             itModel.duration.units  = "hrs";
             itModel.channel_id      = iteration.channel.channel_id;

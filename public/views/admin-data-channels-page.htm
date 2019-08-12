@@ -1,0 +1,19 @@
+<div>   
+    <div class="container">
+
+        <!--Navigation-->
+        <div class="pull-left">
+            <button class='btn btn-info' ng-click='vm.navPrevious()'>< Previous</button>
+        </div>
+        <div class="pull-right">
+            <button class='btn btn-info' ng-click='vm.navNext()'>Next ></button>
+        </div>
+        <div class="clearfix"></div>
+
+        <!--Header-->
+        <h2>Channel View: {{vm.channelData.title}}</h2>
+        <h4>Type: {{vm.channelData.type}}</h4>
+        <a href="#/admin/data/channels">Back to Channels</a>
+
+    </div>
+</div>

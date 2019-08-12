@@ -107,12 +107,28 @@ function config($routeProvider, $locationProvider) {
     .when('/admin/data/channels', {
         templateUrl: 'views/data_channels.htm',
         controller: 'dataViewsController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            seasonsData: function() {
+                return 1
+            }
+        }
     })
     .when('/admin/data/channel/:channelId', {
-        templateUrl: 'views/data_channel_view.htm',
-        controller: 'dataViewsController',
-        controllerAs: 'vm'
+        templateUrl: 'views/admin-data-channels-page.htm',
+        controller: 'adminDataChannelsController',
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            seasonsData: function(firebaseService, $route) {
+                return firebaseService.query.equalTo('seasons', 'channelId', $route.current.params.channelId);
+            },
+            channelsData: function(firebaseService, $route) {
+                return firebaseService.read.channels();
+            },
+            instanceData: function(firebaseService, $route) {
+                firebaseService.query.instance($route.current.params.channelId)
+            }
+        }
     })
     .when('/admin/data/instance/:instanceId', {
         templateUrl: 'views/instance_data_view.htm',

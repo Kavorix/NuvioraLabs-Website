@@ -2,16 +2,23 @@ angular
     .module('awesweet')
     .controller('dataViewsController', dataViewsController);
 
-	dataViewsController.$inject = ['$scope','$log', '$location', "$routeParams", 'firebaseService', '$http'];
+	dataViewsController.$inject = ['$scope','$log', '$location', "$routeParams", 'firebaseService', '$http', 'seasonsData'];
 
 /* @ngInject */
-function dataViewsController($scope, $log, $location, $routeParams, firebaseService, $http) {
+function dataViewsController($scope, $log, $location, $routeParams, firebaseService, $http, seasonsData) {
 
     //  DEFINE LOCAL VARIABLES
     var view = $location.$$path.split('/')[3];
     
     //  DEFINE VIEWMODEL VARIABLES
     var vm = this;
+    vm.state = {
+        values: {
+            newChannelName: "",
+            newChannelType: ""
+        },
+        addChannels: false 
+    };
     vm.seasonInput = false;
     vm.instancesInput = false;
     vm.aChannel = {
@@ -25,6 +32,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         itEnds: { hr: "", min: "", AP: "", time: ""},
         newInstancesPreview: []
     }
+    vm.seasonsList = seasonsData;
 
     //  DEFINE VIEW MODEL FUNCTIONS
     vm.loadChannel = function(id) {
@@ -240,7 +248,21 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         console.log('got this id', id);
         $location.path('/admin/data/instance/' + id);
 		//$scope.$apply();
-    }
+    };
+    vm.addChannel = function(name, type) {
+        //  NOTIFY PROGRESS
+        console.log('adding', name, type);
+
+        firebaseService.create.channel(name, type)
+        .then(function success(s) {
+            //  NOTIFY PROGRESS
+            console.log(s);
+            //vm.instances = instancesList;
+            $scope.$apply();
+        }).catch(function error(e) {
+            $log.error(e);
+        });
+    };
 
     //  LOAD DATA
     switch(view) {
@@ -263,7 +285,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
             });
             break;
         case "channel":
-            console.log('$routeParams', $routeParams);
+            //console.log('$routeParams', $routeParams);
             firebaseService.read.channels()
             .then(function success(channelsList) {
                 vm.channels = channelsList;

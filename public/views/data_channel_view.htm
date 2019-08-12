@@ -15,6 +15,11 @@
         <a href="#/admin/data/channels">Back to Channels</a>
 
         <h4>Seasons</h4>
+        <ul>
+            <li ng-repeat='season in vm.seasonsList'>
+                {{season}}
+            </li>
+        </ul>
         <!--Options-->
         <button class='btn btn-info' ng-click="vm.seasonInput=!vm.seasonInput">Add Season</button>
         <button class='btn btn-info' ng-click="vm.instancesInput=!vm.instancesInput">Add Instances</button>
@@ -67,29 +72,31 @@
                         class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>
             </div>
             <div class="row">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Start: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itStarts.hr' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itStarts.min' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itStarts.AP' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
+            </div> 
+            <div class="row">
                 <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Opens: </strong>
                 <input list="hrPicker" ng-model='vm.aChannel.itOpens.hr' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>: 
                 <input list="minPicker" ng-model='vm.aChannel.itOpens.min' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
                 <input list="AMPMPicker" ng-model='vm.aChannel.itOpens.AP' ng-blur='vm.setItTimes("itOpens", vm.aChannel.itOpens.hr, vm.aChannel.itOpens.min, vm.aChannel.itOpens.AP)'>
             </div> 
-            <div class="row">
-                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Start: </strong>
-                <input list="hrPicker" ng-model='vm.aChannel.itStarts.hr' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>: 
-                <input list="minPicker" ng-model='vm.aChannel.itStarts.min' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
-                <input list="AMPMPicker" ng-model='vm.aChannel.itStarts.AP' ng-blur='vm.setItTimes("itStarts", vm.aChannel.itStarts.hr, vm.aChannel.itStarts.min, vm.aChannel.itStarts.AP)'>
-            </div>            
-            <div class="row">
-                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>End: </strong>
-                <input list="hrPicker" ng-model='vm.aChannel.itEnds.hr' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>: 
-                <input list="minPicker" ng-model='vm.aChannel.itEnds.min' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
-                <input list="AMPMPicker" ng-model='vm.aChannel.itEnds.AP' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
-            </div>             
+           
             <div class="row">
                 <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>Closes: </strong>
                 <input list="hrPicker" ng-model='vm.aChannel.itCloses.hr' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>: 
                 <input list="minPicker" ng-model='vm.aChannel.itCloses.min' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
                 <input list="AMPMPicker" ng-model='vm.aChannel.itCloses.AP' ng-blur='vm.setItTimes("itCloses", vm.aChannel.itCloses.hr, vm.aChannel.itCloses.min, vm.aChannel.itCloses.AP)'>
             </div>  
+            <div class="row">
+                <strong class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>End: </strong>
+                <input list="hrPicker" ng-model='vm.aChannel.itEnds.hr' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>: 
+                <input list="minPicker" ng-model='vm.aChannel.itEnds.min' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
+                <input list="AMPMPicker" ng-model='vm.aChannel.itEnds.AP' ng-blur='vm.setItTimes("itEnds", vm.aChannel.itEnds.hr, vm.aChannel.itEnds.min, vm.aChannel.itEnds.AP)'>
+            </div>             
+
             <button class="btn btn-success">Preview</button>
             <button class="btn btn-danger" ng-click='vm.saveIterations(vm.aChannel.newInstancesPreview)'>Save</button>
 
@@ -130,13 +137,13 @@
 
             <!--Header Row-->
             <div class="row">
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'><strong>Season</strong></div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>Season</strong></div>
                 <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>#</strong></div>
                 <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
                 <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Skip?</strong></div>
                 <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Gross</strong></div>
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Tips</strong></div>
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>$/Hr</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Tips</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>$/Hr</strong></div>
             </div>
 
             <!-- Data Rows-->
@@ -144,13 +151,13 @@
                     ng-repeat='instance in vm.instances track by $index'
                     ng-click='vm.instanceReroute(instance.instance_id)'
                     >
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' style='text-align: left'>{{instance.season_name}}</div>
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.season_name}}</div>
                 <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.instance}}</div>
                 <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.opens | date: "shortDate"}}</div>
                 <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.skipped}}</div>
                 <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[0].actual /100 | currency: "$"}}</div>
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[4].actual /100| currency: "$"}}</div>
-                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[0].actual / 5.5 /100 | currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.sales[4].actual /100| currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.sales[0].actual / 5.5 /100 | currency: "$"}}</div>
             </div>
         </div>
     </div>

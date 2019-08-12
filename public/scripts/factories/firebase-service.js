@@ -27,12 +27,14 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         },
         create: {
             emailUser: create_user_email,
-            season: createSeason
+            season: createSeason,
+            channel: createChannel
         },
         authenticate: {
             email: email_authentication
         },
         query: {
+            equalTo: equalToQuery,
             instanceAccts: queryInstanceAccts,
             instance: queryInstances,
             instancesByDate: queryInstancesByDate,
@@ -79,6 +81,31 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             updates['/seasons/' + newSeasonKey] = seasonObject;
             updates['/channels/' + chId + '/seasons/' + newChSeasonKey] = { seasonId: newSeasonKey, title: value };
 
+            firebase.database().ref().update(updates)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });
+    };
+
+    function createChannel(name, type) {
+        //  DEFINE LOCAL VARIABLES
+        var updates = {};
+        var newChannelKey = firebase.database().ref().child('channels').push().key;
+        updates['/channels/' + newChannelKey] = {
+            id: newChannelKey,
+            qbId: "",
+            sqId: "",
+            title: name,
+            type: type,
+            wiwId: ""
+        };
+
+        console.log('sending this', updates);
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
             firebase.database().ref().update(updates)
             .then(function success(s) {
                 resolve(s);
@@ -239,6 +266,30 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
             });
             
         });
+    };
+
+    /*
+    *   QUERY RECORDS   
+    *
+    */
+    function equalToQuery(path, orderby, value) {
+        //  DEFINE LOCAL VARIABLES
+
+        //  NOTIFY PROGRES
+        console.log('equalToQuery got these values', path, orderby, value);
+        //  RETURN ASYNC WORK
+        return new Promise(function (resolve, reject) {
+
+            var instanceAccts = firebase.database().ref(path).orderByChild(orderby).equalTo(value);
+
+            instanceAccts.once("value")
+            .then(function(snapshot) {
+                resolve(snapshot.val());
+            })
+            .catch(function(e) {
+                reject(e);
+            });
+        }); 
     };
 
     /*

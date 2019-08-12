@@ -6,21 +6,37 @@
 
         <!--Options-->
         <h4>Options</h4>
+        <strong ng-click='vm.state.addChannels=!vm.state.addChannels'>Add Channel</strong>
+        <div class="" ng-show='vm.state.addChannels'>
+            <label for="channelName">Channel Name:</label> <input type="text" id='channelName' ng-model='vm.state.value.newChannelName'>
+            <label for="channelType">Channel Name:</label> <input type="text" id='channelType' ng-model='vm.state.value.newChannelType'>
+            <button class="btn btn-success" ng-click='vm.addChannel(vm.state.value.newChannelName, vm.state.value.newChannelType)'>Add Channel</button>
+        </div>
 
         <!--Table-->
-        <div class="table">
+        <div class="table-hover">
             <!--Header Row-->
-            <div class="row">
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>ID</strong></div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Name</strong></div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><strong>Type</strong></div>
+            <div class="row" style='text-align: left; background-color:black; color: white'>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' style='text-align: left'><strong>ID</strong></div>
+                <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><strong>Name</strong></div>
+                <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><strong>Type</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Type</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Type</strong></div>
             </div>
 
             <!--Data Rows-->
-            <div class="row" ng-repeat="channel in vm.channels track by $index" ng-click='vm.loadChannel(channel.id)'>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{$index + 1}}</div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{channel.title}}</div>
-                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'>{{channel.type}}</div>
+            <div    class="row" 
+                    ng-repeat="channel in vm.channels track by $index" 
+                    ng-click='vm.loadChannel(channel.id)'
+                    style='text-align: left;
+                    border-bottom: thin solid gray;
+                    margin-bottom: 5px;
+                    margin-top: 5px;'>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' style='text-align: left'>{{$index + 1}}</div>
+                <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>{{channel.title}}</div>
+                <div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'>{{channel.type}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'></div>
             </div>
         </div>
     </div>

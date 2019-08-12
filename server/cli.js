@@ -12,6 +12,33 @@ var path 	    = require('path');
 var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
+
+//  UPDATES RECORDS
+firebase.query.childValue('instances', 'channel_id', '-LdChIe4sSImu0DtR-QW')
+.then(function success(instancesList) {
+    //  define local variables
+    var updates = {};
+
+    Object.keys(instancesList).forEach(function(key) {
+        var date = instancesList[key].opens.split("T")[0];
+
+        updates['/instances/' + key + "/end_time"]   = date + 'T14:30:00-07:00';
+        updates['/instances/' + key + "/closes"]     = date + 'T13:30:00-07:00';
+    });
+
+    firebase.updateBatch(updates)
+    .then(function success(s) {
+        //return an affirmative status code
+        console.log(s)
+    }).catch(function error(e) {
+        console.log(e);
+    });
+
+    //console.log(instancesList)
+}).catch(function error(e) {
+    console.log(e);
+});
+
 /*var instanceData = {
     "channel_id" : "-LdCgjSRL27Y9RruXGE4",
     "channel_name" : "Beaverton",
@@ -67,13 +94,13 @@ firebase.del('/instances')
     console.log(e);
 });*/
 
-wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
+/*wiw.get.shifts({start: "2019-07-01T00:00:00-07:00", end: "2019-07-02T00:00:00-07:00"})
 .then(function success(s) {
     //return an affirmative status code
     console.log(s)
 }).catch(function error(e) {
     console.log(e);
-});
+});*/
 
 /*firebase.create('forecasts', {
     0: 1
