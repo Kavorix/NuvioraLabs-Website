@@ -20,6 +20,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     //  DEFINE METHODS
     var firebaseMod = {
         read: {
+            record: readRecord,
             inventoryInstances: readInventoryInstances,
             instances: readInstances,
             channels: readChannels,
@@ -90,6 +91,9 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         });
     };
 
+    /*
+    *
+    */
     function createChannel(name, type) {
         //  DEFINE LOCAL VARIABLES
         var updates = {};
@@ -158,6 +162,21 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
                 reject(e);
             });
         });
+    };
+    /*
+    *
+    */
+    function readRecord(readPath) {
+        //  DECLARE LOCAL VARIABLES
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+            firebase.database().ref(readPath).once('value')
+            .then(function success(snapshot) {
+                resolve(snapshot.val());
+            }).catch(function error(e) {
+                reject(e);
+            });
+        });            
     };
 
     /*

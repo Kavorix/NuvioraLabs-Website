@@ -38,7 +38,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
     vm.loadChannel = function(id) {
         $location.path('/admin/data/channel/' + id);
     };
-    vm.navPrevious = function() {
+    /*vm.navPrevious = function() {
         //  DEFINE LOCAL VARIABLES
         var channelsList = [];
         var i = 0;
@@ -77,7 +77,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
         //console.log('nav to next', index, pathIndex, channelsList[pathIndex].id);
         
         $location.path('/admin/data/channel/' + channelsList[pathIndex].id)
-    };
+    };*/
     vm.saveNewSeason = function(name) {
         //  DEFINE LOCAL VARIABLES
         console.log('saving seasons: ', name);
@@ -286,7 +286,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
             break;
         case "channel":
             //console.log('$routeParams', $routeParams);
-            firebaseService.read.channels()
+            /*firebaseService.read.channels()
             .then(function success(channelsList) {
                 vm.channels = channelsList;
                 vm.channelData = channelsList[$routeParams.channelId];
@@ -300,7 +300,7 @@ function dataViewsController($scope, $log, $location, $routeParams, firebaseServ
                 $scope.$apply();
             }).catch(function error(e) {
                 $log.error(e);
-            });
+            });*/
         default:
     }
 

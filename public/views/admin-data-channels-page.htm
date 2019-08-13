@@ -15,5 +15,33 @@
         <h4>Type: {{vm.channelData.type}}</h4>
         <a href="#/admin/data/channels">Back to Channels</a>
 
+        <!--Seasons Section-->
+        <section>
+            <h4>Seasons</h4>
+            <!--List-->
+            <!--Headers-->
+            <div class="row" style='background-color: black; color: white;'>
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><strong>Name</strong> </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>Start</strong> </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>End</strong> </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Duration</strong> </div>
+            </div>
+
+            <!--DAta-->
+            <div    class="row" 
+                    ng-repeat='(key, value) in vm.seasonsList'
+                    ng-click='vm.seasonNav(key, vm.channelData.id)'>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{value.title}}</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Start</div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">End</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Duration</div>
+            </div>
+            <button class="btn btn-success" ng-click='vm.state.seasonAdder.visible=!vm.state.seasonAdder.visible'>Add Season</button>
+
+            <!--Season Adder Section-->
+            
+        </section>
+
+
     </div>
 </div>

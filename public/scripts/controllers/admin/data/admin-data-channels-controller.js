@@ -13,6 +13,10 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
     vm.channels     = channelsData;
     vm.channelData  = channelsData[$routeParams.channelId];
     vm.instances    = instanceData;
+    vm.seasonsList  = seasonsData;
+    vm.state = {
+        seasonAdder: { visible: false }
+    }
 
     //  DEFINE VIEW MODEL FUNCTIONS
     vm.navPrevious = function() {
@@ -55,6 +59,11 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
         
         $location.path('/admin/data/channel/' + channelsList[pathIndex].id)
     };
+    vm.seasonNav = function(key, channelId){
+        console.log('season nav', key);
+        $location.path('/admin/data/season/' + key + "/" + channelId);
+        $scope.$apply();
+    }
 
     //console.info('in adminDataChannelsController');	    //  TODO: TAKE THIS OUT LATER
 

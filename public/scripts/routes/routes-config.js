@@ -130,6 +130,21 @@ function config($routeProvider, $locationProvider) {
             }
         }
     })
+    .when('/admin/data/season/:seasonId/:channelId', {
+        templateUrl: 'views/admin-data-season-page.htm',
+        controller: 'adminDataSeasonController',
+        controllerAs: 'vm',
+        resolve: { /* @ngInject */
+            seasonData: function(firebaseService, $route) {
+                var readPath = "seasons/" + $route.current.params.seasonId
+                return firebaseService.read.record(readPath);
+            },
+            channelData: function(firebaseService, $route) {
+                var readPath = "channels/" + $route.current.params.channelId
+                return firebaseService.read.record(readPath);
+            }
+        }
+    })
     .when('/admin/data/instance/:instanceId', {
         templateUrl: 'views/instance_data_view.htm',
         controller: 'instanceDataViewsController',
