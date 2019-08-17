@@ -22,19 +22,21 @@
             <!--Headers-->
             <div class="row" style='background-color: black; color: white;'>
                 <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"><strong>Name</strong> </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>Start</strong> </div>
-                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><strong>End</strong> </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Start</strong> </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>End</strong> </div>
                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Duration</strong> </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><strong>Occurances</strong> </div>
             </div>
 
-            <!--DAta-->
+            <!--Data-->
             <div    class="row" 
                     ng-repeat='(key, value) in vm.seasonsList'
                     ng-click='vm.seasonNav(key, vm.channelData.id)'>
                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">{{value.title}}</div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">Start</div>
-                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">End</div>
-                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">Duration</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{value.start_date | date: "shortDate"}}</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{value.end_date | date: "shortDate"}}</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">{{vm.seasonDuration(value.start_date, value.end_date)}}</div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">occurances</div>
             </div>
             <button class="btn btn-success" ng-click='vm.state.seasonAdder.visible=!vm.state.seasonAdder.visible'>Add Season</button>
 
@@ -42,6 +44,33 @@
             
         </section>
 
+        <!--Itreations-->
+        <section>
+            <h4>Occurances</h4>
+            <!--Headers-->
+            <div class="row">
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'><strong>Season</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>#</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Skip?</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Gross</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Tips</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>$/Hr</strong></div>
+            </div>
 
+            <!--Data-->
+            <div    class="row" 
+                    ng-repeat='instance in vm.instances track by $index'
+                    ng-click='vm.instanceReroute(instance.instance_id)'
+                    >
+                <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4' style='text-align: left'>{{instance.season_name}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.instance}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.opens | date: "shortDate"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.skipped}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{instance.txsSummary.sales[0].actual /100 | currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.sales[4].actual /100| currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>{{instance.txsSummary.sales[0].actual / 5.5 /100 | currency: "$"}}</div>
+            </div>
+        </section>
     </div>
 </div>

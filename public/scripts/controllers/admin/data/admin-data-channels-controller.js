@@ -16,7 +16,11 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
     vm.seasonsList  = seasonsData;
     vm.state = {
         seasonAdder: { visible: false }
-    }
+    };
+
+    //  NOTIFY PROGRESS
+    console.log('seasonsData', seasonsData);
+    console.log('instnaces', instanceData);
 
     //  DEFINE VIEW MODEL FUNCTIONS
     vm.navPrevious = function() {
@@ -59,10 +63,33 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
         
         $location.path('/admin/data/channel/' + channelsList[pathIndex].id)
     };
+    vm.instanceReroute = function(id) {
+        console.log('got this id', id);
+        $location.path('/admin/data/instance/' + id);
+		//$scope.$apply();
+    };
+    vm.seasonDuration = function(start, end) {
+        //  DEFINE LOCAL VARIABLES
+        var a = moment(start);
+        var b = moment(end);
+        var days = b.diff(a, 'days');
+        var weeks = b.diff(a, 'weeks');
+        var months = b.diff(a, 'months');
+        var returnValue = 0;
+
+        if(days > 6) {
+            if(weeks > 4) returnValue = months + " months"
+            else returnValue = weeks + " weeks";
+        } else {
+            returnValue = days + " days";
+        }
+
+        return returnValue;
+    };
     vm.seasonNav = function(key, channelId){
         console.log('season nav', key);
         $location.path('/admin/data/season/' + key + "/" + channelId);
-        $scope.$apply();
+        //$scope.$apply();
     }
 
     //console.info('in adminDataChannelsController');	    //  TODO: TAKE THIS OUT LATER

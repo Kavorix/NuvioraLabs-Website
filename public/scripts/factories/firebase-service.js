@@ -37,7 +37,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         query: {
             equalTo: equalToQuery,
             instanceAccts: queryInstanceAccts,
-            instance: queryInstances,
+            instances: queryInstances,
             instancesByDate: queryInstancesByDate,
             shifts: queryShifts
         },
@@ -338,12 +338,13 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     *   
     *   This method takes 
     */
-    function queryInstances(channelId) {
+    function queryInstances(filter, id) {
         //  DEFINE LOCAL VARIABLES
+        console.log('querying Instances with ', filter, id);
         //  RETURN ASYNC WORK
         return new Promise(function (resolve, reject) {
 
-            var instances = firebase.database().ref('instances').orderByChild('channel_id').equalTo(channelId);
+            var instances = firebase.database().ref('instances').orderByChild(filter).equalTo(id);
 
             instances.once("value")
             .then(function(snapshot) {

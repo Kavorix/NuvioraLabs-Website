@@ -14,16 +14,20 @@ var stdio       = require('./stdio/stdio.js');
 
 
 //  UPDATES RECORDS
-firebase.query.childValue('instances', 'channel_id', '-LdChIe4sSImu0DtR-QW')
+firebase.query.childValue('instances', 'channel_id', '-LdCgUNtz_RU_a4oQSVa')
 .then(function success(instancesList) {
     //  define local variables
     var updates = {};
 
-    Object.keys(instancesList).forEach(function(key) {
+    /*Object.keys(instancesList).forEach(function(key) {
         var date = instancesList[key].opens.split("T")[0];
 
         updates['/instances/' + key + "/end_time"]   = date + 'T14:30:00-07:00';
         updates['/instances/' + key + "/closes"]     = date + 'T13:30:00-07:00';
+    });*/
+
+    Object.keys(instancesList).forEach(function(key) {
+        updates['/instances/' + instancesList[key].instance_id + '/season_id'] = '-LjFB-TbRejmOtjQMzkw'; // Summer
     });
 
     firebase.updateBatch(updates)

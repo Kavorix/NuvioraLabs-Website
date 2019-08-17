@@ -1,6 +1,97 @@
 <div>
     <div class="container">
-        <h4>{{vm.channel.title}} - {{vm.season.title}}</h4>
-        <a ng-href="#/admin/data/channel/{{vm.season.channelId}}">Back to Channel</a>
+        
+        <div class="row">
+            <h2>Channel: {{vm.channel.title}} <br>
+                Season: {{vm.season.title}}</h2>
+            <a ng-href="#/admin/data/channel/{{vm.season.channelId}}">Back to Channel</a>
+        </div>
+        
+
+        <div class="row">
+            <button class="btn btn-success" ng-click='vm.saveUpdates()'>Save Updates</button>
+        </div>
+        
+        <div class="row">
+            <h4>Scope</h4>
+            <strong>Name: </strong> {{vm.season.title}} <br>
+            <strong>Starts: </strong> {{vm.season.start_date | date: "shortDate"}} <br>
+            <strong>Ends: </strong> {{vm.season.end_date | date: "shortDate"}} <br>
+            <strong>Duration: </strong> <br>
+            <strong># of Occurances: </strong> {{vm.season.occurances}}<br>
+            <strong>Gross Sales: </strong>{{vm.season.gross_sales / 100 | currency: "$"}} <br>
+            <strong>Average hourly: </strong> <br>
+        </div>
+        
+        <div class="row">
+            <h4>Constants</h4>
+            <input type="radio" name='confirmed' ng-value='true'  id='confirmed' ng-model='vm.season.isConfirmed'> <label for="confirmed">Confirmed</label>
+            <input type="radio" name='confirmed' ng-value='false' id='pending' ng-model='vm.season.isConfirmed'> <label for="pending">Pending</label>
+            <br>
+
+            <label for="occRent">Rent Per Occurance: </label><input type="number" ng-model='vm.season.occuranceRent' id='occRent' ng-blur='vm.sumRent(vm.season.occuranceRent, vm.season.occurances)'> 
+            <br>
+            <strong>Season Rent: </strong>{{ vm.season.seasonRent | currency: "$"}}
+        </div>
+
+        <div class="row">
+            <h4>Sales Hours Templates</h4>
+            <p>Example: 2019-09-28T08:00:00-07:00</p>
+            <button class="btn btn-info" ng-click='vm.addTemplate()'>Add Template</button>
+            <!--Headers-->
+            <div class="row" style='background-color:black; color: white;'>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>#</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Start</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Open</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Close</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>End</strong></div>
+                <div class='col-xs-1 col-sm-2 col-md-2 col-lg-2'><strong>Delete</strong></div>
+            </div>
+            
+            <!--Data-->
+            <div class="row" style='' ng-repeat='line in vm.season.hrsTemplates track by $index'>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'>{{$index + 1}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><input type="text" ng-model='line.start_time'></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><input type="text" ng-model='line.opens'></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><input type="text" ng-model='line.closes'></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><input type="text" ng-model='line.end_time'></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><button class="btn btn-info" ng-click='vm.deleteTemplate($index)'>X</button> </div>
+            </div>
+
+        </div>
+        
+        <div class="row">
+            
+            <h4>Occurances</h4>
+            <!--Headers-->
+            <div class="row">
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>#</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Date</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Skip?</strong></div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><strong>Gross</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>Tips</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>$/Hr</strong></div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><strong>HrsTemp</strong></div>
+            </div>
+
+            <!--Data-->
+            <div    class="row" 
+                    ng-repeat='(key, value) in vm.instances track by $index'
+                    
+                    >
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' ng-click='vm.instanceReroute(value.instance_id)'>{{value.instance}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-click='vm.instanceReroute(value.instance_id)'>{{value.opens | date: "shortDate"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' ng-click='vm.instanceReroute(value.instance_id)'>{{value.txsSummary.skipped}}</div>
+                <div class='col-xs-2 col-sm-2 col-md-2 col-lg-2' ng-click='vm.instanceReroute(value.instance_id)'>{{value.txsSummary.sales[0].actual /100 | currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' ng-click='vm.instanceReroute(value.instance_id)'>{{value.txsSummary.sales[4].actual /100| currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' ng-click='vm.instanceReroute(value.instance_id)'>{{value.txsSummary.sales[0].actual / 5.5 /100 | currency: "$"}}</div>
+                <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>
+                    <input  type="text" 
+                            ng-model='vm.season.hrsModels[key]'
+                            ng-blur='vm.updateInstanceHrs(key, value, vm.season.hrsTemplates[vm.season.hrsModels[key]-1])'> 
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

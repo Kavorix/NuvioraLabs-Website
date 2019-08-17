@@ -126,7 +126,7 @@ function config($routeProvider, $locationProvider) {
                 return firebaseService.read.channels();
             },
             instanceData: function(firebaseService, $route) {
-                firebaseService.query.instance($route.current.params.channelId)
+                return firebaseService.query.instances('channel_id', $route.current.params.channelId)
             }
         }
     })
@@ -142,6 +142,9 @@ function config($routeProvider, $locationProvider) {
             channelData: function(firebaseService, $route) {
                 var readPath = "channels/" + $route.current.params.channelId
                 return firebaseService.read.record(readPath);
+            },
+            instanceData: function(firebaseService, $route) {
+                return firebaseService.query.instances('season_id', $route.current.params.seasonId)
             }
         }
     })
