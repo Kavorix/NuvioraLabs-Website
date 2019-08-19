@@ -13,8 +13,36 @@ var moment      = require('moment');
 var stdio       = require('./stdio/stdio.js');
 
 
+
+/*firebase.query.childValue('instances', 'channel_id', '-LdCiQrDqw517mfSwKZc')
+.then(function success(s) {
+    //return an affirmative status code
+    var updates = {};
+
+    Object.keys(s).forEach(function(key) {
+        var date = s[key].opens.split("T")[0];
+
+        updates['/instances/' + key + "/season_id"]     = '-Lmf2BGDV0Q0jbxiUpJl';
+        updates['/instances/' + key + "/end_time"]      = date + 'T15:00:00-07:00';
+        updates['/instances/' + key + "/closes"]        = date + 'T14:00:00-07:00';
+    });
+
+    firebase.updateBatch(updates)
+    .then(function success(s) {
+        //return an affirmative status code
+        console.log(s)
+    }).catch(function error(e) {
+        console.log(e);
+    });
+
+}).catch(function error(e) {
+    console.log(e);
+});*/
+
+//-Lmf2BGDV0Q0jbxiUpJl
+
 //  UPDATES RECORDS
-firebase.query.childValue('instances', 'channel_id', '-LdCgUNtz_RU_a4oQSVa')
+/*firebase.query.childValue('instances', 'channel_id', '-LdChKgUgOhxOM484s_c')
 .then(function success(instancesList) {
     //  define local variables
     var updates = {};
@@ -26,9 +54,10 @@ firebase.query.childValue('instances', 'channel_id', '-LdCgUNtz_RU_a4oQSVa')
         updates['/instances/' + key + "/closes"]     = date + 'T13:30:00-07:00';
     });*/
 
-    Object.keys(instancesList).forEach(function(key) {
-        updates['/instances/' + instancesList[key].instance_id + '/season_id'] = '-LjFB-TbRejmOtjQMzkw'; // Summer
+    /*Object.keys(instancesList).forEach(function(key) {
+        updates['/instances/' + instancesList[key].instance_id + '/season_id'] = '-LlWXJgGAhMD2oJV-F8D'; // Summer
     });
+    //      -LjFBL1P_a4xUAM1be94
 
     firebase.updateBatch(updates)
     .then(function success(s) {
@@ -41,7 +70,7 @@ firebase.query.childValue('instances', 'channel_id', '-LdCgUNtz_RU_a4oQSVa')
     //console.log(instancesList)
 }).catch(function error(e) {
     console.log(e);
-});
+});*/
 
 /*var instanceData = {
     "channel_id" : "-LdCgjSRL27Y9RruXGE4",

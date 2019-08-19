@@ -14,6 +14,37 @@ function adminDataSeasonController($scope, $location, $routeParams, firebaseServ
     vm.season       = seasonData;
     vm.channel      = channelData;
     vm.instances    = instanceData;
+    vm.state = {
+        tempStartDate: "",
+        tempEndDate: "",
+        tempFreq: "",
+        instancesPreview: [],
+        instancesPreviewHrs: []
+    }
+
+    //  DEFINE LOCAL FUNCTIONS  
+    function addPreviewInstance(date, channel, season, instance) {
+        return {
+            channel_id: channel.channel_id,
+            channel_name: channel.channel_name,
+            closes: date,
+            end_time: date,
+            instance: instance,
+            instance_id: "",
+            opens: date,
+            season_id: season.seasonId,
+            season_name: season.title,
+            start_time: date,
+            hrsModel: "",
+            txsSummary: {
+                filters: "",
+                payments: "",
+                sales: "",
+                skipped: false
+            },
+            delVisible: false
+        }
+    }
     
     //  DEFINE VIEW MODEL FUNCTIONS
     vm.saveUpdates = function() { 
@@ -82,6 +113,134 @@ function adminDataSeasonController($scope, $location, $routeParams, firebaseServ
             console.log(e);
         });
     };
+    vm.buildInstancesPreview = function(start, end, freq) {
+        //  NOTIFY PROGRESS
+        console.log('buildInstancesPreview', start, end, freq);
+
+        //  DEFINE LOCL VARIABLES
+        var startDate = moment(start);
+        var endDate = moment(end);
+
+        //  TEST FOR VIABLE VALUES
+        if(start != "" && end != "", freq !="") {
+            console.log('all values good');
+            //  iterate based on frequency
+            switch(freq) {
+                case "Daily":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'days')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.state.instancesPreview.push(
+                            addPreviewInstance(
+                                cursorDate.format(),                                            //  DATE
+                                { channel_id: vm.channel.id, channel_name: vm.channel.title },  //  CHANNEL
+                                { seasonId: $routeParams.seasonId, title: vm.season.title },             //  SEASON
+                                i + 1                                                           //  INSTANCE
+                            )
+                        );
+                        vm.state.instancesPreviewHrs.push("");
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'days')
+                    };
+                    
+                    break;
+                case "Weekly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'weeks')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.state.instancesPreview.push(
+                            addPreviewInstance(
+                                cursorDate.format(),                                            //  DATE
+                                { channel_id: vm.channel.id, channel_name: vm.channel.title },  //  CHANNEL
+                                { seasonId: $routeParams.seasonId, title: vm.season.title },             //  SEASON
+                                i + 1                                                           //  INSTANCE
+                            )
+                        );
+                        vm.state.instancesPreviewHrs.push("");
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'week')
+                    };
+                    break;
+                case "Bi-Weekly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'weeks') / 2;
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.state.instancesPreview.push(
+                            addPreviewInstance(
+                                cursorDate.format(),                                            //  DATE
+                                { channel_id: vm.channel.id, channel_name: vm.channel.title },  //  CHANNEL
+                                { seasonId: $routeParams.seasonId, title: vm.season.title },             //  SEASON
+                                i + 1                                                           //  INSTANCE
+                            )
+                        );
+                        vm.state.instancesPreviewHrs.push("");
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(2, 'week')
+                    };
+                    break;
+                case "Monthly":
+                    //  DEFINE LOCAL VARIBALES
+                    var iterations = endDate.diff(startDate, 'months')
+                    var cursorDate = startDate;
+                    //  iterate to create the list
+                    for(var i = 0; i <= iterations; i++) {
+                        //save the date
+                        vm.state.instancesPreview.push(
+                            addPreviewInstance(
+                                cursorDate.format(),                                            //  DATE
+                                { channel_id: vm.channel.id, channel_name: vm.channel.title },  //  CHANNEL
+                                { seasonId: $routeParams.seasonId, title: vm.season.title },             //  SEASON
+                                i + 1                                                           //  INSTANCE
+                            )
+                        );
+                        vm.state.instancesPreviewHrs.push("");
+                        //notify the date
+                        //console.log(cursorDate.format());
+                        //incriment the date
+                        cursorDate = cursorDate.add(1, 'month')
+                    };
+                    break;
+                default:
+            };
+        }
+    };
+    vm.deletePreviewInstance = function(index) {
+        vm.state.instancesPreview.splice(index,1);
+    };
+    vm.updatePreviewHrs = function(index, preview, hrsModel) {
+        //  NOTIFY PROGRESS
+        console.log('updatePreviewHrs', index, preview, hrsModel);
+        
+        vm.state.instancesPreview[index].closes     = preview.closes.split("T")[0]      + "T" + hrsModel.closes;
+        vm.state.instancesPreview[index].end_time   = preview.end_time.split("T")[0]    + "T" + hrsModel.end_time;
+        vm.state.instancesPreview[index].opens      = preview.opens.split("T")[0]       + "T" + hrsModel.opens;
+        vm.state.instancesPreview[index].start_time = preview.start_time.split("T")[0]  + "T" + hrsModel.start_time;
+    };
+    vm.saveNewInstances = function(instances){
+        firebaseService.create.instancesList(instances)
+        .then(function success(s) {
+            console.log(s);
+            $scope.$apply();
+        }).catch(function error(e) {
+            console.log(e);
+        });
+    };
+
     //  DEFINE LOCAL
     /*
     *   PRIVATE: IDENTIFY START

@@ -29,7 +29,8 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
         create: {
             emailUser: create_user_email,
             season: createSeason,
-            channel: createChannel
+            channel: createChannel,
+            instancesList: createInstancesList
         },
         authenticate: {
             email: email_authentication
@@ -58,6 +59,39 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     /*
     *   CREATE
     */
+    /*
+    *
+    */
+    function createInstancesList(instanesList){
+        //  DECLARE LOCAL VARIABLES
+        var updates = {};
+
+        console.log('createInstancesList', instanesList);
+
+        //  RETURN ASYNC WORK
+        return new Promise(function(resolve, reject) {
+
+            //  ITERATE
+            instanesList.forEach(function(instance){
+
+                //  Get a key for the new post
+                var newInstanceKey = firebase.database().ref().child('instances').push().key;
+                
+                instance.instance_id = newInstanceKey
+                updates["/instances/" + newInstanceKey] = instance
+
+            });
+            
+            updateRecord(updates)
+            .then(function success(s) {
+                resolve(s);
+            }).catch(function error(e) {
+                reject(e);
+            });
+
+        });
+    };
+
     function createSeason(chId, value) {
         //  DECLARE LOCAL VARIABLES
         var seasonObject = {
@@ -84,7 +118,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
 
             firebase.database().ref().update(updates)
             .then(function success(s) {
-                resolve(s);
+                resolve(newSeasonKey);
             }).catch(function error(e) {
                 reject(e);
             });
@@ -125,7 +159,7 @@ function firebaseService($log, $http, $firebase, $firebaseObject, $firebaseArray
     function updateRecord(updates) {
         //  DEFINE LOCAL VARAIBLES
         //  NOTIFY PROGRESS
-        console.log('reading inventory instances');
+        console.log('updateRecord', updates);
         //  RETURN ASYNC WORK
         return new Promise(function(resolve, reject) {
             firebase.database().ref().update(updates)

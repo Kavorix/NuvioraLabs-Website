@@ -41,6 +41,12 @@
             <button class="btn btn-success" ng-click='vm.state.seasonAdder.visible=!vm.state.seasonAdder.visible'>Add Season</button>
 
             <!--Season Adder Section-->
+            <div ng-show='vm.state.seasonAdder.visible'>
+                <h4>Season Adder</h4>
+                <label for="seasonInput">Season Name:</label>
+                <input type="text" id='seasonInput' name='seasonInput' ng-model='vm.state.tempSeasonName'>
+                <button class="btn-success" ng-click='vm.addNewSeason(vm.state.tempSeasonName)'>Save Season</button>
+            </div>
             
         </section>
 

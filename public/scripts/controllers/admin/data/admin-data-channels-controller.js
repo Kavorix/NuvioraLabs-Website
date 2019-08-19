@@ -15,7 +15,8 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
     vm.instances    = instanceData;
     vm.seasonsList  = seasonsData;
     vm.state = {
-        seasonAdder: { visible: false }
+        seasonAdder: { visible: false },
+        tempSeasonName: ""
     };
 
     //  NOTIFY PROGRESS
@@ -90,7 +91,18 @@ function adminDataChannelsController($scope, $location, $routeParams, firebaseSe
         console.log('season nav', key);
         $location.path('/admin/data/season/' + key + "/" + channelId);
         //$scope.$apply();
-    }
+    };
+    vm.addNewSeason = function(name) {
+        firebaseService.create.season($routeParams.channelId, name)
+        .then(function success(s) {
+            //return an affirmative status code
+            console.log(s)
+            $location.path('/admin/data/season/' +  s + '/' + $routeParams.channelId)
+        }).catch(function error(e) {
+            console.log(e);
+        });
+        
+    };
 
     //console.info('in adminDataChannelsController');	    //  TODO: TAKE THIS OUT LATER
 

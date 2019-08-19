@@ -81,7 +81,7 @@ function adminInstanceTxsDirective() {
 			//	DEFINE LOCAL VARIABLES
 
 			//	NOTIFY PROGRESS
-			//console.log('refiltering', vm.txsSummary.filters);
+			console.log('refiltering', vm.txsSummary.filters);
 			
 			//	FILTER LIST
 			vm.activeTxs = filterTxs(vm.allTxs, vm.txsSummary.filters);
@@ -266,13 +266,22 @@ function adminInstanceTxsDirective() {
 				//	ASSIGN ALL TXS LIST
 				vm.allTxs = allTxs;
 
+				console.log('vm.instance.txsSummary',vm.instance.txsSummary);
 				//	LOAD SAVED FILTERS/SUMMARY
 				if(vm.instance.txsSummary != undefined) {
-					//	NOTIFY PROGRESS
-					console.log('found saved filters')
-					vm.txsSummary 		= vm.instance.txsSummary;
-					vm.activeEmployees 	= vm.instance.txsSummary.filters.employees;
-					vm.activeDevices 	= vm.instance.txsSummary.filters.devices;
+					if(vm.instance.txsSummary.filters != '') {
+						//	NOTIFY PROGRESS
+						console.log('found saved filters')
+						vm.txsSummary 		= vm.instance.txsSummary;
+						vm.activeEmployees 	= vm.instance.txsSummary.filters.employees;
+						vm.activeDevices 	= vm.instance.txsSummary.filters.devices;
+					} else {
+						//	NOTIFY PROGRESS
+						console.log('no saved filters');
+						//	ASSIGN EMPLOYEE FILTERS
+						vm.txsSummary.filters.employees 	= vm.activeEmployees;
+						vm.txsSummary.filters.devices 		= vm.activeDevices;
+					}
 				} else {
 					//	NOTIFY PROGRESS
 					console.log('no saved filters');
@@ -280,6 +289,7 @@ function adminInstanceTxsDirective() {
 					vm.txsSummary.filters.employees 	= vm.activeEmployees;
 					vm.txsSummary.filters.devices 		= vm.activeDevices;
 				}
+
 
 				//	FILTER LIST
 				vm.activeTxs = filterTxs(allTxs, vm.txsSummary.filters);
