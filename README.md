@@ -1,3 +1,3 @@
-# Awe Sweet Version 1
+# Corporate Website for NuvioraLabs
 
-This site is the corporate headquarters of Awe Sweet!
+This site is Corporate Website for NuvioraLabs!
