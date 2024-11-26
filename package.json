@@ -1,7 +1,7 @@
 {
-  "name": "awesweetv1",
+  "name": "Corporate Website for NuvioraLabs",
   "version": "1.0.0",
-  "description": "AweSweet Website",
+  "description": "Corporate Website for NuvioraLabs",
   "main": "server/serverApp.js",
   "scripts": {
     "start": "node server/serverApp.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ianemcallister/awesweetv1.git"
+    "url": "git+ssh://git@github.com:Kavorix/NuvioraLabs-Website.git"
   },
   "keywords": [
     "nuts",
     "sweet",
     "ah"
   ],
-  "author": "Ian McAllister",
+  "author": "kavorix",
   "license": "ISC",
   "dependencies": {
     "angular-chart.js": "^1.1.1",
@@ -45,7 +45,7 @@
     "uuid": "^3.3.2"
   },
   "bugs": {
-    "url": "https://github.com/ianemcallister/awesweetv1/issues"
+    "url": "https://github.com/Kavorix/NuvioraLabs-Website"
   },
-  "homepage": "https://github.com/ianemcallister/awesweetv1#readme"
+  "homepage": "https://github.com/Kavorix/NuvioraLabs-Website"
 }
